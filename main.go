@@ -67,6 +67,11 @@ func scrapeAll() (map[string]string, error) {
 	} else {
 		result["stoiximan"] = err.Error()
 	}
+	if res, err := scrapeSite(models.ParseSiteConfig("pokerstars")); res {
+		result["pokerstars"] = "ok"
+	} else {
+		result["pokerstars"] = err.Error()
+	}
 	return result, nil
 }
 
@@ -101,14 +106,20 @@ func getParser(id string) parsers.Parser{
 	//	return parsers.Bet365{}
 	//case `novibet`:
 	//	return parsers.Novibet{}
+	case `pokerstars`:
+		return parsers.PokerStars{}
 	}
 	return nil
 }
 
 func scrapeSite(config models.SiteConfig) (bool, error) {
+	if !config.Active {
+		return false, fmt.Errorf("Parser disabled")
+	}
 	c := getCollector()
 	parser := getParser(config.Id)
 	if parser != nil {
+		parser.SetDB(db)
 		return parser.Scrape(config, c, db)
 	}
 	return false, fmt.Errorf("Parser not found")

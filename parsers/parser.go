@@ -8,4 +8,5 @@ import (
 
 type Parser interface {
 	Scrape(config models.SiteConfig, c *colly.Collector, db *gorm.DB) (bool, error)
+	SetDB(db *gorm.DB)
 }

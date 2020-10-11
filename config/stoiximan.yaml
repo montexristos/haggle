@@ -1,4 +1,5 @@
 id: stoiximan
+active: false
 baseUrl: https://stoiximan.gr
 parser: parsers.Stoiximan
 urls:

@@ -9,6 +9,7 @@ import (
 
 type SiteConfig struct {
 	Id      string            `json:"id" yaml:"id"`
+	Active  bool              `json:"active" yaml:"active"`
 	BaseUrl string            `json:"baseUrl" yaml:"baseUrl"`
 	Urls    map[string]string `json:"urls"`
 	Parser  string            `json:"parser" yaml:"parser"`
