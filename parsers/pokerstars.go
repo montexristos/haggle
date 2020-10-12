@@ -2,12 +2,13 @@ package parsers
 
 import (
 	"fmt"
-	"github.com/Jeffail/gabs"
-	"github.com/gocolly/colly"
-	"github.com/jinzhu/gorm"
 	"haggle/models"
 	"strconv"
 	"strings"
+
+	"github.com/Jeffail/gabs"
+	"github.com/gocolly/colly"
+	"github.com/jinzhu/gorm"
 )
 
 type PokerStars struct {
@@ -15,12 +16,12 @@ type PokerStars struct {
 	db *gorm.DB
 }
 
-func (p PokerStars) Scrape(config models.SiteConfig, c *colly.Collector, db *gorm.DB) (bool, error){
+func (p PokerStars) Scrape(config models.SiteConfig, c *colly.Collector, db *gorm.DB) (bool, error) {
 	p.db = db
 	c.OnRequest(func(r *colly.Request) {
 		r.Headers.Set("Content-Type", "application/json;charset=UTF-8")
 	})
-	err := c.PostRaw(URL, payload)
+	// err := c.PostRaw(URL, payload)
 	c.OnHTML("script", func(e *colly.HTMLElement) {
 		if strings.HasPrefix(e.Text, `window["initial_state"]=`) {
 			jsonParsed, err := gabs.ParseJSON([]byte(e.Text[24:]))
@@ -42,11 +43,11 @@ func (p PokerStars) Scrape(config models.SiteConfig, c *colly.Collector, db *gor
 }
 
 func (p PokerStars) parseTopEvents(sports []interface{}) {
-	for i:=0;i<len(sports);i++ {
+	for i := 0; i < len(sports); i++ {
 		sport := sports[0].(map[string]interface{})
 		events := sport["events"].([]interface{})
 		if len(events) > 0 {
-			for j:=0;j<len(events);j++ {
+			for j := 0; j < len(events); j++ {
 				p.parseEvent(events[j].(map[string]interface{}))
 			}
 		}
@@ -59,8 +60,8 @@ func (p PokerStars) parseEvent(event map[string]interface{}) {
 	p.db.First(&e, eventID)
 	if e.ID == 0 {
 		e = models.Event{
-			Name:        event["name"].(string),
-			ID: eventID,
+			Name: event["name"].(string),
+			ID:   eventID,
 		}
 		p.db.Create(&e)
 	}
@@ -76,7 +77,7 @@ func (p PokerStars) parseEvent(event map[string]interface{}) {
 
 func (p PokerStars) parseMarket(market map[string]interface{}, event models.Event) models.Market {
 	var marketId string
-	if market["handicap"].(float64) >0  {
+	if market["handicap"].(float64) > 0 {
 		handicap := strconv.FormatFloat(market["handicap"].(float64), 'f', 2, 64)
 		marketId = fmt.Sprintf(`%s:%s`, market["type"].(string), handicap)
 	} else {
@@ -84,10 +85,10 @@ func (p PokerStars) parseMarket(market map[string]interface{}, event models.Even
 	}
 
 	m := models.Market{
-		Name:       market["name"].(string),
-		MarketId:   market["id"].(string),
-		Type: market["type"].(string),
-		ID: fmt.Sprintf(`%d:%s`, event.ID, marketId),
+		Name:     market["name"].(string),
+		MarketId: market["id"].(string),
+		Type:     market["type"].(string),
+		ID:       fmt.Sprintf(`%d:%s`, event.ID, marketId),
 	}
 	selections := market["selections"].([]interface{})
 	for _, selection := range selections {
@@ -99,9 +100,9 @@ func (p PokerStars) parseMarket(market map[string]interface{}, event models.Even
 
 func (p PokerStars) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
 	s := models.Selection{
-		ID:       fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
-		Name:     selection["name"].(string),
-		Price:    selection["price"].(float64),
+		ID:    fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
+		Name:  selection["name"].(string),
+		Price: selection["price"].(float64),
 	}
 	return s
 }
