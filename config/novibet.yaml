@@ -1,0 +1,7 @@
+id: novibet
+active: true
+baseUrl: https://www.novibet.gr/
+parser: parsers.Novibet
+urls:
+  live: stoixima-live
+  day: koyponi-tis-imeras

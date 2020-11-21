@@ -3,18 +3,20 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/jinzhu/gorm"
 	"haggle/models"
 	"haggle/parsers"
 	"log"
 	"net/http"
 	"time"
 
+	"github.com/jinzhu/gorm"
+
 	"github.com/gocolly/colly"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+
+	_ "github.com/go-sql-driver/mysql"
 )
-import _ "github.com/go-sql-driver/mysql"
 
 /*
 docker run \
@@ -24,7 +26,7 @@ docker run \
 --publish 6603:3306 \
 --volume=data:/var/lib/mysql \
 mysql
- */
+*/
 var db *gorm.DB
 
 func main() {
@@ -98,7 +100,7 @@ func getCollector() *colly.Collector {
 	return c
 }
 
-func getParser(id string) parsers.Parser{
+func getParser(id string) parsers.Parser {
 	switch id {
 	case `stoiximan`:
 		return parsers.Stoiximan{}
@@ -120,7 +122,20 @@ func scrapeSite(config models.SiteConfig) (bool, error) {
 	parser := getParser(config.Id)
 	if parser != nil {
 		parser.SetDB(db)
-		return parser.Scrape(config, c, db)
+
+		// Before making a request put the URL with
+		// the key of "url" into the context of the request
+		c.OnRequest(func(r *colly.Request) {
+			r.Ctx.Put("path", r.URL.String())
+		})
+		parser.ScrapeHome()
+		parser.ScrapeLive()
+		parser.ScrapeToday()
+		for t := 0; t < len(config.Tournaments); t++ {
+			parser.ScrapeTournament(t)
+		}
+
+		return parser.Scrape(config, c)
 	}
 	return false, fmt.Errorf("Parser not found")
 }
