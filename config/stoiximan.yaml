@@ -1,7 +1,9 @@
 id: stoiximan
+siteId: 4
 active: true
 baseUrl: https://stoiximan.gr
 parser: parsers.Stoiximan
+tournaments:
 urls:
   live: live/
   day: sport/podosfairo/kouponi-agones-simera/

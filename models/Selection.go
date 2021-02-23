@@ -5,6 +5,7 @@ type Selection struct {
 	MarketID string
 	Name     string
 	Price    float64
+	Line     float64
 }
 
 // Set User's table name to be `profiles`

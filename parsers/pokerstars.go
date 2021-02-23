@@ -13,16 +13,26 @@ import (
 
 type PokerStars struct {
 	Parser
-	db *gorm.DB
+	db     *gorm.DB
+	config *models.SiteConfig
+	c      *colly.Collector
+	ID     int
 }
 
-func (p PokerStars) Scrape(config models.SiteConfig, c *colly.Collector, db *gorm.DB) (bool, error) {
-	p.db = db
-	c.OnRequest(func(r *colly.Request) {
+func (p *PokerStars) SetConfig(c *models.SiteConfig) {
+	p.config = c
+	p.ID = c.SiteID
+}
+func (p *PokerStars) Initialize() {
+	p.c = GetCollector()
+}
+
+func (p *PokerStars) Scrape() (bool, error) {
+	p.c.OnRequest(func(r *colly.Request) {
 		r.Headers.Set("Content-Type", "application/json;charset=UTF-8")
 	})
 	// err := c.PostRaw(URL, payload)
-	c.OnHTML("script", func(e *colly.HTMLElement) {
+	p.c.OnHTML("script", func(e *colly.HTMLElement) {
 		if strings.HasPrefix(e.Text, `window["initial_state"]=`) {
 			jsonParsed, err := gabs.ParseJSON([]byte(e.Text[24:]))
 			if err != nil {
@@ -36,13 +46,33 @@ func (p PokerStars) Scrape(config models.SiteConfig, c *colly.Collector, db *gor
 		}
 	})
 
-	_ = c.Visit(fmt.Sprintf("%s", config.BaseUrl))
-	_ = c.Visit(fmt.Sprintf("%s/%s", config.BaseUrl, config.Urls["live"]))
-	_ = c.Visit(fmt.Sprintf("%s/%s", config.BaseUrl, config.Urls["day"]))
+	_ = p.c.Visit(fmt.Sprintf("%s", p.config.BaseUrl))
 	return true, nil
 }
 
-func (p PokerStars) parseTopEvents(sports []interface{}) {
+func (p *PokerStars) ScrapeHome() (bool, error) {
+	return true, nil
+}
+
+func (p *PokerStars) ScrapeLive() (bool, error) {
+	_ = p.c.Visit(fmt.Sprintf("%s/%s", p.config.BaseUrl, p.config.Urls["live"]))
+	return true, nil
+}
+
+func (p *PokerStars) ScrapeToday() (bool, error) {
+	_ = p.c.Visit(fmt.Sprintf("%s/%s", p.config.BaseUrl, p.config.Urls["day"]))
+	return true, nil
+}
+
+func (p *PokerStars) ScrapeTournament(tournamentId string) (bool, error) {
+	return true, nil
+}
+
+func (p *PokerStars) SetDB(db *gorm.DB) {
+	p.db = db
+}
+
+func (p *PokerStars) parseTopEvents(sports []interface{}) {
 	for i := 0; i < len(sports); i++ {
 		sport := sports[0].(map[string]interface{})
 		events := sport["events"].([]interface{})
@@ -54,7 +84,7 @@ func (p PokerStars) parseTopEvents(sports []interface{}) {
 	}
 }
 
-func (p PokerStars) parseEvent(event map[string]interface{}) {
+func (p *PokerStars) parseEvent(event map[string]interface{}) {
 	eventID := int(event["betRadarId"].(float64))
 	var e models.Event
 	p.db.First(&e, eventID)
@@ -75,7 +105,7 @@ func (p PokerStars) parseEvent(event map[string]interface{}) {
 	p.db.Save(&e)
 }
 
-func (p PokerStars) parseMarket(market map[string]interface{}, event models.Event) models.Market {
+func (p *PokerStars) parseMarket(market map[string]interface{}, event models.Event) models.Market {
 	var marketId string
 	if market["handicap"].(float64) > 0 {
 		handicap := strconv.FormatFloat(market["handicap"].(float64), 'f', 2, 64)
@@ -98,7 +128,7 @@ func (p PokerStars) parseMarket(market map[string]interface{}, event models.Even
 	return m
 }
 
-func (p PokerStars) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
+func (p *PokerStars) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
 	s := models.Selection{
 		ID:    fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
 		Name:  selection["name"].(string),

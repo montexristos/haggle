@@ -2,23 +2,25 @@ package parsers
 
 import (
 	"fmt"
-	"haggle/models"
-	"strconv"
-	"strings"
-
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
 	"github.com/jinzhu/gorm"
+	"haggle/models"
+	"strconv"
+	"strings"
 )
 
 type Stoiximan struct {
 	Parser
-	db *gorm.DB
+	db     *gorm.DB
+	config *models.SiteConfig
+	c      *colly.Collector
+	ID     int
 }
 
-func (s Stoiximan) Scrape(config models.SiteConfig, c *colly.Collector, db *gorm.DB) (bool, error) {
-	s.db = db
-	c.OnHTML("script", func(e *colly.HTMLElement) {
+func (s *Stoiximan) Initialize() {
+	s.c = GetCollector()
+	s.c.OnHTML("script", func(e *colly.HTMLElement) {
 		if strings.HasPrefix(e.Text, `window["initial_state"]=`) {
 			jsonParsed, err := gabs.ParseJSON([]byte(e.Text[24:]))
 			if err != nil {
@@ -31,14 +33,42 @@ func (s Stoiximan) Scrape(config models.SiteConfig, c *colly.Collector, db *gorm
 			//TODO parse other items (fmt.Println(jsonParsed))
 		}
 	})
+}
 
-	_ = c.Visit(fmt.Sprintf("%s", config.BaseUrl))
-	_ = c.Visit(fmt.Sprintf("%s/%s", config.BaseUrl, config.Urls["live"]))
-	_ = c.Visit(fmt.Sprintf("%s/%s", config.BaseUrl, config.Urls["day"]))
+func (s *Stoiximan) Scrape() (bool, error) {
+
 	return true, nil
 }
 
-func (s Stoiximan) parseTopEvents(sports []interface{}) {
+func (s *Stoiximan) ScrapeHome() (bool, error) {
+	_ = s.c.Visit(fmt.Sprintf("%s", s.config.BaseUrl))
+	return true, nil
+}
+
+func (s *Stoiximan) ScrapeLive() (bool, error) {
+	_ = s.c.Visit(fmt.Sprintf("%s/%s", s.config.BaseUrl, s.config.Urls["live"]))
+	return true, nil
+}
+
+func (s *Stoiximan) ScrapeToday() (bool, error) {
+	_ = s.c.Visit(fmt.Sprintf("%s/%s", s.config.BaseUrl, s.config.Urls["day"]))
+	return true, nil
+}
+
+func (s *Stoiximan) ScrapeTournament(tournamentId string) (bool, error) {
+	return true, nil
+}
+
+func (s *Stoiximan) SetDB(db *gorm.DB) {
+	s.db = db
+}
+
+func (s *Stoiximan) SetConfig(c *models.SiteConfig) {
+	s.config = c
+	s.ID = c.SiteID
+}
+
+func (s *Stoiximan) parseTopEvents(sports []interface{}) {
 	for i := 0; i < len(sports); i++ {
 		sport := sports[0].(map[string]interface{})
 		events := sport["events"].([]interface{})
@@ -50,18 +80,9 @@ func (s Stoiximan) parseTopEvents(sports []interface{}) {
 	}
 }
 
-func (s Stoiximan) parseEvent(event map[string]interface{}) {
+func (s *Stoiximan) parseEvent(event map[string]interface{}) {
 	eventID := int(event["betRadarId"].(float64))
-	var e models.Event
-	s.db.First(&e, eventID)
-	if e.ID == 0 {
-		e = models.Event{
-			Name: event["name"].(string),
-			ID:   eventID,
-		}
-		s.db.Create(&e)
-	}
-
+	e := models.GetCreateEvent(s.db, eventID, s.ID, event["name"].(string))
 	markets := make([]models.Market, 0)
 	for _, market := range event["markets"].([]interface{}) {
 		m := s.parseMarket(market.(map[string]interface{}), e)
@@ -71,7 +92,7 @@ func (s Stoiximan) parseEvent(event map[string]interface{}) {
 	s.db.Save(&e)
 }
 
-func (s Stoiximan) parseMarket(market map[string]interface{}, event models.Event) models.Market {
+func (s *Stoiximan) parseMarket(market map[string]interface{}, event models.Event) models.Market {
 	var marketId string
 	if market["handicap"].(float64) > 0 {
 		handicap := strconv.FormatFloat(market["handicap"].(float64), 'f', 2, 64)
@@ -94,7 +115,7 @@ func (s Stoiximan) parseMarket(market map[string]interface{}, event models.Event
 	return m
 }
 
-func (s Stoiximan) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
+func (s *Stoiximan) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
 	sel := models.Selection{
 		ID:    fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
 		Name:  selection["name"].(string),

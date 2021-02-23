@@ -1,7 +1,9 @@
 id: bet
+siteId: 1
 active: true
 baseUrl: https://www.bet365.gr
 parser: parsers.Bet365
 urls:
   live: /#/IP/B1
   day: /#/AC/B1/C1/D13/F2/J0/Q1/F^24/
+tournaments:

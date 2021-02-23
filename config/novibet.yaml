@@ -1,7 +1,10 @@
 id: novibet
+siteId: 2
 active: true
 baseUrl: https://www.novibet.gr/
 parser: parsers.Novibet
 urls:
-  live: stoixima-live
-  day: koyponi-tis-imeras
+  live: api/marketviews/location/16/4390?lang=el-GR&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=1607020261279
+  day: api/marketviews/location/16/450144?lang=el-GR&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=1607063507056
+  highlights: api/marketviews/location/16/55382?lang=el-GR&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=1607064128616
+tournaments:

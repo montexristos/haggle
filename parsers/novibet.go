@@ -2,25 +2,28 @@ package parsers
 
 import (
 	"fmt"
-	"haggle/models"
-	"strconv"
-	"strings"
-
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
 	"github.com/jinzhu/gorm"
+	"github.com/spf13/cast"
+	"haggle/models"
+	"strconv"
+	"strings"
 )
 
-type Nobibet struct {
+type Novibet struct {
 	Parser
-	db *gorm.DB
+	db     *gorm.DB
+	config *models.SiteConfig
+	c      *colly.Collector
+	ID     int
 }
 
-func (n Nobibet) Scrape(config models.SiteConfig, c *colly.Collector, db *gorm.DB) (bool, error) {
-	n.db = db
-	c.OnHTML("script", func(e *colly.HTMLElement) {
-		//*[@id="main_soccertopbets_container"]/div/div/div[3]
-
+func (n *Novibet) Initialize() {
+	n.c = GetCollector()
+	n.c.OnHTML("body", func(e *colly.HTMLElement) {
+		text := e.Text
+		fmt.Println(text)
 		if strings.HasPrefix(e.Text, `window["initial_state"]=`) {
 			jsonParsed, err := gabs.ParseJSON([]byte(e.Text[24:]))
 			if err != nil {
@@ -33,37 +36,55 @@ func (n Nobibet) Scrape(config models.SiteConfig, c *colly.Collector, db *gorm.D
 			//TODO parse other items (fmt.Println(jsonParsed))
 		}
 	})
+}
 
-	_ = c.Visit(fmt.Sprintf("%s", config.BaseUrl))
-	_ = c.Visit(fmt.Sprintf("%s/%s", config.BaseUrl, config.Urls["live"]))
-	_ = c.Visit(fmt.Sprintf("%s/%s", config.BaseUrl, config.Urls["day"]))
+func (n *Novibet) SetConfig(c *models.SiteConfig) {
+	n.config = c
+	n.ID = c.SiteID
+}
+
+func (n *Novibet) Scrape() (bool, error) {
+
+	return true, nil
+}
+func (n *Novibet) ScrapeHome() (bool, error) {
 	return true, nil
 }
 
-func (n Nobibet) parseTopEvents(sports []interface{}) {
+func (n *Novibet) ScrapeLive() (bool, error) {
+	_ = n.c.Visit(fmt.Sprintf("%s/%s", n.config.BaseUrl, n.config.Urls["live"]))
+	return true, nil
+}
+
+func (n *Novibet) ScrapeToday() (bool, error) {
+	_ = n.c.Visit(fmt.Sprintf("%s/%s", n.config.BaseUrl, n.config.Urls["day"]))
+	return true, nil
+}
+
+func (n *Novibet) ScrapeTournament(tournamentId string) (bool, error) {
+	return true, nil
+}
+
+func (n *Novibet) SetDB(db *gorm.DB) {
+	n.db = db
+}
+
+func (n *Novibet) parseTopEvents(sports []interface{}) {
 	for i := 0; i < len(sports); i++ {
 		sport := sports[0].(map[string]interface{})
 		events := sport["events"].([]interface{})
 		if len(events) > 0 {
 			for j := 0; j < len(events); j++ {
-				n.parseEvent(events[j].(map[string]interface{}))
+				n.ParseEvent(events[j].(map[string]interface{}))
 			}
 		}
 	}
 }
 
-func (n Nobibet) parseEvent(event map[string]interface{}) {
-	eventID := int(event["betRadarId"].(float64))
-	var e models.Event
-	n.db.First(&e, eventID)
-	if e.ID == 0 {
-		e = models.Event{
-			Name: event["name"].(string),
-			ID:   eventID,
-		}
-		n.db.Create(&e)
-	}
-
+func (n *Novibet) ParseEvent(event map[string]interface{}) {
+	eventID := cast.ToInt(event["betRadarId"])
+	name := event["name"].(string)
+	e := models.GetCreateEvent(n.db, eventID, n.ID, name)
 	markets := make([]models.Market, 0)
 	for _, market := range event["markets"].([]interface{}) {
 		m := n.parseMarket(market.(map[string]interface{}), e)
@@ -73,7 +94,7 @@ func (n Nobibet) parseEvent(event map[string]interface{}) {
 	n.db.Save(&e)
 }
 
-func (n Nobibet) parseMarket(market map[string]interface{}, event models.Event) models.Market {
+func (n *Novibet) parseMarket(market map[string]interface{}, event models.Event) models.Market {
 	var marketId string
 	if market["handicap"].(float64) > 0 {
 		handicap := strconv.FormatFloat(market["handicap"].(float64), 'f', 2, 64)
@@ -96,7 +117,7 @@ func (n Nobibet) parseMarket(market map[string]interface{}, event models.Event) 
 	return m
 }
 
-func (n Nobibet) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
+func (n *Novibet) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
 	sel := models.Selection{
 		ID:    fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
 		Name:  selection["name"].(string),

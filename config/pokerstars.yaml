@@ -1,9 +1,10 @@
 id: pokerstars
+siteId: 3
 active: true
 baseUrl: https://www.pokerstarssports.gr
 parser: parsers.PokerStars
 urls:
   live: sportsbook/v1/api/getHomeInPlayV2?channelId=6&locale=el-gr&siteId=4096
   day: 
-
+tournaments:
 # https://sports.pokerstarssports.gr/sportsbook/v1/api/getCompetitionEvents?competitionId=10839026&marketTypes=BAML%2CBASKETBALL%3AFTOT%3AML%2CBA1W%2CBAPS%2CBASKETBALL%3AFTOT%3AAHCP_MAIN%2CBASKETBALL%3AFTOT%3AOU_MAIN%2CBATO%2CBATOT&includeOutrights=false&channelId=6&locale=el-gr&siteId=4096

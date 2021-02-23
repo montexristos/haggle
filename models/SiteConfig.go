@@ -8,14 +8,16 @@ import (
 )
 
 type SiteConfig struct {
-	Id      string            `json:"id" yaml:"id"`
-	Active  bool              `json:"active" yaml:"active"`
-	BaseUrl string            `json:"baseUrl" yaml:"baseUrl"`
-	Urls    map[string]string `json:"urls"`
-	Parser  string            `json:"parser" yaml:"parser"`
+	Id          string            `json:"id" yaml:"id"`
+	SiteID      int               `json:"siteId" yaml:"siteId"`
+	Active      bool              `json:"active" yaml:"active"`
+	BaseUrl     string            `json:"baseUrl" yaml:"baseUrl"`
+	Urls        map[string]string `json:"urls"`
+	Parser      string            `json:"parser" yaml:"parser"`
+	Tournaments []string          `json:"tournaments" yaml:"tournaments"`
 }
 
-func ParseSiteConfig(website string) SiteConfig {
+func ParseSiteConfig(website string) *SiteConfig {
 	yamlFile, err := ioutil.ReadFile(fmt.Sprintf("config/%s.yaml", website))
 	if err != nil {
 		log.Printf("yamlFile.Get err   #%v ", err)
@@ -26,5 +28,5 @@ func ParseSiteConfig(website string) SiteConfig {
 		log.Fatalf("error: %v", err)
 	}
 	log.Println(y)
-	return y
+	return &y
 }

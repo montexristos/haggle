@@ -1,0 +1,10 @@
+id: winmasters
+active: true
+siteId: 5
+baseUrl: https://sbapi.sbtech.com/winmasters/
+parser: parsers.Winmasters
+urls:
+  live:
+  day:
+  highlights: /sportscontent/sportsbook/v1/Events/GetFromTopLeaguesBySportId
+  tournaments:
