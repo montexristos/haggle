@@ -20,7 +20,7 @@ docker run \
 --detach \
 --name=mysql \
 --env="MYSQL_ROOT_PASSWORD=123" \
---publish 6603:3306 \
+--publish 6602:3306 \
 --volume=data:/var/lib/mysql \
 mysql
 */
@@ -53,7 +53,7 @@ type Application struct {
 
 func GetDb() *gorm.DB {
 	//CREATE SCHEMA `haggle` DEFAULT CHARACTER SET utf8 ;
-	db, err := gorm.Open("mysql", "root:123@(localhost:6603)/haggle?charset=utf8&parseTime=True&loc=Local")
+	db, err := gorm.Open("mysql", "root:123@(localhost:6602)/haggle?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -63,12 +63,12 @@ func GetDb() *gorm.DB {
 
 func (app *Application) scrapeAll() (map[string]string, error) {
 	result := make(map[string]string)
-	if res, err := app.scrapeSite(models.ParseSiteConfig("stoiximan")); res {
+	if res, err := app.ScrapeSite(models.ParseSiteConfig("stoiximan")); res {
 		result["stoiximan"] = "ok"
 	} else {
 		result["stoiximan"] = err.Error()
 	}
-	if res, err := app.scrapeSite(models.ParseSiteConfig("pokerstars")); res {
+	if res, err := app.ScrapeSite(models.ParseSiteConfig("pokerstars")); res {
 		result["pokerstars"] = "ok"
 	} else {
 		result["pokerstars"] = err.Error()
@@ -76,32 +76,47 @@ func (app *Application) scrapeAll() (map[string]string, error) {
 	return result, nil
 }
 
-func getParser(id string) parsers.Parser {
-	switch id {
+func GetParser(config *models.SiteConfig, db *gorm.DB) parsers.Parser {
+	var parser parsers.Parser
+	switch config.Id {
 	case `stoiximan`:
-		return &parsers.Stoiximan{}
+		parser = &parsers.Stoiximan{}
+		break
 	//case `bet365`:
-	//	return parsers.Bet365{}
+	//	parser = &parsers.Bet365{}
+	//	break
 	case `novibet`:
-		return &parsers.Novibet{}
+		parser = &parsers.Novibet{}
+		break
 	case `pokerstars`:
-		return &parsers.PokerStars{}
+		parser = &parsers.PokerStars{}
+		break
 	case `winmasters`:
-		return &parsers.Winmasters{}
+		parser = &parsers.Winmasters{}
+		break
 	}
+
+
+	parser.SetDB(db)
+	parser.SetConfig(config)
+	parser.Initialize()
+
 	return nil
 }
 
-func (app *Application) scrapeSite(config *models.SiteConfig) (bool, error) {
+func (app *Application) ScrapeSite(config *models.SiteConfig) (bool, error) {
 	if !config.Active {
 		return false, fmt.Errorf("Parser %s disabled", config.Id)
 	}
 
-	parser := getParser(config.Id)
+	parser := GetParser(config, app.db)
+
+
+
 	if parser != nil {
-		parser.Initialize()
 		parser.SetDB(app.db)
 		parser.SetConfig(config)
+		parser.Initialize()
 		var err error
 		_, err = parser.ScrapeHome()
 		_, err = parser.ScrapeLive()

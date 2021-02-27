@@ -63,9 +63,25 @@ func (s *Stoiximan) SetDB(db *gorm.DB) {
 	s.db = db
 }
 
+func (s *Stoiximan) GetDB() *gorm.DB {
+	return s.db
+}
+
 func (s *Stoiximan) SetConfig(c *models.SiteConfig) {
 	s.config = c
 	s.ID = c.SiteID
+}
+
+func (s *Stoiximan) GetEventID(event map[string]interface{}) int {
+	return int(event["betRadarId"].(float64))
+}
+
+func (s *Stoiximan) GetEventName(event map[string]interface{}) string {
+	return event["name"].(string)
+}
+
+func (s *Stoiximan) GetEventMarkets(event map[string]interface{}) []interface{} {
+	return event["markets"].([]interface{})
 }
 
 func (s *Stoiximan) parseTopEvents(sports []interface{}) {
@@ -103,9 +119,9 @@ func (s *Stoiximan) parseMarket(market map[string]interface{}, event models.Even
 
 	m := models.Market{
 		Name:     market["name"].(string),
-		MarketId: market["id"].(string),
 		Type:     market["type"].(string),
-		ID:       fmt.Sprintf(`%d:%s`, event.ID, marketId),
+		ID:       marketId,
+		SiteID:   s.ID,
 	}
 	selections := market["selections"].([]interface{})
 	for _, selection := range selections {
@@ -120,6 +136,22 @@ func (s *Stoiximan) parseSelection(eventId int, market models.Market, selection 
 		ID:    fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
 		Name:  selection["name"].(string),
 		Price: selection["price"].(float64),
+		SiteID:   s.ID,
+		MarketID: market.ID,
 	}
 	return sel
+}
+
+func (s *Stoiximan) ParseSelectionName(selectionData map[string]interface{}) string {
+	return selectionData["name"].(string)
+}
+
+func (s *Stoiximan) ParseSelectionPrice(selectionData map[string]interface{}) float64 {
+	return selectionData["price"].(float64)
+}
+
+func (s *Stoiximan) ParseSelectionLine(selectionData map[string]interface{}) float64 {
+	line := 0.0
+	//TODO get line
+	return line
 }

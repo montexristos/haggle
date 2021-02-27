@@ -5,10 +5,10 @@ import (
 )
 
 type Event struct {
-	ID         int `gorm:"primary_key"`
+	ID         int `gorm:"primaryKey;autoIncrement:false"`
 	Name       string
 	Markets    []Market
-	SiteID     int
+	SiteID     int `gorm:"primaryKey;autoIncrement:false"`
 	BetradarID int
 }
 

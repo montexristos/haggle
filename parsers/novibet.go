@@ -105,23 +105,40 @@ func (n *Novibet) parseMarket(market map[string]interface{}, event models.Event)
 
 	m := models.Market{
 		Name:     market["name"].(string),
-		MarketId: market["id"].(string),
 		Type:     market["type"].(string),
-		ID:       fmt.Sprintf(`%d:%s`, event.ID, marketId),
+		ID:       marketId,
+		SiteID:   n.ID,
 	}
 	selections := market["selections"].([]interface{})
 	for _, selection := range selections {
-		sel := n.parseSelection(event.ID, m, selection.(map[string]interface{}))
+		sel := ParseSelection(n, event.ID, m, selection.(map[string]interface{}))
 		m.Selections = append(m.Selections, sel)
 	}
 	return m
 }
 
-func (n *Novibet) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
-	sel := models.Selection{
-		ID:    fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
-		Name:  selection["name"].(string),
-		Price: selection["price"].(float64),
-	}
-	return sel
+func (n *Novibet) GetEventID(event map[string]interface{}) int {
+	return int(event["betRadarId"].(float64))
+}
+
+func (n *Novibet) GetEventName(event map[string]interface{}) string {
+	return event["name"].(string)
+}
+
+func (n *Novibet) GetEventMarkets(event map[string]interface{}) []interface{} {
+	return event["markets"].([]interface{})
+}
+
+func (n *Novibet) ParseSelectionName(selectionData map[string]interface{}) string {
+	return selectionData["name"].(string)
+}
+
+func (n *Novibet) ParseSelectionPrice(selectionData map[string]interface{}) float64 {
+	return selectionData["price"].(float64)
+}
+
+func (n *Novibet) ParseSelectionLine(selectionData map[string]interface{}) float64 {
+	line := 0.0
+	//TODO get line
+	return line
 }

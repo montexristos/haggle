@@ -25,7 +25,6 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/spf13/cast"
 	"haggle/models"
-	"strconv"
 	"strings"
 )
 
@@ -37,7 +36,11 @@ type Winmasters struct {
 	ID     int
 }
 
-func (w *Winmasters) Initialize() {
+func (w Winmasters) GetSiteID() int {
+	return w.config.SiteID
+}
+
+func (w Winmasters) Initialize() {
 	w.c = GetCollector()
 	w.c.OnHTML("body", func(e *colly.HTMLElement) {
 		text := e.Text
@@ -93,7 +96,7 @@ func (w *Winmasters) parseTopEvents(sports []interface{}) {
 		events := sport["events"].([]interface{})
 		if len(events) > 0 {
 			for j := 0; j < len(events); j++ {
-				w.ParseEvent(events[j].(map[string]interface{}))
+				_, _ = ParseEvent(w, events[j].(map[string]interface{}))
 			}
 		}
 	}
@@ -102,14 +105,14 @@ func (w *Winmasters) parseTopEvents(sports []interface{}) {
 func (w *Winmasters) ParseEvents(events []interface{}, markets []interface{}) {
 	for i := 0; i < len(events); i++ {
 		event := events[i].(map[string]interface{})
-		eventObject, err := w.ParseEvent(event)
+		eventObject, err := ParseEvent(w, event)
 		if err != nil {
 			fmt.Println("error parsing event")
 			continue
 		}
 		for j := 0; j < len(markets); j++ {
 			if markets[j].(map[string]interface{})["eventId"] == event["id"] {
-				market := w.ParseMarket(markets[j].(map[string]interface{}))
+				market := ParseMarket(w, markets[j].(map[string]interface{}), *eventObject)
 				eventObject.Markets = append(eventObject.Markets, market)
 				w.db.Save(&eventObject)
 			}
@@ -117,46 +120,50 @@ func (w *Winmasters) ParseEvents(events []interface{}, markets []interface{}) {
 	}
 }
 
-func (w *Winmasters) ParseEvent(event map[string]interface{}) (*models.Event, error) {
-	if event["type"] == "Outright" {
-		return &models.Event{}, fmt.Errorf("antepost")
-	}
-	eventID := cast.ToInt(event["id"])
-	name := cast.ToString(event["name"])
-	e := models.GetCreateEvent(w.db, eventID, w.ID, name)
-	return &e, nil
+func (w *Winmasters) GetDB() *gorm.DB {
+	return w.db
 }
 
-func (w *Winmasters) ParseMarket(market map[string]interface{}) models.Market {
-	marketType := market["marketType"].(map[string]interface{})["id"].(string)
-	name := market["marketType"].(map[string]interface{})["name"].(string)
-	eventID, _ := strconv.Atoi(market["eventId"].(string))
-	marketId := market["id"].(string)
-	m := models.Market{
-		Name:     name,
-		MarketId: marketId,
-		Type:     marketType,
-		ID:       fmt.Sprintf(`%d:%s:%d`, eventID, marketId, w.ID),
-	}
-	selections := market["selections"].([]interface{})
-	for _, selection := range selections {
-		sel := w.parseSelection(eventID, m, selection.(map[string]interface{}))
-		m.Selections = append(m.Selections, sel)
-	}
-	return m
+func (w *Winmasters) GetEventIsAntepost(event map[string]interface{}) bool {
+	return event["type"] == "Outright"
 }
 
-func (w *Winmasters) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
+func (w *Winmasters) GetEventID(event map[string]interface{}) int {
+	return cast.ToInt(event["id"])
+}
+
+func (w *Winmasters) GetEventName(event map[string]interface{}) string {
+	return cast.ToString(event["name"])
+}
+
+func (w *Winmasters) GetEventMarkets(event map[string]interface{}) []interface{} {
+	return make([]interface{}, 0)
+}
+
+func (w *Winmasters) ParseMarketId(market map[string]interface{}) string {
+	return market["id"].(string)
+}
+
+func (w *Winmasters) ParseMarketType(market map[string]interface{}) string {
+	return cast.ToString(market["marketType"].(map[string]interface{})["id"])
+}
+
+func (w *Winmasters) ParseMarketName(market map[string]interface{}) string {
+	return cast.ToString(market["marketType"].(map[string]interface{})["name"])
+}
+
+func (w *Winmasters) ParseSelectionName(selectionData map[string]interface{}) string {
+	return selectionData["name"].(string)
+}
+
+func (w *Winmasters) ParseSelectionPrice(selectionData map[string]interface{}) float64 {
+	return selectionData["trueOdds"].(float64)
+}
+
+func (w *Winmasters) ParseSelectionLine(selectionData map[string]interface{}) float64 {
 	line := 0.0
-	if selection["points"] != nil {
-		line = selection["points"].(float64)
+	if selectionData["points"] != nil {
+		line = selectionData["points"].(float64)
 	}
-	sel := models.Selection{
-		ID:       fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
-		MarketID: market.ID,
-		Name:     selection["name"].(string),
-		Price:    selection["trueOdds"].(float64),
-		Line:     line,
-	}
-	return sel
+	return line
 }

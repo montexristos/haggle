@@ -3,7 +3,6 @@ package parsers
 import (
 	"fmt"
 	"haggle/models"
-	"strconv"
 	"strings"
 
 	"github.com/Jeffail/gabs"
@@ -78,61 +77,49 @@ func (p *PokerStars) parseTopEvents(sports []interface{}) {
 		events := sport["events"].([]interface{})
 		if len(events) > 0 {
 			for j := 0; j < len(events); j++ {
-				p.parseEvent(events[j].(map[string]interface{}))
+				_, _ = ParseEvent(p, events[j].(map[string]interface{}))
 			}
 		}
 	}
 }
 
-func (p *PokerStars) parseEvent(event map[string]interface{}) {
-	eventID := int(event["betRadarId"].(float64))
-	var e models.Event
-	p.db.First(&e, eventID)
-	if e.ID == 0 {
-		e = models.Event{
-			Name: event["name"].(string),
-			ID:   eventID,
-		}
-		p.db.Create(&e)
-	}
-
-	markets := make([]models.Market, 0)
-	for _, market := range event["markets"].([]interface{}) {
-		m := p.parseMarket(market.(map[string]interface{}), e)
-		markets = append(markets, m)
-	}
-	e.Markets = markets
-	p.db.Save(&e)
+func (p *PokerStars) GetEventID(event map[string]interface{}) int {
+	return int(event["betRadarId"].(float64))
 }
 
-func (p *PokerStars) parseMarket(market map[string]interface{}, event models.Event) models.Market {
-	var marketId string
-	if market["handicap"].(float64) > 0 {
-		handicap := strconv.FormatFloat(market["handicap"].(float64), 'f', 2, 64)
-		marketId = fmt.Sprintf(`%s:%s`, market["type"].(string), handicap)
-	} else {
-		marketId = fmt.Sprintf(`%s`, market["type"].(string))
-	}
-
-	m := models.Market{
-		Name:     market["name"].(string),
-		MarketId: market["id"].(string),
-		Type:     market["type"].(string),
-		ID:       fmt.Sprintf(`%d:%s`, event.ID, marketId),
-	}
-	selections := market["selections"].([]interface{})
-	for _, selection := range selections {
-		s := p.parseSelection(event.ID, m, selection.(map[string]interface{}))
-		m.Selections = append(m.Selections, s)
-	}
-	return m
+func (p *PokerStars) GetEventName(event map[string]interface{}) string {
+	return event["name"].(string)
 }
 
-func (p *PokerStars) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
-	s := models.Selection{
-		ID:    fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
-		Name:  selection["name"].(string),
-		Price: selection["price"].(float64),
-	}
-	return s
+func (p *PokerStars) GetEventIsAntepost(event map[string]interface{}) bool {
+	return false
 }
+
+func (p *PokerStars) GetEventMarkets(event map[string]interface{})  []interface{} {
+	return event["markets"].([]interface{})
+}
+
+func (p *PokerStars) ParseMarketType(market map[string]interface{}) string {
+	return market["type"].(string)
+}
+
+func (p *PokerStars) ParseMarketId(market map[string]interface{}) string {
+	return market["id"].(string)
+}
+
+func (p *PokerStars) ParseMarketName(market map[string]interface{}) string {
+	return market["name"].(string)
+}
+
+func (p *PokerStars) ParseSelectionName(selectionData map[string]interface{}) string {
+	return selectionData["name"].(string)
+}
+
+func (p *PokerStars) ParseSelectionPrice(selectionData map[string]interface{}) float64 {
+	return selectionData["price"].(float64)
+}
+
+func (p *PokerStars) ParseSelectionLine(selectionData map[string]interface{}) float64 {
+	return 0
+}
+

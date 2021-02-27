@@ -2,9 +2,9 @@ package models
 
 type Market struct {
 	ID         string `gorm:"primary_key;auto_increment:false"`
-	EventID    int
+	EventID    int `gorm:"primary_key;auto_increment:false"`
 	Name       string
-	MarketId   string
+	SiteID int `gorm:"primary_key;auto_increment:false"`
 	Type       string
 	Selections []Selection
 }

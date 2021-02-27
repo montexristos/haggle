@@ -2,7 +2,8 @@ package models
 
 type Selection struct {
 	ID       string `gorm:"primary_key;auto_increment:false"`
-	MarketID string
+	SiteID     int `gorm:"primaryKey;autoIncrement:false"`
+	MarketID string `gorm:"primaryKey;autoIncrement:false"`
 	Name     string
 	Price    float64
 	Line     float64
