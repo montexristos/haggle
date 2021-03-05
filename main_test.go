@@ -16,9 +16,11 @@ func Test_bet(t *testing.T) {
 }
 
 /**
+SET FOREIGN_KEY_CHECKS=0;
 TRUNCATE TABLE haggle.selections;
 TRUNCATE TABLE haggle.markets;
 TRUNCATE TABLE haggle.events;
+SET FOREIGN_KEY_CHECKS=1;
 */
 
 func Test_stoiximan(t *testing.T) {
@@ -32,11 +34,17 @@ func Test_stoiximan(t *testing.T) {
 }
 func Test_winmastersParse(t *testing.T) {
 	db := GetDb()
+	app := Application{
+		db,
+	}
 	parser, _ := GetParser("winmasters", db)
 	//read file and parse
 	file := "./test_input/winmasters/premierLeague.json"
 	event, _ := ioutil.ReadFile(file)
 
+	if _, err := app.ScrapeSite("stoiximan"); err != nil {
+		t.Error(err.Error())
+	}
 	var parsed interface{}
 	json.Unmarshal(event, &parsed)
 	for key, value := range parsed.(map[string]interface{}) {
