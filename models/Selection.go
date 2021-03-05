@@ -1,12 +1,13 @@
 package models
 
+import "gorm.io/gorm"
+
 type Selection struct {
-	ID       string `gorm:"primary_key;auto_increment:false"`
-	SiteID     int `gorm:"primaryKey;autoIncrement:false"`
-	MarketID string `gorm:"primaryKey;autoIncrement:false"`
+	gorm.Model
 	Name     string
 	Price    float64
 	Line     float64
+	MarketID uint
 }
 
 // Set User's table name to be `profiles`

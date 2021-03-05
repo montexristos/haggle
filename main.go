@@ -3,7 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/jinzhu/gorm"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+
 	"haggle/models"
 	"haggle/parsers"
 	"log"
@@ -11,8 +13,6 @@ import (
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-
-	_ "github.com/go-sql-driver/mysql"
 )
 
 /*
@@ -27,7 +27,6 @@ mysql
 
 func main() {
 	db := GetDb()
-	defer db.Close()
 	app := Application{
 		db,
 	}
@@ -53,22 +52,27 @@ type Application struct {
 
 func GetDb() *gorm.DB {
 	//CREATE SCHEMA `haggle` DEFAULT CHARACTER SET utf8 ;
-	db, err := gorm.Open("mysql", "root:123@(localhost:6602)/haggle?charset=utf8&parseTime=True&loc=Local")
+	// refer https://github.com/go-sql-driver/mysql#dsn-data-source-name for details
+	dsn := "root:123@(localhost:6602)/haggle?charset=utf8&parseTime=True&loc=Local"
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err.Error())
 	}
-	db.AutoMigrate(&models.Event{}, &models.Market{}, &models.Selection{})
+	err = db.AutoMigrate(&models.Event{}, &models.Market{}, &models.Selection{})
+	if err != nil {
+		panic(err.Error())
+	}
 	return db
 }
 
 func (app *Application) scrapeAll() (map[string]string, error) {
 	result := make(map[string]string)
-	if res, err := app.ScrapeSite(models.ParseSiteConfig("stoiximan")); res {
+	if res, err := app.ScrapeSite("stoiximan"); res {
 		result["stoiximan"] = "ok"
 	} else {
 		result["stoiximan"] = err.Error()
 	}
-	if res, err := app.ScrapeSite(models.ParseSiteConfig("pokerstars")); res {
+	if res, err := app.ScrapeSite("pokerstars"); res {
 		result["pokerstars"] = "ok"
 	} else {
 		result["pokerstars"] = err.Error()
@@ -76,7 +80,12 @@ func (app *Application) scrapeAll() (map[string]string, error) {
 	return result, nil
 }
 
-func GetParser(config *models.SiteConfig, db *gorm.DB) parsers.Parser {
+func GetParser(website string, db *gorm.DB) (parsers.Parser, error) {
+	config := models.ParseSiteConfig(website)
+	if !config.Active {
+		return nil, fmt.Errorf("Parser %s disabled", config.Id)
+	}
+
 	var parser parsers.Parser
 	switch config.Id {
 	case `stoiximan`:
@@ -95,33 +104,24 @@ func GetParser(config *models.SiteConfig, db *gorm.DB) parsers.Parser {
 		parser = &parsers.Winmasters{}
 		break
 	}
-
-
-	parser.SetDB(db)
-	parser.SetConfig(config)
-	parser.Initialize()
-
-	return nil
-}
-
-func (app *Application) ScrapeSite(config *models.SiteConfig) (bool, error) {
-	if !config.Active {
-		return false, fmt.Errorf("Parser %s disabled", config.Id)
-	}
-
-	parser := GetParser(config, app.db)
-
-
-
 	if parser != nil {
-		parser.SetDB(app.db)
+		parser.SetDB(db)
 		parser.SetConfig(config)
 		parser.Initialize()
-		var err error
+		return parser, nil
+	}
+	return nil, fmt.Errorf("parser not found")
+}
+
+func (app *Application) ScrapeSite(website string) (bool, error) {
+	//parser := GetParser(website, app.db)
+	parser, err := GetParser(website, app.db)
+	if parser != nil {
 		_, err = parser.ScrapeHome()
 		_, err = parser.ScrapeLive()
 		_, err = parser.ScrapeToday()
-		for t := 0; t < len(config.Tournaments); t++ {
+		config := parser.GetConfig()
+		for t := 0; t < len(parser.GetConfig().Tournaments); t++ {
 			_, err = parser.ScrapeTournament(config.Tournaments[t])
 		}
 		if err != nil {

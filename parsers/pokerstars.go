@@ -7,7 +7,7 @@ import (
 
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type PokerStars struct {
@@ -22,8 +22,17 @@ func (p *PokerStars) SetConfig(c *models.SiteConfig) {
 	p.config = c
 	p.ID = c.SiteID
 }
+
+func (p *PokerStars) GetConfig() *models.SiteConfig {
+	return p.config
+}
+
 func (p *PokerStars) Initialize() {
 	p.c = GetCollector()
+}
+
+func (p *PokerStars) GetDB() *gorm.DB {
+	return p.db
 }
 
 func (p *PokerStars) Scrape() (bool, error) {
@@ -95,7 +104,7 @@ func (p *PokerStars) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
 }
 
-func (p *PokerStars) GetEventMarkets(event map[string]interface{})  []interface{} {
+func (p *PokerStars) GetEventMarkets(event map[string]interface{}) []interface{} {
 	return event["markets"].([]interface{})
 }
 
@@ -122,4 +131,3 @@ func (p *PokerStars) ParseSelectionPrice(selectionData map[string]interface{}) f
 func (p *PokerStars) ParseSelectionLine(selectionData map[string]interface{}) float64 {
 	return 0
 }
-

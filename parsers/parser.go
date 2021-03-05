@@ -3,16 +3,15 @@ package parsers
 import (
 	"fmt"
 	"github.com/gocolly/colly"
+	"gorm.io/gorm"
 	"haggle/models"
 	"log"
 	"time"
-
-	"github.com/jinzhu/gorm"
 )
 
 type Parser interface {
 	Initialize()
-	GetSiteID() int
+	//GetSiteID() int
 	GetDB() *gorm.DB
 	Scrape() (bool, error)
 	ScrapeHome() (bool, error)
@@ -22,17 +21,20 @@ type Parser interface {
 	GetEventID(event map[string]interface{}) int
 	GetEventName(event map[string]interface{}) string
 	GetEventIsAntepost(event map[string]interface{}) bool
-	GetEventMarkets(event map[string]interface{})  []interface{}
+	GetEventMarkets(event map[string]interface{}) []interface{}
 	ParseMarketType(market map[string]interface{}) string
 	ParseMarketId(market map[string]interface{}) string
 	ParseMarketName(market map[string]interface{}) string
 	ParseSelectionName(selectionData map[string]interface{}) string
 	ParseSelectionPrice(selectionData map[string]interface{}) float64
 	ParseSelectionLine(selectionData map[string]interface{}) float64
-	//ParseMarket(p Parser, market map[string]interface{}, event models.Event) models.Market
-	//ParseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection
 	SetDB(db *gorm.DB)
 	SetConfig(config *models.SiteConfig)
+	GetConfig() *models.SiteConfig
+}
+
+func GetSiteID(p Parser) int {
+	return p.GetConfig().SiteID
 }
 
 func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
@@ -43,33 +45,53 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 	eventName := p.GetEventName(event)
 	eventMarkets := p.GetEventMarkets(event)
 	db := p.GetDB()
-	siteID := p.GetSiteID()
+	siteID := GetSiteID(p)
 	e := models.GetCreateEvent(p.GetDB(), eventID, siteID, eventName)
-	markets := make([]models.Market, 0)
-	for _, market := range eventMarkets {
-		m := ParseMarket(p, market.(map[string]interface{}), e)
-		markets = append(markets, m)
+	if len(e.Markets) == 0 {
+		markets := make([]models.Market, 0)
+		for _, market := range eventMarkets {
+			m := ParseMarket(p, market.(map[string]interface{}), e)
+			markets = append(markets, m)
+		}
+		e.Markets = markets
+	} else {
+		for _, market := range e.Markets {
+			UpdateMarket(p, market, eventMarkets)
+		}
 	}
-	e.Markets = markets
-	db.Save(&e)
+	db.Debug().Session(&gorm.Session{FullSaveAssociations: true}).Save(&e)
 	return &e, nil
+}
+
+func UpdateMarket(p Parser, market models.Market, markets []interface{}) {
+	for _, m := range markets {
+		if p.ParseMarketType(m.(map[string]interface{})) == market.Type {
+			selections := ParseMarketSelections(m.(map[string]interface{}))
+			UpdateSelections(p, market, selections)
+		}
+	}
+}
+func UpdateSelections(p Parser, market models.Market, selections []interface{}) {
+	for _, sel := range selections {
+		fmt.Println(sel)
+	}
 }
 
 func ParseMarket(p Parser, market map[string]interface{}, event models.Event) models.Market {
 	marketType := p.ParseMarketType(market)
 	marketName := p.ParseMarketName(market)
-	marketId := p.ParseMarketId(market)
+	//marketId := p.ParseMarketId(market)
 	m := models.Market{
-		Name:     marketName,
-		Type:     marketType,
-		ID:       marketId,
-		SiteID:   p.GetSiteID(),
+		Name: marketName,
+		Type: marketType,
+		//MarketID: marketId,
 	}
 	selections := ParseMarketSelections(market)
 	for _, selection := range selections {
-		sel := ParseSelection(p, event.ID, m, selection.(map[string]interface{}))
+		sel := ParseSelection(p, m, selection.(map[string]interface{}))
 		m.Selections = append(m.Selections, sel)
 	}
+	p.GetDB().Debug().Session(&gorm.Session{FullSaveAssociations: true}).Updates(&m)
 	return m
 }
 
@@ -77,14 +99,11 @@ func ParseMarketSelections(market map[string]interface{}) []interface{} {
 	return market["selections"].([]interface{})
 }
 
-func ParseSelection(p Parser, eventId int, market models.Market, selection map[string]interface{}) models.Selection {
+func ParseSelection(p Parser, market models.Market, selection map[string]interface{}) models.Selection {
 	sel := models.Selection{
-		ID:    fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
 		Name:  p.ParseSelectionName(selection),
 		Price: p.ParseSelectionPrice(selection),
-		SiteID:   p.GetSiteID(),
-		MarketID: market.ID,
-		Line:     p.ParseSelectionLine(selection),
+		Line:  p.ParseSelectionLine(selection),
 	}
 	return sel
 }

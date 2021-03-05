@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
-	"github.com/jinzhu/gorm"
 	"github.com/spf13/cast"
+	"gorm.io/gorm"
 	"haggle/models"
 	"strings"
 )
@@ -34,10 +34,6 @@ type Winmasters struct {
 	config *models.SiteConfig
 	c      *colly.Collector
 	ID     int
-}
-
-func (w Winmasters) GetSiteID() int {
-	return w.config.SiteID
 }
 
 func (w Winmasters) Initialize() {
@@ -62,6 +58,9 @@ func (w Winmasters) Initialize() {
 func (w *Winmasters) SetConfig(c *models.SiteConfig) {
 	w.config = c
 	w.ID = c.SiteID
+}
+func (w *Winmasters) GetConfig() *models.SiteConfig {
+	return w.config
 }
 
 func (w *Winmasters) Scrape() (bool, error) {

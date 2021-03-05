@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 	"haggle/models"
-	"strconv"
 	"strings"
 )
 
@@ -71,6 +70,9 @@ func (s *Stoiximan) SetConfig(c *models.SiteConfig) {
 	s.config = c
 	s.ID = c.SiteID
 }
+func (s *Stoiximan) GetConfig() *models.SiteConfig {
+	return s.config
+}
 
 func (s *Stoiximan) GetEventID(event map[string]interface{}) int {
 	return int(event["betRadarId"].(float64))
@@ -90,56 +92,14 @@ func (s *Stoiximan) parseTopEvents(sports []interface{}) {
 		events := sport["events"].([]interface{})
 		if len(events) > 0 {
 			for j := 0; j < len(events); j++ {
-				s.parseEvent(events[j].(map[string]interface{}))
+				_, _ = ParseEvent(s, events[j].(map[string]interface{}))
 			}
 		}
 	}
 }
 
-func (s *Stoiximan) parseEvent(event map[string]interface{}) {
-	eventID := int(event["betRadarId"].(float64))
-	e := models.GetCreateEvent(s.db, eventID, s.ID, event["name"].(string))
-	markets := make([]models.Market, 0)
-	for _, market := range event["markets"].([]interface{}) {
-		m := s.parseMarket(market.(map[string]interface{}), e)
-		markets = append(markets, m)
-	}
-	e.Markets = markets
-	s.db.Save(&e)
-}
-
-func (s *Stoiximan) parseMarket(market map[string]interface{}, event models.Event) models.Market {
-	var marketId string
-	if market["handicap"].(float64) > 0 {
-		handicap := strconv.FormatFloat(market["handicap"].(float64), 'f', 2, 64)
-		marketId = fmt.Sprintf(`%s:%s`, market["type"].(string), handicap)
-	} else {
-		marketId = fmt.Sprintf(`%s`, market["type"].(string))
-	}
-
-	m := models.Market{
-		Name:     market["name"].(string),
-		Type:     market["type"].(string),
-		ID:       marketId,
-		SiteID:   s.ID,
-	}
-	selections := market["selections"].([]interface{})
-	for _, selection := range selections {
-		sel := s.parseSelection(event.ID, m, selection.(map[string]interface{}))
-		m.Selections = append(m.Selections, sel)
-	}
-	return m
-}
-
-func (s *Stoiximan) parseSelection(eventId int, market models.Market, selection map[string]interface{}) models.Selection {
-	sel := models.Selection{
-		ID:    fmt.Sprintf(`%d:%s:%s`, eventId, market.ID, selection["id"].(string)),
-		Name:  selection["name"].(string),
-		Price: selection["price"].(float64),
-		SiteID:   s.ID,
-		MarketID: market.ID,
-	}
-	return sel
+func (s *Stoiximan) ParseMarketName(market map[string]interface{}) string {
+	return market["name"].(string)
 }
 
 func (s *Stoiximan) ParseSelectionName(selectionData map[string]interface{}) string {
@@ -154,4 +114,16 @@ func (s *Stoiximan) ParseSelectionLine(selectionData map[string]interface{}) flo
 	line := 0.0
 	//TODO get line
 	return line
+}
+
+func (s *Stoiximan) GetEventIsAntepost(event map[string]interface{}) bool {
+	return false
+}
+
+func (s *Stoiximan) ParseMarketType(market map[string]interface{}) string {
+	return market["type"].(string)
+}
+
+func (s *Stoiximan) ParseMarketId(market map[string]interface{}) string {
+	return market["id"].(string)
 }

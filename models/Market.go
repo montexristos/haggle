@@ -1,11 +1,12 @@
 package models
 
+import "gorm.io/gorm"
+
 type Market struct {
-	ID         string `gorm:"primary_key;auto_increment:false"`
-	EventID    int `gorm:"primary_key;auto_increment:false"`
+	gorm.Model
 	Name       string
-	SiteID int `gorm:"primary_key;auto_increment:false"`
 	Type       string
+	EventID    uint
 	Selections []Selection
 }
 
