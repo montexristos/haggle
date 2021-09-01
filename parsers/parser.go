@@ -28,6 +28,7 @@ type Parser interface {
 	ParseSelectionName(selectionData map[string]interface{}) string
 	ParseSelectionPrice(selectionData map[string]interface{}) float64
 	ParseSelectionLine(selectionData map[string]interface{}) float64
+	GetMarketSelections(marketData map[string]interface{}) []interface{}
 	SetDB(db *gorm.DB)
 	SetConfig(config *models.SiteConfig)
 	GetConfig() *models.SiteConfig
@@ -66,7 +67,7 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 func UpdateMarket(p Parser, market models.Market, markets []interface{}) {
 	for _, m := range markets {
 		if p.ParseMarketType(m.(map[string]interface{})) == market.Type {
-			selections := ParseMarketSelections(m.(map[string]interface{}))
+			selections := ParseMarketSelections(p, m.(map[string]interface{}))
 			UpdateSelections(p, market, selections)
 		}
 	}
@@ -86,7 +87,7 @@ func ParseMarket(p Parser, market map[string]interface{}, event models.Event) mo
 		Type: marketType,
 		//MarketID: marketId,
 	}
-	selections := ParseMarketSelections(market)
+	selections := ParseMarketSelections(p, market)
 	for _, selection := range selections {
 		sel := ParseSelection(p, m, selection.(map[string]interface{}))
 		m.Selections = append(m.Selections, sel)
@@ -95,8 +96,9 @@ func ParseMarket(p Parser, market map[string]interface{}, event models.Event) mo
 	return m
 }
 
-func ParseMarketSelections(market map[string]interface{}) []interface{} {
-	return market["selections"].([]interface{})
+func ParseMarketSelections(p Parser, market map[string]interface{}) []interface{} {
+	selections := p.GetMarketSelections(market)
+	return selections
 }
 
 func ParseSelection(p Parser, market models.Market, selection map[string]interface{}) models.Selection {

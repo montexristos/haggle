@@ -42,7 +42,7 @@ func Test_winmastersParse(t *testing.T) {
 	file := "./test_input/winmasters/premierLeague.json"
 	event, _ := ioutil.ReadFile(file)
 
-	if _, err := app.ScrapeSite("stoiximan"); err != nil {
+	if _, err := app.ScrapeSite("winmasters"); err != nil {
 		t.Error(err.Error())
 	}
 	var parsed interface{}

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-
 	"haggle/models"
 	"haggle/parsers"
 	"log"
@@ -72,10 +71,10 @@ func (app *Application) scrapeAll() (map[string]string, error) {
 	} else {
 		result["stoiximan"] = err.Error()
 	}
-	if res, err := app.ScrapeSite("pokerstars"); res {
-		result["pokerstars"] = "ok"
+	if res, err := app.ScrapeSite("novibet"); res {
+		result["novibet"] = "ok"
 	} else {
-		result["pokerstars"] = err.Error()
+		result["novibet"] = err.Error()
 	}
 	return result, nil
 }
@@ -134,10 +133,37 @@ func (app *Application) ScrapeSite(website string) (bool, error) {
 }
 
 func getScrapeResults() (map[string]interface{}, error) {
+	// find events that appear in more than one site
+	rows, err := GetDb().Raw(`SELECT betradar_id FROM (SELECT count(distinct site_id) as matches, betradar_id FROM haggle.events group by betradar_id) as tab WHERE matches > 1;`).Rows()
+	if err != nil {
+		return map[string]interface{}{
+			"error": err,
+		}, nil
+	}
+	defer rows.Close()
+	var eventMatch interface{}
+	eventIds := make([]string, 0)
+	for rows.Next() {
+		err = rows.Scan(&eventMatch)
+		if err != nil {
+			return map[string]interface{}{
+				"error": err,
+			}, nil
+		}
+		eventIds = append(eventIds, fmt.Sprintf("%s", eventMatch.([]byte)))
+	}
 	events := make([]models.Event, 0)
-	GetDb().Preload("Markets").Preload("Markets.Selections").Find(&events)
+	GetDb().Preload("Markets").Preload("Markets.Selections").Where("betradar_id in (?)", eventIds).Find(&events)
+	matches := make(map[int][]models.Event)
+	for _, event := range events {
+		if _, found := matches[event.BetradarID]; !found {
+			matches[event.BetradarID] = make([]models.Event, 0)
+		}
+		matches[event.BetradarID] = append(matches[event.BetradarID], event)
+	}
+
 	return map[string]interface{}{
-		"events": events,
+		"events": matches,
 	}, nil
 }
 

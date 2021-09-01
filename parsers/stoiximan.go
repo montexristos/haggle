@@ -30,6 +30,10 @@ func (s *Stoiximan) Initialize() {
 				s.parseTopEvents(topEvents.([]interface{}))
 			}
 			//TODO parse other items (fmt.Println(jsonParsed))
+			block := jsonParsed.Path("data.blocks").Data()
+			if block != nil {
+				s.parseTopEvents(block.([]interface{}))
+			}
 		}
 	})
 }
@@ -126,4 +130,8 @@ func (s *Stoiximan) ParseMarketType(market map[string]interface{}) string {
 
 func (s *Stoiximan) ParseMarketId(market map[string]interface{}) string {
 	return market["id"].(string)
+}
+
+func (s *Stoiximan) GetMarketSelections(market map[string]interface{}) []interface{} {
+	return market["selections"].([]interface{})
 }
