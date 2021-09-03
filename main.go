@@ -3,15 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"haggle/models"
 	"haggle/parsers"
 	"log"
 	"net/http"
-
-	"github.com/gorilla/handlers"
-	"github.com/gorilla/mux"
 )
 
 /*
@@ -35,14 +34,15 @@ func main() {
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./build/")))
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
-	originsOk := handlers.AllowedOrigins([]string{"http://localhost:3000"})
+	originsOk := handlers.AllowedOrigins([]string{"http://localhost:3000", "http://142.93.163.59:8088"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
 
 	//initiate an initial scrape
 	//_, _ =scrapeAll()
 
 	// start server listen
-	log.Fatal(http.ListenAndServe(":8088", handlers.CORS(originsOk, headersOk, methodsOk)(router)))
+	log.Fatal(http.ListenAndServe(":8088", handlers.CompressHandler(handlers.CORS(originsOk, headersOk, methodsOk)(router))))
+	//log.Fatal(http.ListenAndServe(":8088", handlers.CORS(originsOk, headersOk, methodsOk)(router)))
 }
 
 type Application struct {
@@ -156,9 +156,28 @@ func getScrapeResults() (map[string]interface{}, error) {
 	GetDb().Preload("Markets").Preload("Markets.Selections").Where("betradar_id in (?)", eventIds).Find(&events)
 	matches := make(map[int][]models.Event)
 	for _, event := range events {
+		var matchResultMarket models.Market
+		var overUnderMarket models.Market
+		var bttsMarket models.Market
 		if _, found := matches[event.BetradarID]; !found {
 			matches[event.BetradarID] = make([]models.Event, 0)
 		}
+		//iterate event markets and order them
+		for _, v := range event.Markets {
+			if v.MarketType == models.NewMatchResult().Name {
+				matchResultMarket = v
+			}
+			if v.MarketType == models.NewOverUnder().Name {
+				overUnderMarket = v
+			}
+			if v.MarketType == models.NewBtts().Name {
+				bttsMarket = v
+			}
+		}
+		event.Markets = make([]models.Market, 0)
+		event.Markets = append(event.Markets, matchResultMarket)
+		event.Markets = append(event.Markets, overUnderMarket)
+		event.Markets = append(event.Markets, bttsMarket)
 		matches[event.BetradarID] = append(matches[event.BetradarID], event)
 	}
 
@@ -168,6 +187,7 @@ func getScrapeResults() (map[string]interface{}, error) {
 }
 
 func (app *Application) scrapeLink(w http.ResponseWriter, r *http.Request) {
+	GetDb().Raw(`SET FOREIGN_KEY_CHECKS=0;TRUNCATE TABLE haggle.selections;TRUNCATE TABLE haggle.markets;TRUNCATE TABLE haggle.events;SET FOREIGN_KEY_CHECKS=1;`)
 	result, err := app.scrapeAll()
 	if err != nil {
 		_ = json.NewEncoder(w).Encode(map[string]string{

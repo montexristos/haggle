@@ -1,0 +1,966 @@
+import React from 'react';
+import './App.css';
+import 'bulma';
+import Competitions from './Competitions';
+import Competition from './Competition'
+
+const host = "http://localhost:8085";
+// const host = "";
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            competitions: [],
+            tournaments: [],
+            weeks: [],
+            start: "",
+            end: "",
+            selectedDate: "all",
+            correct: 0,
+            over: 0,
+            wrong: 0,
+            threshold: 10000,
+            threshold1: 10000,
+            threshold2: 10000,
+            threshold3: 12000,
+            threshold4: 12600,
+            sort: "tournament",
+            hideCompleted: false,
+            showO0: false,
+            showO1: false,
+            showO2: false,
+            showO3: false,
+            showO4: false,
+            homeScoredWeight: 10,
+            homeAwayScoredWeight: 8,
+            homeConceidedWeight: 10,
+            homeAwayConceidedWeight: 3,
+            awayScoredWeight: 10,
+            awayHomeScoredWeight: 0,
+            awayConceidedWeight: 10,
+            awayHomeConceidedWeight: 0,
+            homeOverWeight: 0,
+            awayOverWeight: 0,
+            homeOpWeight: 0,
+            awayOpWeight: 0,
+            cardThreshold: 5,
+            cornerThreshold: 13
+        };
+        fetch(host + '/data')
+            .then(response => response.json())
+            .then(data => this.updateState(
+                data.tournaments,
+                data.weeks,
+                data.start,
+                data.end,
+                "all"
+            ));
+
+    }
+
+    changeWeek = (event) => {
+        if (event.target.value == 'all') {
+            fetch(host + '/all')
+                .then(response => response.json())
+                .then(data => this.updateState(
+                    data.tournaments,
+                    data.weeks,
+                    data.start,
+                    data.end,
+                    "all"
+                ));
+        }
+        else {
+            fetch(host + '/week/' + event.target.value)
+                .then(response => response.json())
+                .then(data => this.updateState(
+                    data.tournaments,
+                    data.weeks,
+                    data.start,
+                    data.end,
+                    "all"
+                ));
+        }
+    };
+
+    updateState = (competitions, weeks, start, end, selectedDate) => {
+        this.setState({
+            tournaments: competitions,
+            weeks: weeks,
+            start: start,
+            end: end,
+            selectedDate: selectedDate,
+        });
+    };
+
+
+    calculateMetrics = (fixture) => {
+        const homeTeam = fixture.homeTeam,
+              awayTeam = fixture.awayTeam;
+        let homeScored = 0,
+            homeConceided = 0,
+            awayScored = 0,
+            awayConceided = 0,
+            homeAwayScored = 0,
+            homeAwayConceided = 0,
+            awayHomeScored = 0,
+            awayHomeConceided = 0,
+            homeIndex = 0,
+            awayIndex = 0,
+            totalIndex = 0,
+            homeCorners = 0,
+            awayCorners = 0,
+            homeOp = 0,
+            awayOp = 0,
+            homeTeamName = '',
+            awayTeamName = '',
+            bg = {background: 'transparent'},
+            noEvents = 0,
+            correct = 0,
+            wrong = 0,
+            correct1 = 0,
+            wrong1 = 0,
+            correct2 = 0,
+            wrong2 = 0,
+            correct3 = 0,
+            wrong3 = 0,
+            correct4 = 0,
+            wrong4 = 0,
+            correctCards = 0,
+            wrongCards = 0,
+            correctCorner = 0,
+            wrongCorner = 0,
+            homeOver = 1,
+            awayOver = 1,
+            cardIndex = 0,
+            cornerIndex = 0,
+            cardBg = {background: 'transparent'},
+            cornerBg = {background: 'transparent'},
+            over0 = 0,
+            over1 = 0,
+            over2 = 0,
+            over3 = 0,
+            over4 = 0,
+            predicted1 = -1,
+            predicted2 = -1,
+            predicted3 = -1,
+            predicted4 = -1,
+            predicted0 = -1;
+        let cornerClass = '';
+        let cardClass = '';
+
+        if (homeTeam && awayTeam && homeTeam.homeEvents > 0 && awayTeam.awayEvents > 0) {
+            homeScored = 100 * homeTeam.homeGoalsScored / homeTeam.homeEvents;
+            homeConceided = 100 * homeTeam.homeGoalsConceided / homeTeam.homeEvents;
+            if (homeTeam.point > 20 && awayTeam.point > 10 && homeTeam.point / awayTeam.points > 1.5) {
+                homeOp = 2;
+            }
+            //extra bonus for away goals
+            homeAwayScored = 100 * homeTeam.awayGoalsScored / homeTeam.awayEvents;
+            homeAwayConceided = 100 * homeTeam.awayGoalsConceided / homeTeam.awayEvents;
+            homeOver = 100 * homeTeam.overs / homeTeam.noEvents;
+            homeCorners = (homeTeam.homeCorners + homeTeam.homeAwayCorners) / homeTeam.noEvents;
+            awayScored = 100 * awayTeam.awayGoalsScored / awayTeam.awayEvents;
+            awayConceided = 100 * awayTeam.awayGoalsConceided / awayTeam.awayEvents;
+            if (homeTeam.point > 10 && awayTeam.point > 20 && awayTeam.point / homeTeam.points > 1.5) {
+                awayOp = 1.5;
+            }
+            //extra bonus for away goals
+            awayHomeScored = 100 * awayTeam.homeGoalsScored / awayTeam.homeEvents;
+            awayHomeConceided =100 *  awayTeam.homeGoalsConceided / awayTeam.homeEvents;
+            awayOver = 100 * awayTeam.overs / awayTeam.noEvents;
+            awayCorners = (awayTeam.awayCorners + awayTeam.awayHomeCorners) / awayTeam.noEvents;
+
+            cornerIndex = 4 * (homeTeam.homeCorners + awayTeam.awayCorners) / (homeTeam.noEvents + awayTeam.noEvents ) ;
+            cardIndex = Math.round(100 * ((awayTeam.cards / awayTeam.noEvents) + (homeTeam.cards / homeTeam.noEvents))) / 200;
+
+            [totalIndex, homeIndex, awayIndex] = this.calculateTotalIndex(
+                homeScored,
+                homeAwayScored,
+                homeConceided,
+                homeAwayConceided,
+                awayScored,
+                awayHomeScored,
+                awayConceided,
+                awayHomeConceided,
+                homeOver,
+                awayOver,
+                homeOp,
+                awayOp
+            );
+            if (totalIndex > this.state.threshold4 ) {
+                predicted4 = 1;
+            } else if (totalIndex <= this.state.threshold4) {
+                predicted4 = 0;
+            }
+            if (totalIndex > this.state.threshold3 ) {
+                predicted3 = 1;
+            } else if (totalIndex <= this.state.threshold3) {
+                predicted3 = 0;
+            }
+            if (totalIndex > this.state.threshold2) {
+                predicted2 = 1;
+            } else if (totalIndex <= this.state.threshold2) {
+                predicted2 = 0;
+            }
+            if (totalIndex > this.state.threshold1) {
+                predicted1 = 1;
+            } else if (totalIndex <= this.state.threshold1) {
+                predicted1 = 0;
+            }
+            if (totalIndex > this.state.threshold) {
+                predicted0 = 1;
+            } else if (totalIndex <= this.state.threshold) {
+                predicted0 = 0;
+            }
+            if (fixture.score != "") {
+                const scores = fixture.score.split(" - ");
+                const score = parseInt(scores[0]) + parseInt(scores[1]);
+                if (score > 4 && totalIndex > this.state.threshold4) {
+                    over4 = 1;
+                    correct4++;
+                }
+                if (score <= 4 && totalIndex > this.state.threshold4) {
+                    over4 = -1;
+                    wrong4++;
+                }
+                if (score > 4 && totalIndex <= this.state.threshold4) {
+                    over4 = -1;
+                }
+                if (score <= 4 && totalIndex <= this.state.threshold4) {
+                    over4 = 1;
+                }
+                if (score > 3 && totalIndex > this.state.threshold3) {
+                    over3 = 1;
+                    correct3++;
+                }
+                if (score <= 3 && totalIndex > this.state.threshold3) {
+                    over3 = -1;
+                    wrong3++;
+                }
+                if (score > 3 && totalIndex <= this.state.threshold3) {
+                    over3 = -1;
+                }
+                if (score <= 3 && totalIndex <= this.state.threshold3) {
+                    over3 = 1;
+                }
+                if (score > 2 && totalIndex > this.state.threshold2) {
+                    over2 = 1;
+                    correct2++;
+                }
+                if (score <= 2 && totalIndex > this.state.threshold2) {
+                    over2 = -1;
+                    wrong2++;
+                }
+                if (score > 2 && totalIndex <= this.state.threshold2) {
+                    over2 = -1;
+                }
+                if (score <= 2 && totalIndex <= this.state.threshold2) {
+                    over2 = 1;
+                }
+                if (score > 1 && totalIndex > this.state.threshold1) {
+                    over1 = 1;
+                    correct1++;
+                }
+                if (score <= 1 && totalIndex > this.state.threshold1) {
+                    over1 = -1;
+                    wrong1++;
+                }
+                if (score > 1 && totalIndex <= this.state.threshold1) {
+                    over1 = -1;
+                }
+                if (score <= 1 && totalIndex <= this.state.threshold1) {
+                    over1 = 1;
+                }
+                if (score > 0 && totalIndex > this.state.threshold) {
+                    over0 = 1;
+                    correct++;
+                }
+                if (score <= 0 && totalIndex > this.state.threshold) {
+                    over0 = -1;
+                    wrong++;
+                }
+                if (score > 0 && totalIndex <= this.state.threshold) {
+                    over0 = -1;
+                }
+                if (score <= 0 && totalIndex <= this.state.threshold) {
+                    over0 = 1;
+                }
+            }
+            cornerIndex = Math.round(cornerIndex * 100) / 100;
+            if (cornerIndex > this.state.cornerThreshold) {
+                cornerClass = 'cornerOver';
+            } else {
+                cornerClass = 'cornerUnder';
+            }
+            const fixtureCorners = fixture.homeCorners + fixture.awayCorners;
+            if(fixtureCorners > 0) {
+                if (fixtureCorners > this.state.cornerThreshold && cornerIndex > this.state.cornerThreshold) {
+                    cornerClass += ' cornerCorrect';
+                    correctCorner++;
+                }
+                if (fixtureCorners > this.state.cornerThreshold && cornerIndex <= this.state.cornerThreshold) {
+                    cornerClass += ' cornerWrong';
+                }
+                if (fixtureCorners <= this.state.cornerThreshold && cornerIndex > this.state.cornerThreshold) {
+                    cornerClass += ' cornerWrong';
+                    wrongCorner++;
+                }
+                if (fixtureCorners <= this.state.cornerThreshold && cornerIndex <= this.state.cornerThreshold) {
+                    cornerClass += ' cornerCorrect';
+                }
+            }
+            cardIndex = Math.round(cardIndex * 100) / 100;
+            if (cardIndex > this.state.cardThreshold) {
+                cardClass = 'cardOver';
+            } else {
+                cardClass = 'cardUnder';
+            }
+            const fixtureCards = fixture.homeYellowCards + fixture.awayYellowCards + 1.5 * (fixture.homeRedCards + fixture.awayRedCards);
+            if(fixtureCards > 0) {
+                if (cardIndex > this.state.cardThreshold && fixtureCards > this.state.cardThreshold) {
+                    cardClass += ' cardCorrect';
+                    correctCards++;
+                }
+                if (cardIndex > this.state.cardThreshold && fixtureCards <= this.state.cardThreshold) {
+                    cardClass += ' cardWrong';
+                    wrongCards++;
+                }
+                if (cardIndex <= this.state.cardThreshold && fixtureCards > this.state.cardThreshold) {
+                    cardClass += ' cardWrong';
+                }
+                if (cardIndex <= this.state.cardThreshold && fixtureCards <= this.state.cardThreshold) {
+                    cardClass += ' cardCorrect';
+                }
+            }
+        }
+        homeTeamName = homeTeam.name;
+        awayTeamName = awayTeam.name;
+        bg = {background: bg};
+        noEvents = this.getNoEvents(homeTeam, awayTeam,over0, over1, over2, over3, over4,
+            predicted0,predicted1,predicted2,predicted3,predicted4);
+
+        return [homeTeamName, awayTeamName, homeIndex, awayIndex, totalIndex, bg, noEvents,
+            correct, wrong, correct1, wrong1, correct2, wrong2, correct3, wrong3,correct4, wrong4,
+            Math.round(homeCorners * 100) / 100,
+            Math.round(awayCorners * 100) / 100,
+            cornerIndex,
+            cardIndex,
+            correctCards, wrongCards, correctCorner, wrongCorner, cardClass, cornerClass,
+            predicted0, predicted1, predicted2, predicted3, predicted4
+        ];
+    };
+
+
+    getNoEvents(homeTeam, awayTeam, over0, over1, over2, over3, over4,
+                predicted0,predicted1,predicted2,predicted3,predicted4) {
+        let class0 = over0 > 0 ? "classWon" : over0 < 0 ? "classLost" : "";
+        let class1 = over1 > 0 ? "classWon" : over1 < 0 ? "classLost" : "";
+        let class2 = over2 > 0 ? "classWon" : over2 < 0 ? "classLost" : "";
+        let class3 = over3 > 0 ? "classWon" : over3 < 0 ? "classLost" : "";
+        let class4 = over4 > 0 ? "classWon" : over4 < 0 ? "classLost" : "";
+        if (predicted4 === 1) {
+            class4 += " classPredicted";
+        } else if (predicted4 === 0) {
+            class4 += " classPredictedNot";
+        }
+        if (predicted3 === 1) {
+            class3 += " classPredicted";
+        } else if (predicted4 === 0) {
+            class3 += " classPredictedNot";
+        }
+        if (predicted2 === 1) {
+            class2 += " classPredicted";
+        } else if (predicted4 === 0) {
+            class2 += " classPredictedNot";
+        }
+        if (predicted1 === 1) {
+            class1 += " classPredicted";
+        } else if (predicted4 === 0) {
+            class1 += " classPredictedNot";
+        }
+        if (predicted0 === 1) {
+            class0 += " classPredicted";
+        } else if (predicted4 === 0) {
+            class0 += " classPredictedNot";
+        }
+        return <React.Fragment>
+            {/*<span>{homeTeam.highOvers}/{homeTeam.noEvents} - {awayTeam.highOvers}/{awayTeam.noEvents}</span>*/}
+            <span className={class0}>o0</span>
+            <span className={class1}>o1</span>
+            <span className={class2}>o2</span>
+            <span className={class3}>o3</span>
+            <span className={class4}>o4</span>
+        </React.Fragment>;
+    }
+
+    /**
+     *
+     * @param homeScored
+     * @param homeAwayScored
+     * @param homeConceided
+     * @param homeAwayConceided
+     * @param awayScored
+     * @param awayHomeScored
+     * @param awayConceided
+     * @param awayHomeConceided
+     * @param homeOver
+     * @param awayOver
+     * @param homeOp
+     * @param awayOp
+     * @returns [totalIndex, homeIndex, awayIndex]
+     */
+    calculateTotalIndex = (
+        homeScored,
+        homeAwayScored,
+        homeConceided,
+        homeAwayConceided,
+        awayScored,
+        awayHomeScored,
+        awayConceided,
+        awayHomeConceided,
+        homeOver,
+        awayOver,
+        homeOp,
+        awayOp) => {
+        const homeIndex = this.calculateIndex(
+            homeScored * this.state.homeScoredWeight,
+            homeAwayScored * this.state.homeAwayScoredWeight,
+            homeConceided * this.state.homeConceidedWeight,
+            homeAwayConceided * this.state.homeAwayConceidedWeight,
+            homeOver * this.state.homeOverWeight,
+            homeOp * this.state.homeOpWeight
+        );
+        const awayIndex = this.calculateIndex(
+            awayScored * this.state.awayScoredWeight,
+            awayHomeScored * this.state.awayHomeScoredWeight,
+            awayConceided * this.state.awayConceidedWeight,
+            awayHomeConceided * this.state.awayHomeConceidedWeight,
+            awayOver * this.state.awayOverWeight,
+            awayOp * this.state.awayOpWeight
+        );
+        return [Math.round(homeIndex + awayIndex), homeIndex, awayIndex];
+    };
+
+    calculateIndex = (scored, awayScored, conceided, awayConceided, over, op) => {
+        return scored +
+            awayScored +
+            conceided +
+            awayConceided +
+            over * 10 +
+            op  / 10 * 2;
+    };
+
+    filterDay = (event) => {
+        const dt = new Date(event.target.value);
+        this.setState({
+            selectedDate: dt.getDay()
+        })
+    };
+    sort = (event) => {
+        this.setState({
+            sort: event.target.value
+        })
+    };
+
+    getThreshold = (val) => {
+        const sum = this.state.homeScoredWeight / 10 +
+        this.state.homeAwayScoredWeight / 10 +
+        this.state.homeConceidedWeight / 10 +
+        this.state.homeAwayConceidedWeight / 10 +
+        this.state.awayScoredWeight / 10 +
+        this.state.awayHomeScoredWeight / 10 +
+        this.state.awayConceidedWeight / 10 +
+        this.state.awayHomeConceidedWeight / 10 +
+        this.state.homeOverWeight / 10 +
+        this.state.awayOverWeight / 10 +
+        this.state.homeOpWeight / 10 +
+        this.state.awayOpWeight / 10;
+
+        return Math.round(sum / 12 * val);
+    };
+
+    updateThreshold = (event) => {
+        event.persist();
+        this.setState({
+            threshold: this.getThreshold(event.target.value)
+        });
+    };
+    updateThreshold1 = (event) => {
+        event.persist();
+        this.setState({
+            threshold1: this.getThreshold(event.target.value)
+        });
+    };
+    updateThreshold2 = (event) => {
+        event.persist();
+        this.setState({
+            threshold2: this.getThreshold(event.target.value)
+        });
+    };
+    updateThreshold3 = (event) => {
+        event.persist();
+        this.setState({
+            threshold3: this.getThreshold(event.target.value)
+        });
+    };
+    updateThreshold4 = (event) => {
+        event.persist();
+        this.setState({
+            threshold4: this.getThreshold(event.target.value)
+        });
+    };
+
+    update = () => {
+        fetch(host + '/cache')
+    };
+
+    render = () => {
+        let correct = 0;
+        let wrong = 0;
+        let correct1 = 0;
+        let wrong1 = 0;
+        let correct2 = 0;
+        let wrong2 = 0;
+        let correct3 = 0;
+        let wrong3 = 0;
+        let correct4 = 0;
+        let wrong4 = 0;
+        let correctCards = 0;
+        let wrongCards = 0;
+        let correctCorner = 0;
+        let wrongCorner = 0;
+        if (this.state.tournaments === undefined) {
+            return null;
+        }
+        let evs = [];
+        const today = new Date();
+        const comps = this.state.tournaments.map((comp) => {
+            const events = comp.fixtures.filter((fixture) =>
+                (fixture.homeTeam && fixture.awayTeam) && ("all" === this.state.selectedDate || new Date(fixture.date).getDay() == this.state.selectedDate)
+            ).map((fixture) => {
+                const [
+                    homeTeamName,
+                    awayTeamName,
+                    homeIndex,
+                    awayIndex,
+                    totalIndex,
+                    bg,
+                    noEvents,
+                    correctFixture,
+                    wrongFixture,
+                    correctFixture1,
+                    wrongFixture1,
+                    correctFixture2,
+                    wrongFixture2,
+                    correctFixture3,
+                    wrongFixture3,
+                    correctFixture4,
+                    wrongFixture4,
+                    homeCorners,
+                    awayCorners,
+                    cornerIndex,
+                    cards,
+                    correctCardsFixture,
+                    wrongCardsFixture,
+                    correctCornerFixture,
+                    wrongCornerFixture,
+                    cardBg,
+                    cornerBg,,
+                    predicted0, predicted1, predicted2, predicted3, predicted4
+                ] = this.calculateMetrics(fixture);
+                correct += correctFixture;
+                wrong += wrongFixture;
+                correct1 += correctFixture1;
+                wrong1 += wrongFixture1;
+                correct2 += correctFixture2;
+                wrong2 += wrongFixture2;
+                correct3 += correctFixture3;
+                wrong3 += wrongFixture3;
+                correct4 += correctFixture4;
+                wrong4 += wrongFixture4;
+
+                correctCards += correctCardsFixture;
+                wrongCards += wrongCardsFixture;
+                correctCorner += correctCornerFixture;
+                wrongCorner += wrongCornerFixture;
+                const eventDate = new Date(fixture.date);
+                if (eventDate < today && this.state.hideCompleted) {
+                    return null;
+                }
+                if (
+                    (predicted0 < 1 && this.state.showO0) ||
+                    (predicted1 < 1 && this.state.showO1) ||
+                    (predicted2 < 1 && this.state.showO2) ||
+                    (predicted3 < 1 && this.state.showO3) ||
+                    (predicted4 < 1 && this.state.showO4)
+                ) {
+                    return null;
+                }
+                if (homeTeamName == '') {
+                    console.log(fixture);
+                }
+                const dateOptions = { weekday: 'long', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                return <tr key={homeTeamName + "-" + fixture.date}>
+                    <td>{ new Date(fixture.date).toLocaleDateString("el-GR", dateOptions) }</td>
+                    <td style={bg}>{homeTeamName} - {awayTeamName}</td>
+                    <td>{noEvents}</td>
+                    <td className={cardBg}>{cards}</td>
+                    <td className={cornerBg}>{cornerIndex}</td>
+                    <td>{homeCorners} - {awayCorners}</td>
+                    <td style={bg}>{Math.round(totalIndex)}</td>
+                    <td>{fixture.score}</td>
+                </tr>
+            });
+            if (events.length === 0) {
+                console.log('no events');
+                return null
+            }
+            evs = [...evs, ...events];
+            return <div key={comp.name}>
+                <Competition competition={comp} date={this.state.selectedDate} events={events}/>
+            </div>
+        });
+
+        let competitions = [];
+        const total = correct+wrong;
+        const perc0 = total > 0 ? Math.round(correct/total*100) : 0;
+        const total1 = correct1+wrong1;
+        const perc1 = total1 > 0 ? Math.round(correct1/total1*100) : 0;
+        const total2 = correct2+wrong2;
+        const perc2 = total2 > 0 ?Math.round(correct2/total2*100) : 0;
+        const total3 = correct3+wrong3;
+        const perc3 = total3 > 0 ? Math.round(correct3/total3*100) : 0;
+        const total4 = correct4+wrong4;
+        const perc4 = total4 > 0 ? Math.round(correct4/total4*100) : 0;
+        if (this.state.sort === 'date') {
+            competitions = <table id="events">
+                <button onClick={this.sortTable}>sort</button>
+                <tbody>
+                {evs}
+                </tbody>
+            </table>
+        } else {
+             competitions = <Competitions
+                changeWeek={this.changeWeek}
+                filterDay={this.filterDay}
+                weeks={this.state.weeks}
+                start={this.state.start}
+                end={this.state.end}
+                date={this.state.selectedDate}
+                competitions={comps}
+                threshold={this.state.threshold}
+            />;
+        }
+
+        return <div className="App">
+            <header className="App-header">
+                App
+            </header>
+            <table>
+                <tbody>
+                <tr>
+                    <th>Line</th>
+                    <th>Correct</th>
+                    <th>Wrong</th>
+                    <th>Over</th>
+                    <th>Threshold: {this.state.threshold}</th>
+                </tr>
+                <tr>
+                    <td>0.5</td>
+                    <td>{correct}</td>
+                    <td>{wrong}</td>
+                    <td>{perc0}%</td>
+                    <td><input type="range" className="threshold" defaultValue={this.state.threshold} name="threshold" min="0" max="30000" step="50" onChange={this.updateThreshold}/></td>
+                    <td><input type="checkbox" defaultChecked={this.state.showO0} name="hideCompleted" onChange={this.updateShowO0}/></td>
+                </tr>
+                <tr>
+                    <th>Line</th>
+                    <th>Correct</th>
+                    <th>Wrong</th>
+                    <th>Over</th>
+                    <th>Threshold 1.5: {this.state.threshold1}</th>
+                </tr>
+                <tr>
+                    <td>1.5</td>
+                    <td>{correct1}</td>
+                    <td>{wrong1}</td>
+                    <td>{perc1}%</td>
+                    <td><input type="range" className="threshold" defaultValue={this.state.threshold1} name="threshold1" min="0" max="30000" step="50" onChange={this.updateThreshold1}/></td>
+                    <td><input type="checkbox" defaultChecked={this.state.showO1} name="hideCompleted" onChange={this.updateShowO1}/></td>
+                </tr>
+                <tr>
+                    <th>Line</th>
+                    <th>Correct</th>
+                    <th>Wrong</th>
+                    <th>Over</th>
+                    <th>Threshold 2.5: {this.state.threshold2}</th>
+                </tr>
+                <tr>
+                    <td>2.5</td>
+                    <td>{correct2}</td>
+                    <td>{wrong2}</td>
+                    <td>{perc2}%</td>
+                    <td><input type="range" className="threshold" defaultValue={this.state.threshold2} name="threshold2" min="0" max="30000" step="50" onChange={this.updateThreshold2}/></td>
+                    <td><input type="checkbox" defaultChecked={this.state.showO2} name="hideCompleted" onChange={this.updateShowO2}/></td>
+                </tr>
+                <tr>
+                    <th>Line</th>
+                    <th>Correct</th>
+                    <th>Wrong</th>
+                    <th>Over</th>
+                    <th>Threshold 3.5: {this.state.threshold3}</th>
+                </tr>
+                <tr>
+                    <td>3.5</td>
+                    <td>{correct3}</td>
+                    <td>{wrong3}</td>
+                    <td>{perc3}%</td>
+                    <td><input type="range" className="threshold" defaultValue={this.state.threshold3} name="threshold3" min="0" max="30000" step="50" onChange={this.updateThreshold3}/></td>
+                    <td><input type="checkbox" defaultChecked={this.state.showO3} name="hideCompleted" onChange={this.updateShowO3}/></td>
+                </tr>
+                <tr>
+                    <th>Line</th>
+                    <th>Correct</th>
+                    <th>Wrong</th>
+                    <th>Over</th>
+                    <th>Threshold 4.5: {this.state.threshold4}</th>
+                </tr>
+                <tr>
+                    <td>4.5</td>
+                    <td>{correct4}</td>
+                    <td>{wrong4}</td>
+                    <td>{perc4}%</td>
+                    <td><input type="range" className="threshold" defaultValue={this.state.threshold4} name="threshold4" min="0" max="30000" step="50" onChange={this.updateThreshold4}/></td>
+                    <td><input type="checkbox" defaultChecked={this.state.showO4} name="hideCompleted" onChange={this.updateShowO4}/></td>
+                </tr>
+                <tr>
+                    <td>corner</td>
+                    <td>{correctCorner}</td>
+                    <td>{wrongCorner}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>card</td>
+                    <td>{correctCards}</td>
+                    <td>{wrongCards}</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                <tr>
+                    <th>homeScored: {this.state.homeScoredWeight}</th>
+                    <th>homeAwayScored: {this.state.homeAwayScoredWeight}</th>
+                    <th>homeConceided: {this.state.homeConceidedWeight}</th>
+                    <th>homeAwayConceided: {this.state.homeAwayConceidedWeight}</th>
+                    <th>awayScored: {this.state.awayScoredWeight}</th>
+                    <th>awayHomeScored: {this.state.awayHomeScoredWeight}</th>
+                    <th>awayConceided: {this.state.awayConceidedWeight}</th>
+                    <th>awayHomeConceided: {this.state.awayHomeConceidedWeight}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="range" defaultValue={this.state.homeScoredWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updatehomeScoredWeight}/></td>
+                    <td><input type="range" defaultValue={this.state.homeAwayScoredWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updatehomeAwayScoredWeight}/></td>
+                    <td><input type="range" defaultValue={this.state.homeConceidedWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updatehomeConceidedWeight}/></td>
+                    <td><input type="range" defaultValue={this.state.homeAwayConceidedWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updatehomeAwayConceidedWeight}/></td>
+                    <td><input type="range" defaultValue={this.state.awayScoredWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updateawayScoredWeight}/></td>
+                    <td><input type="range" defaultValue={this.state.awayHomeScoredWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updateawayHomeScoredWeight}/></td>
+                    <td><input type="range" defaultValue={this.state.awayConceidedWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updateawayConceidedWeight}/></td>
+                    <td><input type="range" defaultValue={this.state.awayHomeConceidedWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updateawayHomeConceidedWeight}/></td>
+                    <td><input type="checkbox" defaultChecked={this.state.hideCompleted} name="hideCompleted" onChange={this.updateHideCompleted}/></td>
+                </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                <tr>
+                    <th>homeOver: {this.state.homeOverWeight}</th>
+                    <th>awayOver: {this.state.awayOverWeight}</th>
+                    <th>homeOp: {this.state.homeOpWeight}</th>
+                    <th>awayOp: {this.state.awayOpWeight}</th>
+                    <th>corner: {this.state.cornerThreshold}</th>
+                    <th>card: {this.state.cardThreshold}</th>
+                </tr>
+                <tr>
+                     <td><input type="range" defaultValue={this.state.homeOverWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updatehomeOverWeight}/></td>
+                     <td><input type="range" defaultValue={this.state.awayOverWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updateawayOverWeight}/></td>
+                     <td><input type="range" defaultValue={this.state.homeOpWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updatehomeOpWeight}/></td>
+                     <td><input type="range" defaultValue={this.state.awayOpWeight} name="homeIndex" min="0" max="10" step=".5" onChange={this.updateawayOpWeight}/></td>
+                     <td><input type="range" defaultValue={this.state.cornerThreshold} name="homeIndex" min="0" max="20" step=".5" onChange={this.updateCornerThreshold}/></td>
+                     <td><input type="range" defaultValue={this.state.cardThreshold} name="homeIndex" min="0" max="6" step=".5" onChange={this.updateCardThreshold}/></td>
+                 </tr>
+                </tbody>
+            </table>
+            <button onClick={this.update}>Update</button>
+            <select onChange={this.sort} defaultValue="tournament">
+                <option value="tournament">Tournament</option>
+                <option value="date">Date</option>
+            </select>
+            { competitions }
+        </div>
+    };
+
+
+
+    updatehomeScoredWeight = (event) => {
+        event.persist();
+        this.setState({
+            homeScoredWeight: event.target.value
+        });
+    };
+    updatehomeAwayScoredWeight = (event) => {
+        event.persist();
+        this.setState({
+            homeAwayScoredWeight: event.target.value
+        });
+    };
+    updatehomeConceidedWeight = (event) => {
+        event.persist();
+        this.setState({
+            homeConceidedWeight: event.target.value
+        });
+    };
+    updatehomeAwayConceidedWeight = (event) => {
+        event.persist();
+        this.setState({
+            homeAwayConceidedWeight: event.target.value
+        });
+    };
+    updateawayScoredWeight = (event) => {
+        event.persist();
+        this.setState({
+            awayScoredWeight: event.target.value
+        });
+    };
+    updateawayHomeScoredWeight = (event) => {
+        event.persist();
+        this.setState({
+            awayHomeScoredWeight: event.target.value
+        });
+    };
+    updateawayConceidedWeight = (event) => {
+        event.persist();
+        this.setState({
+            awayConceidedWeight: event.target.value
+        });
+    };
+    updateHideCompleted = (event) => {
+        event.persist();
+        this.setState({
+            hideCompleted: !this.state.hideCompleted
+        });
+    };
+    updateShowO0 = (event) => {
+        event.persist();
+        this.setState({
+            showO0: !this.state.showO0
+        });
+    };
+    updateShowO1 = (event) => {
+        event.persist();
+        this.setState({
+            showO1: !this.state.showO1
+        });
+    };
+    updateShowO2 = (event) => {
+        event.persist();
+        this.setState({
+            showO2: !this.state.showO2
+        });
+    };
+    updateShowO3 = (event) => {
+        event.persist();
+        this.setState({
+            showO3: !this.state.showO3
+        });
+    };
+    updateShowO4 = (event) => {
+        event.persist();
+        this.setState({
+            showO4: !this.state.showO4
+        });
+    };
+    updateawayHomeConceidedWeight = (event) => {
+        event.persist();
+        this.setState({
+            awayHomeConceidedWeight: event.target.value
+        });
+    };
+    updatehomeOverWeight = (event) => {
+        event.persist();
+        this.setState({
+            homeOverWeight: event.target.value
+        });
+    };
+    updateawayOverWeight = (event) => {
+        event.persist();
+        this.setState({
+            awayOverWeight: event.target.value
+        });
+    };
+    updatehomeOpWeight = (event) => {
+        event.persist();
+        this.setState({
+            homeOpWeight: event.target.value
+        });
+    }
+    updateawayOpWeight = (event) => {
+        event.persist();
+        this.setState({
+            awayOpWeight: event.target.value
+        });
+    };
+    updateCornerThreshold = (event) => {
+        event.persist();
+        this.setState({
+            cornerThreshold: event.target.value
+        });
+    };
+    updateCardThreshold = (event) => {
+        event.persist();
+        this.setState({
+            cardThreshold: event.target.value
+        });
+    };
+    sortTable = () => {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("events");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[0];
+                y = rows[i + 1].getElementsByTagName("TD")[0];
+                //check if the two rows should switch place:
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    //if so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+}
+
+export default App;

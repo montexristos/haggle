@@ -4,6 +4,9 @@ active: true
 baseUrl: https://stoiximan.gr
 parser: parsers.Stoiximan
 tournaments:
+  - sport/podosfairo/agglia/premier-league/1/
+  - sport/podosfairo/germania/bundesliga/216/
+  - sport/podosfairo/italia/serie-a/1635/
 urls:
   live: live/
   day: sport/podosfairo/kouponi-agones-simera/

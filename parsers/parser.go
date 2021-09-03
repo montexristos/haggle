@@ -17,12 +17,14 @@ type Parser interface {
 	ScrapeHome() (bool, error)
 	ScrapeLive() (bool, error)
 	ScrapeToday() (bool, error)
-	ScrapeTournament(tournamentId string) (bool, error)
+	ScrapeTournament(tournamentUrl string) (bool, error)
 	GetEventID(event map[string]interface{}) int
 	GetEventName(event map[string]interface{}) string
+	GetEventDate(event map[string]interface{}) string
 	GetEventIsAntepost(event map[string]interface{}) bool
 	GetEventMarkets(event map[string]interface{}) []interface{}
 	ParseMarketType(market map[string]interface{}) string
+	MatchMarketType(market map[string]interface{}, marketType string) models.MarketType
 	ParseMarketId(market map[string]interface{}) string
 	ParseMarketName(market map[string]interface{}) string
 	ParseSelectionName(selectionData map[string]interface{}) string
@@ -43,11 +45,16 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 		return &models.Event{}, fmt.Errorf("antepost")
 	}
 	eventID := p.GetEventID(event)
+	if eventID < 0 {
+		return nil, fmt.Errorf("wrong event id")
+	}
 	eventName := p.GetEventName(event)
 	eventMarkets := p.GetEventMarkets(event)
+	date := p.GetEventDate(event)
 	db := p.GetDB()
 	siteID := GetSiteID(p)
 	e := models.GetCreateEvent(p.GetDB(), eventID, siteID, eventName)
+	e.Date = date
 	if len(e.Markets) == 0 {
 		markets := make([]models.Market, 0)
 		for _, market := range eventMarkets {
@@ -80,12 +87,13 @@ func UpdateSelections(p Parser, market models.Market, selections []interface{}) 
 
 func ParseMarket(p Parser, market map[string]interface{}, event models.Event) models.Market {
 	marketType := p.ParseMarketType(market)
+	marketTypeId := p.MatchMarketType(market, marketType)
 	marketName := p.ParseMarketName(market)
 	//marketId := p.ParseMarketId(market)
 	m := models.Market{
-		Name: marketName,
-		Type: marketType,
-		//MarketID: marketId,
+		Name:       marketName,
+		Type:       marketType,
+		MarketType: marketTypeId.Name,
 	}
 	selections := ParseMarketSelections(p, market)
 	for _, selection := range selections {

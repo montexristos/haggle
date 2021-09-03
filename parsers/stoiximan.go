@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm"
 	"haggle/models"
 	"strings"
+	"time"
 )
 
 type Stoiximan struct {
@@ -58,7 +59,8 @@ func (s *Stoiximan) ScrapeToday() (bool, error) {
 	return true, nil
 }
 
-func (s *Stoiximan) ScrapeTournament(tournamentId string) (bool, error) {
+func (s *Stoiximan) ScrapeTournament(tournamentUrl string) (bool, error) {
+	_ = s.c.Visit(fmt.Sprintf("%s/%s", s.config.BaseUrl, tournamentUrl))
 	return true, nil
 }
 
@@ -90,6 +92,10 @@ func (s *Stoiximan) GetEventMarkets(event map[string]interface{}) []interface{} 
 	return event["markets"].([]interface{})
 }
 
+func (s *Stoiximan) GetEventDate(event map[string]interface{}) string {
+	tm := time.Unix(int64(event["startTime"].(float64)/1000), 0)
+	return tm.Format("2006-01-02 15:04:05")
+}
 func (s *Stoiximan) parseTopEvents(sports []interface{}) {
 	for i := 0; i < len(sports); i++ {
 		sport := sports[0].(map[string]interface{})
@@ -126,6 +132,21 @@ func (s *Stoiximan) GetEventIsAntepost(event map[string]interface{}) bool {
 
 func (s *Stoiximan) ParseMarketType(market map[string]interface{}) string {
 	return market["type"].(string)
+}
+
+func (s *Stoiximan) MatchMarketType(market map[string]interface{}, marketType string) models.MarketType {
+	switch marketType {
+	case "MRES":
+		return models.NewMatchResult().MarketType
+	case "HCTG":
+		if market["handicap"] == 2.5 {
+			return models.NewOverUnder().MarketType
+		}
+		return models.MarketType{}
+	case "BTSC":
+		return models.NewBtts().MarketType
+	}
+	return models.MarketType{}
 }
 
 func (s *Stoiximan) ParseMarketId(market map[string]interface{}) string {

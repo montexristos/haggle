@@ -9,6 +9,7 @@ type Event struct {
 	SiteID     int
 	BetradarID int
 	Name       string
+	Date       string
 	Markets    []Market
 }
 

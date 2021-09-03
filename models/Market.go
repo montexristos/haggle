@@ -6,6 +6,7 @@ type Market struct {
 	gorm.Model
 	Name       string
 	Type       string
+	MarketType string
 	EventID    uint
 	Selections []Selection
 }

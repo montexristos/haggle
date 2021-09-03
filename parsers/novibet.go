@@ -72,6 +72,19 @@ func (n *Novibet) Initialize() {
 						}
 					}
 				}
+				return
+			}
+			if items, exists := resp.(map[string]interface{})["MarketViews"]; exists {
+				for _, v := range items.([]interface{}) {
+					item := v.(map[string]interface{})
+					if itemType, found := item["BetViews"]; found {
+						if reflect.TypeOf(itemType).Kind() == reflect.Slice {
+							for _, betview := range itemType.([]interface{}) {
+								n.ParseBetViews(betview.(map[string]interface{}))
+							}
+						}
+					}
+				}
 			}
 			fmt.Printf("map: %v\n", v.Interface())
 		case reflect.Chan:
@@ -123,9 +136,9 @@ func (n *Novibet) ScrapeToday() (bool, error) {
 	return true, nil
 }
 
-func (n *Novibet) ScrapeTournament(tournamentId string) (bool, error) {
+func (n *Novibet) ScrapeTournament(tournamentUrl string) (bool, error) {
 	// first get tournaments
-	tourUrl := fmt.Sprintf("%s%d", "api/navigation/coupon/16/440817?lang=el-GR&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=", time.Now().Unix())
+	tourUrl := fmt.Sprintf("%s/%s%d", n.config.BaseUrl, tournamentUrl, time.Now().Unix())
 	err := n.c.Visit(tourUrl)
 	if err != nil {
 		return false, err
@@ -145,6 +158,12 @@ func (n *Novibet) ParseBetViews(betview map[string]interface{}) {
 	if competitions, exist := betview["Competitions"]; exist {
 		for _, competition := range competitions.([]interface{}) {
 			n.ParseCompetition(competition.(map[string]interface{}))
+		}
+		return
+	}
+	if events, exist := betview["Items"]; exist {
+		for _, event := range events.([]interface{}) {
+			ParseEvent(n, event.(map[string]interface{}))
 		}
 		return
 	}
@@ -174,7 +193,16 @@ func (n *Novibet) parseTopEvents(sports []interface{}) {
 }
 
 func (n *Novibet) GetEventID(event map[string]interface{}) int {
-	return int(event["BetContextId"].(float64))
+	if id, found := event["SportradarMatchId"]; found && id != nil {
+		return int(id.(float64))
+	}
+	if id, found := event["EventBetContextId"]; found && id != nil {
+		return int(id.(float64))
+	}
+	if id, found := event["BetContextId"]; found && id != nil {
+		return int(id.(float64))
+	}
+	return -1
 }
 
 func (n *Novibet) GetEventName(event map[string]interface{}) string {
@@ -187,6 +215,10 @@ func (n *Novibet) GetEventName(event map[string]interface{}) string {
 
 func (n *Novibet) GetEventMarkets(event map[string]interface{}) []interface{} {
 	return event["Markets"].([]interface{})
+}
+
+func (n *Novibet) GetEventDate(event map[string]interface{}) string {
+	return ""
 }
 
 func (n *Novibet) ParseMarketName(market map[string]interface{}) string {
@@ -214,6 +246,23 @@ func (n *Novibet) ParseSelectionLine(selectionData map[string]interface{}) float
 func (n *Novibet) ParseMarketType(market map[string]interface{}) string {
 	return market["BetTypeSysname"].(string)
 }
+
+func (n *Novibet) MatchMarketType(market map[string]interface{}, marketType string) models.MarketType {
+	switch marketType {
+	case "SOCCER_MATCH_RESULT":
+		return models.NewMatchResult().MarketType
+	case "SOCCER_UNDER_OVER":
+		hc := market["BetItems"].([]interface{})[0].(map[string]interface{})["InstanceCaption"].(string)
+		if hc == "2,5" {
+			return models.NewOverUnder().MarketType
+		}
+		return models.MarketType{}
+	case "SOCCER_BOTH_TEAMS_TO_SCORE":
+		return models.NewBtts().MarketType
+	}
+	return models.MarketType{}
+}
+
 func (n *Novibet) ParseMarketId(market map[string]interface{}) string {
 	return market["MarketId"].(string)
 }
