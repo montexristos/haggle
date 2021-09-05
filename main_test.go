@@ -73,6 +73,15 @@ func Test_novibet(t *testing.T) {
 		t.Error(err.Error())
 	}
 }
+func Test_bwin(t *testing.T) {
+	db := GetDb()
+	app := Application{
+		db: db,
+	}
+	if _, err := app.ScrapeSite("bwin"); err != nil {
+		t.Error(err.Error())
+	}
+}
 
 func Test_pokerstars(t *testing.T) {
 

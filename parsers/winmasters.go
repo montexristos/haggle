@@ -159,7 +159,7 @@ func (w *Winmasters) ParseSelectionPrice(selectionData map[string]interface{}) f
 	return selectionData["trueOdds"].(float64)
 }
 
-func (w *Winmasters) ParseSelectionLine(selectionData map[string]interface{}) float64 {
+func (w *Winmasters) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
 	line := 0.0
 	if selectionData["points"] != nil {
 		line = selectionData["points"].(float64)

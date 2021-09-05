@@ -1,0 +1,15 @@
+id: bwin
+siteId: 6
+active: true
+baseUrl: https://cds-api.bwin.gr/bettingoffer
+parser: parsers.Bwin
+urls:
+  home: fixtures?x-bwin-accessid=ZDRkZDljNDUtMDgwMS00YTgzLThiZDItNGNiMWMwZTQxOGM4&lang=el&country=GR&userCountry=GR&fixtureTypes=Standard&state=Latest&offerMapping=Filtered&offerCategories=Gridable&fixtureCategories=Gridable,NonGridable,Other,Specials,Outrights&sportIds=4&regionIds=&competitionIds=&skip=0&take=50&sortBy=Tags
+  live: fixtures?x-bwin-accessid=ZDRkZDljNDUtMDgwMS00YTgzLThiZDItNGNiMWMwZTQxOGM4&lang=el&country=GR&userCountry=GR&state=Live&take=50&offerMapping=Filtered&offerCategories=Gridable&sortBy=Tags&sportIds=4&regionIds=7
+  day: fixtures?x-bwin-accessid=ZDRkZDljNDUtMDgwMS00YTgzLThiZDItNGNiMWMwZTQxOGM4&lang=el&country=GR&userCountry=GR&fixtureTypes=Standard&state=Latest&offerMapping=Filtered&offerCategories=Gridable&fixtureCategories=Gridable,NonGridable,Other,Specials,Outrights&sportIds=4&regionIds=&competitionIds=&skip=0&take=50&sortBy=Tags
+  highlights: api/marketviews/location/16/55382?lang=el-GR&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
+tournaments:
+  - fixtures?x-bwin-accessid=ZDRkZDljNDUtMDgwMS00YTgzLThiZDItNGNiMWMwZTQxOGM4&lang=el&country=GR&userCountry=GR&fixtureTypes=Standard&state=Latest&offerMapping=Filtered&offerCategories=Gridable&fixtureCategories=Gridable,NonGridable,Other&sportIds=4&regionIds=14&competitionIds=46&skip=0&take=50&sortBy=Tags
+  - fixtures?x-bwin-accessid=ZDRkZDljNDUtMDgwMS00YTgzLThiZDItNGNiMWMwZTQxOGM4&lang=el&country=GR&userCountry=GR&fixtureTypes=Standard&state=Latest&offerMapping=Filtered&offerCategories=Gridable&fixtureCategories=Gridable,NonGridable,Other&sportIds=4&regionIds=17&competitionIds=43&skip=0&take=50&sortBy=Tags
+  - fixtures?x-bwin-accessid=ZDRkZDljNDUtMDgwMS00YTgzLThiZDItNGNiMWMwZTQxOGM4&lang=el&country=GR&userCountry=GR&fixtureTypes=Standard&state=Latest&offerMapping=Filtered&offerCategories=Gridable&fixtureCategories=Gridable,NonGridable,Other&sportIds=4&regionIds=20&competitionIds=42&skip=0&take=50&sortBy=Tags
+

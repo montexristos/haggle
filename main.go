@@ -102,6 +102,9 @@ func GetParser(website string, db *gorm.DB) (parsers.Parser, error) {
 	case `winmasters`:
 		parser = &parsers.Winmasters{}
 		break
+	case `bwin`:
+		parser = &parsers.Bwin{}
+		break
 	}
 	if parser != nil {
 		parser.SetDB(db)

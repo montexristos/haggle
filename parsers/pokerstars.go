@@ -128,6 +128,6 @@ func (p *PokerStars) ParseSelectionPrice(selectionData map[string]interface{}) f
 	return selectionData["price"].(float64)
 }
 
-func (p *PokerStars) ParseSelectionLine(selectionData map[string]interface{}) float64 {
+func (p *PokerStars) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
 	return 0
 }

@@ -120,7 +120,7 @@ func (s *Stoiximan) ParseSelectionPrice(selectionData map[string]interface{}) fl
 	return selectionData["price"].(float64)
 }
 
-func (s *Stoiximan) ParseSelectionLine(selectionData map[string]interface{}) float64 {
+func (s *Stoiximan) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
 	line := 0.0
 	//TODO get line
 	return line

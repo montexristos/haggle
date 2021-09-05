@@ -6,7 +6,6 @@ import (
 	"github.com/gocolly/colly"
 	"gorm.io/gorm"
 	"haggle/models"
-	"log"
 	"reflect"
 	"time"
 )
@@ -92,10 +91,7 @@ func (n *Novibet) Initialize() {
 		default:
 			fmt.Println(resp)
 		}
-
-		log.Println(resp)
 	})
-
 }
 
 func (n *Novibet) SetConfig(c *models.SiteConfig) {
@@ -167,7 +163,6 @@ func (n *Novibet) ParseBetViews(betview map[string]interface{}) {
 		}
 		return
 	}
-	println(betview)
 }
 
 func (n *Novibet) ParseCompetition(competition map[string]interface{}) {
@@ -176,8 +171,6 @@ func (n *Novibet) ParseCompetition(competition map[string]interface{}) {
 			ParseEvent(n, event.(map[string]interface{}))
 		}
 	}
-	println(competition)
-
 }
 
 func (n *Novibet) parseTopEvents(sports []interface{}) {
@@ -237,7 +230,7 @@ func (n *Novibet) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
 }
 
-func (n *Novibet) ParseSelectionLine(selectionData map[string]interface{}) float64 {
+func (n *Novibet) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
 	line := 0.0
 	//TODO get line
 	return line
