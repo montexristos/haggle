@@ -87,6 +87,9 @@ func (s *Stoiximan) GetEventID(event map[string]interface{}) int {
 func (s *Stoiximan) GetEventName(event map[string]interface{}) string {
 	return event["name"].(string)
 }
+func (s *Stoiximan) GetEventCanonicalName(event map[string]interface{}) string {
+	return event["name"].(string)
+}
 
 func (s *Stoiximan) GetEventMarkets(event map[string]interface{}) []interface{} {
 	return event["markets"].([]interface{})

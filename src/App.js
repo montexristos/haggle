@@ -17,12 +17,14 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: []
+            events: [],
+            sites: {}
         }
         fetch(this.getHost() + '/data')
             .then(response => response.json())
             .then(data => this.setState({
-                events: data.events
+                events: data.events,
+                sites: data.sites
             }));
     }
 
@@ -48,43 +50,42 @@ class App extends React.Component {
         if (this.state.events === undefined || !this.state.events) {
             return null;
         }
+        const sites = this.state.sites;
         let rows = [];
         for (const eventId in this.state.events) {
-            const event = this.state.events[eventId];
-            console.log(event);
-            if (!event) {
+            const events = this.state.events[eventId];
+            if (!events) {
                 continue;
             }
-            console.log(event[0].Markets[0]);
-            const matchResult1 = event[0].Markets[0].MarketType ? event[0].Markets[0] : "";
-            const matchResult2 = event[1].Markets[0].MarketType ? event[1].Markets[0] : "";
-            const overUnder1 = event[0].Markets[1].MarketType ? event[0].Markets[1] : "";
-            const overUnder2 = event[1].Markets[1].MarketType ? event[1].Markets[1] : "";
-            const btts1 = event[0].Markets[2].MarketType ? event[0].Markets[2] : "";
-            const btts2 = event[1].Markets[2].MarketType ? event[1].Markets[2] : "";
-
-            rows.push(<tr>
-                <td rowSpan="2">
-                    {event[0].Name}
-                </td>
-                <td>{matchResult1 ? matchResult1.Selections[0].Price : ""}</td>
-                <td>{matchResult1 ? matchResult1.Selections[1].Price : ""}</td>
-                <td>{matchResult1 ? matchResult1.Selections[2].Price : ""}</td>
-                <td>{overUnder1 ? overUnder1.Selections[0].Price : ""}</td>
-                <td>{overUnder1 ? overUnder1.Selections[1].Price : ""}</td>
-                <td>{btts1 ? btts1.Selections[0].Price : ""}</td>
-                <td>{btts1 ? btts1.Selections[1].Price : ""}</td>
-            </tr>,
-            <tr>
-                <td>{matchResult2 ? matchResult2.Selections[0].Price : ""}</td>
-                <td>{matchResult2 ? matchResult2.Selections[1].Price : ""}</td>
-                <td>{matchResult2 ? matchResult2.Selections[2].Price : ""}</td>
-                <td>{overUnder2 ? overUnder2.Selections[0].Price : ""}</td>
-                <td>{overUnder2 ? overUnder2.Selections[1].Price : ""}</td>
-                <td>{btts2 ? btts2.Selections[0].Price : ""}</td>
-                <td>{btts2 ? btts2.Selections[1].Price : ""}</td>
-            </tr>
-            );
+            if (events.length) {
+                const matchResult = {};
+                const overUnder = {};
+                const btts = {};
+                for (let siteId=0; siteId<events.length;siteId++) {
+                    matchResult[siteId] = events[siteId].Markets[0].MarketType ? events[siteId].Markets[0] : "";
+                    overUnder[siteId] = events[siteId].Markets[1].MarketType ? events[siteId].Markets[1] : "";
+                    btts[siteId] = events[siteId].Markets[2].MarketType ? events[siteId].Markets[2] : "";
+                    const site = sites[events[siteId].SiteID];
+                    let nameTag = "";
+                    if (siteId === 0) {
+                        nameTag = <td rowSpan={events.length}>
+                            {events[0].CanonicalName} <br/>
+                            {events[0].Date}
+                        </td>;
+                    }
+                    rows.push(<tr>
+                        {nameTag}
+                        <td>{site}</td>
+                        <td>{matchResult[siteId] && matchResult[siteId].Selections ? matchResult[siteId].Selections[0].Price : ""}</td>
+                        <td>{matchResult[siteId] && matchResult[siteId].Selections ? matchResult[siteId].Selections[1].Price : ""}</td>
+                        <td>{matchResult[siteId] && matchResult[siteId].Selections ? matchResult[siteId].Selections[2].Price : ""}</td>
+                        <td>{overUnder[siteId] && overUnder[siteId].Selections ? overUnder[siteId].Selections[0].Price : ""}</td>
+                        <td>{overUnder[siteId] && overUnder[siteId].Selections ? overUnder[siteId].Selections[1].Price : ""}</td>
+                        <td>{btts[siteId] && btts[siteId].Selections ? btts[siteId].Selections[0].Price : ""}</td>
+                        <td>{btts[siteId] && btts[siteId].Selections ? btts[siteId].Selections[1].Price : ""}</td>
+                    </tr>);
+                }
+            }
         }
         return <div className="App">
             <header className="App-header">

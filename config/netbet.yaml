@@ -1,0 +1,19 @@
+id: netbet
+siteId: 8
+active: true
+baseUrl: https://ws-sport.netbet.gr/component/data
+parser: parsers.Netbet
+urls:
+  home: component/data
+  live: component/data
+  day: component/data
+  highlights: component/data
+tournaments:
+  - /ποδόσφαιρο/ελλάδα/σούπερ-λίγκα/
+  - /ποδόσφαιρο/ιταλία/1η-κατηγορία/
+  - /ποδόσφαιρο/ισπανία/1η-κατηγορία/
+  - /ποδόσφαιρο/γερμανία/μπουντεσλίγκα/
+  - /ποδόσφαιρο/αγγλία/πρέμιερ-λιγκ/
+  - /ποδόσφαιρο/αγγλία/τσάμπιονσιπ/
+  - /ποδόσφαιρο/γαλλία/ligue-1/
+  - /ποδόσφαιρο/ολλανδία/ερεντιβίζιε/

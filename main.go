@@ -64,7 +64,18 @@ func GetDb() *gorm.DB {
 	return db
 }
 
+func ClearDB() {
+	db := GetDb()
+	db.Raw(`SET FOREIGN_KEY_CHECKS=0;
+		TRUNCATE TABLE haggle.selections;
+		TRUNCATE TABLE haggle.markets;
+		TRUNCATE TABLE haggle.events;
+		SET FOREIGN_KEY_CHECKS=1;
+	`)
+}
+
 func (app *Application) scrapeAll() (map[string]string, error) {
+	ClearDB()
 	result := make(map[string]string)
 	if res, err := app.ScrapeSite("stoiximan"); res {
 		result["stoiximan"] = "ok"
@@ -75,6 +86,16 @@ func (app *Application) scrapeAll() (map[string]string, error) {
 		result["novibet"] = "ok"
 	} else {
 		result["novibet"] = err.Error()
+	}
+	if res, err := app.ScrapeSite("netbet"); res {
+		result["netbet"] = "ok"
+	} else {
+		result["netbet"] = err.Error()
+	}
+	if res, err := app.ScrapeSite("pamestoixima"); res {
+		result["pamestoixima"] = "ok"
+	} else {
+		result["pamestoixima"] = err.Error()
 	}
 	return result, nil
 }
@@ -104,6 +125,12 @@ func GetParser(website string, db *gorm.DB) (parsers.Parser, error) {
 		break
 	case `bwin`:
 		parser = &parsers.Bwin{}
+		break
+	case `netbet`:
+		parser = &parsers.Netbet{}
+		break
+	case `pamestoixima`:
+		parser = &parsers.PameStoixima{}
 		break
 	}
 	if parser != nil {
@@ -137,7 +164,8 @@ func (app *Application) ScrapeSite(website string) (bool, error) {
 
 func getScrapeResults() (map[string]interface{}, error) {
 	// find events that appear in more than one site
-	rows, err := GetDb().Raw(`SELECT betradar_id FROM (SELECT count(distinct site_id) as matches, betradar_id FROM haggle.events group by betradar_id) as tab WHERE matches > 1;`).Rows()
+	//rows, err := GetDb().Raw(`SELECT betradar_id FROM (SELECT count(distinct site_id) as matches, betradar_id FROM haggle.events group by betradar_id) as tab WHERE matches > 1;`).Rows()
+	rows, err := GetDb().Raw(`SELECT canonical_name FROM (SELECT count(distinct site_id) as matches, canonical_name FROM haggle.events group by canonical_name) as tab WHERE matches > 1;;`).Rows()
 	if err != nil {
 		return map[string]interface{}{
 			"error": err,
@@ -156,14 +184,14 @@ func getScrapeResults() (map[string]interface{}, error) {
 		eventIds = append(eventIds, fmt.Sprintf("%s", eventMatch.([]byte)))
 	}
 	events := make([]models.Event, 0)
-	GetDb().Preload("Markets").Preload("Markets.Selections").Where("betradar_id in (?)", eventIds).Find(&events)
-	matches := make(map[int][]models.Event)
+	GetDb().Preload("Markets").Preload("Markets.Selections").Where("canonical_name in (?)", eventIds).Find(&events)
+	matches := make(map[string][]models.Event)
 	for _, event := range events {
 		var matchResultMarket models.Market
 		var overUnderMarket models.Market
 		var bttsMarket models.Market
-		if _, found := matches[event.BetradarID]; !found {
-			matches[event.BetradarID] = make([]models.Event, 0)
+		if _, found := matches[event.CanonicalName]; !found {
+			matches[event.CanonicalName] = make([]models.Event, 0)
 		}
 		//iterate event markets and order them
 		for _, v := range event.Markets {
@@ -181,11 +209,30 @@ func getScrapeResults() (map[string]interface{}, error) {
 		event.Markets = append(event.Markets, matchResultMarket)
 		event.Markets = append(event.Markets, overUnderMarket)
 		event.Markets = append(event.Markets, bttsMarket)
-		matches[event.BetradarID] = append(matches[event.BetradarID], event)
+		matches[event.CanonicalName] = append(matches[event.CanonicalName], event)
+	}
+	siteList := []string{
+		//"stoiximan",
+		//"netbet",
+		//"novibet",
+		//"winmasters",
+		`stoiximan`,
+		`novibet`,
+		`pokerstars`,
+		`winmasters`,
+		`bwin`,
+		`netbet`,
+		//`pamestoixima`,
+	}
+	sites := make(map[int]string)
+	for _, site := range siteList {
+		parser, _ := GetParser(site, GetDb())
+		sites[parser.GetConfig().SiteID] = site
 	}
 
 	return map[string]interface{}{
 		"events": matches,
+		"sites":  sites,
 	}, nil
 }
 

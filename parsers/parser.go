@@ -3,10 +3,16 @@ package parsers
 import (
 	"fmt"
 	"github.com/gocolly/colly"
+	"gopkg.in/yaml.v2"
 	"gorm.io/gorm"
 	"haggle/models"
+	"io/ioutil"
 	"log"
+	"os"
+	"regexp"
+	"strings"
 	"time"
+	"unicode"
 )
 
 type Parser interface {
@@ -20,6 +26,7 @@ type Parser interface {
 	ScrapeTournament(tournamentUrl string) (bool, error)
 	GetEventID(event map[string]interface{}) int
 	GetEventName(event map[string]interface{}) string
+	GetEventCanonicalName(event map[string]interface{}) string
 	GetEventDate(event map[string]interface{}) string
 	GetEventIsAntepost(event map[string]interface{}) bool
 	GetEventMarkets(event map[string]interface{}) []interface{}
@@ -49,12 +56,14 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 		return nil, fmt.Errorf("wrong event id")
 	}
 	eventName := p.GetEventName(event)
+	eventCanonicalName := TransformName(eventName)
 	eventMarkets := p.GetEventMarkets(event)
 	date := p.GetEventDate(event)
 	db := p.GetDB()
 	siteID := GetSiteID(p)
 	e := models.GetCreateEvent(p.GetDB(), eventID, siteID, eventName)
 	e.Date = date
+	e.CanonicalName = eventCanonicalName
 	if len(e.Markets) == 0 {
 		markets := make([]models.Market, 0)
 		for _, market := range eventMarkets {
@@ -140,4 +149,178 @@ func GetCollector() *colly.Collector {
 		log.Println("error:", e, r.Request.URL, string(r.Body))
 	})
 	return c
+}
+
+func isMn(r rune) bool {
+	return unicode.Is(unicode.Mn, r) // Mn: nonspacing marks
+}
+
+func TransformName(name string) string {
+	name = strings.ReplaceAll(name, "/", "-")
+	teams := strings.Split(name, "-")
+	teamNames := GetNames()
+	matchedNames := make([]string, 0)
+	unmatchedNames := make(map[string]string)
+	for _, team := range teams {
+
+		team = strings.TrimSpace(team)
+		teamName, err := MatchTeam(teamNames, team)
+		if err != nil {
+			matchedNames = append(matchedNames, team)
+			teamNames[team] = team
+			unmatched, _ := ioutil.ReadFile("config/names_unmatched.yaml")
+			err := yaml.Unmarshal(unmatched, unmatchedNames)
+			if err != nil {
+				log.Println("error reading unmatched")
+			}
+			//write team names back to file
+			unmatchedNames[team] = team
+			var out []byte
+			out, _ = yaml.Marshal(unmatchedNames)
+			_ = ioutil.WriteFile("config/names_unmatched.yaml", out, os.FileMode(755))
+		} else {
+			matchedNames = append(matchedNames, teamName)
+		}
+	}
+	return strings.Join(matchedNames, " - ")
+}
+
+func MatchTeam(teamNames map[string]interface{}, team string) (string, error) {
+	if name, found := teamNames[team]; found {
+		return name.(string), nil
+	}
+	return "", fmt.Errorf("not matched")
+}
+
+func GetNames() map[string]interface{} {
+	var teamNames map[string]interface{}
+	yamlFile, err := ioutil.ReadFile("config/names.yaml")
+	if err != nil {
+		log.Printf("yamlFile.Get err   #%v ", err)
+	}
+	err = yaml.Unmarshal(yamlFile, &teamNames)
+	if err != nil {
+		log.Printf("yamlFile.parse err   #%v ", err)
+	}
+	return teamNames
+}
+
+type rule struct {
+	expr        *regexp.Regexp
+	replacement string
+}
+
+func applyRules(s string, rules []rule) string {
+	res := []byte(s)
+
+	for _, rule := range rules {
+		res = rule.expr.ReplaceAll(res, []byte(rule.replacement))
+	}
+
+	return string(res)
+}
+
+var greekToGreeklishRules = []rule{
+	{regexp.MustCompile("ΓΧ"), "GX"},
+	{regexp.MustCompile("γχ"), "gx"},
+	{regexp.MustCompile("ΤΘ"), "T8"},
+	{regexp.MustCompile("τθ"), "t8"},
+	{regexp.MustCompile("(θη|Θη),"), "8h"},
+	{regexp.MustCompile("ΘΗ"), "8H"},
+	{regexp.MustCompile("αυ"), "au"},
+	{regexp.MustCompile("Αυ"), "Au"},
+	{regexp.MustCompile("ΑΥ"), "AY"},
+	{regexp.MustCompile("ευ"), "eu"},
+	{regexp.MustCompile("εύ"), "eu"},
+	{regexp.MustCompile("εϋ"), "ey"},
+	{regexp.MustCompile("εΰ"), "ey"},
+	{regexp.MustCompile("Ευ"), "Eu"},
+	{regexp.MustCompile("Εύ"), "Eu"},
+	{regexp.MustCompile("Εϋ"), "Ey"},
+	{regexp.MustCompile("Εΰ"), "Ey"},
+	{regexp.MustCompile("ΕΥ"), "EY"},
+	{regexp.MustCompile("ου"), "ou"},
+	{regexp.MustCompile("ού"), "ou"},
+	{regexp.MustCompile("οϋ"), "oy"},
+	{regexp.MustCompile("οΰ"), "oy"},
+	{regexp.MustCompile("Ου"), "Ou"},
+	{regexp.MustCompile("Ού"), "Ou"},
+	{regexp.MustCompile("Οϋ"), "Oy"},
+	{regexp.MustCompile("Οΰ"), "Oy"},
+	{regexp.MustCompile("ΟΥ"), "OY"},
+	{regexp.MustCompile("Α"), "A"},
+	{regexp.MustCompile("α"), "a"},
+	{regexp.MustCompile("ά"), "a"},
+	{regexp.MustCompile("Ά"), "A"},
+	{regexp.MustCompile("Β"), "B"},
+	{regexp.MustCompile("β"), "b"},
+	{regexp.MustCompile("Γ"), "G"},
+	{regexp.MustCompile("γ"), "g"},
+	{regexp.MustCompile("Δ"), "D"},
+	{regexp.MustCompile("δ"), "d"},
+	{regexp.MustCompile("Ε"), "E"},
+	{regexp.MustCompile("ε"), "e"},
+	{regexp.MustCompile("έ"), "e"},
+	{regexp.MustCompile("Έ"), "E"},
+	{regexp.MustCompile("Ζ"), "Z"},
+	{regexp.MustCompile("ζ"), "z"},
+	{regexp.MustCompile("Η"), "H"},
+	{regexp.MustCompile("η"), "h"},
+	{regexp.MustCompile("ή"), "h"},
+	{regexp.MustCompile("Ή"), "H"},
+	{regexp.MustCompile("Θ"), "TH"},
+	{regexp.MustCompile("θ"), "th"},
+	{regexp.MustCompile("Ι"), "I"},
+	{regexp.MustCompile("Ϊ"), "I"},
+	{regexp.MustCompile("ι"), "i"},
+	{regexp.MustCompile("ί"), "i"},
+	{regexp.MustCompile("ΐ"), "i"},
+	{regexp.MustCompile("ϊ"), "i"},
+	{regexp.MustCompile("Ί"), "I"},
+	{regexp.MustCompile("Κ"), "K"},
+	{regexp.MustCompile("κ"), "k"},
+	{regexp.MustCompile("Λ"), "L"},
+	{regexp.MustCompile("λ"), "l"},
+	{regexp.MustCompile("Μ"), "M"},
+	{regexp.MustCompile("μ"), "m"},
+	{regexp.MustCompile("Ν"), "N"},
+	{regexp.MustCompile("ν"), "n"},
+	{regexp.MustCompile("Ξ"), "KS"},
+	{regexp.MustCompile("ξ"), "ks"},
+	{regexp.MustCompile("Ο"), "O"},
+	{regexp.MustCompile("ο"), "o"},
+	{regexp.MustCompile("Ό"), "O"},
+	{regexp.MustCompile("ό"), "o"},
+	{regexp.MustCompile("Π"), "P"},
+	{regexp.MustCompile("π"), "p"},
+	{regexp.MustCompile("Ρ"), "R"},
+	{regexp.MustCompile("ρ"), "r"},
+	{regexp.MustCompile("Σ"), "S"},
+	{regexp.MustCompile("σ"), "s"},
+	{regexp.MustCompile("Τ"), "T"},
+	{regexp.MustCompile("τ"), "t"},
+	{regexp.MustCompile("Υ"), "Y"},
+	{regexp.MustCompile("Ύ"), "Y"},
+	{regexp.MustCompile("Ϋ"), "Y"},
+	{regexp.MustCompile("ΰ"), "y"},
+	{regexp.MustCompile("ύ"), "y"},
+	{regexp.MustCompile("ϋ"), "y"},
+	{regexp.MustCompile("υ"), "y"},
+	{regexp.MustCompile("Φ"), "F"},
+	{regexp.MustCompile("φ"), "f"},
+	{regexp.MustCompile("Χ"), "X"},
+	{regexp.MustCompile("χ"), "x"},
+	{regexp.MustCompile("Ψ"), "Ps"},
+	{regexp.MustCompile("ψ"), "ps"},
+	{regexp.MustCompile("Ω"), "w"},
+	{regexp.MustCompile("ω"), "w"},
+	{regexp.MustCompile("Ώ"), "w"},
+	{regexp.MustCompile("ώ"), "w"},
+	{regexp.MustCompile("ς"), "s"},
+	{regexp.MustCompile(";"), "?"},
+}
+
+// Greeklish returns s transliterated into greeklish.
+func Greeklish(s string) string {
+	return applyRules(s, greekToGreeklishRules)
 }

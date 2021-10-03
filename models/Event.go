@@ -6,11 +6,12 @@ import (
 
 type Event struct {
 	gorm.Model
-	SiteID     int
-	BetradarID int
-	Name       string
-	Date       string
-	Markets    []Market
+	SiteID        int
+	BetradarID    int
+	Name          string
+	Date          string
+	CanonicalName string
+	Markets       []Market
 }
 
 // Set User's table name to be `profiles`

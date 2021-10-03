@@ -206,6 +206,14 @@ func (n *Novibet) GetEventName(event map[string]interface{}) string {
 	return event["Path"].(string)
 }
 
+func (n *Novibet) GetEventCanonicalName(event map[string]interface{}) string {
+	if captionsMap, exist := event["AdditionalCaptions"]; exist {
+		captions := captionsMap.(map[string]interface{})
+		return fmt.Sprintf("%s - %s", captions["Competitor1"].(string), captions["Competitor2"].(string))
+	}
+	return event["Path"].(string)
+}
+
 func (n *Novibet) GetEventMarkets(event map[string]interface{}) []interface{} {
 	return event["Markets"].([]interface{})
 }

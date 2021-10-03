@@ -1,4 +1,5 @@
 id: winmasters
+# socket
 active: true
 siteId: 5
 baseUrl: https://sbapi.sbtech.com/winmasters/

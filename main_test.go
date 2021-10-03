@@ -73,6 +73,37 @@ func Test_novibet(t *testing.T) {
 		t.Error(err.Error())
 	}
 }
+func Test_netbet(t *testing.T) {
+	db := GetDb()
+	app := Application{
+		db: db,
+	}
+	if _, err := app.ScrapeSite("netbet"); err != nil {
+		t.Error(err.Error())
+	}
+}
+func Test_all_active(t *testing.T) {
+	db := GetDb()
+	app := Application{
+		db: db,
+	}
+	if _, err := app.scrapeAll(); err != nil {
+		t.Error(err.Error())
+	}
+}
+
+func Test_transform(t *testing.T) {
+	name := parsers.TransformName("Λεστερ / Μπερνλι")
+	if name != "Lester - Mpernli" {
+		t.Fail()
+	}
+	name = parsers.TransformName("ΝΠΣ Βόλος - Ατρόμητος")
+	if name != "NPS Bolos - Atromhtos" {
+		t.Error(fmt.Sprintf("name is not %s", name))
+		t.Fail()
+	}
+}
+
 func Test_bwin(t *testing.T) {
 	db := GetDb()
 	app := Application{
