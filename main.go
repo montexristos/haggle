@@ -66,12 +66,12 @@ func GetDb() *gorm.DB {
 
 func ClearDB() {
 	db := GetDb()
-	db.Raw(`SET FOREIGN_KEY_CHECKS=0;
-		TRUNCATE TABLE haggle.selections;
-		TRUNCATE TABLE haggle.markets;
-		TRUNCATE TABLE haggle.events;
-		SET FOREIGN_KEY_CHECKS=1;
-	`)
+	db.Where("1 = 1").Unscoped().Delete(&models.Selection{})
+	db.Where("1 = 1").Unscoped().Delete(&models.Market{})
+	db.Where("1 = 1").Unscoped().Delete(&models.Event{})
+	if db.Error != nil {
+		panic(db.Error.Error())
+	}
 }
 
 func (app *Application) scrapeAll() (map[string]string, error) {
@@ -237,7 +237,7 @@ func getScrapeResults() (map[string]interface{}, error) {
 }
 
 func (app *Application) scrapeLink(w http.ResponseWriter, r *http.Request) {
-	GetDb().Raw(`SET FOREIGN_KEY_CHECKS=0;TRUNCATE TABLE haggle.selections;TRUNCATE TABLE haggle.markets;TRUNCATE TABLE haggle.events;SET FOREIGN_KEY_CHECKS=1;`)
+	ClearDB()
 	result, err := app.scrapeAll()
 	if err != nil {
 		_ = json.NewEncoder(w).Encode(map[string]string{

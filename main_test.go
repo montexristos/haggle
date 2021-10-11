@@ -3,12 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"haggle/models"
 	"haggle/parsers"
 	"io/ioutil"
 	"testing"
-
-	_ "github.com/go-sql-driver/mysql"
 )
 
 func Test_bet(t *testing.T) {
@@ -29,6 +28,15 @@ func Test_stoiximan(t *testing.T) {
 		db,
 	}
 	if _, err := app.ScrapeSite("stoiximan"); err != nil {
+		t.Error(err.Error())
+	}
+}
+func Test_PameStoixima(t *testing.T) {
+	db := GetDb()
+	app := Application{
+		db,
+	}
+	if _, err := app.ScrapeSite("pamestoixima"); err != nil {
 		t.Error(err.Error())
 	}
 }
@@ -116,4 +124,25 @@ func Test_bwin(t *testing.T) {
 
 func Test_pokerstars(t *testing.T) {
 
+}
+
+func TestClearDB(t *testing.T) {
+	tests := []struct {
+		name string
+	}{
+		{
+			"test1",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ClearDB()
+			rows, _ := GetDb().Raw(`SELECT * FROM haggle.events;`).Rows()
+			defer rows.Close()
+			if rows.Next() {
+				t.Errorf("db should be empty")
+				t.Fail()
+			}
+		})
+	}
 }

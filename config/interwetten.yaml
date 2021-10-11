@@ -1,0 +1,20 @@
+id: interwetten
+# requires access id
+siteId: 10
+active: true
+baseUrl: https://www.interwetten.gr/en
+parser: parsers.Interwetten
+urls:
+  home: sportsbook
+  live: sportsbook/live
+  day: sportsbook/today
+tournaments:
+  - sport/leaguelist?leagueIds=1060 #superleague
+  - sport/leaguelist?leagueIds=1029 # italy serie A
+  - sport/leaguelist?leagueIds=1019 # bundesliga
+  - sport/leaguelist?leagueIds=1021 # english premier league
+  - sport/leaguelist?leagueIds=1022 # english championship
+  - sport/leaguelist?leagueIds=1024 # france league 1
+  - sport/leaguelist?leagueIds=1027 # eredivisie
+
+

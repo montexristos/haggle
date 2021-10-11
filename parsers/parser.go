@@ -56,6 +56,18 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 		return nil, fmt.Errorf("wrong event id")
 	}
 	eventName := p.GetEventName(event)
+	if strings.Index(eventName, "SRL") > 0 {
+		return nil, fmt.Errorf("skip parsing srl")
+	}
+	if strings.Index(eventName, "Srl") > 0 {
+		return nil, fmt.Errorf("skip parsing srl")
+	}
+	if strings.Index(eventName, "esport") > 0 {
+		return nil, fmt.Errorf("skip parsing esport")
+	}
+	if strings.Index(eventName, "Esport") > 0 {
+		return nil, fmt.Errorf("skip parsing esport")
+	}
 	eventCanonicalName := TransformName(eventName)
 	eventMarkets := p.GetEventMarkets(event)
 	date := p.GetEventDate(event)
@@ -157,12 +169,12 @@ func isMn(r rune) bool {
 
 func TransformName(name string) string {
 	name = strings.ReplaceAll(name, "/", "-")
+	name = strings.ReplaceAll(name, "1. ", "")
 	teams := strings.Split(name, "-")
 	teamNames := GetNames()
 	matchedNames := make([]string, 0)
 	unmatchedNames := make(map[string]string)
 	for _, team := range teams {
-
 		team = strings.TrimSpace(team)
 		teamName, err := MatchTeam(teamNames, team)
 		if err != nil {

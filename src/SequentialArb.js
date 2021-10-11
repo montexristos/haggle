@@ -211,7 +211,6 @@ class SequentialArb extends React.Component {
         const tables = arbs.map((arb, arbIndex) => {
             let totalStake = arb.stake;
             let adjustedMultiplier = 1;
-            let parlayLost = false;
             let winnings = 0;
             let adjustedWinnings = 0;
             let arbWinnings = 0;
