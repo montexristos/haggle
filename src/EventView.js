@@ -9,6 +9,11 @@ class EventView extends React.Component {
         const eventSites = [];
         let nameTag = "";
         let date = "";
+        let marketMap = {
+            "MRES": {},
+            "UO": {},
+            "BTTS": {},
+        };
         for (let siteId=0; siteId<events.length;siteId++) {
             if (siteId === 0) {
                 nameTag = events[0].Name;
@@ -17,8 +22,30 @@ class EventView extends React.Component {
                 date = events[siteId].Date;
             }
             const site = sites[events[siteId].SiteID];
+            const event = events[siteId];
+            event.Markets.forEach((market) => {
+                if (!marketMap["MRES"][siteId] && market.MarketType === "MRES") {
+                    marketMap["MRES"][siteId] = market;
+                }
+
+                if (!marketMap["UO"][siteId] && market.MarketType === "UO") {
+                    marketMap["UO"][siteId] = market;
+                }
+                if (!marketMap["BTTS"][siteId] && market.MarketType === "BTTS") {
+                    marketMap["BTTS"][siteId] = market;
+                }
+
+            })
+            console.log(marketMap);
             eventSites.push(
-                <EventSiteView site={site} siteId={siteId} event={events[siteId]}/>
+                <EventSiteView site={site}
+                               siteId={siteId}
+                               event={events[siteId]}
+                               marketMap={marketMap}
+                               matchResult={marketMap["MRES"][siteId]}
+                               overUnder={marketMap["UO"][siteId]}
+                               btts={marketMap["BTTS"][siteId]}
+                />
             );
         }
         let dt;

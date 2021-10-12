@@ -6,7 +6,11 @@ import (
 	"github.com/gocolly/colly"
 	"gorm.io/gorm"
 	"haggle/models"
+	"io/ioutil"
+	"log"
+	"net/http"
 	"reflect"
+	"strconv"
 	"time"
 )
 
@@ -223,7 +227,17 @@ func (n *Novibet) GetEventDate(event map[string]interface{}) string {
 }
 
 func (n *Novibet) ParseMarketName(market map[string]interface{}) string {
-	return market["BetTypeSysname"].(string)
+	if marketType, found := market["Caption"]; found {
+		return marketType.(string)
+	}
+	if marketType, found := market["BetTypeSysname"]; found {
+		return marketType.(string)
+	}
+	if marketType, found := market["MarkettSysname"]; found {
+		return marketType.(string)
+	}
+
+	return ""
 }
 
 func (n *Novibet) ParseSelectionName(selectionData map[string]interface{}) string {
@@ -240,28 +254,56 @@ func (n *Novibet) GetEventIsAntepost(event map[string]interface{}) bool {
 
 func (n *Novibet) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
 	line := 0.0
-	//TODO get line
+	hc := marketData["BetItems"].([]interface{})[0].(map[string]interface{})["InstanceCaption"]
+	if hc == nil {
+		return line
+	}
+	handicap, err := strconv.ParseFloat(hc.(string), 64)
+	if err == nil {
+		return handicap
+	}
 	return line
 }
 
 func (n *Novibet) ParseMarketType(market map[string]interface{}) string {
-	return market["BetTypeSysname"].(string)
+	if marketType, found := market["BetTypeSysname"]; found {
+		return marketType.(string)
+	}
+	if marketType, found := market["Sysname"]; found {
+		return marketType.(string)
+	}
+	if marketType, found := market["MarketSysname"]; found {
+		return marketType.(string)
+	}
+	return ""
 }
 
-func (n *Novibet) MatchMarketType(market map[string]interface{}, marketType string) models.MarketType {
+func (n *Novibet) MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error) {
 	switch marketType {
 	case "SOCCER_MATCH_RESULT":
-		return models.NewMatchResult().MarketType
+		return models.NewMatchResult().MarketType, nil
 	case "SOCCER_UNDER_OVER":
-		hc := market["BetItems"].([]interface{})[0].(map[string]interface{})["InstanceCaption"].(string)
-		if hc == "2,5" {
-			return models.NewOverUnder().MarketType
-		}
-		return models.MarketType{}
+		return models.NewOverUnder().MarketType, nil
 	case "SOCCER_BOTH_TEAMS_TO_SCORE":
-		return models.NewBtts().MarketType
+		return models.NewBtts().MarketType, nil
+	case "INTS":
+		return models.NewNextTeamToScore().MarketType, nil
+	case "SOCCER_DOUBLE_CHANCE":
+		return models.NewDoubleChance().MarketType, nil
+	case "SOCCER_MATCH_RESULT_NODRAW":
+		return models.NewDrawNoBet().MarketType, nil
+	case "SOCCER_HOME_UNDER_OVER":
+		return models.NewUnderOverHome().MarketType, nil
+	case "SOCCER_AWAY_UNDER_OVER":
+		return models.NewUnderOverAway().MarketType, nil
+	case "OUH1":
+		return models.NewUnderOverHalf().MarketType, nil
+	case "FG28":
+		return models.NewFirstGoalEarly().MarketType, nil
+	case "SOCCER_CORNERS_UNDER_OVER":
+		return models.NewUnderOverCorners().MarketType, nil
 	}
-	return models.MarketType{}
+	return models.MarketType{}, fmt.Errorf("could not match market type")
 }
 
 func (n *Novibet) ParseMarketId(market map[string]interface{}) string {
@@ -269,4 +311,50 @@ func (n *Novibet) ParseMarketId(market map[string]interface{}) string {
 }
 func (n *Novibet) GetMarketSelections(market map[string]interface{}) []interface{} {
 	return market["BetItems"].([]interface{})
+}
+
+func (n *Novibet) FetchEvent(e *models.Event) error {
+	url := fmt.Sprintf("%s/api/marketviews/event/16/%d?lang=en-US", n.config.BaseUrl, e.BetradarID)
+	client := http.Client{
+		Timeout: time.Second * 2, // Timeout after 2 seconds
+	}
+
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+
+	res, err := client.Do(req)
+
+	if err != nil {
+		return err
+	}
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return err
+	}
+	var eventData interface{}
+	err = json.Unmarshal(body, &eventData)
+	if marketGroups, found := eventData.(map[string]interface{})["MarketCategories"]; found {
+		for _, marketGroup := range marketGroups.([]interface{}) {
+			if markets, found := marketGroup.(map[string]interface{})["Items"]; found {
+				for _, marketTypes := range markets.([]interface{}) {
+					for _, market := range marketTypes.(map[string]interface{})["BetViews"].([]interface{}) {
+						parsedMarket, parseError := ParseMarket(n, market.(map[string]interface{}), *e)
+						if parseError == nil {
+							e.Markets = append(e.Markets, parsedMarket)
+						}
+					}
+				}
+			}
+		}
+		return nil
+	}
+	return fmt.Errorf("could not fetch details")
+}
+
+func (n *Novibet) GetEventUrl(event map[string]interface{}) string {
+	return ""
 }

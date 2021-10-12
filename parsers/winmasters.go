@@ -111,11 +111,14 @@ func (w *Winmasters) ParseEvents(events []interface{}, markets []interface{}) {
 		}
 		for j := 0; j < len(markets); j++ {
 			if markets[j].(map[string]interface{})["eventId"] == event["id"] {
-				market := ParseMarket(w, markets[j].(map[string]interface{}), *eventObject)
-				eventObject.Markets = append(eventObject.Markets, market)
-				w.db.Save(&eventObject)
+				market, parseError := ParseMarket(w, markets[j].(map[string]interface{}), *eventObject)
+				if parseError == nil {
+					eventObject.Markets = append(eventObject.Markets, market)
+				}
+
 			}
 		}
+		w.db.Save(&eventObject)
 	}
 }
 

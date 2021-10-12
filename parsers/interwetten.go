@@ -111,7 +111,10 @@ func (p *Interwetten) ParseEvents(events []interface{}, markets []interface{}) {
 		}
 		for j := 0; j < len(markets); j++ {
 			if markets[j].(map[string]interface{})["eventId"] == event["id"] {
-				market := ParseMarket(p, markets[j].(map[string]interface{}), *eventObject)
+				market, parseError := ParseMarket(p, markets[j].(map[string]interface{}), *eventObject)
+				if parseError == nil {
+					eventObject.Markets = append(eventObject.Markets, market)
+				}
 				eventObject.Markets = append(eventObject.Markets, market)
 				p.db.Save(&eventObject)
 			}

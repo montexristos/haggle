@@ -31,7 +31,7 @@ type Parser interface {
 	GetEventIsAntepost(event map[string]interface{}) bool
 	GetEventMarkets(event map[string]interface{}) []interface{}
 	ParseMarketType(market map[string]interface{}) string
-	MatchMarketType(market map[string]interface{}, marketType string) models.MarketType
+	MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error)
 	ParseMarketId(market map[string]interface{}) string
 	ParseMarketName(market map[string]interface{}) string
 	ParseSelectionName(selectionData map[string]interface{}) string
@@ -41,6 +41,8 @@ type Parser interface {
 	SetDB(db *gorm.DB)
 	SetConfig(config *models.SiteConfig)
 	GetConfig() *models.SiteConfig
+	FetchEvent(e *models.Event) error
+	GetEventUrl(event map[string]interface{}) string
 }
 
 func GetSiteID(p Parser) int {
@@ -62,6 +64,9 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 	if strings.Index(eventName, "Srl") > 0 {
 		return nil, fmt.Errorf("skip parsing srl")
 	}
+	if strings.Index(eventName, "Srl") > 0 {
+		return nil, fmt.Errorf("skip parsing srl")
+	}
 	if strings.Index(eventName, "esport") > 0 {
 		return nil, fmt.Errorf("skip parsing esport")
 	}
@@ -76,20 +81,29 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 	e := models.GetCreateEvent(p.GetDB(), eventID, siteID, eventName)
 	e.Date = date
 	e.CanonicalName = eventCanonicalName
+	e.Url = p.GetEventUrl(event)
+	// try to get all event details
+	GetEventDetails(p, &e)
+
 	if len(e.Markets) == 0 {
 		markets := make([]models.Market, 0)
 		for _, market := range eventMarkets {
-			m := ParseMarket(p, market.(map[string]interface{}), e)
-			markets = append(markets, m)
+			m, err := ParseMarket(p, market.(map[string]interface{}), e)
+			if err == nil {
+				markets = append(markets, m)
+			}
 		}
 		e.Markets = markets
-	} else {
-		for _, market := range e.Markets {
-			UpdateMarket(p, market, eventMarkets)
-		}
 	}
 	db.Debug().Session(&gorm.Session{FullSaveAssociations: true}).Save(&e)
 	return &e, nil
+}
+
+func GetEventDetails(p Parser, e *models.Event) {
+	err := p.FetchEvent(e)
+	if err != nil {
+		fmt.Errorf("error fetching event from parser %s", p.GetConfig().Id)
+	}
 }
 
 func UpdateMarket(p Parser, market models.Market, markets []interface{}) {
@@ -106,9 +120,12 @@ func UpdateSelections(p Parser, market models.Market, selections []interface{}) 
 	}
 }
 
-func ParseMarket(p Parser, market map[string]interface{}, event models.Event) models.Market {
+func ParseMarket(p Parser, market map[string]interface{}, event models.Event) (models.Market, error) {
 	marketType := p.ParseMarketType(market)
-	marketTypeId := p.MatchMarketType(market, marketType)
+	marketTypeId, matchError := p.MatchMarketType(market, marketType)
+	if matchError != nil {
+		return models.Market{}, matchError
+	}
 	marketName := p.ParseMarketName(market)
 	//marketId := p.ParseMarketId(market)
 	m := models.Market{
@@ -118,11 +135,16 @@ func ParseMarket(p Parser, market map[string]interface{}, event models.Event) mo
 	}
 	selections := ParseMarketSelections(p, market)
 	for _, selection := range selections {
-		sel := ParseSelection(p, market, selection.(map[string]interface{}))
-		m.Selections = append(m.Selections, sel)
+		if selection != nil {
+			sel := ParseSelection(p, market, selection.(map[string]interface{}))
+			if sel.Line > 0.0 {
+				m.Line = sel.Line
+			}
+			m.Selections = append(m.Selections, sel)
+		}
 	}
 	p.GetDB().Debug().Session(&gorm.Session{FullSaveAssociations: true}).Updates(&m)
-	return m
+	return m, nil
 }
 
 func ParseMarketSelections(p Parser, market map[string]interface{}) []interface{} {

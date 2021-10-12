@@ -1,12 +1,16 @@
 package parsers
 
 import (
+	"bytes"
 	"fmt"
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
 	"gorm.io/gorm"
 	"haggle/models"
-	"strconv"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"time"
 )
 
 type Netbet struct {
@@ -200,26 +204,30 @@ func (n *Netbet) ParseMarketType(market map[string]interface{}) string {
 	switch categoryId {
 	case 1:
 		return "SOCCER_MATCH_RESULT"
+	case 10:
+		return "SOCCER_DOUBLE_CHANCE"
+	case 24:
+		return "SOCCER_BOTH_TEAMS_TO_SCORE"
+	case 39:
+		return "SOCCER_AWAY_UNDER_OVER"
+	case 9:
+		return "SOCCER_UNDER_OVER"
+	case 38:
+		return "SOCCER_HOME_UNDER_OVER"
 	}
 	return ""
 }
 
-func (n *Netbet) MatchMarketType(market map[string]interface{}, marketType string) models.MarketType {
+func (n *Netbet) MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error) {
 	switch marketType {
 	case "SOCCER_MATCH_RESULT":
-		return models.NewMatchResult().MarketType
+		return models.NewMatchResult().MarketType, nil
 	case "SOCCER_UNDER_OVER":
-		hc := market["attr"].(string)
-		hc = normalizeFloat(hc)
-		hcfloat, _ := strconv.ParseFloat(hc, 64)
-		if hcfloat == 2.5 {
-			return models.NewOverUnder().MarketType
-		}
-		return models.MarketType{}
+		return models.NewOverUnder().MarketType, nil
 	case "SOCCER_BOTH_TEAMS_TO_SCORE":
-		return models.NewBtts().MarketType
+		return models.NewBtts().MarketType, nil
 	}
-	return models.MarketType{}
+	return models.MarketType{}, fmt.Errorf("could not match market type")
 }
 
 func (n *Netbet) ParseMarketId(market map[string]interface{}) string {
@@ -227,4 +235,79 @@ func (n *Netbet) ParseMarketId(market map[string]interface{}) string {
 }
 func (n *Netbet) GetMarketSelections(market map[string]interface{}) []interface{} {
 	return market["choices"].([]interface{})
+}
+
+func (n *Netbet) FetchEvent(e *models.Event) error {
+
+	///ekdílosi/4067630-λάτσιο-inter-milan/
+	formData := `{
+    "context":
+    {
+        "url_key": "%s",
+        "version": "1.0.1",
+        "device": "web_vuejs_desktop",
+        "lang": "en",
+        "timezone": "-1",
+        "url_params":
+        {}
+    },
+    "components":
+    [
+        {
+            "tree_compo_key": "event_market_list",
+            "params": null
+        }
+    ]
+}`
+	formData = fmt.Sprintf(formData, e.Url)
+	url := fmt.Sprintf("%s", n.config.BaseUrl)
+
+	client := http.Client{
+		Timeout: time.Second * 2, // Timeout after 2 seconds
+	}
+	req, err := http.NewRequest(http.MethodPost, url, bytes.NewBuffer([]byte(formData)))
+	if err != nil {
+		log.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+	res, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return err
+	}
+	jsonParsed, err := gabs.ParseJSON(body)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	marks := jsonParsed.Path("components.data.event.bets")
+	if marks != nil {
+		results, _ := marks.Children()
+		for _, markets := range results {
+
+			marketMap, err := markets.ChildrenMap()
+			if err != nil {
+				return fmt.Errorf("could not fetch markets")
+			}
+			for _, mark := range marketMap {
+				market := mark.Data()
+				parsedMarket, parseError := ParseMarket(n, market.(map[string]interface{}), *e)
+				if parseError == nil {
+					e.Markets = append(e.Markets, parsedMarket)
+				}
+			}
+		}
+	}
+
+	return fmt.Errorf("could not fetch details")
+}
+
+func (n *Netbet) GetEventUrl(event map[string]interface{}) string {
+	if url, found := event["url"]; found {
+		return url.(string)
+	}
+	return ""
 }

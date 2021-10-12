@@ -148,19 +148,19 @@ func (p *Bet) ParseMarketType(market map[string]interface{}) string {
 	return market["type"].(string)
 }
 
-func (p *Bet) MatchMarketType(market map[string]interface{}, marketType string) models.MarketType {
+func (p *Bet) MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error) {
 	switch marketType {
 	case "MRES":
-		return models.NewMatchResult().MarketType
+		return models.NewMatchResult().MarketType, nil
 	case "HCTG":
 		if market["handicap"] == 2.5 {
-			return models.NewOverUnder().MarketType
+			return models.NewOverUnder().MarketType, nil
 		}
-		return models.MarketType{}
+		return models.MarketType{}, nil
 	case "BTSC":
-		return models.NewBtts().MarketType
+		return models.NewBtts().MarketType, nil
 	}
-	return models.MarketType{}
+	return models.MarketType{}, fmt.Errorf("could not match market type")
 }
 
 func (p *Bet) ParseMarketId(market map[string]interface{}) string {

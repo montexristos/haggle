@@ -1,6 +1,6 @@
 id: pamestoixima
 # requires access id
 siteId: 7
-active: true
+active: false
 baseUrl: https://cds-api.bwin.gr/bettingoffer
 parser: parsers.PameStoixima

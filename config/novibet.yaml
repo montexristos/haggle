@@ -4,7 +4,7 @@ active: true
 baseUrl: https://www.novibet.gr/
 parser: parsers.Novibet
 urls:
-  home: api/marketviews/findtimestamps?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
+  home: api/marketviews?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
   live: api/marketviews/location/16/4390?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
   day: api/marketviews/location/16/912152?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
   highlights: api/marketviews/location/16/55382?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=

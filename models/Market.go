@@ -9,6 +9,7 @@ type Market struct {
 	MarketType string
 	EventID    uint
 	Selections []Selection
+	Line       float64
 }
 
 // Set User's table name to be `profiles`

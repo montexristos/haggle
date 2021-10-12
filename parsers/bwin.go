@@ -189,22 +189,22 @@ func normalizeFloat(old string) string {
 	return s
 }
 
-func (b *Bwin) MatchMarketType(market map[string]interface{}, marketType string) models.MarketType {
+func (b *Bwin) MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error) {
 	switch marketType {
 	case "SOCCER_MATCH_RESULT":
-		return models.NewMatchResult().MarketType
+		return models.NewMatchResult().MarketType, nil
 	case "SOCCER_UNDER_OVER":
 		hc := market["attr"].(string)
 		hc = normalizeFloat(hc)
 		hcfloat, _ := strconv.ParseFloat(hc, 64)
 		if hcfloat == 2.5 {
-			return models.NewOverUnder().MarketType
+			return models.NewOverUnder().MarketType, nil
 		}
-		return models.MarketType{}
+		return models.MarketType{}, nil
 	case "SOCCER_BOTH_TEAMS_TO_SCORE":
-		return models.NewBtts().MarketType
+		return models.NewBtts().MarketType, nil
 	}
-	return models.MarketType{}
+	return models.MarketType{}, fmt.Errorf("could not match market type")
 }
 
 func (b *Bwin) ParseMarketId(market map[string]interface{}) string {

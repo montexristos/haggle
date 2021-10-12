@@ -187,47 +187,30 @@ func getScrapeResults() (map[string]interface{}, error) {
 	GetDb().Preload("Markets").Preload("Markets.Selections").Where("canonical_name in (?)", eventIds).Find(&events)
 	matches := make(map[string][]models.Event)
 	for _, event := range events {
-		var matchResultMarket models.Market
-		var overUnderMarket models.Market
-		var bttsMarket models.Market
+		//var matchResultMarket *models.Market
+		//var overUnderMarket *models.Market
+		//var bttsMarket *models.Market
 		if _, found := matches[event.CanonicalName]; !found {
 			matches[event.CanonicalName] = make([]models.Event, 0)
 		}
-		//iterate event markets and order them
-		for _, v := range event.Markets {
-			if v.MarketType == models.NewMatchResult().Name {
-				matchResultMarket = v
-			}
-			if v.MarketType == models.NewOverUnder().Name {
-				overUnderMarket = v
-			}
-			if v.MarketType == models.NewBtts().Name {
-				bttsMarket = v
-			}
-		}
-		event.Markets = make([]models.Market, 0)
-		event.Markets = append(event.Markets, matchResultMarket)
-		event.Markets = append(event.Markets, overUnderMarket)
-		event.Markets = append(event.Markets, bttsMarket)
+
 		matches[event.CanonicalName] = append(matches[event.CanonicalName], event)
 	}
-	siteList := []string{
-		//"stoiximan",
-		//"netbet",
-		//"novibet",
-		//"winmasters",
-		`stoiximan`,
-		`novibet`,
-		`pokerstars`,
-		`winmasters`,
-		`bwin`,
-		`netbet`,
-		//`pamestoixima`,
+	siteList := map[int]string{
+		1: `bet`,
+		2: `novibet`,
+		3: `pokerstars`,
+		4: `stoiximan`,
+		5: `winmasters`,
+		6: `bwin`,
+		8: `netbet`,
 	}
 	sites := make(map[int]string)
 	for _, site := range siteList {
 		parser, _ := GetParser(site, GetDb())
-		sites[parser.GetConfig().SiteID] = site
+		if parser != nil {
+			sites[parser.GetConfig().SiteID] = site
+		}
 	}
 
 	return map[string]interface{}{
