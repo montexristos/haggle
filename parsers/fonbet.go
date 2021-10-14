@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-type Netbet struct {
+type Fonbet struct {
 	Parser
 	db     *gorm.DB
 	config *models.SiteConfig
@@ -26,10 +26,10 @@ type Netbet struct {
  first visit https://www.Netbet.gr/api/marketviews/findtimestamps?lang=el-GR&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=G
 then make request for each content key
 */
-func (n *Netbet) Initialize() {
+func (p *Fonbet) Initialize() {
 
-	n.c = GetCollector()
-	n.c.OnResponse(func(response *colly.Response) {
+	p.c = GetCollector()
+	p.c.OnResponse(func(response *colly.Response) {
 		jsonParsed, err := gabs.ParseJSON(response.Body)
 		if err != nil {
 			fmt.Println(err.Error())
@@ -43,28 +43,28 @@ func (n *Netbet) Initialize() {
 			for _, eventList := range events {
 				evt := eventList.Data()
 				for _, event := range evt.([]interface{}) {
-					ParseEvent(n, event.(map[string]interface{}))
+					ParseEvent(p, event.(map[string]interface{}))
 				}
 			}
 		}
 	})
 }
 
-func (n *Netbet) SetConfig(c *models.SiteConfig) {
-	n.config = c
-	n.ID = c.SiteID
+func (p *Fonbet) SetConfig(c *models.SiteConfig) {
+	p.config = c
+	p.ID = c.SiteID
 }
 
-func (n *Netbet) GetConfig() *models.SiteConfig {
-	return n.config
+func (p *Fonbet) GetConfig() *models.SiteConfig {
+	return p.config
 }
 
-func (n *Netbet) Scrape() (bool, error) {
+func (p *Fonbet) Scrape() (bool, error) {
 
 	return true, nil
 }
-func (n *Netbet) ScrapeHome() (bool, error) {
-	//err := n.c.Visit(fmt.Sprintf("%s/%s", n.config.BaseUrl, n.config.Urls["home"]))
+func (p *Fonbet) ScrapeHome() (bool, error) {
+	//err := p.c.Visit(fmt.Sprintf("%s/%s", p.config.BaseUrl, p.config.Urls["home"]))
 	//if err != nil {
 	//	return false, err
 	//}
@@ -72,29 +72,29 @@ func (n *Netbet) ScrapeHome() (bool, error) {
 	return true, nil
 }
 
-func (n *Netbet) ScrapeLive() (bool, error) {
-	//err := n.c.Visit(fmt.Sprintf("%s/%s", n.config.BaseUrl, n.config.Urls["live"]))
+func (p *Fonbet) ScrapeLive() (bool, error) {
+	//err := p.c.Visit(fmt.Sprintf("%s/%s", p.config.BaseUrl, p.config.Urls["live"]))
 	//if err != nil {
 	//	return false, err
 	//}
 	return true, nil
 }
 
-func (n *Netbet) ScrapeToday() (bool, error) {
+func (p *Fonbet) ScrapeToday() (bool, error) {
 	//&from= #2021-09-02T21:00:00.000Z&to=2021-09-03T21:00:00.000Z
 	//now := time.Now().Format(time.RFC3339)
 	//tomorrow := time.Now().Add(time.Hour * 24).Format(time.RFC3339)
-	//url := fmt.Sprintf("%s/%s&from=%s&to=%s", n.config.BaseUrl, n.config.Urls["day"], now, tomorrow)
-	//err := n.c.Visit(url)
+	//url := fmt.Sprintf("%s/%s&from=%s&to=%s", p.config.BaseUrl, p.config.Urls["day"], now, tomorrow)
+	//err := p.c.Visit(url)
 	//if err != nil {
 	//	return false, err
 	//}
 	return true, nil
 }
 
-func (n *Netbet) ScrapeTournament(tournamentUrl string) (bool, error) {
+func (p *Fonbet) ScrapeTournament(tournamentUrl string) (bool, error) {
 	// first get tournaments
-	tourUrl := fmt.Sprintf("%s", n.config.BaseUrl)
+	tourUrl := fmt.Sprintf("%s", p.config.BaseUrl)
 	var formData = `{
     "context":
     {
@@ -116,22 +116,22 @@ func (n *Netbet) ScrapeTournament(tournamentUrl string) (bool, error) {
     ]
 }`
 	formData = fmt.Sprintf(formData, tournamentUrl)
-	err := n.c.PostRaw(tourUrl, []byte(formData))
+	err := p.c.PostRaw(tourUrl, []byte(formData))
 	if err != nil {
 		return false, err
 	}
 	return true, nil
 }
 
-func (n *Netbet) SetDB(db *gorm.DB) {
-	n.db = db
+func (p *Fonbet) SetDB(db *gorm.DB) {
+	p.db = db
 }
 
-func (n *Netbet) GetDB() *gorm.DB {
-	return n.db
+func (p *Fonbet) GetDB() *gorm.DB {
+	return p.db
 }
 
-func (n *Netbet) GetEventID(event map[string]interface{}) string {
+func (p *Fonbet) GetEventID(event map[string]interface{}) string {
 	if live, found := event["live"]; found {
 		if live != nil {
 			if matchId, found := live.(map[string]interface{})["match_id"]; found {
@@ -143,20 +143,20 @@ func (n *Netbet) GetEventID(event map[string]interface{}) string {
 	return strconv.Itoa(int(event["id"].(float64)))
 }
 
-func (n *Netbet) GetEventName(event map[string]interface{}) string {
+func (p *Fonbet) GetEventName(event map[string]interface{}) string {
 	if name, exist := event["label"]; exist {
 		return name.(string)
 	}
 	return ""
 }
-func (n *Netbet) GetEventCanonicalName(event map[string]interface{}) string {
+func (p *Fonbet) GetEventCanonicalName(event map[string]interface{}) string {
 	if name, exist := event["label"]; exist {
 		return name.(string)
 	}
 	return ""
 }
 
-func (n *Netbet) GetEventMarkets(event map[string]interface{}) []interface{} {
+func (p *Fonbet) GetEventMarkets(event map[string]interface{}) []interface{} {
 	markets := event["bets"].(map[string]interface{})
 	result := make([]interface{}, 0)
 	for _, market := range markets {
@@ -165,11 +165,11 @@ func (n *Netbet) GetEventMarkets(event map[string]interface{}) []interface{} {
 	return result
 }
 
-func (n *Netbet) GetEventDate(event map[string]interface{}) string {
+func (p *Fonbet) GetEventDate(event map[string]interface{}) string {
 	return event["start"].(string)
 }
 
-func (n *Netbet) ParseMarketName(market map[string]interface{}) string {
+func (p *Fonbet) ParseMarketName(market map[string]interface{}) string {
 	if name, exist := market["question"]; exist {
 		captions := name.(map[string]interface{})
 		return captions["label"].(string)
@@ -177,7 +177,7 @@ func (n *Netbet) ParseMarketName(market map[string]interface{}) string {
 	return ""
 }
 
-func (n *Netbet) ParseSelectionName(selectionData map[string]interface{}) string {
+func (p *Fonbet) ParseSelectionName(selectionData map[string]interface{}) string {
 	if name, exist := selectionData["actor"]; exist {
 		captions := name.(map[string]interface{})
 		return captions["label"].(string)
@@ -185,21 +185,21 @@ func (n *Netbet) ParseSelectionName(selectionData map[string]interface{}) string
 	return ""
 }
 
-func (n *Netbet) ParseSelectionPrice(selectionData map[string]interface{}) float64 {
+func (p *Fonbet) ParseSelectionPrice(selectionData map[string]interface{}) float64 {
 	return selectionData["odd"].(float64)
 }
 
-func (n *Netbet) GetEventIsAntepost(event map[string]interface{}) bool {
+func (p *Fonbet) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
 }
 
-func (n *Netbet) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
+func (p *Fonbet) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
 	line := 0.0
 
 	return line
 }
 
-func (n *Netbet) ParseMarketType(market map[string]interface{}) string {
+func (p *Fonbet) ParseMarketType(market map[string]interface{}) string {
 	categoryType := market["type"].(map[string]interface{})
 	categoryId := categoryType["id"].(float64)
 	switch categoryId {
@@ -219,7 +219,7 @@ func (n *Netbet) ParseMarketType(market map[string]interface{}) string {
 	return ""
 }
 
-func (n *Netbet) MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error) {
+func (p *Fonbet) MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error) {
 	switch marketType {
 	case "SOCCER_MATCH_RESULT":
 		return models.NewMatchResult().MarketType, nil
@@ -231,14 +231,14 @@ func (n *Netbet) MatchMarketType(market map[string]interface{}, marketType strin
 	return models.MarketType{}, fmt.Errorf("could not match market type")
 }
 
-func (n *Netbet) ParseMarketId(market map[string]interface{}) string {
+func (p *Fonbet) ParseMarketId(market map[string]interface{}) string {
 	return market["id"].(string)
 }
-func (n *Netbet) GetMarketSelections(market map[string]interface{}) []interface{} {
+func (p *Fonbet) GetMarketSelections(market map[string]interface{}) []interface{} {
 	return market["choices"].([]interface{})
 }
 
-func (n *Netbet) FetchEvent(e *models.Event) error {
+func (p *Fonbet) FetchEvent(e *models.Event) error {
 
 	///ekdílosi/4067630-λάτσιο-inter-milan/
 	formData := `{
@@ -261,7 +261,7 @@ func (n *Netbet) FetchEvent(e *models.Event) error {
     ]
 }`
 	formData = fmt.Sprintf(formData, e.Url)
-	url := fmt.Sprintf("%s", n.config.BaseUrl)
+	url := fmt.Sprintf("%s", p.config.BaseUrl)
 
 	client := http.Client{
 		Timeout: time.Second * 2, // Timeout after 2 seconds
@@ -275,11 +275,11 @@ func (n *Netbet) FetchEvent(e *models.Event) error {
 	if err != nil {
 		return err
 	}
+	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return err
 	}
-	defer res.Body.Close()
 	jsonParsed, err := gabs.ParseJSON(body)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -296,7 +296,7 @@ func (n *Netbet) FetchEvent(e *models.Event) error {
 			}
 			for _, mark := range marketMap {
 				market := mark.Data()
-				parsedMarket, parseError := ParseMarket(n, market.(map[string]interface{}), *e)
+				parsedMarket, parseError := ParseMarket(p, market.(map[string]interface{}), *e)
 				if parseError == nil {
 					e.Markets = append(e.Markets, parsedMarket)
 				}
@@ -307,7 +307,7 @@ func (n *Netbet) FetchEvent(e *models.Event) error {
 	return fmt.Errorf("could not fetch details")
 }
 
-func (n *Netbet) GetEventUrl(event map[string]interface{}) string {
+func (p *Fonbet) GetEventUrl(event map[string]interface{}) string {
 	if url, found := event["url"]; found {
 		return url.(string)
 	}

@@ -19,13 +19,14 @@ class Competition extends React.Component {
                           hideCompleted={this.props.hideCompleted}
                           ggs={this.props.ggs}
                           overs={this.props.overs}
+                          sites={this.props.sites}
                           key={fixture.homeTeam.name + "-" + fixture.awayTeam.name} />
         })
         // return <Event fixture={fixture} today={today} hideCompleted={this.state.hideCompleted}  key={fixture.homeTeam.name + "-" + fixture.awayTeam.name} />
 
         return  <React.Fragment>
             <h1>{this.props.competition.name}</h1>
-            <table>
+            <table className="table is-striped is-fullwidth  is-hoverable">
                 {this.props.tableHeader}
                 <tbody>
                 {events}

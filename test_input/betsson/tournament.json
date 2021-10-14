@@ -1,0 +1,2919 @@
+{
+  "topics": {
+    "markets": [
+      "?obg/sportsbook/transient/markets/(?:f-sZY3nq8EUUWUR_uFy7kZ6w|f-Mp7mIHnU8kCJM4ddKVjIOQ|f-8H1zDcJ8JkynxkDiquHiSQ|f-0afkBIheDUGzCGNIczLTew|f-jSmLQcphbEuIs7wsNAPgcA|f-FTRwFkVNo0-LytCetLoskA|f-7k9frqgM0ku10UgtSZadQg)/.*:(?:MW3W|MTG2W|M3WHCP|BTTS|DC)/.*"
+    ],
+    "selections": [
+      "?obg/sportsbook/transient/selections/(?:f-sZY3nq8EUUWUR_uFy7kZ6w|f-Mp7mIHnU8kCJM4ddKVjIOQ|f-8H1zDcJ8JkynxkDiquHiSQ|f-0afkBIheDUGzCGNIczLTew|f-jSmLQcphbEuIs7wsNAPgcA|f-FTRwFkVNo0-LytCetLoskA|f-7k9frqgM0ku10UgtSZadQg)/(?:MW3W|MTG2W|M3WHCP|BTTS|DC):.*/",
+      "?obg/sportsbook/transient/brands/10/markets/(?:f-sZY3nq8EUUWUR_uFy7kZ6w|f-Mp7mIHnU8kCJM4ddKVjIOQ|f-8H1zDcJ8JkynxkDiquHiSQ|f-0afkBIheDUGzCGNIczLTew|f-jSmLQcphbEuIs7wsNAPgcA|f-FTRwFkVNo0-LytCetLoskA|f-7k9frqgM0ku10UgtSZadQg)/.*:(?:MW3W|MTG2W|M3WHCP|BTTS|DC)/.*"
+    ],
+    "scoreboards": [
+      "?obg/sportsbook/transient/scoreboards/(?:f-sZY3nq8EUUWUR_uFy7kZ6w|f-Mp7mIHnU8kCJM4ddKVjIOQ|f-8H1zDcJ8JkynxkDiquHiSQ|f-0afkBIheDUGzCGNIczLTew|f-jSmLQcphbEuIs7wsNAPgcA|f-FTRwFkVNo0-LytCetLoskA|f-7k9frqgM0ku10UgtSZadQg)/.*",
+      "?obg/sportsbook/static/scoreboards/(?:f-sZY3nq8EUUWUR_uFy7kZ6w|f-Mp7mIHnU8kCJM4ddKVjIOQ|f-8H1zDcJ8JkynxkDiquHiSQ|f-0afkBIheDUGzCGNIczLTew|f-jSmLQcphbEuIs7wsNAPgcA|f-FTRwFkVNo0-LytCetLoskA|f-7k9frqgM0ku10UgtSZadQg)/current-phase"
+    ],
+    "events": [
+      "?obg/sportsbook/transient/events/(?:f-sZY3nq8EUUWUR_uFy7kZ6w|f-Mp7mIHnU8kCJM4ddKVjIOQ|f-8H1zDcJ8JkynxkDiquHiSQ|f-0afkBIheDUGzCGNIczLTew|f-jSmLQcphbEuIs7wsNAPgcA|f-FTRwFkVNo0-LytCetLoskA|f-7k9frqgM0ku10UgtSZadQg)/.*"
+    ]
+  },
+  "skeleton": {
+    "eventIds": [
+      "f-sZY3nq8EUUWUR_uFy7kZ6w",
+      "f-Mp7mIHnU8kCJM4ddKVjIOQ",
+      "f-8H1zDcJ8JkynxkDiquHiSQ",
+      "f-0afkBIheDUGzCGNIczLTew",
+      "f-jSmLQcphbEuIs7wsNAPgcA",
+      "f-FTRwFkVNo0-LytCetLoskA",
+      "f-7k9frqgM0ku10UgtSZadQg"
+    ],
+    "marketTemplates": [
+      {
+        "columnIndex": 0,
+        "marketTemplateIds": [
+          "MW3W"
+        ],
+        "isConfigured": true,
+        "label": "Match winner",
+        "isDataIncluded": true
+      },
+      {
+        "columnIndex": 1,
+        "marketTemplateIds": [
+          "MTG2W25",
+          "MTG2W"
+        ],
+        "isConfigured": true,
+        "label": "Match Goals",
+        "isDataIncluded": true
+      },
+      {
+        "columnIndex": 2,
+        "marketTemplateIds": [
+          "M3WHCP"
+        ],
+        "isConfigured": true,
+        "label": "3-way Handicap",
+        "isDataIncluded": true
+      },
+      {
+        "columnIndex": 3,
+        "marketTemplateIds": [
+          "BTTS"
+        ],
+        "isConfigured": true,
+        "label": "Both Teams To Score",
+        "isDataIncluded": true
+      },
+      {
+        "columnIndex": 4,
+        "marketTemplateIds": [
+          "DC"
+        ],
+        "isConfigured": true,
+        "label": "Double Chance",
+        "isDataIncluded": true
+      },
+      {
+        "columnIndex": 5,
+        "marketTemplateIds": [
+          "MW3W1H"
+        ],
+        "isConfigured": true,
+        "label": "Halftime result",
+        "isDataIncluded": false
+      },
+      {
+        "columnIndex": 6,
+        "marketTemplateIds": [
+          "1HTG"
+        ],
+        "isConfigured": true,
+        "label": "Number of goals – 1st Half",
+        "isDataIncluded": false
+      }
+    ],
+    "marketTimeFrames": {},
+    "marketTimeFrameLabels": {}
+  },
+  "data": {
+    "key": "events-table/1402-1-15-1698-5-*-*-*-12/31/9999 11:59:59 PM-75",
+    "events": [
+      {
+        "globalId": "event.1.15.1698.f-sZY3nq8EUUWUR_uFy7kZ6w",
+        "categoryId": "1",
+        "categoryName": "Football",
+        "regionId": "15",
+        "regionName": "Greece",
+        "competitionId": "1698",
+        "competitionName": "Greece Super League 1",
+        "slug": "football/greece/greece-super-league-1/panathinaikos-ionikos",
+        "participants": [
+          {
+            "label": "Panathinaikos",
+            "id": "1333",
+            "sortOrder": 1,
+            "side": 1
+          },
+          {
+            "label": "Ionikos",
+            "id": "1338",
+            "sortOrder": 2,
+            "side": 2
+          }
+        ],
+        "marketCount": 121,
+        "phase": "Prematch",
+        "hasLiveStreaming": false,
+        "hasStatistics": true,
+        "hasPrematchStatistics": true,
+        "hasLiveStatistics": false,
+        "hasLiveVisual": false,
+        "hasBetBuilderLink": false,
+        "startDate": "2021-10-16T17:30:00Z",
+        "eventType": "Fixture",
+        "categoryTrackingLabel": "football",
+        "competitionTrackingLabel": "greece-super-league-1",
+        "regionTrackingLabel": "greece",
+        "prematchStatisticsProviders": [
+          "Score24"
+        ],
+        "actualSubCategoryId": 1698,
+        "hasFastMarkets": false,
+        "marketCountUnique": 0,
+        "id": "f-sZY3nq8EUUWUR_uFy7kZ6w",
+        "label": "Panathinaikos - Ionikos",
+        "isHomeTeam": false
+      },
+      {
+        "globalId": "event.1.15.1698.f-Mp7mIHnU8kCJM4ddKVjIOQ",
+        "categoryId": "1",
+        "categoryName": "Football",
+        "regionId": "15",
+        "regionName": "Greece",
+        "competitionId": "1698",
+        "competitionName": "Greece Super League 1",
+        "slug": "football/greece/greece-super-league-1/paok-thessaloniki-volos-nfc",
+        "participants": [
+          {
+            "label": "PAOK Thessaloniki",
+            "id": "1336",
+            "sortOrder": 1,
+            "side": 1
+          },
+          {
+            "label": "Volos NFC",
+            "id": "336268",
+            "sortOrder": 2,
+            "side": 2
+          }
+        ],
+        "marketCount": 121,
+        "phase": "Prematch",
+        "hasLiveStreaming": false,
+        "hasStatistics": true,
+        "hasPrematchStatistics": true,
+        "hasLiveStatistics": false,
+        "hasLiveVisual": false,
+        "hasBetBuilderLink": false,
+        "startDate": "2021-10-17T13:00:00Z",
+        "eventType": "Fixture",
+        "categoryTrackingLabel": "football",
+        "competitionTrackingLabel": "greece-super-league-1",
+        "regionTrackingLabel": "greece",
+        "prematchStatisticsProviders": [
+          "Score24"
+        ],
+        "actualSubCategoryId": 1698,
+        "hasFastMarkets": false,
+        "marketCountUnique": 0,
+        "id": "f-Mp7mIHnU8kCJM4ddKVjIOQ",
+        "label": "PAOK Thessaloniki  - Volos NFC",
+        "isHomeTeam": false
+      },
+      {
+        "globalId": "event.1.15.1698.f-8H1zDcJ8JkynxkDiquHiSQ",
+        "categoryId": "1",
+        "categoryName": "Football",
+        "regionId": "15",
+        "regionName": "Greece",
+        "competitionId": "1698",
+        "competitionName": "Greece Super League 1",
+        "slug": "football/greece/greece-super-league-1/apollon-smyrnis-asteras-tripolis",
+        "participants": [
+          {
+            "label": "Apollon Smyrnis",
+            "id": "134504",
+            "sortOrder": 1,
+            "side": 1
+          },
+          {
+            "label": "Asteras Tripolis",
+            "id": "4906",
+            "sortOrder": 2,
+            "side": 2
+          }
+        ],
+        "marketCount": 119,
+        "phase": "Prematch",
+        "hasLiveStreaming": false,
+        "hasStatistics": true,
+        "hasPrematchStatistics": true,
+        "hasLiveStatistics": false,
+        "hasLiveVisual": false,
+        "hasBetBuilderLink": false,
+        "startDate": "2021-10-16T15:15:00Z",
+        "eventType": "Fixture",
+        "categoryTrackingLabel": "football",
+        "competitionTrackingLabel": "greece-super-league-1",
+        "regionTrackingLabel": "greece",
+        "prematchStatisticsProviders": [
+          "Score24"
+        ],
+        "actualSubCategoryId": 1698,
+        "hasFastMarkets": false,
+        "marketCountUnique": 0,
+        "id": "f-8H1zDcJ8JkynxkDiquHiSQ",
+        "label": "Apollon Smyrnis - Asteras Tripolis",
+        "isHomeTeam": false
+      },
+      {
+        "globalId": "event.1.15.1698.f-0afkBIheDUGzCGNIczLTew",
+        "categoryId": "1",
+        "categoryName": "Football",
+        "regionId": "15",
+        "regionName": "Greece",
+        "competitionId": "1698",
+        "competitionName": "Greece Super League 1",
+        "slug": "football/greece/greece-super-league-1/panetolikos-ofi-kreta",
+        "participants": [
+          {
+            "label": "Panetolikos",
+            "id": "109629",
+            "sortOrder": 1,
+            "side": 1
+          },
+          {
+            "label": "OFI Kreta",
+            "id": "1335",
+            "sortOrder": 2,
+            "side": 2
+          }
+        ],
+        "marketCount": 119,
+        "phase": "Prematch",
+        "hasLiveStreaming": false,
+        "hasStatistics": true,
+        "hasPrematchStatistics": true,
+        "hasLiveStatistics": false,
+        "hasLiveVisual": false,
+        "hasBetBuilderLink": false,
+        "startDate": "2021-10-17T13:00:00Z",
+        "eventType": "Fixture",
+        "categoryTrackingLabel": "football",
+        "competitionTrackingLabel": "greece-super-league-1",
+        "regionTrackingLabel": "greece",
+        "prematchStatisticsProviders": [
+          "Score24"
+        ],
+        "actualSubCategoryId": 1698,
+        "hasFastMarkets": false,
+        "marketCountUnique": 0,
+        "id": "f-0afkBIheDUGzCGNIczLTew",
+        "label": "Panetolikos - OFI Kreta",
+        "isHomeTeam": false
+      },
+      {
+        "globalId": "event.1.15.1698.f-jSmLQcphbEuIs7wsNAPgcA",
+        "categoryId": "1",
+        "categoryName": "Football",
+        "regionId": "15",
+        "regionName": "Greece",
+        "competitionId": "1698",
+        "competitionName": "Greece Super League 1",
+        "slug": "football/greece/greece-super-league-1/aek-athens-atromitos",
+        "participants": [
+          {
+            "label": "AEK Athens",
+            "id": "1340",
+            "sortOrder": 1,
+            "side": 1
+          },
+          {
+            "label": "Atromitos",
+            "id": "1419",
+            "sortOrder": 2,
+            "side": 2
+          }
+        ],
+        "marketCount": 121,
+        "phase": "Prematch",
+        "hasLiveStreaming": false,
+        "hasStatistics": true,
+        "hasPrematchStatistics": true,
+        "hasLiveStatistics": false,
+        "hasLiveVisual": false,
+        "hasBetBuilderLink": false,
+        "startDate": "2021-10-17T17:30:00Z",
+        "eventType": "Fixture",
+        "categoryTrackingLabel": "football",
+        "competitionTrackingLabel": "greece-super-league-1",
+        "regionTrackingLabel": "greece",
+        "prematchStatisticsProviders": [
+          "Score24"
+        ],
+        "actualSubCategoryId": 1698,
+        "hasFastMarkets": false,
+        "marketCountUnique": 0,
+        "id": "f-jSmLQcphbEuIs7wsNAPgcA",
+        "label": "AEK Athens - Atromitos",
+        "isHomeTeam": false
+      },
+      {
+        "globalId": "event.1.15.1698.f-FTRwFkVNo0-LytCetLoskA",
+        "categoryId": "1",
+        "categoryName": "Football",
+        "regionId": "15",
+        "regionName": "Greece",
+        "competitionId": "1698",
+        "competitionName": "Greece Super League 1",
+        "slug": "football/greece/greece-super-league-1/pas-giannina-olympiakos",
+        "participants": [
+          {
+            "label": "PAS Giannina",
+            "id": "4904",
+            "sortOrder": 1,
+            "side": 1
+          },
+          {
+            "label": "Olympiakos",
+            "id": "1458",
+            "sortOrder": 2,
+            "side": 2
+          }
+        ],
+        "marketCount": 122,
+        "phase": "Prematch",
+        "hasLiveStreaming": false,
+        "hasStatistics": true,
+        "hasPrematchStatistics": true,
+        "hasLiveStatistics": false,
+        "hasLiveVisual": false,
+        "hasBetBuilderLink": false,
+        "startDate": "2021-10-17T17:30:00Z",
+        "eventType": "Fixture",
+        "categoryTrackingLabel": "football",
+        "competitionTrackingLabel": "greece-super-league-1",
+        "regionTrackingLabel": "greece",
+        "prematchStatisticsProviders": [
+          "Score24"
+        ],
+        "actualSubCategoryId": 1698,
+        "hasFastMarkets": false,
+        "marketCountUnique": 0,
+        "id": "f-FTRwFkVNo0-LytCetLoskA",
+        "label": "PAS Giannina - Olympiakos",
+        "isHomeTeam": false
+      },
+      {
+        "globalId": "event.1.15.1698.f-7k9frqgM0ku10UgtSZadQg",
+        "categoryId": "1",
+        "categoryName": "Football",
+        "regionId": "15",
+        "regionName": "Greece",
+        "competitionId": "1698",
+        "competitionName": "Greece Super League 1",
+        "slug": "football/greece/greece-super-league-1/lamia-aris",
+        "participants": [
+          {
+            "label": "Lamia",
+            "id": "261873",
+            "sortOrder": 1,
+            "side": 1
+          },
+          {
+            "label": "Aris",
+            "id": "1711",
+            "sortOrder": 2,
+            "side": 2
+          }
+        ],
+        "marketCount": 118,
+        "phase": "Prematch",
+        "hasLiveStreaming": false,
+        "hasStatistics": true,
+        "hasPrematchStatistics": true,
+        "hasLiveStatistics": false,
+        "hasLiveVisual": false,
+        "hasBetBuilderLink": false,
+        "startDate": "2021-10-18T16:30:00Z",
+        "eventType": "Fixture",
+        "categoryTrackingLabel": "football",
+        "competitionTrackingLabel": "greece-super-league-1",
+        "regionTrackingLabel": "greece",
+        "prematchStatisticsProviders": [
+          "Score24"
+        ],
+        "actualSubCategoryId": 1698,
+        "hasFastMarkets": false,
+        "marketCountUnique": 0,
+        "id": "f-7k9frqgM0ku10UgtSZadQg",
+        "label": "Lamia - Aris",
+        "isHomeTeam": false
+      }
+    ],
+    "markets": [
+      {
+        "eventId": "f-sZY3nq8EUUWUR_uFy7kZ6w",
+        "marketTemplateId": "MW3W",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-16T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          71,
+          66,
+          36,
+          16,
+          73,
+          55,
+          7,
+          48,
+          69,
+          63
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 1,
+        "marketFriendlyName": "Match Result",
+        "marketVersion": 1,
+        "id": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-MW3W",
+        "label": "Match Result",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-sZY3nq8EUUWUR_uFy7kZ6w",
+        "marketTemplateId": "MTG2W25",
+        "lineValue": "2.5",
+        "lineValueRaw": 2.5,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-16T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          7,
+          8
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 3,
+        "marketFriendlyName": "Number of goals",
+        "marketVersion": 1,
+        "id": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-MTG2W-2.5",
+        "label": "Number of goals",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-sZY3nq8EUUWUR_uFy7kZ6w",
+        "marketTemplateId": "M3WHCP",
+        "lineValue": "1 - 0",
+        "lineValueRaw": 1.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-16T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          42,
+          37,
+          29,
+          66,
+          50,
+          44,
+          68,
+          7,
+          9,
+          30
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 2,
+        "marketFriendlyName": "Handicap",
+        "marketVersion": 1,
+        "id": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-M3WHCP-1",
+        "label": "Handicap",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-sZY3nq8EUUWUR_uFy7kZ6w",
+        "marketTemplateId": "BTTS",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-16T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          15,
+          7,
+          49,
+          40
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 37,
+        "marketFriendlyName": "Both teams to score",
+        "marketVersion": 1,
+        "id": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-BTTS",
+        "label": "Both teams to score",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-sZY3nq8EUUWUR_uFy7kZ6w",
+        "marketTemplateId": "DC",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-16T17:30:00Z",
+        "isCashoutAvailable": false,
+        "columnLayout": 1,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          7,
+          48,
+          69
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 9,
+        "marketFriendlyName": "Double chance",
+        "marketVersion": 1,
+        "id": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-DC",
+        "label": "Double chance",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-Mp7mIHnU8kCJM4ddKVjIOQ",
+        "marketTemplateId": "MW3W",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T13:00:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          71,
+          66,
+          36,
+          16,
+          73,
+          55,
+          7,
+          48,
+          69,
+          63
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 1,
+        "marketFriendlyName": "Match Result",
+        "marketVersion": 1,
+        "id": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MW3W",
+        "label": "Match Result",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-Mp7mIHnU8kCJM4ddKVjIOQ",
+        "marketTemplateId": "MTG2W25",
+        "lineValue": "2.5",
+        "lineValueRaw": 2.5,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T13:00:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          7,
+          8
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 3,
+        "marketFriendlyName": "Number of goals",
+        "marketVersion": 1,
+        "id": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MTG2W-2.5",
+        "label": "Number of goals",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-Mp7mIHnU8kCJM4ddKVjIOQ",
+        "marketTemplateId": "M3WHCP",
+        "lineValue": "1 - 0",
+        "lineValueRaw": 1.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T13:00:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          42,
+          37,
+          29,
+          66,
+          50,
+          44,
+          68,
+          7,
+          9,
+          30
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 2,
+        "marketFriendlyName": "Handicap",
+        "marketVersion": 1,
+        "id": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-M3WHCP-1",
+        "label": "Handicap",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-Mp7mIHnU8kCJM4ddKVjIOQ",
+        "marketTemplateId": "BTTS",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T13:00:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          15,
+          7,
+          49,
+          40
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 37,
+        "marketFriendlyName": "Both teams to score",
+        "marketVersion": 1,
+        "id": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-BTTS",
+        "label": "Both teams to score",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-Mp7mIHnU8kCJM4ddKVjIOQ",
+        "marketTemplateId": "DC",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T13:00:00Z",
+        "isCashoutAvailable": false,
+        "columnLayout": 1,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          7,
+          48,
+          69
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 9,
+        "marketFriendlyName": "Double chance",
+        "marketVersion": 1,
+        "id": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-DC",
+        "label": "Double chance",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-8H1zDcJ8JkynxkDiquHiSQ",
+        "marketTemplateId": "MW3W",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-16T15:15:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          71,
+          66,
+          36,
+          16,
+          73,
+          55,
+          7,
+          48,
+          69,
+          63
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 1,
+        "marketFriendlyName": "Match Result",
+        "marketVersion": 1,
+        "id": "m-f-8H1zDcJ8JkynxkDiquHiSQ-MW3W",
+        "label": "Match Result",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-8H1zDcJ8JkynxkDiquHiSQ",
+        "marketTemplateId": "MTG2W25",
+        "lineValue": "2.5",
+        "lineValueRaw": 2.5,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-16T15:15:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          7,
+          8
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 3,
+        "marketFriendlyName": "Number of goals",
+        "marketVersion": 1,
+        "id": "m-f-8H1zDcJ8JkynxkDiquHiSQ-MTG2W-2.5",
+        "label": "Number of goals",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-8H1zDcJ8JkynxkDiquHiSQ",
+        "marketTemplateId": "M3WHCP",
+        "lineValue": "0 - 2",
+        "lineValueRaw": -2.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-16T15:15:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          42,
+          37,
+          29,
+          66,
+          50,
+          44,
+          68,
+          7,
+          9,
+          30
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 2,
+        "marketFriendlyName": "Handicap",
+        "marketVersion": 1,
+        "id": "m-f-8H1zDcJ8JkynxkDiquHiSQ-M3WHCP--2",
+        "label": "Handicap",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-8H1zDcJ8JkynxkDiquHiSQ",
+        "marketTemplateId": "BTTS",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-16T15:15:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          15,
+          7,
+          49,
+          40
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 37,
+        "marketFriendlyName": "Both teams to score",
+        "marketVersion": 1,
+        "id": "m-f-8H1zDcJ8JkynxkDiquHiSQ-BTTS",
+        "label": "Both teams to score",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-8H1zDcJ8JkynxkDiquHiSQ",
+        "marketTemplateId": "DC",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-16T15:15:00Z",
+        "isCashoutAvailable": false,
+        "columnLayout": 1,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          7,
+          48,
+          69
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 9,
+        "marketFriendlyName": "Double chance",
+        "marketVersion": 1,
+        "id": "m-f-8H1zDcJ8JkynxkDiquHiSQ-DC",
+        "label": "Double chance",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-0afkBIheDUGzCGNIczLTew",
+        "marketTemplateId": "MW3W",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T13:00:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          71,
+          66,
+          36,
+          16,
+          73,
+          55,
+          7,
+          48,
+          69,
+          63
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 1,
+        "marketFriendlyName": "Match Result",
+        "marketVersion": 1,
+        "id": "m-f-0afkBIheDUGzCGNIczLTew-MW3W",
+        "label": "Match Result",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-0afkBIheDUGzCGNIczLTew",
+        "marketTemplateId": "MTG2W25",
+        "lineValue": "2.5",
+        "lineValueRaw": 2.5,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T13:00:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          7,
+          8
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 3,
+        "marketFriendlyName": "Number of goals",
+        "marketVersion": 1,
+        "id": "m-f-0afkBIheDUGzCGNIczLTew-MTG2W-2.5",
+        "label": "Number of goals",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-0afkBIheDUGzCGNIczLTew",
+        "marketTemplateId": "M3WHCP",
+        "lineValue": "0 - 1",
+        "lineValueRaw": -1.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T13:00:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          42,
+          37,
+          29,
+          66,
+          50,
+          44,
+          68,
+          7,
+          9,
+          30
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 2,
+        "marketFriendlyName": "Handicap",
+        "marketVersion": 1,
+        "id": "m-f-0afkBIheDUGzCGNIczLTew-M3WHCP--1",
+        "label": "Handicap",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-0afkBIheDUGzCGNIczLTew",
+        "marketTemplateId": "BTTS",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T13:00:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          15,
+          7,
+          49,
+          40
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 37,
+        "marketFriendlyName": "Both teams to score",
+        "marketVersion": 1,
+        "id": "m-f-0afkBIheDUGzCGNIczLTew-BTTS",
+        "label": "Both teams to score",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-0afkBIheDUGzCGNIczLTew",
+        "marketTemplateId": "DC",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T13:00:00Z",
+        "isCashoutAvailable": false,
+        "columnLayout": 1,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          7,
+          48,
+          69
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 9,
+        "marketFriendlyName": "Double chance",
+        "marketVersion": 1,
+        "id": "m-f-0afkBIheDUGzCGNIczLTew-DC",
+        "label": "Double chance",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-jSmLQcphbEuIs7wsNAPgcA",
+        "marketTemplateId": "MW3W",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          71,
+          66,
+          36,
+          16,
+          73,
+          55,
+          7,
+          48,
+          69,
+          63
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 1,
+        "marketFriendlyName": "Match Result",
+        "marketVersion": 1,
+        "id": "m-f-jSmLQcphbEuIs7wsNAPgcA-MW3W",
+        "label": "Match Result",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-jSmLQcphbEuIs7wsNAPgcA",
+        "marketTemplateId": "MTG2W25",
+        "lineValue": "2.5",
+        "lineValueRaw": 2.5,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          7,
+          8
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 3,
+        "marketFriendlyName": "Number of goals",
+        "marketVersion": 1,
+        "id": "m-f-jSmLQcphbEuIs7wsNAPgcA-MTG2W-2.5",
+        "label": "Number of goals",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-jSmLQcphbEuIs7wsNAPgcA",
+        "marketTemplateId": "M3WHCP",
+        "lineValue": "1 - 0",
+        "lineValueRaw": 1.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          42,
+          37,
+          29,
+          66,
+          50,
+          44,
+          68,
+          7,
+          9,
+          30
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 2,
+        "marketFriendlyName": "Handicap",
+        "marketVersion": 1,
+        "id": "m-f-jSmLQcphbEuIs7wsNAPgcA-M3WHCP-1",
+        "label": "Handicap",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-jSmLQcphbEuIs7wsNAPgcA",
+        "marketTemplateId": "BTTS",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          15,
+          7,
+          49,
+          40
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 37,
+        "marketFriendlyName": "Both teams to score",
+        "marketVersion": 1,
+        "id": "m-f-jSmLQcphbEuIs7wsNAPgcA-BTTS",
+        "label": "Both teams to score",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-jSmLQcphbEuIs7wsNAPgcA",
+        "marketTemplateId": "DC",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T17:30:00Z",
+        "isCashoutAvailable": false,
+        "columnLayout": 1,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          7,
+          48,
+          69
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 9,
+        "marketFriendlyName": "Double chance",
+        "marketVersion": 1,
+        "id": "m-f-jSmLQcphbEuIs7wsNAPgcA-DC",
+        "label": "Double chance",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-FTRwFkVNo0-LytCetLoskA",
+        "marketTemplateId": "MW3W",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          71,
+          66,
+          36,
+          16,
+          73,
+          55,
+          7,
+          48,
+          69,
+          63
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 1,
+        "marketFriendlyName": "Match Result",
+        "marketVersion": 1,
+        "id": "m-f-FTRwFkVNo0-LytCetLoskA-MW3W",
+        "label": "Match Result",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-FTRwFkVNo0-LytCetLoskA",
+        "marketTemplateId": "MTG2W25",
+        "lineValue": "2.5",
+        "lineValueRaw": 2.5,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          7,
+          8
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 3,
+        "marketFriendlyName": "Number of goals",
+        "marketVersion": 1,
+        "id": "m-f-FTRwFkVNo0-LytCetLoskA-MTG2W-2.5",
+        "label": "Number of goals",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-FTRwFkVNo0-LytCetLoskA",
+        "marketTemplateId": "M3WHCP",
+        "lineValue": "0 - 1",
+        "lineValueRaw": -1.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          42,
+          37,
+          29,
+          66,
+          50,
+          44,
+          68,
+          7,
+          9,
+          30
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 2,
+        "marketFriendlyName": "Handicap",
+        "marketVersion": 1,
+        "id": "m-f-FTRwFkVNo0-LytCetLoskA-M3WHCP--1",
+        "label": "Handicap",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-FTRwFkVNo0-LytCetLoskA",
+        "marketTemplateId": "BTTS",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T17:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          15,
+          7,
+          49,
+          40
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 37,
+        "marketFriendlyName": "Both teams to score",
+        "marketVersion": 1,
+        "id": "m-f-FTRwFkVNo0-LytCetLoskA-BTTS",
+        "label": "Both teams to score",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-FTRwFkVNo0-LytCetLoskA",
+        "marketTemplateId": "DC",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-17T17:30:00Z",
+        "isCashoutAvailable": false,
+        "columnLayout": 1,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          7,
+          48,
+          69
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 9,
+        "marketFriendlyName": "Double chance",
+        "marketVersion": 1,
+        "id": "m-f-FTRwFkVNo0-LytCetLoskA-DC",
+        "label": "Double chance",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-7k9frqgM0ku10UgtSZadQg",
+        "marketTemplateId": "MW3W",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-18T16:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          71,
+          66,
+          36,
+          16,
+          73,
+          55,
+          7,
+          48,
+          69,
+          63
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 1,
+        "marketFriendlyName": "Match Result",
+        "marketVersion": 1,
+        "id": "m-f-7k9frqgM0ku10UgtSZadQg-MW3W",
+        "label": "Match Result",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-7k9frqgM0ku10UgtSZadQg",
+        "marketTemplateId": "MTG2W",
+        "lineValue": "1.5",
+        "lineValueRaw": 1.5,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-18T16:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          79,
+          65,
+          8,
+          66,
+          68,
+          55,
+          83,
+          7,
+          63
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 30,
+        "marketFriendlyName": "Number of goals",
+        "marketVersion": 1,
+        "id": "m-f-7k9frqgM0ku10UgtSZadQg-MTG2W-1.5",
+        "label": "Number of goals",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-7k9frqgM0ku10UgtSZadQg",
+        "marketTemplateId": "M3WHCP",
+        "lineValue": "0 - 1",
+        "lineValueRaw": -1.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-18T16:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 3,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          42,
+          37,
+          29,
+          66,
+          50,
+          44,
+          68,
+          7,
+          9,
+          30
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 2,
+        "marketFriendlyName": "Handicap",
+        "marketVersion": 1,
+        "id": "m-f-7k9frqgM0ku10UgtSZadQg-M3WHCP--1",
+        "label": "Handicap",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-7k9frqgM0ku10UgtSZadQg",
+        "marketTemplateId": "BTTS",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-18T16:30:00Z",
+        "isCashoutAvailable": true,
+        "columnLayout": 2,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          15,
+          7,
+          49,
+          40
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 37,
+        "marketFriendlyName": "Both teams to score",
+        "marketVersion": 1,
+        "id": "m-f-7k9frqgM0ku10UgtSZadQg-BTTS",
+        "label": "Both teams to score",
+        "isHomeTeam": false
+      },
+      {
+        "eventId": "f-7k9frqgM0ku10UgtSZadQg",
+        "marketTemplateId": "DC",
+        "lineValue": "",
+        "lineValueRaw": 0.0,
+        "status": "Open",
+        "validationRule": {
+          "code": 1,
+          "value": "NotWithinSameEvent"
+        },
+        "deadline": "2021-10-18T16:30:00Z",
+        "isCashoutAvailable": false,
+        "columnLayout": 1,
+        "helpText": "",
+        "isGroupableByMarketTemplate": true,
+        "betGroupDescription": "",
+        "marketTemplateTags": [
+          59,
+          42,
+          7,
+          48,
+          69
+        ],
+        "marketSpecifics": {
+          "groupSortBy": [],
+          "groupLabels": {},
+          "groupTranslations": {}
+        },
+        "sortOrder": 9,
+        "marketFriendlyName": "Double chance",
+        "marketVersion": 1,
+        "id": "m-f-7k9frqgM0ku10UgtSZadQg-DC",
+        "label": "Double chance",
+        "isHomeTeam": false
+      }
+    ],
+    "selections": [
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-MW3W",
+        "odds": 1.53,
+        "alternateLabel": "Panathinaikos",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "1333",
+        "participantLabel": "Panathinaikos",
+        "selectionTemplateId": "HOME",
+        "participant": "Panathinaikos",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-MW3W-home",
+        "label": "Panathinaikos",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-MW3W",
+        "odds": 4.40,
+        "alternateLabel": "Draw",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw",
+        "selectionTemplateId": "DRAW",
+        "participant": "Draw",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-MW3W-draw",
+        "label": "Draw",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-MW3W",
+        "odds": 6.10,
+        "alternateLabel": "Ionikos",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "1338",
+        "participantLabel": "Ionikos",
+        "selectionTemplateId": "AWAY",
+        "participant": "Ionikos",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-MW3W-away",
+        "label": "Ionikos",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-MTG2W-2.5",
+        "odds": 1.92,
+        "alternateLabel": "Over 2.5",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Over 2.5",
+        "selectionTemplateId": "OVER",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-MTG2W-2.5-over",
+        "label": "Over 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-MTG2W-2.5",
+        "odds": 1.84,
+        "alternateLabel": "Under 2.5",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Under 2.5",
+        "selectionTemplateId": "UNDER",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-MTG2W-2.5-under",
+        "label": "Under 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-DC",
+        "odds": 1.11,
+        "alternateLabel": "Panathinaikos or Draw",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "1X",
+        "selectionTemplateId": "HOMEORDRAW",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-DC-homeordraw",
+        "label": "1X",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-DC",
+        "odds": 1.17,
+        "alternateLabel": "Panathinaikos or Ionikos",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "12",
+        "selectionTemplateId": "HOMEORAWAY",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-DC-homeoraway",
+        "label": "12",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-DC",
+        "odds": 2.65,
+        "alternateLabel": "Draw or Ionikos",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantLabel": "X2",
+        "selectionTemplateId": "DRAWORAWAY",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-DC-draworaway",
+        "label": "X2",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-M3WHCP-1",
+        "odds": 1.11,
+        "alternateLabel": "1 (+1)",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "1333",
+        "participantLabel": "Panathinaikos (+1)",
+        "selectionTemplateId": "HANDICAPHOME",
+        "participant": "Panathinaikos",
+        "lineValueLabel": "+1",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-M3WHCP-1-handicaphome",
+        "label": "1 (+1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-M3WHCP-1",
+        "odds": 7.5,
+        "alternateLabel": "X (-1)",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw (-1)",
+        "selectionTemplateId": "HANDICAPDRAW",
+        "participant": "Draw",
+        "lineValueLabel": "-1",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-M3WHCP-1-handicapdraw",
+        "label": "X (-1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-M3WHCP-1",
+        "odds": 19.0,
+        "alternateLabel": "2 (-1)",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "1338",
+        "participantLabel": "Ionikos (-1)",
+        "selectionTemplateId": "HANDICAPAWAY",
+        "participant": "Ionikos",
+        "lineValueLabel": "-1",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-M3WHCP-1-handicapaway",
+        "label": "2 (-1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-BTTS",
+        "odds": 2.05,
+        "alternateLabel": "Yes",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Yes",
+        "selectionTemplateId": "YES",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-BTTS-yes",
+        "label": "Yes",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-sZY3nq8EUUWUR_uFy7kZ6w-BTTS",
+        "odds": 1.72,
+        "alternateLabel": "No",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "No",
+        "selectionTemplateId": "NO",
+        "id": "s-m-f-sZY3nq8EUUWUR_uFy7kZ6w-BTTS-no",
+        "label": "No",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MW3W",
+        "odds": 1.35,
+        "alternateLabel": "PAOK Thessaloniki",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "1336",
+        "participantLabel": "PAOK Thessaloniki",
+        "selectionTemplateId": "HOME",
+        "participant": "PAOK Thessaloniki",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MW3W-home",
+        "label": "PAOK Thessaloniki",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MW3W",
+        "odds": 5.55,
+        "alternateLabel": "Draw",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw",
+        "selectionTemplateId": "DRAW",
+        "participant": "Draw",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MW3W-draw",
+        "label": "Draw",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MW3W",
+        "odds": 8.10,
+        "alternateLabel": "Volos NFC",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "336268",
+        "participantLabel": "Volos NFC",
+        "selectionTemplateId": "AWAY",
+        "participant": "Volos NFC",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MW3W-away",
+        "label": "Volos NFC",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MTG2W-2.5",
+        "odds": 1.72,
+        "alternateLabel": "Over 2.5",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Over 2.5",
+        "selectionTemplateId": "OVER",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MTG2W-2.5-over",
+        "label": "Over 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MTG2W-2.5",
+        "odds": 2.07,
+        "alternateLabel": "Under 2.5",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Under 2.5",
+        "selectionTemplateId": "UNDER",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-MTG2W-2.5-under",
+        "label": "Under 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-BTTS",
+        "odds": 2.1,
+        "alternateLabel": "Yes",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Yes",
+        "selectionTemplateId": "YES",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-BTTS-yes",
+        "label": "Yes",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-BTTS",
+        "odds": 1.72,
+        "alternateLabel": "No",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "No",
+        "selectionTemplateId": "NO",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-BTTS-no",
+        "label": "No",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-M3WHCP-1",
+        "odds": 1.06,
+        "alternateLabel": "1 (+1)",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "1336",
+        "participantLabel": "PAOK Thessaloniki (+1)",
+        "selectionTemplateId": "HANDICAPHOME",
+        "participant": "PAOK Thessaloniki",
+        "lineValueLabel": "+1",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-M3WHCP-1-handicaphome",
+        "label": "1 (+1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-M3WHCP-1",
+        "odds": 9.5,
+        "alternateLabel": "X (-1)",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw (-1)",
+        "selectionTemplateId": "HANDICAPDRAW",
+        "participant": "Draw",
+        "lineValueLabel": "-1",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-M3WHCP-1-handicapdraw",
+        "label": "X (-1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-M3WHCP-1",
+        "odds": 26.0,
+        "alternateLabel": "2 (-1)",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "336268",
+        "participantLabel": "Volos NFC (-1)",
+        "selectionTemplateId": "HANDICAPAWAY",
+        "participant": "Volos NFC",
+        "lineValueLabel": "-1",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-M3WHCP-1-handicapaway",
+        "label": "2 (-1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-DC",
+        "odds": 1.06,
+        "alternateLabel": "PAOK Thessaloniki or Draw",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "1X",
+        "selectionTemplateId": "HOMEORDRAW",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-DC-homeordraw",
+        "label": "1X",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-DC",
+        "odds": 1.11,
+        "alternateLabel": "PAOK Thessaloniki or Volos NFC",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "12",
+        "selectionTemplateId": "HOMEORAWAY",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-DC-homeoraway",
+        "label": "12",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-Mp7mIHnU8kCJM4ddKVjIOQ-DC",
+        "odds": 3.4,
+        "alternateLabel": "Draw or Volos NFC",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantLabel": "X2",
+        "selectionTemplateId": "DRAWORAWAY",
+        "id": "s-m-f-Mp7mIHnU8kCJM4ddKVjIOQ-DC-draworaway",
+        "label": "X2",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-MW3W",
+        "odds": 2.85,
+        "alternateLabel": "Apollon Smyrnis",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "134504",
+        "participantLabel": "Apollon Smyrnis",
+        "selectionTemplateId": "HOME",
+        "participant": "Apollon Smyrnis",
+        "id": "s-m-f-8H1zDcJ8JkynxkDiquHiSQ-MW3W-home",
+        "label": "Apollon Smyrnis",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-MW3W",
+        "odds": 3.20,
+        "alternateLabel": "Draw",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw",
+        "selectionTemplateId": "DRAW",
+        "participant": "Draw",
+        "id": "s-m-f-8H1zDcJ8JkynxkDiquHiSQ-MW3W-draw",
+        "label": "Draw",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-MW3W",
+        "odds": 2.55,
+        "alternateLabel": "Asteras Tripolis",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "4906",
+        "participantLabel": "Asteras Tripolis",
+        "selectionTemplateId": "AWAY",
+        "participant": "Asteras Tripolis",
+        "id": "s-m-f-8H1zDcJ8JkynxkDiquHiSQ-MW3W-away",
+        "label": "Asteras Tripolis",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-MTG2W-2.5",
+        "odds": 2.40,
+        "alternateLabel": "Over 2.5",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Over 2.5",
+        "selectionTemplateId": "OVER",
+        "id": "s-m-f-8H1zDcJ8JkynxkDiquHiSQ-MTG2W-2.5-over",
+        "label": "Over 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-MTG2W-2.5",
+        "odds": 1.53,
+        "alternateLabel": "Under 2.5",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Under 2.5",
+        "selectionTemplateId": "UNDER",
+        "id": "s-m-f-8H1zDcJ8JkynxkDiquHiSQ-MTG2W-2.5-under",
+        "label": "Under 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-M3WHCP--2",
+        "odds": 21.0,
+        "alternateLabel": "1 (-2)",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "134504",
+        "participantLabel": "Apollon Smyrnis (-2)",
+        "selectionTemplateId": "HANDICAPHOME",
+        "participant": "Apollon Smyrnis",
+        "lineValueLabel": "-2",
+        "id": "s-7F19E973B42CB18B47E1260C092FE24338D8266D",
+        "label": "1 (-2)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-M3WHCP--2",
+        "odds": 9.0,
+        "alternateLabel": "X (+2)",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw (+2)",
+        "selectionTemplateId": "HANDICAPDRAW",
+        "participant": "Draw",
+        "lineValueLabel": "+2",
+        "id": "s-BA0D874BDDD5BC4C5CBE72D4EC3B8D7DE854D6C3",
+        "label": "X (+2)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-M3WHCP--2",
+        "odds": 1.09,
+        "alternateLabel": "2 (+2)",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "4906",
+        "participantLabel": "Asteras Tripolis (+2)",
+        "selectionTemplateId": "HANDICAPAWAY",
+        "participant": "Asteras Tripolis",
+        "lineValueLabel": "+2",
+        "id": "s-A7D4FD589D16A8838E9E3AA16E620D53F41F3186",
+        "label": "2 (+2)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-BTTS",
+        "odds": 2.05,
+        "alternateLabel": "Yes",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Yes",
+        "selectionTemplateId": "YES",
+        "id": "s-m-f-8H1zDcJ8JkynxkDiquHiSQ-BTTS-yes",
+        "label": "Yes",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-BTTS",
+        "odds": 1.75,
+        "alternateLabel": "No",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "No",
+        "selectionTemplateId": "NO",
+        "id": "s-m-f-8H1zDcJ8JkynxkDiquHiSQ-BTTS-no",
+        "label": "No",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-DC",
+        "odds": 1.52,
+        "alternateLabel": "Apollon Smyrnis or Draw",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "1X",
+        "selectionTemplateId": "HOMEORDRAW",
+        "id": "s-m-f-8H1zDcJ8JkynxkDiquHiSQ-DC-homeordraw",
+        "label": "1X",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-DC",
+        "odds": 1.3,
+        "alternateLabel": "Apollon Smyrnis or Asteras Tripolis",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "12",
+        "selectionTemplateId": "HOMEORAWAY",
+        "id": "s-m-f-8H1zDcJ8JkynxkDiquHiSQ-DC-homeoraway",
+        "label": "12",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-8H1zDcJ8JkynxkDiquHiSQ-DC",
+        "odds": 1.44,
+        "alternateLabel": "Draw or Asteras Tripolis",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantLabel": "X2",
+        "selectionTemplateId": "DRAWORAWAY",
+        "id": "s-m-f-8H1zDcJ8JkynxkDiquHiSQ-DC-draworaway",
+        "label": "X2",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-MW3W",
+        "odds": 2.45,
+        "alternateLabel": "Panetolikos",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "109629",
+        "participantLabel": "Panetolikos",
+        "selectionTemplateId": "HOME",
+        "participant": "Panetolikos",
+        "id": "s-m-f-0afkBIheDUGzCGNIczLTew-MW3W-home",
+        "label": "Panetolikos",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-MW3W",
+        "odds": 3.25,
+        "alternateLabel": "Draw",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw",
+        "selectionTemplateId": "DRAW",
+        "participant": "Draw",
+        "id": "s-m-f-0afkBIheDUGzCGNIczLTew-MW3W-draw",
+        "label": "Draw",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-MW3W",
+        "odds": 3.00,
+        "alternateLabel": "OFI Kreta",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "1335",
+        "participantLabel": "OFI Kreta",
+        "selectionTemplateId": "AWAY",
+        "participant": "OFI Kreta",
+        "id": "s-m-f-0afkBIheDUGzCGNIczLTew-MW3W-away",
+        "label": "OFI Kreta",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-MTG2W-2.5",
+        "odds": 2.27,
+        "alternateLabel": "Over 2.5",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Over 2.5",
+        "selectionTemplateId": "OVER",
+        "id": "s-m-f-0afkBIheDUGzCGNIczLTew-MTG2W-2.5-over",
+        "label": "Over 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-MTG2W-2.5",
+        "odds": 1.60,
+        "alternateLabel": "Under 2.5",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Under 2.5",
+        "selectionTemplateId": "UNDER",
+        "id": "s-m-f-0afkBIheDUGzCGNIczLTew-MTG2W-2.5-under",
+        "label": "Under 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-M3WHCP--1",
+        "odds": 5.0,
+        "alternateLabel": "1 (-1)",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "109629",
+        "participantLabel": "Panetolikos (-1)",
+        "selectionTemplateId": "HANDICAPHOME",
+        "participant": "Panetolikos",
+        "lineValueLabel": "-1",
+        "id": "s-F5EDF74DEC8ED6F83E87270D0D81E9C0C36C6C7E",
+        "label": "1 (-1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-M3WHCP--1",
+        "odds": 4.0,
+        "alternateLabel": "X (+1)",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw (+1)",
+        "selectionTemplateId": "HANDICAPDRAW",
+        "participant": "Draw",
+        "lineValueLabel": "+1",
+        "id": "s-0760188FE55CA7FCFD49F7E26671C41603B144E8",
+        "label": "X (+1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-M3WHCP--1",
+        "odds": 1.55,
+        "alternateLabel": "2 (+1)",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "1335",
+        "participantLabel": "OFI Kreta (+1)",
+        "selectionTemplateId": "HANDICAPAWAY",
+        "participant": "OFI Kreta",
+        "lineValueLabel": "+1",
+        "id": "s-514B25D13DB39FE5A700FC1224B000C2E7126338",
+        "label": "2 (+1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-BTTS",
+        "odds": 1.95,
+        "alternateLabel": "Yes",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Yes",
+        "selectionTemplateId": "YES",
+        "id": "s-m-f-0afkBIheDUGzCGNIczLTew-BTTS-yes",
+        "label": "Yes",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-BTTS",
+        "odds": 1.83,
+        "alternateLabel": "No",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "No",
+        "selectionTemplateId": "NO",
+        "id": "s-m-f-0afkBIheDUGzCGNIczLTew-BTTS-no",
+        "label": "No",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-DC",
+        "odds": 1.4,
+        "alternateLabel": "Panetolikos or Draw",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "1X",
+        "selectionTemplateId": "HOMEORDRAW",
+        "id": "s-m-f-0afkBIheDUGzCGNIczLTew-DC-homeordraw",
+        "label": "1X",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-DC",
+        "odds": 1.3,
+        "alternateLabel": "Panetolikos or OFI Kreta",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "12",
+        "selectionTemplateId": "HOMEORAWAY",
+        "id": "s-m-f-0afkBIheDUGzCGNIczLTew-DC-homeoraway",
+        "label": "12",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-0afkBIheDUGzCGNIczLTew-DC",
+        "odds": 1.55,
+        "alternateLabel": "Draw or OFI Kreta",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantLabel": "X2",
+        "selectionTemplateId": "DRAWORAWAY",
+        "id": "s-m-f-0afkBIheDUGzCGNIczLTew-DC-draworaway",
+        "label": "X2",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-MW3W",
+        "odds": 1.33,
+        "alternateLabel": "AEK Athens",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "1340",
+        "participantLabel": "AEK Athens",
+        "selectionTemplateId": "HOME",
+        "participant": "AEK Athens",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-MW3W-home",
+        "label": "AEK Athens",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-MW3W",
+        "odds": 5.60,
+        "alternateLabel": "Draw",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw",
+        "selectionTemplateId": "DRAW",
+        "participant": "Draw",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-MW3W-draw",
+        "label": "Draw",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-MW3W",
+        "odds": 9.15,
+        "alternateLabel": "Atromitos",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "1419",
+        "participantLabel": "Atromitos",
+        "selectionTemplateId": "AWAY",
+        "participant": "Atromitos",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-MW3W-away",
+        "label": "Atromitos",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-M3WHCP-1",
+        "odds": 1.05,
+        "alternateLabel": "1 (+1)",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "1340",
+        "participantLabel": "AEK Athens (+1)",
+        "selectionTemplateId": "HANDICAPHOME",
+        "participant": "AEK Athens",
+        "lineValueLabel": "+1",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-M3WHCP-1-handicaphome",
+        "label": "1 (+1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-M3WHCP-1",
+        "odds": 10.0,
+        "alternateLabel": "X (-1)",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw (-1)",
+        "selectionTemplateId": "HANDICAPDRAW",
+        "participant": "Draw",
+        "lineValueLabel": "-1",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-M3WHCP-1-handicapdraw",
+        "label": "X (-1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-M3WHCP-1",
+        "odds": 26.0,
+        "alternateLabel": "2 (-1)",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "1419",
+        "participantLabel": "Atromitos (-1)",
+        "selectionTemplateId": "HANDICAPAWAY",
+        "participant": "Atromitos",
+        "lineValueLabel": "-1",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-M3WHCP-1-handicapaway",
+        "label": "2 (-1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-MTG2W-2.5",
+        "odds": 1.76,
+        "alternateLabel": "Over 2.5",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Over 2.5",
+        "selectionTemplateId": "OVER",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-MTG2W-2.5-over",
+        "label": "Over 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-MTG2W-2.5",
+        "odds": 2.02,
+        "alternateLabel": "Under 2.5",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Under 2.5",
+        "selectionTemplateId": "UNDER",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-MTG2W-2.5-under",
+        "label": "Under 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-BTTS",
+        "odds": 2.15,
+        "alternateLabel": "Yes",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Yes",
+        "selectionTemplateId": "YES",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-BTTS-yes",
+        "label": "Yes",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-BTTS",
+        "odds": 1.68,
+        "alternateLabel": "No",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "No",
+        "selectionTemplateId": "NO",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-BTTS-no",
+        "label": "No",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-DC",
+        "odds": 1.05,
+        "alternateLabel": "AEK Athens or Draw",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "1X",
+        "selectionTemplateId": "HOMEORDRAW",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-DC-homeordraw",
+        "label": "1X",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-DC",
+        "odds": 1.11,
+        "alternateLabel": "AEK Athens or Atromitos",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "12",
+        "selectionTemplateId": "HOMEORAWAY",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-DC-homeoraway",
+        "label": "12",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-jSmLQcphbEuIs7wsNAPgcA-DC",
+        "odds": 3.4,
+        "alternateLabel": "Draw or Atromitos",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantLabel": "X2",
+        "selectionTemplateId": "DRAWORAWAY",
+        "id": "s-m-f-jSmLQcphbEuIs7wsNAPgcA-DC-draworaway",
+        "label": "X2",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-MW3W",
+        "odds": 7.10,
+        "alternateLabel": "PAS Giannina",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "4904",
+        "participantLabel": "PAS Giannina",
+        "selectionTemplateId": "HOME",
+        "participant": "PAS Giannina",
+        "id": "s-m-f-FTRwFkVNo0-LytCetLoskA-MW3W-home",
+        "label": "PAS Giannina",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-MW3W",
+        "odds": 4.40,
+        "alternateLabel": "Draw",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw",
+        "selectionTemplateId": "DRAW",
+        "participant": "Draw",
+        "id": "s-m-f-FTRwFkVNo0-LytCetLoskA-MW3W-draw",
+        "label": "Draw",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-MW3W",
+        "odds": 1.48,
+        "alternateLabel": "Olympiakos",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "1458",
+        "participantLabel": "Olympiakos",
+        "selectionTemplateId": "AWAY",
+        "participant": "Olympiakos",
+        "id": "s-m-f-FTRwFkVNo0-LytCetLoskA-MW3W-away",
+        "label": "Olympiakos",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-M3WHCP--1",
+        "odds": 21.0,
+        "alternateLabel": "1 (-1)",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "4904",
+        "participantLabel": "PAS Giannina (-1)",
+        "selectionTemplateId": "HANDICAPHOME",
+        "participant": "PAS Giannina",
+        "lineValueLabel": "-1",
+        "id": "s-6FA60F28BDA20B67C84F037F8BB82051876465C7",
+        "label": "1 (-1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-M3WHCP--1",
+        "odds": 8.5,
+        "alternateLabel": "X (+1)",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw (+1)",
+        "selectionTemplateId": "HANDICAPDRAW",
+        "participant": "Draw",
+        "lineValueLabel": "+1",
+        "id": "s-86108BAA1233E8661086F8CC2AA12E1633C26FE4",
+        "label": "X (+1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-M3WHCP--1",
+        "odds": 1.09,
+        "alternateLabel": "2 (+1)",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "1458",
+        "participantLabel": "Olympiakos (+1)",
+        "selectionTemplateId": "HANDICAPAWAY",
+        "participant": "Olympiakos",
+        "lineValueLabel": "+1",
+        "id": "s-04E65275E4D86ABB33C92E8AA82FCC4E9082292E",
+        "label": "2 (+1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-MTG2W-2.5",
+        "odds": 1.88,
+        "alternateLabel": "Over 2.5",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Over 2.5",
+        "selectionTemplateId": "OVER",
+        "id": "s-m-f-FTRwFkVNo0-LytCetLoskA-MTG2W-2.5-over",
+        "label": "Over 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-MTG2W-2.5",
+        "odds": 1.88,
+        "alternateLabel": "Under 2.5",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Under 2.5",
+        "selectionTemplateId": "UNDER",
+        "id": "s-m-f-FTRwFkVNo0-LytCetLoskA-MTG2W-2.5-under",
+        "label": "Under 2.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-BTTS",
+        "odds": 2.1,
+        "alternateLabel": "Yes",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Yes",
+        "selectionTemplateId": "YES",
+        "id": "s-m-f-FTRwFkVNo0-LytCetLoskA-BTTS-yes",
+        "label": "Yes",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-BTTS",
+        "odds": 1.72,
+        "alternateLabel": "No",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "No",
+        "selectionTemplateId": "NO",
+        "id": "s-m-f-FTRwFkVNo0-LytCetLoskA-BTTS-no",
+        "label": "No",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-DC",
+        "odds": 2.75,
+        "alternateLabel": "PAS Giannina or Draw",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "1X",
+        "selectionTemplateId": "HOMEORDRAW",
+        "id": "s-m-f-FTRwFkVNo0-LytCetLoskA-DC-homeordraw",
+        "label": "1X",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-DC",
+        "odds": 1.17,
+        "alternateLabel": "PAS Giannina or Olympiakos",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "12",
+        "selectionTemplateId": "HOMEORAWAY",
+        "id": "s-m-f-FTRwFkVNo0-LytCetLoskA-DC-homeoraway",
+        "label": "12",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-FTRwFkVNo0-LytCetLoskA-DC",
+        "odds": 1.09,
+        "alternateLabel": "Draw or Olympiakos",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantLabel": "X2",
+        "selectionTemplateId": "DRAWORAWAY",
+        "id": "s-m-f-FTRwFkVNo0-LytCetLoskA-DC-draworaway",
+        "label": "X2",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-MW3W",
+        "odds": 3.80,
+        "alternateLabel": "Lamia",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "261873",
+        "participantLabel": "Lamia",
+        "selectionTemplateId": "HOME",
+        "participant": "Lamia",
+        "id": "s-m-f-7k9frqgM0ku10UgtSZadQg-MW3W-home",
+        "label": "Lamia",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-MW3W",
+        "odds": 3.15,
+        "alternateLabel": "Draw",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw",
+        "selectionTemplateId": "DRAW",
+        "participant": "Draw",
+        "id": "s-m-f-7k9frqgM0ku10UgtSZadQg-MW3W-draw",
+        "label": "Draw",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-MW3W",
+        "odds": 2.15,
+        "alternateLabel": "Aris",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "1711",
+        "participantLabel": "Aris",
+        "selectionTemplateId": "AWAY",
+        "participant": "Aris",
+        "id": "s-m-f-7k9frqgM0ku10UgtSZadQg-MW3W-away",
+        "label": "Aris",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-DC",
+        "odds": 1.75,
+        "alternateLabel": "Lamia or Draw",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "1X",
+        "selectionTemplateId": "HOMEORDRAW",
+        "id": "s-m-f-7k9frqgM0ku10UgtSZadQg-DC-homeordraw",
+        "label": "1X",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-DC",
+        "odds": 1.3,
+        "alternateLabel": "Lamia or Aris",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "12",
+        "selectionTemplateId": "HOMEORAWAY",
+        "id": "s-m-f-7k9frqgM0ku10UgtSZadQg-DC-homeoraway",
+        "label": "12",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-DC",
+        "odds": 1.25,
+        "alternateLabel": "Draw or Aris",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantLabel": "X2",
+        "selectionTemplateId": "DRAWORAWAY",
+        "id": "s-m-f-7k9frqgM0ku10UgtSZadQg-DC-draworaway",
+        "label": "X2",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-M3WHCP--1",
+        "odds": 11.0,
+        "alternateLabel": "1 (-1)",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantId": "261873",
+        "participantLabel": "Lamia (-1)",
+        "selectionTemplateId": "HANDICAPHOME",
+        "participant": "Lamia",
+        "lineValueLabel": "-1",
+        "id": "s-64CFB3C63D2CC08B24AAEE54CCAE9773C0ED2FBC",
+        "label": "1 (-1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-M3WHCP--1",
+        "odds": 5.0,
+        "alternateLabel": "X (+1)",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Draw (+1)",
+        "selectionTemplateId": "HANDICAPDRAW",
+        "participant": "Draw",
+        "lineValueLabel": "+1",
+        "id": "s-8C09C9BA8268C0AABF6BDF7D47B460DB564C77FD",
+        "label": "X (+1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-M3WHCP--1",
+        "odds": 1.25,
+        "alternateLabel": "2 (+1)",
+        "status": "Open",
+        "sortOrder": 3,
+        "participantId": "1711",
+        "participantLabel": "Aris (+1)",
+        "selectionTemplateId": "HANDICAPAWAY",
+        "participant": "Aris",
+        "lineValueLabel": "+1",
+        "id": "s-F40612CBC7E47D09E2E6BB9C7F60066C8C0A316C",
+        "label": "2 (+1)",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-BTTS",
+        "odds": 2.2,
+        "alternateLabel": "Yes",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Yes",
+        "selectionTemplateId": "YES",
+        "id": "s-m-f-7k9frqgM0ku10UgtSZadQg-BTTS-yes",
+        "label": "Yes",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-BTTS",
+        "odds": 1.63,
+        "alternateLabel": "No",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "No",
+        "selectionTemplateId": "NO",
+        "id": "s-m-f-7k9frqgM0ku10UgtSZadQg-BTTS-no",
+        "label": "No",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-MTG2W-1.5",
+        "odds": 1.52,
+        "alternateLabel": "Over 1.5",
+        "status": "Open",
+        "sortOrder": 1,
+        "participantLabel": "Over 1.5",
+        "selectionTemplateId": "OVER",
+        "id": "s-m-f-7k9frqgM0ku10UgtSZadQg-MTG2W-1.5-over",
+        "label": "Over 1.5",
+        "isHomeTeam": false
+      },
+      {
+        "marketId": "m-f-7k9frqgM0ku10UgtSZadQg-MTG2W-1.5",
+        "odds": 2.45,
+        "alternateLabel": "Under 1.5",
+        "status": "Open",
+        "sortOrder": 2,
+        "participantLabel": "Under 1.5",
+        "selectionTemplateId": "UNDER",
+        "id": "s-m-f-7k9frqgM0ku10UgtSZadQg-MTG2W-1.5-under",
+        "label": "Under 1.5",
+        "isHomeTeam": false
+      }
+    ],
+    "scoreboards": [],
+    "outrightsSummary": {
+      "categoryId": "1",
+      "categoryName": "Football",
+      "regionId": "15",
+      "regionName": "Greece",
+      "competitionId": "1698",
+      "competitionName": "Greece Super League 1",
+      "marketCount": 5,
+      "liveMarketCount": 0,
+      "firstMarketName": "Winner",
+      "slug": "football/greece/greece-super-league-1"
+    },
+    "hasMoreEvents": false,
+    "maxEventCount": 75,
+    "totalItemCount": 7,
+    "totalPages": 1,
+    "page": 1
+  },
+  "referenceId": "a92b954b-7cf8-499b-adcc-6733047ffd28"
+}

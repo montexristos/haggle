@@ -57,27 +57,19 @@ class Competitions extends React.Component {
         const tableHeader = this.getTableHeader();
         const comps = this.props.tournaments.map((comp) => {
             const events = comp.fixtures.filter((fixture) =>
-                (fixture.homeTeam && fixture.awayTeam) && ("all" === this.props.date || new Date(fixture.date).getDay() === this.props.selectedDate)
+                (fixture.homeTeam && fixture.awayTeam) &&
+                ("all" === this.props.date || new Date(fixture.date).getDay() === this.props.selectedDate) &&
+                fixture != null
             ).map((fixture) => {
-                if (
-                    (this.props.showO0 && fixture.predictedOver0 < 1) ||
-                    (this.props.showO1 && fixture.predictedOver1 < 1) ||
-                    (this.props.showO2 && fixture.predictedOver2 < 1) ||
-                    (this.props.showO3 && fixture.predictedOver3 < 1) ||
-                    (this.props.showO4 && fixture.predictedOver4 < 1) ||
-                    (this.props.showU0 && fixture.predictedOver0 > 0) ||
-                    (this.props.showU1 && fixture.predictedOver1 > 0) ||
-                    (this.props.showU2 && fixture.predictedOver2 > 0) ||
-                    (this.props.showU3 && fixture.predictedOver3 > 0) ||
-                    (this.props.showU4 && fixture.predictedOver4 > 0)
-                ) {
-                    return null;
+                const fixtureCanonical = fixture.homeTeam.name + " - " + fixture.awayTeam.name;
+                let odds;
+                for (var name in this.props.events) {
+                    if (name === fixtureCanonical) {
+                        odds = this.props.events[name];
+                    }
                 }
-                return fixture;
-                // return <Event fixture={fixture} today={today} hideCompleted={this.state.hideCompleted}  key={fixture.homeTeam.name + "-" + fixture.awayTeam.name} />
-            }).filter(function (el) {
-                return el != null;
-              });
+                return ({ ...fixture, odds: odds })
+            })
             if (events.length === 0) {
                 return null
             }
@@ -88,6 +80,7 @@ class Competitions extends React.Component {
                              hideCompleted={this.props.hideCompleted}
                              date={this.props.filterDay}
                              events={events}
+                             sites={this.props.sites}
                              tableHeader={tableHeader}
                              ggs={this.props.ggs}
                              overs={this.props.overs}
@@ -103,17 +96,6 @@ class Competitions extends React.Component {
                 return new Date(a.date) - new Date(b.date);
             });
             const events = evs.map((fixture) => {
-                console.log(this.props.showO1);
-                if (
-                    (this.props.showO0 && fixture.predicted0 < 1) ||
-                    (this.props.showO1 && fixture.predicted1 < 1) ||
-                    (this.props.showO2 && fixture.predicted2 < 1) ||
-                    (this.props.showO3 && fixture.predicted3 < 1) ||
-                    (this.props.showO4 && fixture.predicted4 < 1) ||
-                    (this.props.hideCompleted && fixture.score !== "")
-                ) {
-                    return null;
-                }
                 return <Event fixture={fixture}
                               today={this.props.today}
                               hideCompleted={this.props.hideCompleted}
@@ -145,17 +127,10 @@ class Competitions extends React.Component {
     getTableHeader = () => {
         return <thead>
                 <tr>
-                    <th className="eventName">Date</th>
-                    <th className="eventName">Name</th>
-                    <th className="eventName">Overs</th>
-                    <th className="eventName">Unders</th>
-                    {/*<th>Cards</th>*/}
-                    {/*<th>CornerIndex</th>*/}
-                    {/*<th>Corners</th>*/}
-                    <th>over</th>
-                    <th>gg</th>
-                    <th>Index</th>
-                    <th>score</th>
+                    <th className="is-2">Date</th>
+                    <th className="is-2">Name</th>
+                    <th className="is-6">Markets</th>
+                    <th className="is-2">score</th>
                 </tr>
             </thead>;
     }

@@ -3,6 +3,7 @@ package parsers
 import (
 	"fmt"
 	"haggle/models"
+	"strconv"
 	"strings"
 
 	"github.com/Jeffail/gabs"
@@ -92,8 +93,8 @@ func (p *PokerStars) parseTopEvents(sports []interface{}) {
 	}
 }
 
-func (p *PokerStars) GetEventID(event map[string]interface{}) int {
-	return int(event["betRadarId"].(float64))
+func (p *PokerStars) GetEventID(event map[string]interface{}) string {
+	return strconv.Itoa(int(event["betRadarId"].(float64)))
 }
 
 func (p *PokerStars) GetEventName(event map[string]interface{}) string {

@@ -130,8 +130,8 @@ func (p *Interwetten) GetEventIsAntepost(event map[string]interface{}) bool {
 	return event["type"] == "Outright"
 }
 
-func (p *Interwetten) GetEventID(event map[string]interface{}) int {
-	return cast.ToInt(event["id"])
+func (p *Interwetten) GetEventID(event map[string]interface{}) string {
+	return cast.ToString(event["id"])
 }
 
 func (p *Interwetten) GetEventName(event map[string]interface{}) string {

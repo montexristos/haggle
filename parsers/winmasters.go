@@ -130,8 +130,8 @@ func (w *Winmasters) GetEventIsAntepost(event map[string]interface{}) bool {
 	return event["type"] == "Outright"
 }
 
-func (w *Winmasters) GetEventID(event map[string]interface{}) int {
-	return cast.ToInt(event["id"])
+func (w *Winmasters) GetEventID(event map[string]interface{}) string {
+	return cast.ToString(event["id"])
 }
 
 func (w *Winmasters) GetEventName(event map[string]interface{}) string {

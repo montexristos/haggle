@@ -18,7 +18,7 @@ type SiteConfig struct {
 }
 
 func ParseSiteConfig(website string) *SiteConfig {
-	yamlFile, err := ioutil.ReadFile(fmt.Sprintf("config/%s.yaml", website))
+	yamlFile, err := ioutil.ReadFile(fmt.Sprintf("config/sites/%s.yaml", website))
 	if err != nil {
 		log.Printf("yamlFile.Get err   #%v ", err)
 	}

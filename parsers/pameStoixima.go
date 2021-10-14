@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"os"
 	"os/signal"
+	"strconv"
 )
 
 type PameStoixima struct {
@@ -114,16 +115,16 @@ func (p *PameStoixima) GetDB() *gorm.DB {
 	return p.db
 }
 
-func (p *PameStoixima) GetEventID(event map[string]interface{}) int {
+func (p *PameStoixima) GetEventID(event map[string]interface{}) string {
 	if live, found := event["live"]; found {
 		if live != nil {
 			if matchId, found := live.(map[string]interface{})["match_id"]; found {
-				return int(matchId.(float64))
+				return strconv.Itoa(int(matchId.(float64)))
 			}
 		}
 	}
 
-	return int(event["id"].(float64))
+	return strconv.Itoa(int(event["id"].(float64)))
 }
 
 func (p *PameStoixima) GetEventName(event map[string]interface{}) string {

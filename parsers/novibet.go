@@ -189,17 +189,17 @@ func (n *Novibet) parseTopEvents(sports []interface{}) {
 	}
 }
 
-func (n *Novibet) GetEventID(event map[string]interface{}) int {
+func (n *Novibet) GetEventID(event map[string]interface{}) string {
 	if id, found := event["SportradarMatchId"]; found && id != nil {
-		return int(id.(float64))
+		return strconv.Itoa(int(id.(float64)))
 	}
 	if id, found := event["EventBetContextId"]; found && id != nil {
-		return int(id.(float64))
+		return strconv.Itoa(int(id.(float64)))
 	}
 	if id, found := event["BetContextId"]; found && id != nil {
-		return int(id.(float64))
+		return strconv.Itoa(int(id.(float64)))
 	}
-	return -1
+	return ""
 }
 
 func (n *Novibet) GetEventName(event map[string]interface{}) string {
@@ -314,7 +314,7 @@ func (n *Novibet) GetMarketSelections(market map[string]interface{}) []interface
 }
 
 func (n *Novibet) FetchEvent(e *models.Event) error {
-	url := fmt.Sprintf("%s/api/marketviews/event/16/%d?lang=en-US", n.config.BaseUrl, e.BetradarID)
+	url := fmt.Sprintf("%s/api/marketviews/event/16/%s?lang=en-US", n.config.BaseUrl, e.BetradarID)
 	client := http.Client{
 		Timeout: time.Second * 2, // Timeout after 2 seconds
 	}
@@ -331,6 +331,7 @@ func (n *Novibet) FetchEvent(e *models.Event) error {
 	if err != nil {
 		return err
 	}
+	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return err

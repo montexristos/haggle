@@ -139,14 +139,14 @@ class EventDetails extends React.Component {
             <table className="eventDetails">
                 <thead>
                     <tr>
-                        <th colspan="3">Home Fixtures</th>
-                        <th colspan="3">Away Fixtures</th>
+                        <th colSpan="3">Home Fixtures</th>
+                        <th colSpan="3">Away Fixtures</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="3">{homeCalcs.fixtureListHome}</td>
-                        <td colspan="3">{awayCalcs.fixtureListAway}</td>
+                        <td colSpan="3">{homeCalcs.fixtureListHome}</td>
+                        <td colSpan="3">{awayCalcs.fixtureListAway}</td>
                     </tr>
                 </tbody>
             </table>

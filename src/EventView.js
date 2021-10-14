@@ -36,7 +36,6 @@ class EventView extends React.Component {
                 }
 
             })
-            console.log(marketMap);
             eventSites.push(
                 <EventSiteView site={site}
                                siteId={siteId}
@@ -45,6 +44,7 @@ class EventView extends React.Component {
                                matchResult={marketMap["MRES"][siteId]}
                                overUnder={marketMap["UO"][siteId]}
                                btts={marketMap["BTTS"][siteId]}
+                               key={events[0].Name + site}
                 />
             );
         }

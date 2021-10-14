@@ -1,0 +1,22 @@
+id: betsson
+siteId: 12
+active: true
+baseUrl: https://www.betsson.gr/api/sb/v1
+parser: parsers.Betsson
+urls:
+  home:
+  live:
+  day:
+  highlights:
+tournaments:
+  - widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=15&competitionIds=1698 # superligue
+  - widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=17&competitionIds=9 # serie a
+  - widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=11&competitionIds=3 # premier league
+  - widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=14&competitionIds=15 # bundesliga
+  - widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=13&competitionIds=19 # ligue 1
+
+
+#  - api/marketviews/coupon/16/440817/4087867?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_= # La liga
+#  - api/marketviews/coupon/16/440817/4069524?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_= # championship
+#  - api/marketviews/coupon/16/440817/4095187?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_= # eredivisie
+

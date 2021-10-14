@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"os"
 	"os/signal"
+	"strconv"
 	"time"
 )
 
@@ -91,8 +92,8 @@ func (p *Bet) GetConfig() *models.SiteConfig {
 	return p.config
 }
 
-func (p *Bet) GetEventID(event map[string]interface{}) int {
-	return int(event["betRadarId"].(float64))
+func (p *Bet) GetEventID(event map[string]interface{}) string {
+	return strconv.Itoa(int(event["betRadarId"].(float64)))
 }
 
 func (p *Bet) GetEventName(event map[string]interface{}) string {

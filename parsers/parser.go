@@ -24,7 +24,7 @@ type Parser interface {
 	ScrapeLive() (bool, error)
 	ScrapeToday() (bool, error)
 	ScrapeTournament(tournamentUrl string) (bool, error)
-	GetEventID(event map[string]interface{}) int
+	GetEventID(event map[string]interface{}) string
 	GetEventName(event map[string]interface{}) string
 	GetEventCanonicalName(event map[string]interface{}) string
 	GetEventDate(event map[string]interface{}) string
@@ -54,7 +54,7 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 		return &models.Event{}, fmt.Errorf("antepost")
 	}
 	eventID := p.GetEventID(event)
-	if eventID < 0 {
+	if eventID == "" {
 		return nil, fmt.Errorf("wrong event id")
 	}
 	eventName := p.GetEventName(event)

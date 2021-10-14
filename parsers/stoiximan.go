@@ -9,6 +9,7 @@ import (
 	"haggle/models"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -94,8 +95,8 @@ func (s *Stoiximan) GetConfig() *models.SiteConfig {
 	return s.config
 }
 
-func (s *Stoiximan) GetEventID(event map[string]interface{}) int {
-	return int(event["betRadarId"].(float64))
+func (s *Stoiximan) GetEventID(event map[string]interface{}) string {
+	return strconv.Itoa(int(event["betRadarId"].(float64)))
 }
 
 func (s *Stoiximan) GetEventName(event map[string]interface{}) string {
@@ -212,6 +213,7 @@ func (s *Stoiximan) FetchEvent(e *models.Event) error {
 	if err != nil {
 		return err
 	}
+	defer res.Body.Close()
 	var eventData interface{}
 	err = json.Unmarshal(body, &eventData)
 	if eventData == nil {

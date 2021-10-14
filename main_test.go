@@ -125,6 +125,30 @@ func Test_bwin(t *testing.T) {
 func Test_pokerstars(t *testing.T) {
 
 }
+func Test_betsson(t *testing.T) {
+
+	db := GetDb()
+	app := Application{
+		db: db,
+	}
+	if _, err := app.ScrapeSite("betsson"); err != nil {
+		t.Error(err.Error())
+	}
+}
+
+func TestBetsson_MatchEventMarkets(t *testing.T) {
+	p := &parsers.Betsson{}
+	json, _ := ioutil.ReadFile("test_input/betsson/tournament.json")
+	markets, err := p.MatchEventMarkets(json)
+	if err != nil {
+		t.Error(err.Error())
+		t.Fail()
+	}
+	if len(markets) == 0 {
+
+		t.Fail()
+	}
+}
 
 func TestClearDB(t *testing.T) {
 	tests := []struct {
@@ -143,6 +167,21 @@ func TestClearDB(t *testing.T) {
 				t.Errorf("db should be empty")
 				t.Fail()
 			}
+		})
+	}
+}
+
+func Test_getTournamentUpcomingData(t *testing.T) {
+	tests := []struct {
+		name string
+	}{
+		{
+			name: "test1",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			getTournamentUpcomingData()
 		})
 	}
 }

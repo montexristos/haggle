@@ -1,0 +1,112 @@
+Tournaments:
+  - name: Premier League
+    id: 4328
+    fd: PL
+    csv: https://www.football-data.co.uk/mmz4281/2122/E0.csv
+    old: https://www.football-data.co.uk/mmz4281/2021/E0.csv
+  - name: English League Championship
+    id: 4329
+    fd: ELC
+    csv: https://www.football-data.co.uk/mmz4281/2122/E1.csv
+    old: https://www.football-data.co.uk/mmz4281/2021/E1.csv
+#  - name: English League 1
+#    id: 4396
+#    fd: EL1
+#    csv: https://www.football-data.co.uk/mmz4281/2122/E2.csv
+#    old: https://www.football-data.co.uk/mmz4281/2021/E2.csv
+#  - name: English League 2
+#    id: 4397
+#    fd: EL2
+#    csv: https://www.football-data.co.uk/mmz4281/2122/E3.csv
+#    old: https://www.football-data.co.uk/mmz4281/2021/E3.csv
+#  - name: English Conference
+#    id:
+#    csv: https://www.football-data.co.uk/mmz4281/2122/EC.csv
+#    old: https://www.football-data.co.uk/mmz4281/2021/EC.csv
+#  - name: Scottish Premier League
+#    id: 4330
+#    fd: SPL
+#    csv: https://www.football-data.co.uk/mmz4281/2122/SC0.csv
+#    old: https://www.football-data.co.uk/mmz4281/2021/SC0.csv
+#  - name: Scottish Division 1
+#    id:
+#    csv: https://www.football-data.co.uk/mmz4281/2122/SC1.csv
+#    old: https://www.football-data.co.uk/mmz4281/2021/SC1.csv
+#  - name: Scottish Division 2
+#    id:
+#    csv: https://www.football-data.co.uk/mmz4281/2122/SC2.csv
+#    old: https://www.football-data.co.uk/mmz4281/2021/SC2.csv
+#  - name: Scottish Division 3
+#    id:
+#    csv: https://www.football-data.co.uk/mmz4281/2122/SC3.csv
+#    old: https://www.football-data.co.uk/mmz4281/2021/SC3.csv
+  - name: Germany Bundesliga 1
+    id: 4331
+    fd: BL1
+    csv: https://www.football-data.co.uk/mmz4281/2122/D1.csv
+    old: https://www.football-data.co.uk/mmz4281/2021/D1.csv
+  - name: Germany Bundesliga 2
+    id: 4399
+    fd: BL2
+    csv: https://www.football-data.co.uk/mmz4281/2122/D2.csv
+    old: https://www.football-data.co.uk/mmz4281/2021/D2.csv
+  - name: Italy Serie A
+    id: 4332
+    fd: SA
+    csv: https://www.football-data.co.uk/mmz4281/2122/I1.csv
+    old: https://www.football-data.co.uk/mmz4281/2021/I1.csv
+  - name: Italy Serie B
+    id: 4394
+    fd: SB
+    csv: https://www.football-data.co.uk/mmz4281/2122/I2.csv
+    old: https://www.football-data.co.uk/mmz4281/2021/I2.csv
+  - name: Spanish Primera Division
+    id: 4335
+    fd: PD
+    csv: https://www.football-data.co.uk/mmz4281/2122/SP1.csv
+    old: https://www.football-data.co.uk/mmz4281/2021/SP1.csv
+#  - name: Spanish Segunda Division
+#    id: 4400
+#    fd: SD
+#    csv: https://www.football-data.co.uk/mmz4281/2122/SP2.csv
+#    old: https://www.football-data.co.uk/mmz4281/2021/SP2.csv
+  - name: France Championnat
+    id: 4334
+    fd: FL1
+    csv: https://www.football-data.co.uk/mmz4281/2122/F1.csv
+    old: https://www.football-data.co.uk/mmz4281/2021/F1.csv
+#  - name: France Division 2
+#    id: 4401
+#    fd: FL2
+#    csv: https://www.football-data.co.uk/mmz4281/2122/F2.csv
+#    old: https://www.football-data.co.uk/mmz4281/2021/F2.csv
+  - name: Netherlands
+    id: 9999
+    fd: DED
+    csv: https://www.football-data.co.uk/mmz4281/2122/N1.csv
+    old: https://www.football-data.co.uk/mmz4281/2021/N1.csv
+#  - name: Belgium Jupiler League
+#    id: 4338
+#    csv: https://www.football-data.co.uk/mmz4281/2122/B1.csv
+#    old: https://www.football-data.co.uk/mmz4281/2021/B1.csv
+#  - name: Japan
+#    id: 4633
+#    csv: https://www.football-data.co.uk/new/JPN.csv
+#  - name: Sweden
+#    id: 4347
+#    csv: https://www.football-data.co.uk/new/SWE.csv
+#  - name: Finland
+#    id: 4636
+#    csv: https://www.football-data.co.uk/new/FIN.csv
+#  - name: Norway
+#    id: 4358
+#    csv: https://www.football-data.co.uk/new/NOR.csv
+#  - name: Portugal Liga I
+#    id: 4344
+#    csv: https://www.football-data.co.uk/mmz4281/2021/P1.csv
+#  - name: Turkey
+#    id: 4339
+#    csv: https://www.football-data.co.uk/mmz4281/2021/T1.csv
+#  - name: Greece
+#    id: 4336
+#    csv: https://www.football-data.co.uk/mmz4281/2021/G1.csv

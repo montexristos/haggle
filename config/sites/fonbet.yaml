@@ -1,0 +1,7 @@
+id: fonbet
+siteId: 11
+active: true
+baseUrl: https://www.fonbet.gr/
+parser: parsers.Fonbet
+urls:
+tournaments:

@@ -1,0 +1,17 @@
+id: stoiximan
+siteId: 4
+active: true
+baseUrl: https://en.stoiximan.gr
+parser: parsers.Stoiximan
+tournaments:
+  - sport/podosfairo/ellada/super-league-1/1636r/ # superligue
+  - sport/podosfairo/italia/serie-a/1635/ # serie a
+  - sport/podosfairo/ispania/laliga/5/ # La liga
+  - sport/podosfairo/germania/bundesliga/216/ # bundesliga
+  - sport/podosfairo/agglia/premier-league/1/ # premier league
+  - sport/podosfairo/agglia/championship/2r/ # championship
+  - sport/podosfairo/gallia/ligue-1/215r/ # ligue 1
+  - sport/podosfairo/ollandia/eredivisie/17067r/ # eredivisie
+urls:
+  live: live/
+  day: sport/podosfairo/kouponi-agones-simera/

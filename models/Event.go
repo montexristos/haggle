@@ -7,7 +7,7 @@ import (
 type Event struct {
 	gorm.Model
 	SiteID        int
-	BetradarID    int
+	BetradarID    string
 	Name          string
 	Date          string
 	CanonicalName string
@@ -20,7 +20,7 @@ func (Event) TableName() string {
 	return "events"
 }
 
-func GetCreateEvent(db *gorm.DB, eventID int, siteID int, name string) Event {
+func GetCreateEvent(db *gorm.DB, eventID string, siteID int, name string) Event {
 	var e Event
 	db.Where("site_id = ? AND betradar_id = ?", siteID, eventID).Preload("Markets").Preload("Markets.Selections").First(&e)
 	if e.ID == 0 {

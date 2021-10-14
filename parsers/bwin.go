@@ -105,13 +105,13 @@ func (b *Bwin) GetDB() *gorm.DB {
 	return b.db
 }
 
-func (b *Bwin) GetEventID(event map[string]interface{}) int {
+func (b *Bwin) GetEventID(event map[string]interface{}) string {
 	if addons, found := event["addons"]; found && addons != nil {
 		if betradarid, exists := addons.(map[string]interface{})["betRadar"]; exists && betradarid != nil {
-			return int(betradarid.(float64))
+			return strconv.Itoa(int(betradarid.(float64)))
 		}
 	}
-	return -1
+	return ""
 }
 
 func (b *Bwin) GetEventName(event map[string]interface{}) string {

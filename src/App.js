@@ -3,11 +3,9 @@ import './App.css';
 import 'bulma';
 import StakeCalculator from './StakeCalculator';
 import Arb from './Arb';
-import ParlayArb from './ParlayArb';
 import ArbSeries from './ArbSeries';
-import ArbSeriesNew from './ArbSeriesNew';
-import SequentialArb from "./SequentialArb";
 import EventList from "./EventList";
+import Bet from "./Bet";
 
 const host = "http://localhost:8088";
 
@@ -41,27 +39,22 @@ class App extends React.Component {
         });
     };
 
-    update = () => {
+    scrape = () => {
         fetch(this.getHost() + '/scrape').then(() => {})
     };
 
     render = () => {
-        if (this.state.events === undefined || !this.state.events) {
-            return null;
-        }
-
         return <div className="App">
             <header className="App-header">
                 <StakeCalculator/>
+                <Arb/>
             </header>
-            <Arb/>
-            <SequentialArb/>
             <ArbSeries/>
-            <ArbSeriesNew/>
-            <ParlayArb/>
 
             <button onClick={this.updateFilters}>Filter</button>
-            <button onClick={this.update}>Update</button>
+            <button onClick={this.scrape}>Update</button>
+            <Bet events={this.state.events} sites={this.state.sites}/>
+
             <EventList events={this.state.events} sites={this.state.sites}/>
         </div>
     };
