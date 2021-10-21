@@ -124,6 +124,13 @@ func Test_bwin(t *testing.T) {
 
 func Test_pokerstars(t *testing.T) {
 
+	db := GetDb()
+	app := Application{
+		db: db,
+	}
+	if _, err := app.ScrapeSite("pokerstars"); err != nil {
+		t.Error(err.Error())
+	}
 }
 func Test_betsson(t *testing.T) {
 

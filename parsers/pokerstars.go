@@ -2,13 +2,17 @@ package parsers
 
 import (
 	"fmt"
-	"haggle/models"
-	"strconv"
-	"strings"
-
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
+	"github.com/spf13/cast"
 	"gorm.io/gorm"
+	"haggle/models"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"sort"
+	"strconv"
+	"time"
 )
 
 type PokerStars struct {
@@ -30,6 +34,23 @@ func (p *PokerStars) GetConfig() *models.SiteConfig {
 
 func (p *PokerStars) Initialize() {
 	p.c = GetCollector()
+	p.c.OnResponse(func(response *colly.Response) {
+		jsonParsed, err := gabs.ParseJSON(response.Body)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+
+		events, err := jsonParsed.Search("event").Children()
+		if err != nil {
+			print(err.Error())
+		}
+		if events != nil {
+			for _, eventList := range events {
+				evt := eventList.Data()
+				ParseEvent(p, evt.(map[string]interface{}))
+			}
+		}
+	})
 }
 
 func (p *PokerStars) GetDB() *gorm.DB {
@@ -37,25 +58,6 @@ func (p *PokerStars) GetDB() *gorm.DB {
 }
 
 func (p *PokerStars) Scrape() (bool, error) {
-	p.c.OnRequest(func(r *colly.Request) {
-		r.Headers.Set("Content-Type", "application/json;charset=UTF-8")
-	})
-	// err := c.PostRaw(URL, payload)
-	p.c.OnHTML("script", func(e *colly.HTMLElement) {
-		if strings.HasPrefix(e.Text, `window["initial_state"]=`) {
-			jsonParsed, err := gabs.ParseJSON([]byte(e.Text[24:]))
-			if err != nil {
-				fmt.Println(err.Error())
-			}
-			topEvents := jsonParsed.Path("data.topEvents").Data()
-			if topEvents != nil {
-				p.parseTopEvents(topEvents.([]interface{}))
-			}
-			//TODO parse other items (fmt.Println(jsonParsed))
-		}
-	})
-
-	_ = p.c.Visit(fmt.Sprintf("%s", p.config.BaseUrl))
 	return true, nil
 }
 
@@ -64,16 +66,21 @@ func (p *PokerStars) ScrapeHome() (bool, error) {
 }
 
 func (p *PokerStars) ScrapeLive() (bool, error) {
-	_ = p.c.Visit(fmt.Sprintf("%s/%s", p.config.BaseUrl, p.config.Urls["live"]))
 	return true, nil
 }
 
 func (p *PokerStars) ScrapeToday() (bool, error) {
-	_ = p.c.Visit(fmt.Sprintf("%s/%s", p.config.BaseUrl, p.config.Urls["day"]))
 	return true, nil
 }
 
 func (p *PokerStars) ScrapeTournament(tournamentId string) (bool, error) {
+	// first get tournaments
+	tourUrl := fmt.Sprintf("%s/%s", p.config.BaseUrl, tournamentId)
+
+	err := p.c.Visit(tourUrl)
+	if err != nil {
+		return false, err
+	}
 	return true, nil
 }
 
@@ -81,20 +88,8 @@ func (p *PokerStars) SetDB(db *gorm.DB) {
 	p.db = db
 }
 
-func (p *PokerStars) parseTopEvents(sports []interface{}) {
-	for i := 0; i < len(sports); i++ {
-		sport := sports[0].(map[string]interface{})
-		events := sport["events"].([]interface{})
-		if len(events) > 0 {
-			for j := 0; j < len(events); j++ {
-				_, _ = ParseEvent(p, events[j].(map[string]interface{}))
-			}
-		}
-	}
-}
-
 func (p *PokerStars) GetEventID(event map[string]interface{}) string {
-	return strconv.Itoa(int(event["betRadarId"].(float64)))
+	return strconv.Itoa(int(event["id"].(float64)))
 }
 
 func (p *PokerStars) GetEventName(event map[string]interface{}) string {
@@ -126,9 +121,115 @@ func (p *PokerStars) ParseSelectionName(selectionData map[string]interface{}) st
 }
 
 func (p *PokerStars) ParseSelectionPrice(selectionData map[string]interface{}) float64 {
-	return selectionData["price"].(float64)
+	if odds, found := selectionData["odds"]; found {
+		if dec, found := odds.(map[string]interface{})["dec"]; found {
+			return cast.ToFloat64(dec)
+		}
+	}
+	return 0.0
 }
 
 func (p *PokerStars) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
+	if marketLine, found := marketData["line"]; found {
+		return cast.ToFloat64(marketLine)
+	}
 	return 0
+}
+
+func (p *PokerStars) GetEventDate(event map[string]interface{}) string {
+	return time.Unix(cast.ToInt64(event["eventTime"])/1000, 0).Format("2006-01-02 15:04:05")
+}
+
+func (p *PokerStars) GetMarketSelections(marketData map[string]interface{}) []interface{} {
+	//sort odds
+	selections := marketData["selection"].([]interface{})
+
+	sort.Slice(selections, func(i, j int) bool {
+		row1 := selections[i].(map[string]interface{})["pos"].(map[string]interface{})["col"].(float64)
+		row2 := selections[j].(map[string]interface{})["pos"].(map[string]interface{})["col"].(float64)
+		return row1 < row2
+	})
+	return selections
+}
+
+func (p *PokerStars) FetchEvent(e *models.Event) error {
+	eventUrl := fmt.Sprintf(`sportsbook/v1/api/getEvent?eventId=%s&channelId=19&locale=en-gr`, e.BetradarID)
+	url := fmt.Sprintf("%s/%s", p.config.BaseUrl, eventUrl)
+
+	client := http.Client{
+		Timeout: time.Second * 2, // Timeout after 2 seconds
+	}
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+	res, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return err
+	}
+	defer res.Body.Close()
+	jsonParsed, err := gabs.ParseJSON(body)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	marks := jsonParsed.Path("markets")
+	if marks != nil {
+		results, _ := marks.Children()
+		for _, markets := range results {
+			market := markets.Data()
+			parsedMarket, parseError := ParseMarket(p, market.(map[string]interface{}), *e)
+			if parseError == nil {
+				e.Markets = append(e.Markets, parsedMarket)
+			}
+		}
+	}
+
+	return fmt.Errorf("could not fetch details")
+}
+
+func (p *PokerStars) GetEventUrl(event map[string]interface{}) string {
+	return ""
+}
+func (p *PokerStars) MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error) {
+	switch marketType {
+	case "SOCCER:FT:AXB":
+		return models.NewMatchResult().MarketType, nil
+	case "SOCCER:FT:DNB":
+		return models.NewDrawNoBet().MarketType, nil
+	case "SOCCER:FT:OU":
+		handicap := cast.ToFloat64(market["line"])
+		return models.NewOverUnderHandicap(handicap).MarketType, nil
+	case "SOCCER:P:OU":
+		handicap := cast.ToFloat64(market["line"])
+		if period, found := market["period"]; found && period == "P1" {
+			return models.NewUnderOverHalf(handicap).MarketType, nil
+		}
+		return models.MarketType{}, fmt.Errorf("could not match market type")
+	case "SOCCER:FT:OU1.5":
+		return models.NewOverUnderHandicap(1.5).MarketType, nil
+	case "SOCCER:FT:OU-A":
+		handicap := cast.ToFloat64(market["line"])
+		return models.NewUnderOverHome(handicap).MarketType, nil
+	case "SOCCER:FT:OU-B":
+		handicap := cast.ToFloat64(market["line"])
+		return models.NewUnderOverAway(handicap).MarketType, nil
+	case "SOCCER:FT:BTS":
+		return models.NewBtts().MarketType, nil
+	case "SOCCER:FT:DC":
+		return models.NewDoubleChance().MarketType, nil
+	}
+	return models.MarketType{}, fmt.Errorf("could not match market type")
+
+}
+func (p *PokerStars) GetEventCanonicalName(event map[string]interface{}) string {
+	if name, exist := event["name"]; exist {
+		return name.(string)
+	}
+	return ""
 }

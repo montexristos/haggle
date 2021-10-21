@@ -11,6 +11,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -224,7 +225,7 @@ func (n *Netbet) MatchMarketType(market map[string]interface{}, marketType strin
 	case "SOCCER_MATCH_RESULT":
 		return models.NewMatchResult().MarketType, nil
 	case "SOCCER_UNDER_OVER":
-		return models.NewOverUnder().MarketType, nil
+		return models.NewOverUnderHandicap(2.5).MarketType, nil
 	case "SOCCER_BOTH_TEAMS_TO_SCORE":
 		return models.NewBtts().MarketType, nil
 	}
@@ -235,7 +236,16 @@ func (n *Netbet) ParseMarketId(market map[string]interface{}) string {
 	return market["id"].(string)
 }
 func (n *Netbet) GetMarketSelections(market map[string]interface{}) []interface{} {
-	return market["choices"].([]interface{})
+	selections := market["choices"].([]interface{})
+	if market["type"].(map[string]interface{})["id"].(float64) == 9 {
+		selections = make([]interface{}, 0)
+		for _, sel := range market["choices"].([]interface{}) {
+			if strings.Contains(sel.(map[string]interface{})["actor"].(map[string]interface{})["label"].(string), "2.5") {
+				selections = append(selections, sel)
+			}
+		}
+	}
+	return selections
 }
 
 func (n *Netbet) FetchEvent(e *models.Event) error {

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
+	"github.com/spf13/cast"
 	"gorm.io/gorm"
 	"haggle/models"
 	"io/ioutil"
@@ -162,7 +163,8 @@ func (s *Stoiximan) MatchMarketType(market map[string]interface{}, marketType st
 	case "MRES":
 		return models.NewMatchResult().MarketType, nil
 	case "HCTG":
-		return models.NewOverUnder().MarketType, nil
+		handicap := cast.ToFloat64(market["handicap"])
+		return models.NewOverUnderHandicap(handicap).MarketType, nil
 	case "BTSC":
 		return models.NewBtts().MarketType, nil
 	case "INTS":
@@ -172,11 +174,14 @@ func (s *Stoiximan) MatchMarketType(market map[string]interface{}, marketType st
 	case "DNOB":
 		return models.NewDrawNoBet().MarketType, nil
 	case "OUHG":
-		return models.NewUnderOverHome().MarketType, nil
+		handicap := cast.ToFloat64(market["handicap"])
+		return models.NewUnderOverHome(handicap).MarketType, nil
 	case "OUAG":
-		return models.NewUnderOverAway().MarketType, nil
+		handicap := cast.ToFloat64(market["handicap"])
+		return models.NewUnderOverAway(handicap).MarketType, nil
 	case "OUH1":
-		return models.NewUnderOverHalf().MarketType, nil
+		handicap := cast.ToFloat64(market["handicap"])
+		return models.NewUnderOverHalf(handicap).MarketType, nil
 	case "FG28":
 		return models.NewFirstGoalEarly().MarketType, nil
 	}
@@ -216,7 +221,7 @@ func (s *Stoiximan) FetchEvent(e *models.Event) error {
 	defer res.Body.Close()
 	var eventData interface{}
 	err = json.Unmarshal(body, &eventData)
-	if eventData == nil {
+	if eventData == nil || eventData.(map[string]interface{})["data"] == nil {
 		return fmt.Errorf("error fetcing event")
 	}
 	if event, found := eventData.(map[string]interface{})["data"].(map[string]interface{})["event"]; found {

@@ -1,10 +1,20 @@
 id: pokerstars
 siteId: 3
 active: true
-baseUrl: https://www.pokerstarssports.gr
+baseUrl: https://sports.pokerstarssports.gr
 parser: parsers.PokerStars
 urls:
-  live: sportsbook/v1/api/getHomeInPlayV2?channelId=6&locale=el-gr&siteId=4096
-  day: 
+  home:
+  live:
+  day:
+  highlights:
 tournaments:
-# https://sports.pokerstarssports.gr/sportsbook/v1/api/getCompetitionEvents?competitionId=10839026&marketTypes=BAML%2CBASKETBALL%3AFTOT%3AML%2CBA1W%2CBAPS%2CBASKETBALL%3AFTOT%3AAHCP_MAIN%2CBASKETBALL%3AFTOT%3AOU_MAIN%2CBATO%2CBATOT&includeOutrights=false&channelId=6&locale=el-gr&siteId=4096
+  - sportsbook/v1/api/getCompetitionEvents?competitionId=10680204&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr # greece superligue
+  - sportsbook/v1/api/getCompetitionEvents?competitionId=10680392&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr # italy serie a
+  - sportsbook/v1/api/getCompetitionEvents?competitionId=10679937&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr # spanish la liga
+  - sportsbook/v1/api/getCompetitionEvents?competitionId=10679909&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr # german bundesliga
+  - sportsbook/v1/api/getCompetitionEvents?competitionId=12735501&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr # Premier league
+  - sportsbook/v1/api/getCompetitionEvents?competitionId=10680518&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr # championship
+  - sportsbook/v1/api/getCompetitionEvents?competitionId=12735553&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr # french lique 1
+  - sportsbook/v1/api/getCompetitionEvents?competitionId=11523272&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr # dutch eredivisie
+  - sportsbook/v1/api/getCompetitionEvents?competitionId=10680021&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr # chile primera

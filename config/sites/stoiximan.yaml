@@ -12,6 +12,13 @@ tournaments:
   - sport/podosfairo/agglia/championship/2r/ # championship
   - sport/podosfairo/gallia/ligue-1/215r/ # ligue 1
   - sport/podosfairo/ollandia/eredivisie/17067r/ # eredivisie
+  - sport/podosfairo/xili/primera-division/16932/ # chile primera
+
 urls:
-  live: live/
-  day: sport/podosfairo/kouponi-agones-simera/
+  home:
+  live:
+  day:
+  highlights:
+#urls:
+#  live: live/
+#  day: sport/podosfairo/kouponi-agones-simera/

@@ -14,6 +14,7 @@ tournaments:
   - widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=11&competitionIds=3 # premier league
   - widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=14&competitionIds=15 # bundesliga
   - widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=13&competitionIds=19 # ligue 1
+  - widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=24&competitionIds=40 # chile primera
 
 
 #  - api/marketviews/coupon/16/440817/4087867?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_= # La liga

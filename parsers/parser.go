@@ -190,7 +190,8 @@ func isMn(r rune) bool {
 }
 
 func TransformName(name string) string {
-	name = strings.ReplaceAll(name, "/", "-")
+	name = strings.ReplaceAll(name, " / ", "-")
+	name = strings.ReplaceAll(name, " v ", " - ")
 	name = strings.ReplaceAll(name, "1. ", "")
 	teams := strings.Split(name, "-")
 	teamNames := GetNames()

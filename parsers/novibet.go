@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gocolly/colly"
+	"github.com/spf13/cast"
 	"gorm.io/gorm"
 	"haggle/models"
 	"io/ioutil"
@@ -283,6 +284,11 @@ func (n *Novibet) MatchMarketType(market map[string]interface{}, marketType stri
 	case "SOCCER_MATCH_RESULT":
 		return models.NewMatchResult().MarketType, nil
 	case "SOCCER_UNDER_OVER":
+		if len(market["BetItems"].([]interface{})) > 0 {
+			if hc, found := market["BetItems"].([]interface{})[0].(map[string]interface{})["InstanceCaption"]; found {
+				return models.NewOverUnderHandicap(cast.ToFloat64(hc)).MarketType, nil
+			}
+		}
 		return models.NewOverUnder().MarketType, nil
 	case "SOCCER_BOTH_TEAMS_TO_SCORE":
 		return models.NewBtts().MarketType, nil
@@ -293,15 +299,38 @@ func (n *Novibet) MatchMarketType(market map[string]interface{}, marketType stri
 	case "SOCCER_MATCH_RESULT_NODRAW":
 		return models.NewDrawNoBet().MarketType, nil
 	case "SOCCER_HOME_UNDER_OVER":
-		return models.NewUnderOverHome().MarketType, nil
+		handicap := 2.5
+		if len(market["BetItems"].([]interface{})) > 0 {
+			if hc, found := market["BetItems"].([]interface{})[0].(map[string]interface{})["InstanceCaption"]; found {
+				return models.NewUnderOverHome(cast.ToFloat64(hc)).MarketType, nil
+			}
+		}
+		return models.NewUnderOverHome(handicap).MarketType, nil
 	case "SOCCER_AWAY_UNDER_OVER":
-		return models.NewUnderOverAway().MarketType, nil
+		handicap := 2.5
+		if len(market["BetItems"].([]interface{})) > 0 {
+			if hc, found := market["BetItems"].([]interface{})[0].(map[string]interface{})["InstanceCaption"]; found {
+				return models.NewUnderOverAway(cast.ToFloat64(hc)).MarketType, nil
+			}
+		}
+		return models.NewUnderOverAway(handicap).MarketType, nil
 	case "OUH1":
-		return models.NewUnderOverHalf().MarketType, nil
+		handicap := 2.5
+		if len(market["BetItems"].([]interface{})) > 0 {
+			if hc, found := market["BetItems"].([]interface{})[0].(map[string]interface{})["InstanceCaption"]; found {
+				return models.NewUnderOverAway(cast.ToFloat64(hc)).MarketType, nil
+			}
+		}
+		return models.NewUnderOverAway(handicap).MarketType, nil
 	case "FG28":
 		return models.NewFirstGoalEarly().MarketType, nil
 	case "SOCCER_CORNERS_UNDER_OVER":
-		return models.NewUnderOverCorners().MarketType, nil
+		if len(market["BetItems"].([]interface{})) > 0 {
+			if hc, found := market["BetItems"].([]interface{})[0].(map[string]interface{})["InstanceCaption"]; found {
+				return models.NewUnderOverCorners(cast.ToFloat64(hc)).MarketType, nil
+			}
+		}
+		return models.NewUnderOverCorners(2.5).MarketType, nil
 	}
 	return models.MarketType{}, fmt.Errorf("could not match market type")
 }

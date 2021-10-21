@@ -4,10 +4,10 @@ active: true
 baseUrl: https://ws-sport.netbet.gr/component/data
 parser: parsers.Netbet
 urls:
-  home: component/data
-  live: component/data
-  day: component/data
-  highlights: component/data
+  home:
+  live:
+  day:
+  highlights:
 tournaments:
   - /ποδόσφαιρο/ελλάδα/σούπερ-λίγκα/
   - /ποδόσφαιρο/ιταλία/1η-κατηγορία/

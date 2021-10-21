@@ -98,6 +98,7 @@ func (app *Application) scrapeAll() (map[string]string, error) {
 		"netbet",
 		//"fonbet",
 		"betsson",
+		"pokerstars",
 	}
 	wg := &sync.WaitGroup{}
 	for _, site := range sites {

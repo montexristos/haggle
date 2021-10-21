@@ -4,10 +4,15 @@ active: true
 baseUrl: https://www.novibet.gr/
 parser: parsers.Novibet
 urls:
-  home: api/marketviews?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
-  live: api/marketviews/location/16/4390?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
-  day: api/marketviews/location/16/912152?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
-  highlights: api/marketviews/location/16/55382?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
+  home:
+  live:
+  day:
+  highlights:
+#urls:
+#  home: api/marketviews?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
+#  live: api/marketviews/location/16/4390?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
+#  day: api/marketviews/location/16/912152?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
+#  highlights: api/marketviews/location/16/55382?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&timestamp=
 tournaments:
   - api/marketviews/coupon/16/440817/3381277?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_= # superligue
   - api/marketviews/coupon/16/440817/4072230?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_= # serie 1
