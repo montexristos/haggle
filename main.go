@@ -16,6 +16,7 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"math"
 	"net/http"
 	"os"
 	"path"
@@ -167,16 +168,38 @@ func GetParser(website string, db *gorm.DB) (parsers.Parser, error) {
 	return nil, fmt.Errorf("parser not found")
 }
 
+func (app *Application) ReadTournamentList(website string) ([]interface{}, error) {
+	tournaments := make([]interface{}, 0)
+	//read file
+	yamlFile, err := ioutil.ReadFile("config/sites/tournaments.yaml")
+	if err != nil {
+		return tournaments, err
+	}
+	var siteTournaments map[string]interface{}
+	err = yaml.Unmarshal(yamlFile, &siteTournaments)
+	if err != nil {
+		return tournaments, err
+	}
+	for _, sites := range siteTournaments {
+		tournaments = append(tournaments, sites.(map[interface{}]interface{})[website])
+	}
+	return tournaments, nil
+}
+
 func (app *Application) ScrapeSite(website string) (bool, error) {
 	//parser := GetParser(website, app.db)
 	parser, err := GetParser(website, app.db)
+	tournaments, err := app.ReadTournamentList(website)
 	if parser != nil {
 		_, err = parser.ScrapeHome()
 		_, err = parser.ScrapeLive()
 		_, err = parser.ScrapeToday()
 		config := parser.GetConfig()
-		for t := 0; t < len(parser.GetConfig().Tournaments); t++ {
-			_, err = parser.ScrapeTournament(config.Tournaments[t])
+		for t := 0; t < len(tournaments); t++ {
+			tourUrl := tournaments[t]
+			if tourUrl != nil {
+				_, err = parser.ScrapeTournament(tourUrl.(string))
+			}
 		}
 		if err != nil {
 			return false, fmt.Errorf("Parser %s initialize error", config.Id)
@@ -231,6 +254,7 @@ func getScrapeResults() (map[string]interface{}, error) {
 		8:  `netbet`,
 		12: `betsson`,
 	}
+	arbs := FindArbs(matches)
 	sites := make(map[int]string)
 	for _, site := range siteList {
 		parser, _ := GetParser(site, GetDb())
@@ -242,7 +266,51 @@ func getScrapeResults() (map[string]interface{}, error) {
 	return map[string]interface{}{
 		"events": matches,
 		"sites":  sites,
+		"arbs":   arbs,
 	}, nil
+}
+
+func FindArbs(matches map[string][]models.Event) map[string]string {
+	arbs := make(map[string]string)
+	temp := make(map[string]interface{})
+	for name, siteEvent := range matches {
+		for _, event := range siteEvent {
+			for _, market := range event.Markets {
+				for index, selection := range market.Selections {
+					found := checkMarket(event.CanonicalName, selection, market.MarketType, index, temp)
+					if found != "" {
+						arbs[name] = found
+					}
+				}
+			}
+		}
+	}
+	return arbs
+}
+
+func checkMarket(eventName string, selection models.Selection, marketType string, index int, temp map[string]interface{}) string {
+	key := fmt.Sprintf("%s-%d", marketType, index)
+	if selection.Line > 0 {
+		key = fmt.Sprintf("%s-%f", key, selection.Line)
+	}
+	if sel, found := temp[key]; found {
+		if testArbs(sel.(models.Selection).Price, selection.Price) {
+			return fmt.Sprintf("%s - %s - %s (%.2f - %.2f)", eventName, marketType, key, selection.Price, sel.(models.Selection).Price)
+		}
+	} else {
+		temp[key] = selection
+	}
+	return ""
+}
+
+func testArbs(odd1, odd2 float64) bool {
+	diff := math.Abs(odd1 - odd2)
+	max := math.Max(odd1, odd2)
+	thres := diff * 100 / max
+	if thres > 20 {
+		return true
+	}
+	return false
 }
 
 func (app *Application) scrapeLink(w http.ResponseWriter, r *http.Request) {

@@ -1,0 +1,126 @@
+Greek Superligue:
+  stoiximan: sport/podosfairo/ellada/super-league-1/1636r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680204&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson: widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=15&competitionIds=1698
+  netbet: /ποδόσφαιρο/ελλάδα/σούπερ-λίγκα/
+  novibet: api/marketviews/coupon/16/440817/3381277?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Italy Serie A:
+  stoiximan: sport/podosfairo/italia/serie-a/1635/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680392&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson: widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=17&competitionIds=9
+  netbet: /ποδόσφαιρο/ιταλία/1η-κατηγορία/
+  novibet: api/marketviews/coupon/16/440817/4072230?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Spanish Laliga:
+  stoiximan: sport/podosfairo/ispania/laliga/5/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10679937&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: /ποδόσφαιρο/ισπανία/1η-κατηγορία/
+  novibet: api/marketviews/coupon/16/440817/4087867?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+German bundesliga:
+  stoiximan: sport/podosfairo/germania/bundesliga/216/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10679909&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson: widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=14&competitionIds=15
+  netbet: /ποδόσφαιρο/γερμανία/μπουντεσλίγκα/
+  novibet: api/marketviews/coupon/16/440817/4091375?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+English Premier League:
+  stoiximan: sport/podosfairo/agglia/premier-league/1/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=12735501&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson: widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=11&competitionIds=3
+  netbet: /ποδόσφαιρο/αγγλία/πρέμιερ-λιγκ/
+  novibet: api/marketviews/coupon/16/440817/4069479?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+English Championship:
+  stoiximan: sport/podosfairo/agglia/championship/2r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680518&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: /ποδόσφαιρο/αγγλία/τσάμπιονσιπ/
+  novibet: api/marketviews/coupon/16/440817/4069524?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+France Ligue 1:
+  stoiximan: sport/podosfairo/gallia/ligue-1/215r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=12735553&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson: widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=13&competitionIds=19
+  netbet: /ποδόσφαιρο/γαλλία/ligue-1/
+  novibet: api/marketviews/coupon/16/440817/4069626?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_
+Netherlands Eredivisie:
+  stoiximan: sport/podosfairo/ollandia/eredivisie/17067r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=11523272&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: /ποδόσφαιρο/ολλανδία/ερεντιβίζιε/
+  novibet: api/marketviews/coupon/16/440817/4095187?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Netherlands Eerste:
+  stoiximan: sport/soccer/netherlands/eerste-divisie/17370r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680049&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: /ποδόσφαιρο/ολλανδία/2η-κατηγορία/
+  novibet: api/marketviews/coupon/16/440817/4105445?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Chile Primera Division:
+  stoiximan: sport/podosfairo/xili/primera-division/16932/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680021&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson: widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=24&competitionIds=40
+  netbet: ποδόσφαιρο/χιλή/campeonato-afp-planvital/
+  novibet: api/marketviews/coupon/16/440817/22949219?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Chile Primera B:
+  stoiximan: sport/soccer/chile/primera-b/17561r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=12981743&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/χιλή/1η-κατηγορία/
+  novibet: api/marketviews/coupon/16/440817/23064937?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Turkish super ligue:
+  stoiximan: sport/soccer/turkey/super-lig/17093/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680135&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/τουρκία/spor-toto-süper-lig/
+  novibet: api/marketviews/coupon/16/440817/4123113?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Turkish ttf1 ligue:
+  stoiximan: sport/soccer/tourkia/tff-1-lig/17439/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=12981731&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/τουρκία/1-λιγκ/
+  novibet: api/marketviews/coupon/16/440817/464464?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Portugal Primeira ligua:
+  stoiximan: sport/soccer/portugal/primeira-liga/17083r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=11526480&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/πορτογαλία/πριμέιρα-λίγκα/
+  novibet: api/marketviews/coupon/16/440817/4099385?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Portugal Secunda ligua:
+  stoiximan: sport/soccer/portugal/liga-2/17385/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=12982383&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/πορτογαλία/segunda-liga/
+  novibet: api/marketviews/coupon/16/440817/3195912?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Cyprus Division 1:
+  stoiximan: sport/soccer/cyprus/division-1/16947r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10679985&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/κύπρος/1.-τμήμα/
+  novibet: api/marketviews/coupon/16/440817/1095679?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+France Ligue 2:
+  stoiximan: sport/soccer/france/ligue-2/10467r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680300&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/γαλλία/ligue-2/
+  novibet: api/marketviews/coupon/16/440817/4128751?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Bundesligua 2:
+  stoiximan: sport/soccer/germany/2-bundesliga/217r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10679964&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/γερμανία/bundesliga-2/
+  novibet: api/marketviews/coupon/16/440817/4069614?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Bundesligua 3:
+  stoiximan: sport/soccer/germany/3-liga/17313/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=11523273&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/γερμανία/3η-κατηγορία/
+  novibet: api/marketviews/coupon/16/440817/4107126?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Italy Serie B:
+  stoiximan: sport/soccer/italy/serie-b/10210r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680121&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/ιταλία/2η-κατηγορία/
+  novibet: api/marketviews/coupon/16/440817/4135301?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Serie C:
+  stoiximan: sport/soccer/italy/serie-c/17714/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=12982440&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  betsson:
+  netbet: ποδόσφαιρο/ιταλία/3η-κατηγορία/
+  novibet: api/marketviews/coupon/16/440817/472014?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=

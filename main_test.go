@@ -192,3 +192,30 @@ func Test_getTournamentUpcomingData(t *testing.T) {
 		})
 	}
 }
+
+func Test_getScrapeResults(t *testing.T) {
+	resp, _ := getScrapeResults()
+	if len(resp["arbs"].(map[string][]models.Event)) > 0 {
+		t.Log("found")
+	}
+
+}
+func Test_getArbDetect(t *testing.T) {
+	tests := []struct {
+		odd1   float64
+		odd2   float64
+		result bool
+	}{
+		{1.2, 1.3, false},
+		{1.2, 1.5, true},
+		{2, 2.6, true},
+		{2.2, 2.3, false},
+		{1.01, 1.1, false},
+		{12, 13, false},
+	}
+	for _, test := range tests {
+		if res := testArbs(test.odd1, test.odd2); res != test.result {
+			t.Fail()
+		}
+	}
+}
