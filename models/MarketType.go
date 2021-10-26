@@ -54,13 +54,13 @@ func NewMatchResult() MatchResult {
 
 func NewOverUnder() OverUnder {
 	return OverUnder{
-		MarketType: MarketType{Name: "UO"},
+		MarketType: MarketType{Name: "OU"},
 		Handicap:   2.5,
 	}
 }
 func NewOverUnderHandicap(hc float64) OverUnder {
 	return OverUnder{
-		MarketType: MarketType{Name: "UO"},
+		MarketType: MarketType{Name: "OU"},
 		Handicap:   hc,
 	}
 }
@@ -98,5 +98,5 @@ func NewFirstGoalEarly() FirstGoalEarly {
 }
 
 func NewUnderOverCorners(hc float64) UnderOverCorners {
-	return UnderOverCorners{MarketType{Name: string("UOCR")}, hc}
+	return UnderOverCorners{MarketType{Name: string("OUCR")}, hc}
 }

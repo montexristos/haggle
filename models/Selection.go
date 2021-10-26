@@ -1,9 +1,7 @@
 package models
 
-import "gorm.io/gorm"
-
 type Selection struct {
-	gorm.Model
+	ID       uint `gorm:"primarykey"`
 	Name     string
 	Price    float64
 	Line     float64

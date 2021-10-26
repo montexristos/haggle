@@ -195,7 +195,7 @@ func Test_getTournamentUpcomingData(t *testing.T) {
 
 func Test_getScrapeResults(t *testing.T) {
 	resp, _ := getScrapeResults()
-	if len(resp["arbs"].(map[string][]models.Event)) > 0 {
+	if len(resp["arbs"].(map[string]string)) > 0 {
 		t.Log("found")
 	}
 
@@ -215,6 +215,149 @@ func Test_getArbDetect(t *testing.T) {
 	}
 	for _, test := range tests {
 		if res := testArbs(test.odd1, test.odd2); res != test.result {
+			t.Fail()
+		}
+	}
+}
+
+func Test_CheckMarket_differentIndex(t *testing.T) {
+	temp := make(map[string][]SiteOdd)
+	tests := []struct {
+		eventName  string
+		selection  models.Selection
+		marketType string
+		index      int
+		temp       map[string][]SiteOdd
+		site       string
+	}{
+		{
+			eventName: "test1",
+			selection: models.Selection{
+				Price:    1.3,
+				Name:     "kaka",
+				Line:     1.0,
+				MarketID: 1,
+			},
+			marketType: "MRES",
+			index:      1,
+			temp:       temp,
+			site:       "stoiximan",
+		}, {
+			eventName: "test1",
+			selection: models.Selection{
+				Price:    1.3,
+				Name:     "kaka",
+				Line:     1.0,
+				MarketID: 1,
+			},
+			marketType: "MRES",
+			index:      0,
+			temp:       temp,
+			site:       "novi",
+		},
+	}
+
+	for _, test := range tests {
+
+		result := CheckMarket(test.eventName, test.selection, test.marketType, test.index, temp, test.site)
+		if result != "" {
+			t.Error("should not find arb")
+			t.Fail()
+		}
+	}
+}
+func Test_CheckMarket_sameOdds(t *testing.T) {
+	temp := make(map[string][]SiteOdd)
+	tests := []struct {
+		eventName  string
+		selection  models.Selection
+		marketType string
+		index      int
+		temp       map[string][]SiteOdd
+		site       string
+	}{
+		{
+			eventName: "test1",
+			selection: models.Selection{
+				Price:    1.3,
+				Name:     "kaka",
+				Line:     1.0,
+				MarketID: 1,
+			},
+			marketType: "MRES",
+			index:      1,
+			temp:       temp,
+			site:       "stoiximan",
+		}, {
+			eventName: "test1",
+			selection: models.Selection{
+				Price:    1.3,
+				Name:     "kaka",
+				Line:     1.0,
+				MarketID: 1,
+			},
+			marketType: "MRES",
+			index:      1,
+			temp:       temp,
+			site:       "novi",
+		},
+	}
+
+	for _, test := range tests {
+
+		result := CheckMarket(test.eventName, test.selection, test.marketType, test.index, temp, test.site)
+		if result != "" {
+			t.Error("should not find arb")
+			t.Fail()
+		}
+	}
+}
+func Test_CheckMarket_diffOdds(t *testing.T) {
+	temp := make(map[string][]SiteOdd)
+	tests := []struct {
+		eventName  string
+		selection  models.Selection
+		marketType string
+		index      int
+		temp       map[string][]SiteOdd
+		site       string
+	}{
+		{
+			eventName: "test1",
+			selection: models.Selection{
+				Price:    1.3,
+				Name:     "kaka",
+				Line:     1.0,
+				MarketID: 1,
+			},
+			marketType: "MRES",
+			index:      1,
+			temp:       temp,
+			site:       "stoiximan",
+		}, {
+			eventName: "test1",
+			selection: models.Selection{
+				Price:    4,
+				Name:     "kaka",
+				Line:     1.0,
+				MarketID: 1,
+			},
+			marketType: "MRES",
+			index:      1,
+			temp:       temp,
+			site:       "novi",
+		},
+	}
+
+	for index, test := range tests {
+
+		result := CheckMarket(test.eventName, test.selection, test.marketType, test.index, temp, test.site)
+		if index == 0 && result != "" {
+			t.Error("should not find arb")
+			t.Fail()
+		}
+		if index == 1 && result == "" {
+			t.Error("should  find arb")
 			t.Fail()
 		}
 	}

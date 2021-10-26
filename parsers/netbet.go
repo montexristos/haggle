@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
+	"github.com/spf13/cast"
 	"gorm.io/gorm"
 	"haggle/models"
 	"io/ioutil"
@@ -194,10 +195,18 @@ func (n *Netbet) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
 }
 
+func (n *Netbet) GetEventIsLive(event map[string]interface{}) bool {
+	return false
+}
+
 func (n *Netbet) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
 	line := 0.0
 
 	return line
+}
+
+func (n *Netbet) ParseMarketLine(market map[string]interface{}) float64 {
+	return cast.ToFloat64(market["handicap"])
 }
 
 func (n *Netbet) ParseMarketType(market map[string]interface{}) string {
@@ -235,6 +244,7 @@ func (n *Netbet) MatchMarketType(market map[string]interface{}, marketType strin
 func (n *Netbet) ParseMarketId(market map[string]interface{}) string {
 	return market["id"].(string)
 }
+
 func (n *Netbet) GetMarketSelections(market map[string]interface{}) []interface{} {
 	selections := market["choices"].([]interface{})
 	if market["type"].(map[string]interface{})["id"].(float64) == 9 {

@@ -193,6 +193,10 @@ func (p *Fonbet) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
 }
 
+func (p *Fonbet) GetEventIsLive(event map[string]interface{}) bool {
+	return false
+}
+
 func (p *Fonbet) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
 	line := 0.0
 

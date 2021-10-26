@@ -180,10 +180,21 @@ func (p *Betsson) ParseSelectionPrice(selectionData map[string]interface{}) floa
 func (p *Betsson) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
 }
+func (p *Betsson) GetEventIsLive(event map[string]interface{}) bool {
+	return false
+}
 
 func (p *Betsson) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
 	line := 0.0
 	if line, exist := marketData["lineValueRaw"]; exist {
+		return cast.ToFloat64(line)
+	}
+	return line
+}
+
+func (p *Betsson) ParseMarketLine(market map[string]interface{}) float64 {
+	line := 0.0
+	if line, exist := market["lineValueRaw"]; exist {
 		return cast.ToFloat64(line)
 	}
 	return line

@@ -100,6 +100,10 @@ func (p *PokerStars) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
 }
 
+func (p *PokerStars) GetEventIsLive(event map[string]interface{}) bool {
+	return cast.ToBool(event["isInplay"])
+}
+
 func (p *PokerStars) GetEventMarkets(event map[string]interface{}) []interface{} {
 	return event["markets"].([]interface{})
 }
@@ -136,6 +140,10 @@ func (p *PokerStars) ParseSelectionLine(selectionData map[string]interface{}, ma
 	return 0
 }
 
+func (p *PokerStars) ParseMarketLine(market map[string]interface{}) float64 {
+	return cast.ToFloat64(market["line"])
+}
+
 func (p *PokerStars) GetEventDate(event map[string]interface{}) string {
 	return time.Unix(cast.ToInt64(event["eventTime"])/1000, 0).Format("2006-01-02 15:04:05")
 }
@@ -145,9 +153,12 @@ func (p *PokerStars) GetMarketSelections(marketData map[string]interface{}) []in
 	selections := marketData["selection"].([]interface{})
 
 	sort.Slice(selections, func(i, j int) bool {
-		row1 := selections[i].(map[string]interface{})["pos"].(map[string]interface{})["col"].(float64)
-		row2 := selections[j].(map[string]interface{})["pos"].(map[string]interface{})["col"].(float64)
-		return row1 < row2
+		if selections[i] != nil && selections[j] != nil {
+			row1 := selections[i].(map[string]interface{})["pos"].(map[string]interface{})["col"].(float64)
+			row2 := selections[j].(map[string]interface{})["pos"].(map[string]interface{})["col"].(float64)
+			return row1 < row2
+		}
+		return true
 	})
 	return selections
 }

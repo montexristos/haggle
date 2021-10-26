@@ -5,7 +5,7 @@ import (
 )
 
 type Event struct {
-	gorm.Model
+	ID            uint `gorm:"primarykey"`
 	SiteID        int
 	BetradarID    string
 	Name          string

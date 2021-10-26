@@ -144,6 +144,9 @@ func (p *Bet) ParseSelectionLine(selectionData map[string]interface{}, marketDat
 func (p *Bet) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
 }
+func (p *Bet) GetEventIsLive(event map[string]interface{}) bool {
+	return false
+}
 
 func (p *Bet) ParseMarketType(market map[string]interface{}) string {
 	return market["type"].(string)

@@ -1,9 +1,7 @@
 package models
 
-import "gorm.io/gorm"
-
 type Market struct {
-	gorm.Model
+	ID         uint `gorm:"primarykey"`
 	Name       string
 	Type       string
 	MarketType string

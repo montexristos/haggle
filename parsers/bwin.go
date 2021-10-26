@@ -158,6 +158,10 @@ func (b *Bwin) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
 }
 
+func (b *Bwin) GetEventIsLive(event map[string]interface{}) bool {
+	return false
+}
+
 func (b *Bwin) ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64 {
 	line := 0.0
 	//TODO get line

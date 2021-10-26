@@ -9,6 +9,7 @@ import (
 	"gopkg.in/yaml.v2"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 	"haggle/fixtureModels"
 	"haggle/models"
 	"haggle/parsers"
@@ -21,6 +22,7 @@ import (
 	"os"
 	"path"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
 )
@@ -69,7 +71,9 @@ func GetDb() *gorm.DB {
 	//CREATE SCHEMA `haggle` DEFAULT CHARACTER SET utf8 ;
 	// refer https://github.com/go-sql-driver/mysql#dsn-data-source-name for details
 	dsn := "root:123@(localhost:6602)/haggle?charset=utf8&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Silent),
+	})
 	if err != nil {
 		panic(err.Error())
 	}
@@ -254,7 +258,6 @@ func getScrapeResults() (map[string]interface{}, error) {
 		8:  `netbet`,
 		12: `betsson`,
 	}
-	arbs := FindArbs(matches)
 	sites := make(map[int]string)
 	for _, site := range siteList {
 		parser, _ := GetParser(site, GetDb())
@@ -262,6 +265,7 @@ func getScrapeResults() (map[string]interface{}, error) {
 			sites[parser.GetConfig().SiteID] = site
 		}
 	}
+	arbs := FindArbs(matches, sites)
 
 	return map[string]interface{}{
 		"events": matches,
@@ -270,44 +274,101 @@ func getScrapeResults() (map[string]interface{}, error) {
 	}, nil
 }
 
-func FindArbs(matches map[string][]models.Event) map[string]string {
+func FindArbs(matches map[string][]models.Event, sites map[int]string) map[string]string {
 	arbs := make(map[string]string)
-	temp := make(map[string]interface{})
 	for name, siteEvent := range matches {
+		temp := make(map[string][]SiteOdd)
 		for _, event := range siteEvent {
+			site := sites[event.SiteID]
 			for _, market := range event.Markets {
 				for index, selection := range market.Selections {
-					found := checkMarket(event.CanonicalName, selection, market.MarketType, index, temp)
+					found := CheckMarket(event.CanonicalName, selection, market.MarketType, index, temp, site)
 					if found != "" {
 						arbs[name] = found
 					}
 				}
 			}
 		}
+		fmt.Println(len(temp))
 	}
 	return arbs
 }
 
-func checkMarket(eventName string, selection models.Selection, marketType string, index int, temp map[string]interface{}) string {
+type SiteOdd struct {
+	Site       string
+	Price      float64
+	Name       string
+	MarketName string
+	Line       float64
+}
+
+func CheckMarket(eventName string, selection models.Selection, marketType string, index int, temp map[string][]SiteOdd, site string) string {
+	results := make([]string, 0)
 	key := fmt.Sprintf("%s-%d", marketType, index)
 	if selection.Line > 0 {
-		key = fmt.Sprintf("%s-%f", key, selection.Line)
+		key = fmt.Sprintf("%s-%.2f", key, selection.Line)
 	}
-	if sel, found := temp[key]; found {
-		if testArbs(sel.(models.Selection).Price, selection.Price) {
-			return fmt.Sprintf("%s - %s - %s (%.2f - %.2f)", eventName, marketType, key, selection.Price, sel.(models.Selection).Price)
+	arbKey := ""
+	switch marketType {
+	case "HCTG":
+	case "BTSC":
+	case "INTS":
+	case "DNOB":
+	case "OUHG":
+	case "OUAG":
+	case "OUH1":
+	case "OU":
+		arbKey = fmt.Sprintf("%s-%d", marketType, 1-index)
+		if selection.Line > 0 {
+			arbKey = fmt.Sprintf("%s-%.2f", arbKey, selection.Line)
 		}
-	} else {
-		temp[key] = selection
 	}
-	return ""
+
+	//skip some markets for now
+	if marketType == "DBLC" || selection.Price > 10 {
+		return ""
+	}
+	if _, found := temp[key]; !found {
+		temp[key] = make([]SiteOdd, 0)
+	}
+	if _, found := temp[arbKey]; found && arbKey != "" {
+		for _, sel := range temp[arbKey] {
+			if testArbs(sel.Price, selection.Price) {
+				results = append(results, fmt.Sprintf("New %s:%s (%s:%.2f - %s:%.2f)", eventName, key, site, selection.Price, sel.Site, sel.Price))
+			}
+		}
+	} else if _, found = temp[key]; found {
+		for _, sel := range temp[key] {
+			if testArbSameIndex(sel.Price, selection.Price) {
+				results = append(results, fmt.Sprintf("%s:%s (%s:%.2f - %s:%.2f)", eventName, key, site, selection.Price, sel.Site, sel.Price))
+			}
+		}
+	}
+	temp[key] = append(temp[key], SiteOdd{
+		Site:       site,
+		Price:      selection.Price,
+		Name:       selection.Name,
+		MarketName: marketType,
+		Line:       selection.Line,
+	})
+	return strings.Join(results, "\r\n")
 }
 
 func testArbs(odd1, odd2 float64) bool {
+	perc1 := 1 / odd1 * 100
+	perc2 := 1 / odd2 * 100
+	arb := math.Round(100*(perc1+perc2)) / 100
+	if arb < 100 {
+		return true
+	}
+	return false
+}
+
+func testArbSameIndex(odd1, odd2 float64) bool {
 	diff := math.Abs(odd1 - odd2)
 	max := math.Max(odd1, odd2)
 	thres := diff * 100 / max
-	if thres > 20 {
+	if thres > 30 {
 		return true
 	}
 	return false

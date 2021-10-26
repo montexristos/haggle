@@ -118,9 +118,122 @@ Italy Serie B:
   betsson:
   netbet: ποδόσφαιρο/ιταλία/2η-κατηγορία/
   novibet: api/marketviews/coupon/16/440817/4135301?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
-Serie C:
+Italy Serie C:
   stoiximan: sport/soccer/italy/serie-c/17714/
   pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=12982440&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
   betsson:
   netbet: ποδόσφαιρο/ιταλία/3η-κατηγορία/
   novibet: api/marketviews/coupon/16/440817/472014?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Egypt Premier:
+  stoiximan: sport/podosfairo/aigyptos/premier-league/17906r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=14385225&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/463903?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/egypt/πρέμιερ-λιγκ/
+Aithiopia Premier:
+  stoiximan: sport/podosfairo/aithiopia/premier-league/187259r/
+  novibet: api/marketviews/coupon/16/440817/466737?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Japan J2 League:
+  stoiximan: sport/podosfairo/iapwnia/j2-league/17059r/
+  netbet: ποδόσφαιρο/ιαπωνία/j-league-2/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10679971&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+#India Super ligue:
+#  stoiximan: sport/podosfairo/india/punjab-super-league/191101r/
+India Dehli:
+  stoiximan: sport/podosfairo/india/delhi-senior-division/17884r/
+  novibet: api/marketviews/coupon/16/440817/464371?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+Indonesia League 1:
+  stoiximan: sport/podosfairo/indonisia/liga-1/17839r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=15203217&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/464417?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/ινδονησία/λίγκα-1/
+#Indonesia League 2:
+#  stoiximan: sport/podosfairo/indonisia/liga-2/187699r/
+#  pokerstars:
+#  novibet:
+#  netbet: ποδόσφαιρο/ινδονησία/liga-2/
+#Indonesia League 3:
+#  stoiximan: sport/podosfairo/indonisia/liga-3/191435r/
+#  pokerstars:
+#  novibet:
+#  netbet:
+Jordan League 1:
+  stoiximan: sport/podosfairo/iordania/1i-katigoria/17765r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=15717326&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/464451?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/ιορδανία/1η-κατηγορία/
+Qatar Stars League:
+  stoiximan: sport/podosfairo/katar/stars-league/17539r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10966799&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/464644?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/κατάρ/τμήμα-1/
+Argentina Pro league:
+  stoiximan: sport/podosfairo/argedini/liga-profesional/195785r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=12285431&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/4097061?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/αργεντινή/επαγγελματική-λίγκα-ποδοσφαίρου/
+Argentina Primera B:
+  stoiximan: sport/podosfairo/argedini/primera-b-nacional/17244r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=17777614&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/463784?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/αργεντινή/πρώτη-εθνική/
+Argentina Primera C:
+  stoiximan: sport/podosfairo/argedini/primera-c-metropolitana/17548r/
+  pokerstars:
+  novibet:
+  netbet: ποδόσφαιρο/αργεντινή/primera-c/
+Bolivia Division Profesional:
+  stoiximan: sport/podosfairo/volivia/division-profesional/18274r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=17696125&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/563181?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/βολιβία/πριμέρα-ντιβισιόν,-κλαουσούρα/
+Brazil Serie A:
+  stoiximan: sport/podosfairo/vrazilia/brasileirao-serie-a/10016r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10679997&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/463883?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/βραζιλία/brasileirão/
+Brazil Serie B:
+  stoiximan: sport/podosfairo/vrazilia/brasileirao-serie-b/10017r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=13214590&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/463884?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/βραζιλία/brasileirão-série-b/
+
+Guatemala Ligue Nacional:
+  stoiximan: sport/podosfairo/gouatemala/liga-nacional/17412r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=14970216&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/466624?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/γουατεμάλα/εθνική-λίγκα/
+USA MLS:
+  stoiximan: sport/podosfairo/ipa/mls/17103r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10679978&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/466568?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/ηπα/μέιτζορ-λιγκ-σόκερ/
+USA USL:
+  stoiximan: sport/podosfairo/ipa/usl-championship/18090r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=12982253&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/466580?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/ηπα/πρωτάθλημα-usl/
+Ecuador:
+  stoiximan: sport/podosfairo/isimerinos/liga-pro-serie-a/17249r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=19509907&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/463921?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/εκουαδόρ/ligapro-primera-a/
+Canada Premier:
+  stoiximan: sport/podosfairo/kanadas/premier-league/194888r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=14911612&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/1846457?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/καναδάς/πρέμιερ-λιγκ-(can)/
+Colombia Premier:
+  stoiximan: sport/podosfairo/kolomvia/categoria-primera-a/16940r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=19561291&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/463915?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/κολομβία/πρώτη-α,-κλαουσούρα/
+Mexico Liga MX:
+  stoiximan: sport/podosfairo/meksiko/liga-mx/17264r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680256&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/559547?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/μεξικό/primera-division-(mex)/
+Mexico Ascensio:
+  stoiximan: sport/podosfairo/meksiko/liga-de-expansion-mx/195435r/
+  pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680176&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
+  novibet: api/marketviews/coupon/16/440817/466680?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  netbet: ποδόσφαιρο/μεξικό/liga-de-expansion-mx/

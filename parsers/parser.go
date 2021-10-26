@@ -29,6 +29,7 @@ type Parser interface {
 	GetEventCanonicalName(event map[string]interface{}) string
 	GetEventDate(event map[string]interface{}) string
 	GetEventIsAntepost(event map[string]interface{}) bool
+	GetEventIsLive(event map[string]interface{}) bool
 	GetEventMarkets(event map[string]interface{}) []interface{}
 	ParseMarketType(market map[string]interface{}) string
 	MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error)
@@ -43,6 +44,7 @@ type Parser interface {
 	GetConfig() *models.SiteConfig
 	FetchEvent(e *models.Event) error
 	GetEventUrl(event map[string]interface{}) string
+	ParseMarketLine(market map[string]interface{}) float64
 }
 
 func GetSiteID(p Parser) int {
@@ -51,6 +53,9 @@ func GetSiteID(p Parser) int {
 
 func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 	if p.GetEventIsAntepost(event) {
+		return &models.Event{}, fmt.Errorf("antepost")
+	}
+	if p.GetEventIsLive(event) {
 		return &models.Event{}, fmt.Errorf("antepost")
 	}
 	eventID := p.GetEventID(event)
@@ -133,10 +138,19 @@ func ParseMarket(p Parser, market map[string]interface{}, event models.Event) (m
 		Type:       marketType,
 		MarketType: marketTypeId.Name,
 	}
+	line := p.ParseMarketLine(market)
+	if line > 0.0 {
+		m.Line = line
+	}
 	selections := ParseMarketSelections(p, market)
 	for _, selection := range selections {
 		if selection != nil {
 			sel := ParseSelection(p, market, selection.(map[string]interface{}))
+			if sel.Line > 0 && m.Line > 0 {
+				if sel.Line != m.Line {
+					continue
+				}
+			}
 			if sel.Line > 0.0 {
 				m.Line = sel.Line
 			}

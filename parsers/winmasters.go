@@ -130,6 +130,10 @@ func (w *Winmasters) GetEventIsAntepost(event map[string]interface{}) bool {
 	return event["type"] == "Outright"
 }
 
+func (w *Winmasters) GetEventIsLive(event map[string]interface{}) bool {
+	return event["live"] == "true"
+}
+
 func (w *Winmasters) GetEventID(event map[string]interface{}) string {
 	return cast.ToString(event["id"])
 }

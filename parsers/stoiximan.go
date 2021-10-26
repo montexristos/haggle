@@ -152,6 +152,10 @@ func (s *Stoiximan) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
 }
 
+func (s *Stoiximan) GetEventIsLive(event map[string]interface{}) bool {
+	return cast.ToBool(event["liveNow"])
+}
+
 func (s *Stoiximan) ParseMarketType(market map[string]interface{}) string {
 	return market["type"].(string)
 }
@@ -163,8 +167,10 @@ func (s *Stoiximan) MatchMarketType(market map[string]interface{}, marketType st
 	case "MRES":
 		return models.NewMatchResult().MarketType, nil
 	case "HCTG":
-		handicap := cast.ToFloat64(market["handicap"])
-		return models.NewOverUnderHandicap(handicap).MarketType, nil
+		if len(market["selections"].([]interface{})) < 3 {
+			handicap := cast.ToFloat64(market["handicap"])
+			return models.NewOverUnderHandicap(handicap).MarketType, nil
+		}
 	case "BTSC":
 		return models.NewBtts().MarketType, nil
 	case "INTS":
@@ -174,18 +180,28 @@ func (s *Stoiximan) MatchMarketType(market map[string]interface{}, marketType st
 	case "DNOB":
 		return models.NewDrawNoBet().MarketType, nil
 	case "OUHG":
-		handicap := cast.ToFloat64(market["handicap"])
-		return models.NewUnderOverHome(handicap).MarketType, nil
+		if len(market["selections"].([]interface{})) < 3 {
+			handicap := cast.ToFloat64(market["handicap"])
+			return models.NewUnderOverHome(handicap).MarketType, nil
+		}
 	case "OUAG":
-		handicap := cast.ToFloat64(market["handicap"])
-		return models.NewUnderOverAway(handicap).MarketType, nil
+		if len(market["selections"].([]interface{})) < 3 {
+			handicap := cast.ToFloat64(market["handicap"])
+			return models.NewUnderOverAway(handicap).MarketType, nil
+		}
 	case "OUH1":
-		handicap := cast.ToFloat64(market["handicap"])
-		return models.NewUnderOverHalf(handicap).MarketType, nil
+		if len(market["selections"].([]interface{})) < 3 {
+			handicap := cast.ToFloat64(market["handicap"])
+			return models.NewUnderOverHalf(handicap).MarketType, nil
+		}
 	case "FG28":
 		return models.NewFirstGoalEarly().MarketType, nil
 	}
 	return models.MarketType{}, fmt.Errorf("could not match market type")
+}
+
+func (s *Stoiximan) ParseMarketLine(market map[string]interface{}) float64 {
+	return cast.ToFloat64(market["handicap"])
 }
 
 func (s *Stoiximan) ParseMarketId(market map[string]interface{}) string {
