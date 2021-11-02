@@ -106,7 +106,6 @@ class Competitions extends React.Component {
             })
 
             competitions = <table id="events">
-                {/*<button onClick={this.sortTable}>sort</button>*/}
                 {tableHeader}
                 <tbody>
                 {events}

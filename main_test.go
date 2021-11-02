@@ -200,6 +200,13 @@ func Test_getScrapeResults(t *testing.T) {
 	}
 
 }
+func Test_getAllResults(t *testing.T) {
+	resp := AllResults()
+	if len(resp["arbs"].(map[string]string)) > 0 {
+		t.Log("found")
+	}
+
+}
 func Test_getArbDetect(t *testing.T) {
 	tests := []struct {
 		odd1   float64

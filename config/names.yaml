@@ -12,8 +12,8 @@
 AA Gent: Gent
 ABC: ABC
 AC Ajaccio: Ajaccio
-AC Fiorentina: AC Fiorentina
-AC Milan: AC Milan
+AC Fiorentina: Fiorentina
+AC Milan: Milan
 AC Monza: Monza
 AC Omonia Nicosia: Omonia Nicosia
 AC Perugia Calcio: Perugia Calcio
@@ -22,12 +22,11 @@ AC Reggiana 1919: Reggiana
 AC Renate: Renate
 ACF Fiorentina: Fiorentina
 ACN Siena 1904: Siena
-ACS Progresul Pecica: ACS Progresul Pecica
-ACS Vedita Colonesti MS: ACS Vedita Colonesti MS
-ACS Viitorul Târgu Jiu: ACS Viitorul Târgu Jiu
+ACS Progresul Pecica: Progresul Pecica
+ACS Vedita Colonesti MS: Vedita Colonesti MS
+ACS Viitorul Târgu Jiu: Viitorul Târgu Jiu
 AD Guanacasteca: AD Guanacasteca
 ADO Den Haag: ADO Den Haag
-ADO Den Haag (W): ADO Den Haag (W)
 AE Limassol: AE Limassol
 AEK Athens: AEK Athens
 AEK Larnaca: AEK Larnaca
@@ -81,11 +80,11 @@ Aboian L: Aboian L
 Academia Puerto Cabello: Academia Puerto Cabello
 Academica Clinceni: Academica Clinceni
 Academica Coimbra: Academica Coimbra
-Academica De Coimbra: Academica De Coimbra
+Academica De Coimbra: Academica Coimbra
 Academica Viseu: Academica Viseu
-Academica de Coimbra: Academica de Coimbra
+Academica de Coimbra: Academica Coimbra
 Academico Viseu: Academico Viseu
-Académico de Viseu FC: Académico de Viseu
+Académico de Viseu FC: Académico Viseu
 Accrington: Accrington
 Acr Messina: Messina
 Adam Januska: Adam Januska
@@ -158,7 +157,7 @@ Albie A: Albie A
 Albinoleffe: Albinoleffe
 Albion FC: Albion
 Albion Rovers: Albion
-Albion Rvs: Albion Rvs
+Albion Rvs: Albion
 Albirex Niigata: Albirex Niigata
 Alcorcon: Alcorcon
 Aldershot: Aldershot
@@ -192,7 +191,7 @@ Alondras: Alondras
 Als Omonia: Als Omonia
 Altay: Altay
 Altay Barnaul: Altay Barnaul
-Altay Izmir: Altay Izmir
+Altay Izmir: Altay
 Altay SK: Altay
 Altay Torpedo: Altay Torpedo
 Altglienicke: Altglienicke
@@ -208,7 +207,7 @@ Amazulu: Amazulu
 Ambre Feder: Ambre Feder
 Amed Sportif Faliyetler: Amed Sportif Faliyetler
 Amedspor: Amedspor
-America MG: America MG
+America MG: America Mg
 Amiens: Amiens
 Amiens SC: Amiens
 Amina Anshba: Amina Anshba
@@ -229,7 +228,7 @@ Andrii Hrytsai: Andrii Hrytsai
 Andrii Sydorenko: Andrii Sydorenko
 Angelholms FF: Angelholms FF
 Angers: Angers
-Angers SCO: Angers SCO
+Angers SCO: Angers
 Ani Vangelova: Ani Vangelova
 Ankara Demirspor: Ankara Demirspor
 Ankaraspor Kulübü: Ankaraspor Kulübü
@@ -267,8 +266,8 @@ Aris: Aris
 Aris Limassol: Aris Limassol
 Aris Limassol FC: Aris Limassol
 Aris Saloniki: Aris
-Aris Thessaloniki: Aris Thessaloniki
-Aris Thessalonikis: Aris Thessalonikis
+Aris Thessaloniki: Aris
+Aris Thessalonikis: Aris
 Arka Gdynia: Arka Gdynia
 Arkas Izmir: Arkas Izmir
 Arklon Huertas Del Pino Cordova: Arklon Huertas Del Pino Cordova
@@ -313,8 +312,8 @@ Ath Madrid: Ath Madrid
 Atherton Collieries: Atherton Collieries
 Athletic Bilbao: Athletic Bilbao
 Athletic Bilbao (Void) Esports: Athletic Bilbao (Void) Esports
-Athletico: Athletico
-Athletico Venezuela: Athletico Venezuela
+Athletico: Atletico
+Athletico Venezuela: Atletico Venezuela
 Athlone Town: Athlone Town
 Atibaia SP: Atibaia SP
 Atl. Goianiense: Atl. Goianiense
@@ -322,17 +321,16 @@ Atlante: Atlante
 Atletico GO: Atletico GO
 Atletico MG: Atletico MG
 Atletico Madrid: Atletico Madrid
-Atletico Madrid (Zohan) Esports: Atletico Madrid (Zohan) Esports
 Atletico Nacional Medellin: Atletico Nacional Medellin
-Atletico PR: Atletico PR
+Atletico PR: Atletico
 Atletico Rafaela: Atletico Rafaela
 Atletico Votuporanguense SP: Atletico Votuporanguense SP
 Atlético Madrid: Atlético Madrid
 Atomeromu SE: Atomeromu SE
 Atromitos: Atromitos
 Atromitos Athen: Atromitos
-Atromitos Athinon: Atromitos Athinon
-Atromitos FC Athens: Atromitos FC Athens
+Atromitos Athinon: Atromitos
+Atromitos FC Athens: Atromitos
 Atyra FC: Atyra
 Atzeneta UE: Atzeneta UE
 Audace Cerignola: Audace Cerignola
@@ -372,7 +370,7 @@ BC Tskhum: BC Tskhum
 BC Vienna: BC Vienna
 BCV Glesch: BCV Glesch
 BFC Dynamo: BFC Dynamo
-BFC Viktoria  Berlin: BFC Viktoria  Berlin
+BFC Viktoria  Berlin: Viktoria Berlin
 BG Pathum United: BG Pathum United
 BG Pathum United F.C: BG Pathum United F.C
 BIG: BIG
@@ -394,7 +392,7 @@ BaBel United: BaBel United
 Baalama: Baalama
 Babelsberg: Babelsberg
 Badenhorst D: Badenhorst D
-Bahia Ilha do Retiro: Bahia Ilha do Retiro
+Bahia Ilha do Retiro: Bahia
 Bahrain: Bahrain
 Bahrain SC: Bahrain SC
 Bahri F: Bahri F
@@ -428,7 +426,7 @@ Battaglino S: Battaglino S
 Bax F: Bax F
 Bayburt Grup: Bayburt Grup
 Bayburt Ozel Idare SK: Bayburt Ozel Idare SK
-Bayer 04 Leverkusen: Bayer 04 Leverkusen
+Bayer 04 Leverkusen: Bayer Leverkusen
 Bayer Leverkusen: Bayer Leverkusen
 Bayern Munich: Bayern Munich
 Bayern München: Bayern Munich
@@ -484,7 +482,7 @@ Blackburn: Blackburn
 Blackburn Rovers: Blackburn
 Blackburn Rovers FC: Blackburn
 Blackpool: Blackpool
-Blackpool FC: Blackpool FC
+Blackpool FC: Blackpool
 Blanchet U: Blanchet U
 Blau: Blau
 Blaublitz Akita: Blaublitz Akita
@@ -550,16 +548,16 @@ Braunschweig: Braunschweig
 Bray Wanderers: Bray Wanderers
 Brechin: Brechin
 Breda: Breda
-Brentford: Brentford
-Brentford FC: Brentford
+Brentford: Bredford
+Brentford FC: Bredford
 Brescia: Brescia
-Brescia Calcio: Brescia Calcio
+Brescia Calcio: Brescia
 Brest: Brest
 Brest 2: Brest 2
 Brighton: Brighton
-Brighton & Hove Albion: Brighton & Hove Albion
+Brighton & Hove Albion: Brighton
 Brighton & Hove Albion FC: Brighton
-Brighton And Hove Albion: Brighton And Hove Albion
+Brighton And Hove Albion: Brighton
 Brighton U23: Brighton U23
 Brindisi: Brindisi
 Bristol City: Bristol
@@ -591,67 +589,67 @@ Butulija B: Butulija B
 Buxton FC: Buxton FC
 Bychkova E: Bychkova E
 Büyüksehir Belediye Erzurumspor: Büyüksehir Belediye Erzurumspor
-C.S.D. Defensa y Justicia: C.S.D. Defensa y Justicia
+C.S.D. Defensa y Justicia: Defensa Y Justicia
 C.s. Arcada Galati: C.s. Arcada Galati
-CA Aldosivi: CA Aldosivi
-CA Aldosivi II: CA Aldosivi II
-CA Cerro: CA Cerro
-CA Juventud De Las Piedras: CA Juventud De Las Piedras
-CA Osasuna: CA Osasuna
-CA San Telmo: CA San Telmo
-CA Sarmiento: CA Sarmiento
-CA Talleres de Cordoba: CA Talleres de Cordoba
-CA Union de Santa Fe: CA Union de Santa Fe
-CD Binissalem: CD Binissalem
-CD Cobreloa Calama: CD Cobreloa Calama
-CD Cova Piedade: CD Cova Piedade
+CA Aldosivi: Aldosivi
+CA Aldosivi II: Aldosivi II
+CA Cerro: Cerro
+CA Juventud De Las Piedras: Juventud De Las Piedras
+CA Osasuna: Osasuna
+CA San Telmo: San Telmo
+CA Sarmiento: Sarmiento
+CA Talleres de Cordoba: Talleres de Cordoba
+CA Union de Santa Fe: Union de Santa Fe
+CD Binissalem: Binissalem
+CD Cobreloa Calama: Cobreloa
+CD Cova Piedade: Cova Piedade
 CD Feirense: Feirense
-CD Guijuelo: CD Guijuelo
-CD Izarra: CD Izarra
-CD Llosetense: CD Llosetense
+CD Guijuelo: Guijuelo
+CD Izarra: Izarra
+CD Llosetense: Llosetense
 CD Mafra: Mafra
-CD Nacional Madeira: CD Nacional Madeira
-CD O'Higgins: CD O'Higgins
+CD Nacional Madeira: Nacional Madeira
+CD O'Higgins: O'Higgins
 CD Santa Clara: Santa Clara
-CD Santamarina Tandil: CD Santamarina Tandil
-CD Toledo: CD Toledo
+CD Santamarina Tandil: Santamarina Tandil
+CD Toledo: Toledo
 CD Tondela: Tondela
-CD Trofense: CD Trofense
+CD Trofense: Trofense
 CD Universidad Católica: Universidad Catolica
-CD Universitario: CD Universitario
-CD Λάρα: CD Lara
-CDA Navalcarnero: CDA Navalcarnero
-CDA Santo Domingo: CDA Santo Domingo
-CE Campos: CE Campos
-CF Estrela: CF Estrela
+CD Universitario: Universitario
+CD Λάρα: Lara
+CDA Navalcarnero: Navalcarnero
+CDA Santo Domingo: Santo Domingo
+CE Campos: Campos
+CF Estrela: Estrela
 CF Os Belenenses: Belenenses
-CF Platges de Calvia: CF Platges de Calvia
-CF Soller: CF Soller
-CF Villanovense: CF Villanovense
-CF Villarreal B: CF Villarreal B
-CO Medenine: CO Medenine
-CS Deportivo de Pereira: CS Deportivo de Pereira
+CF Platges de Calvia: Platges de Calvia
+CF Soller: Soller
+CF Villanovense: Villanovense
+CF Villarreal B: Villarreal B
+CO Medenine: Medenine
+CS Deportivo de Pereira: Deportivo Pereira
 CS Maritimo: Marítimo
 CS Marítimo: Marítimo
-CS Mioveni: CS Mioveni
-CS Progresul Somcuta Mare: CS Progresul Somcuta Mare
-CS Rapid Bucuresti: CS Rapid Bucuresti
-CS Sedan Ardennes: CS Sedan Ardennes
-CS Soimii Lipova: CS Soimii Lipova
-CS Tunari: CS Tunari
-CS Universitatea Craiova II: CS Universitatea Craiova II
-CSA Steaua Bucuresti: CSA Steaua Bucuresti
-CSA Στεάουα: CSA Steaua
-CSC Ghiroda Si Giarmata VII: CSC Ghiroda Si Giarmata VII
-CSD Comunicaciones: CSD Comunicaciones
-CSK Vvs Samara: CSK Vvs Samara
+CS Mioveni: Mioveni
+CS Progresul Somcuta Mare: Progresul Somcuta Mare
+CS Rapid Bucuresti: Rapid Bucuresti
+CS Sedan Ardennes: Sedan Ardennes
+CS Soimii Lipova: Soimii Lipova
+CS Tunari: Tunari
+CS Universitatea Craiova II: Universitatea Craiova II
+CSA Steaua Bucuresti: Steaua Bucuresti
+CSA Στεάουα: Steaua
+CSC Ghiroda Si Giarmata VII: Ghiroda Si Giarmata VII
+CSD Comunicaciones: Comunicaciones
+CSK Vvs Samara: Vvs Samara
 CSKA 1948 Sofia: CSKA 1948 Sofia
 CSKA Moscow: CSKA Moscow
 CSM Fetesti: CSM Fetesti
 CSM Ploiesti: CSM Ploiesti
 CSM Politehnica Iasi: CSM Politehnica Iasi
 CSM Ramnicu: CSM Ramnicu
-CSO Plopeni: CSO Plopeni
+CSO Plopeni: Plopeni
 Cabinteely FC: Cabinteely
 Cabral F: Cabral F
 Cadiz: Cadiz
@@ -662,7 +660,7 @@ Cagliari: Cagliari
 Cagliari Calcio: Cagliari
 Caijsa Wilda Hennemann: Caijsa Wilda Hennemann
 Calcio Biancavilla 1990: Calcio Biancavilla 1990
-Calcio Padova: Calcio Padova
+Calcio Padova: Padova
 Cambridge: Cambridge
 Cambridge United: Cambridge United
 Cambuur: Cambuur
@@ -697,16 +695,16 @@ Catanzaro: Catanzaro
 Cavalry FC: Cavalry FC
 Caykur Rizespor: Caykur Rizespor
 Ceara: Ceara
-Ceará SC CE: Ceará SC CE
+Ceará SC CE: Ceara
 Celta: Celta
 Celta II: Celta II
 Celta Vigo: Celta Vigo
-Celta de Vigo: Celta de Vigo
+Celta de Vigo: Celta Vigo
 Celtic: Celtic
 Centenario: Centenario
 Central Ballester: Central Ballester
-Central Cordoba Rosario: Central Cordoba Rosario
-Central Cordoba Santiago: Central Cordoba Santiago
+Central Cordoba Rosario: Central Cordoba
+Central Cordoba Santiago: Central Cordoba
 Central Espanol: Central Espanol
 Central Espanol U19: Central Espanol U19
 Centro Espanol: Centro Espanol
@@ -722,7 +720,7 @@ Ceuta: Ceuta
 Ceyhanspor: Ceyhanspor
 Chacaritas SC: Chacaritas SC
 Chambly: Chambly
-Chamois Niortais FC: Chamois Niortais
+Chamois Niortais FC: Niort
 Chantal Sauvant: Chantal Sauvant
 Chapecoense: Chapecoense
 Charleroi: Charleroi
@@ -762,8 +760,8 @@ Ciudad Nueva Santa Cruz: Ciudad Nueva Santa Cruz
 Cizre BLD: Cizre BLD
 Clement Tabur: Clement Tabur
 Clermont: Clermont
-Clermont Foot: Clermont Foot
-Clermont Foot 63: Clermont Foot 63
+Clermont Foot: Clermont
+Clermont Foot 63: Clermont
 Cliftonville: Cliftonville
 Club Almagro: Club Almagro
 Club Athletico Atlanta: Club Athletico Atlanta
@@ -797,8 +795,8 @@ Coleraine: Coleraine
 Collignon R: Collignon R
 Colo: Colo
 Colo Colo: Colo Colo
-Colon Santa FE: Colon Santa FE
-Colon de Santa Fe II: Colon de Santa Fe II
+Colon Santa FE: Colon
+Colon de Santa Fe II: Colon II
 Como: Como
 Como 1907: Como
 Concarneau: Concarneau
@@ -854,7 +852,7 @@ Curacao: Curacao
 Curico Unido: Curico Unido
 Curicó Unido: Curico Unido
 Cynthia: Cynthia
-Cádiz: Cádiz
+Cádiz: Cadiz
 DJK Ammerthal: DJK Ammerthal
 DNU Dnipro (W): DNU Dnipro (W)
 DSC Arminia Bielefeld: DSC Arminia Bielefeld
@@ -890,7 +888,7 @@ Deportes La Serena: Deportes La Serena
 Deportes Melipilla: Deportes Melipilla
 Deportes Santa Cruz: Deportes Santa Cruz
 Deportes Temuco: Deportes Temuco
-Deportivo Alaves: Deportivo Alaves
+Deportivo Alaves: Alaves
 Deportivo Cuenca: Deportivo Cuenca
 Deportivo La Coruna: Deportivo La Coruna
 Deportivo Llacuabamba: Deportivo Llacuabamba
@@ -908,7 +906,6 @@ Derby County FC: Derby
 Derry City: Derry City
 Derthona: Derthona
 Desenzano Calvina: Desenzano Calvina
-Dev, S D Prajwal: Dev, S D Prajwal
 Diagoras Rodou: Diagoras Rodou
 Diane Parry: Diane Parry
 Dijon: Dijon
@@ -938,7 +935,7 @@ Dorogi FC: Dorogi FC
 Dortmund: Dortmund
 Douglas Haig: Douglas Haig
 Dover Athletic: Dover Athletic
-Doxa Katokopia: Doxa Katokopia
+Doxa Katokopia: Doxa Katokopias
 Doxa Katokopias: Doxa Katokopias
 Doxa Katokopias FC: Doxa Katokopias
 Drassburg: Drassburg
@@ -966,7 +963,7 @@ Duzcespor: Duzcespor
 Dynamo: Dynamo
 Dynamo Dresden: Dynamo Dresden
 Dynamo Kiev: Dynamo Kiev
-EA Guingamp: EA Guingamp
+EA Guingamp: Guingampes
 EC Kyiv: EC Kyiv
 EIF: EIF
 EPS: EPS
@@ -1008,7 +1005,7 @@ Emelec: Emelec
 Emlak Konut SK (W): Emlak Konut SK (W)
 Emmen: Emmen
 Empoli: Empoli
-Empoli FC: Empoli FC
+Empoli FC: Empoli
 Energetik BGU Minsk: Energetik BGU Minsk
 Energie Cottbus: Energie Cottbus
 England: England
@@ -1020,8 +1017,8 @@ Entella: Entella
 Erbaaspor: Erbaaspor
 Ergene Velimese Spor: Ergene Velimese Spor
 Ergotelis: Ergotelis
-Erzgebirge: Erzgebirge
-Erzgebirge Aue: Erzgebirge Aue
+Erzgebirge: Aue
+Erzgebirge Aue: Aue
 Erzincanspor: Erzincanspor
 Erzurum Buyuksehir: Erzurum Buyuksehir
 Erzurum Buyuksehir Belediyesi Spor: Erzurum Buyuksehir Belediyesi Spor
@@ -1044,8 +1041,8 @@ Etimesgut Belediyespor: Etimesgut Belediyespor
 Eupen: Eupen
 Everton: Everton
 Everton FC: Everton
-Everton de Vina Del Mar: Everton de Vina Del Mar
-Everton de Vina del Mar: Everton de Vina del Mar
+Everton de Vina Del Mar: Everton
+Everton de Vina del Mar: Everton
 Ewan Moore: Ewan Moore
 Excelsior: Excelsior
 Excelsior Rotterdam: Excelsior Rotterdam
@@ -1116,8 +1113,8 @@ FC Hegelmann Litauen Kaunas: Hegelmann Litauen Kaunas
 FC Heidenheim: Heidenheim
 FC Honka: Honka
 FC Hurth: Hurth
-FC Ingolstadt 04: Ingolstadt 04
-FC Ingolstadt 04 II: Ingolstadt 04 II
+FC Ingolstadt 04: Ingolstadt
+FC Ingolstadt 04 II: Ingolstadt II
 FC Internazionale Milano: Inter
 FC Ismaning: Ismaning
 FC Juarez U20: Juarez U20
@@ -1195,7 +1192,7 @@ FC Smorgon: Smorgon
 FC Sochaux: Sochaux
 FC Sokol Saratov: Sokol Saratov
 FC Spartak Velka Bites: Spartak Velka Bites
-FC Spinea 1966: Spinea 1966
+FC Spinea 1966: Spinea
 FC St Pauli: St Pauli
 FC Strani: Strani
 FC Strumska Slava Radomir: Strumska Slava Radomir
@@ -1275,18 +1272,18 @@ FK Turon: Turon
 FK Tuzla City: Tuzla City
 FK Tyumen: Tyumen
 FK Vardar: Vardar
-FK Varnsdorf: FK Varnsdorf
+FK Varnsdorf: Varnsdorf
 FK Zeleziarne Podbrezova: Zeleziarne Podbrezova
 FK Zeleznicar Pancevo: Zeleznicar Pancevo
 FK Zeljeznicar: Zeljeznicar
 FK Zemun: Zemun
-FK Zlatibor: FK Zlatibor
+FK Zlatibor: Zlatibor
 FK Πανεβέζις: Panevezis
-FM Auska Alytaus: FM Auska Alytaus
-FSV Duisburg: FSV Duisburg
+FM Auska Alytaus: Auska Alytaus
+FSV Duisburg: Duisburg
 FSV Mainz: Mainz
-FSV Mainz 05: FSV Mainz 05
-FSV Optik Rathenow: FSV Optik Rathenow
+FSV Mainz 05: Mainz
+FSV Optik Rathenow: Optik Rathenow
 FSV Salmrohr: FSV Salmrohr
 FSV Zwickau: Zwickau
 FURIA Academy: FURIA Academy
@@ -1314,8 +1311,8 @@ Farul Constantaa II: Farul Constantaa II
 Fasil Kenema: Fasil Kenema
 Fasil Ketema: Fasil Ketema
 Fatih Karagumruk: Fatih Karagumruk
-Fatih Karagumruk Istanbul: Fatih Karagumruk Istanbul
-Fatih Karagumruk SK: Fatih Karagumruk SK
+Fatih Karagumruk Istanbul: Fatih Karagumruk
+Fatih Karagumruk SK: Fatih Karagumruk
 Fatra Zlin: Fatra Zlin
 Fatsa Belediyespor: Fatsa Belediyespor
 Faze Clan: Faze Clan
@@ -1341,7 +1338,7 @@ Filip Peliwo: Filip Peliwo
 Finn Harps: Finn Harps
 Fiona Ganz: Fiona Ganz
 Fiorentina: Fiorentina
-Fiorentina AC: Fiorentina AC
+Fiorentina AC: Fiorentina
 Fiorenzuola: Fiorenzuola
 First Vienna FC: First Vienna FC
 Fita Boluda A: Fita Boluda A
@@ -1408,7 +1405,7 @@ Gazişehir Gaziantep FK: Gaziantep
 General Diaz: General Diaz
 Genk: Genk
 Genoa: Genoa
-Genoa CFC: Genoa CFC
+Genoa CFC: Genoa
 Genov A: Genov A
 Gent: Gent
 Georgia Andreea Craciun: Georgia Andreea Craciun
@@ -1445,7 +1442,7 @@ Glentoran: Glentoran
 Glimt: Glimt
 Gloria Buzau: Gloria Buzau
 Gnistan: Gnistan
-Go Ahead Eagles: Go Ahead Eagles
+Go Ahead Eagles: Eagles
 Godoy Cruz: Godoy Cruz
 Goias: Goias
 Gondomar: Gondomar
@@ -1455,11 +1452,11 @@ Goteborg: Goteborg
 Gottne IF: Gottne IF
 Goytre United FC: Goytre United
 Goztepe: Goztepe
-Goztepe SK: Goztepe SK
+Goztepe SK: Goztepe
 Gpso 92 Issy (W): Gpso 92 Issy (W)
 Gran Valencia: Gran Valencia
 Granada: Granada
-Granada CF: Granada CF
+Granada CF: Granada
 Grantham: Grantham
 Gravina: Gravina
 Grbalj Radanovici: Grbalj Radanovici
@@ -1469,7 +1466,7 @@ Green Eagles: Green Eagles
 Greenock Morton: Greenock Morton
 Greenville Triumph SC: Greenville Triumph SC
 Greifswalder FC: Greifswalder FC
-Gremio Fbpa RS: Gremio Fbpa RS
+Gremio Fbpa RS: Gremio
 Grenoble: Grenoble
 Grenoble Foot 38: Grenoble Foot
 Gresford Athletic: Gresford Athletic
@@ -1490,15 +1487,15 @@ Gubbio: Gubbio
 Gubbio 1910: Gubbio
 Guilsfield: Guilsfield
 Guimaraes: Guimaraes
-Guingamp: Guingamp
-Guizhou Hengfeng FC: Guizhou Hengfeng FC
-Guizhou Zhicheng FC: Guizhou Zhicheng FC
+Guingamp: Guingampes
+Guizhou Hengfeng FC: Guizhou Hengfeng
+Guizhou Zhicheng FC: Guizhou Zhicheng
 Gumushanespor: Gumushanespor
 Gutersloh: Gutersloh
 Gyeongnam FC: Gyeongnam
-Gyirmot SE: Gyirmot SE
+Gyirmot SE: Gyirmot
 Gyor: Gyor
-Göztepe SK: Göztepe SK
+Göztepe SK: Gοztepe
 HB Koge: HB Koge
 HC 21 Presov: 21 Presov
 HC Ajoie: Ajoie
@@ -1552,7 +1549,7 @@ Hallescher: Hallescher
 Hallescher FC: Hallescher
 Ham Kam: Ham Kam
 Hamburg: Hamburg
-Hamburger SV: Hamburger SV
+Hamburger SV: Hamburg
 Hamilton: Hamilton
 Hammarby: Hammarby
 Hanley Town: Hanley Town
@@ -1606,9 +1603,9 @@ Heerenveen: Heerenveen
 Heidenheim: Heidenheim
 Heilongjiang Lava Spring: Heilongjiang Lava Spring
 Hekimoglu Trabzon: Hekimoglu Trabzon
-Hellas Verona: Hellas Verona
+Hellas Verona: Verona
 Hellas Verona FC: Verona
-Hellas Vérone: Hellas Verona
+Hellas Vérone: Verona
 Heller P: Heller P
 Helmond Sport: Helmond Sport
 Helsingborg: Helsingborg
@@ -1621,9 +1618,9 @@ Heracles Almelo: Heracles Almelo
 Herediano: Herediano
 Heroic: Heroic
 Hertha: Hertha
-Hertha BSC: Hertha BSC
-Hertha BSC Berlin: Hertha BSC Berlin
-Hertha Berlin: Hertha Berlin
+Hertha BSC: Hertha
+Hertha BSC Berlin: Hertha
+Hertha Berlin: Hertha
 Hibernian: Hibernian
 Hiesfeld: Hiesfeld
 Hillerod Fodbold: Hillerod Fodbold
@@ -1704,9 +1701,9 @@ Instituto AC Cordoba: Instituto AC Cordoba
 Inter: Inter
 Inter Club De Escaldes: Inter Club De Escaldes
 Inter Ibiza: Inter Ibiza
-Inter Miami CF: Inter Miami CF
+Inter Miami CF: Inter Miami
 Inter Milan: Inter
-Inter Milano: Inter Milano
+Inter Milano: Inter
 Inter Turkspor Kiel: Inter Turkspor Kiel
 Inter Turku: Inter Turku
 Inter Zapresic: Inter Zapresic
@@ -1893,7 +1890,7 @@ Khan: Khan
 Khimki: Khimki
 Khon Kaen United: Khon Kaen United
 Khor: Khor
-Khor SC: Khor SC
+Khor SC: Khor
 Khumoun Sultanov: Khumoun Sultanov
 Kiara Cvetkovic: Kiara Cvetkovic
 Kidderminster: Kidderminster
@@ -1928,7 +1925,7 @@ Kolomna: Kolomna
 Kolos Kovalivka: Kolos Kovalivka
 Konov S: Konov S
 Konyaspor: Konyaspor
-Konyaspor 1922: Konyaspor 1922
+Konyaspor 1922: Konyaspor
 KooKoo: KooKoo
 Koral Koldobski: Koral Koldobski
 Kormend: Kormend
@@ -2120,8 +2117,8 @@ LotusTimber: LotusTimber
 Loudoun United FC: Loudoun United FC
 Louis Dussin: Louis Dussin
 Louis Wessels: Louis Wessels
-Louisville City FC: Louisville City FC
-Lowestoft Town FC: Lowestoft Town FC
+Louisville City FC: Louisville City
+Lowestoft Town FC: Lowestoft Town
 Luana Plaza Araujo: Luana Plaza Araujo
 Lubeck: Lubeck
 Luca Jani: Luca Jani
@@ -2139,7 +2136,7 @@ Luis Faria: Luis Faria
 Luis Patino: Luis Patino
 Luisa Meyer Auf Der Heide: Luisa Meyer Auf Der Heide
 Luneburger SK Hansa: Luneburger SK Hansa
-Luparense FC: Luparense FC
+Luparense FC: Luparense
 Lusaka Dynamos: Lusaka Dynamos
 Lusitania FC Lourosa: Lusitania FC Lourosa
 Luton: Luton
@@ -2184,7 +2181,7 @@ Magallanes: Magallanes
 Magdeburg: Magdeburg
 Maidenhead: Maidenhead
 Mainz: Mainz
-Mainz 05: Mainz 05
+Mainz 05: Mainz
 Malacateco: Malacateco
 Malaga: Malaga
 Malatya Yesilyurt Belediyespor: Malatya Yesilyurt Belediyespor
@@ -2212,7 +2209,7 @@ Manisa Futbol Kulubu: Manisa Futbol Kulubu
 Manish Sureshkumar: Manish Sureshkumar
 Mansfield: Mansfield
 Mansheyat: Mansheyat
-Manta Futbol Club: Manta Futbol Club
+Manta Futbol Club: Manta
 Mantova: Mantova
 Marbella: Marbella
 Marchamalo: Marchamalo
@@ -2373,50 +2370,50 @@ Mönchengladbach: Gladbach
 Mάιντζ: Mainz
 Mαρίτιμο: Maritimo
 N. Sriram Balaji: N. Sriram Balaji
-NAC Breda: NAC Breda
-NC Dinos: NC Dinos
-ND Beltinci: ND Beltinci
-ND Primorje: ND Primorje
+NAC Breda: Breda
+NC Dinos: Dinos
+ND Beltinci: Beltinci
+ND Primorje: Primorje
 NEC Nijmegen: Nijmegen
-NK Celje: NK Celje
-NK Domzale: NK Domzale
-NK Fuzinar Ravne: NK Fuzinar Ravne
-NK Gaj: NK Gaj
-NK Hrvatski Dragovoljac: NK Hrvatski Dragovoljac
-NK Ilirija: NK Ilirija
-NK Jarun: NK Jarun
-NK Kustosija: NK Kustosija
-NK Lesce: NK Lesce
-NK Maksimir Zagreb: NK Maksimir Zagreb
-NK Omladinac Gornja Vrba: NK Omladinac Gornja Vrba
-NK Radnik Sesvete: NK Radnik Sesvete
-NK Radomlje: NK Radomlje
-NK Rogaska: NK Rogaska
-NK Rudes: NK Rudes
-NK Skofja Loka: NK Skofja Loka
-NK Slaven Belupo: NK Slaven Belupo
-NK Solin: NK Solin
-NK Tabor Sezana: NK Tabor Sezana
-NK Travnik: NK Travnik
-NK Zvijezda Gradacac: NK Zvijezda Gradacac
+NK Celje: Celje
+NK Domzale: Domzale
+NK Fuzinar Ravne: Fuzinar Ravne
+NK Gaj: Gaj
+NK Hrvatski Dragovoljac: Hrvatski Dragovoljac
+NK Ilirija: Ilirija
+NK Jarun: Jarun
+NK Kustosija: Kustosija
+NK Lesce: Lesce
+NK Maksimir Zagreb: Maksimir Zagreb
+NK Omladinac Gornja Vrba: Omladinac Gornja Vrba
+NK Radnik Sesvete: Radnik Sesvete
+NK Radomlje: Radomlje
+NK Rogaska: Rogaska
+NK Rudes: Rudes
+NK Skofja Loka: Skofja Loka
+NK Slaven Belupo: Slaven Belupo
+NK Solin: Solin
+NK Tabor Sezana: Tabor Sezana
+NK Travnik: Travnik
+NK Zvijezda Gradacac: Zvijezda Gradacac
 NUFVSU: NUFVSU
 Nacional Asuncion: Nacional Asuncion
 Nacional Montevideo: Nacional Montevideo
-Nacional da Madeira: Nacional da Madeira
+Nacional da Madeira: Nacional Madeira
 Naerbo: Naerbo
 Naestved: Naestved
 Nafta Lendava: Nafta Lendava
-Nagaworld FC: Nagaworld FC
+Nagaworld FC: Nagaworld
 Nagoya Grampus: Nagoya Grampus
 Nagoya Grampus Eight: Nagoya Grampus Eight
 Nahdha: Nahdha
 Naima Karamoko: Naima Karamoko
-Najran SC: Najran SC
+Najran SC: Najran
 Najran Sport Club: Najran Sport Club
 Nakhon Pathom United FC: Nakhon Pathom United FC
 Nakhon Ratchasima FC: Nakhon Ratchasima FC
 Nam Ching: Nam Ching
-Namungo FC: Namungo FC
+Namungo FC: Namungo
 Nancy: Nancy
 Nanjing Fengfan: Nanjing Fengfan
 Nantes: Nantes
@@ -2486,7 +2483,7 @@ Nikola Keremedchiev: Nikola Keremedchiev
 Nikolas Sanchez: Nikolas Sanchez
 Nikolay Nedelchev: Nikolay Nedelchev
 Nimes: Nimes
-Nimes Olympique: Nimes Olympique
+Nimes Olympique: Nimes
 Nina Radovanovic: Nina Radovanovic
 Nincevic F: Nincevic F
 Niort: Niort
@@ -2509,9 +2506,9 @@ Norrkoping: Norrkoping
 Northampton: Northampton
 Northern (Pak): Northern (Pak)
 Norwich: Norwich
-Norwich City: Norwich City
+Norwich City: Norwich
 Norwich City FC: Norwich
-Norwich City U23: Norwich City U23
+Norwich City U23: Norwich U23
 Nosaby IF: Nosaby IF
 Notodden: Notodden
 Nott'm Forest: Nottingham
@@ -2536,16 +2533,16 @@ Nuvgp Rivne Women: Nuvgp Rivne Women
 Nyiregyhaza: Nyiregyhaza
 Nykobing FC: Nykobing FC
 Nyva Ternopil: Nyva Ternopil
-Nîmes: Nîmes
+Nîmes: Nimes
 Nîmes Olympique: Nimes
 O'Higgins: O'Higgins
 OFI: OFI
-OFI Crete: OFI Crete
+OFI Crete: OFI
 OFI Kreta: OFI
 OFK Igalo 1929: OFK Igalo 1929
 OFK Titograd: OFK Titograd
 OG: OG
-OGC Nice: OGC Nice
+OGC Nice: Nice
 OKK Novi Pazar: OKK Novi Pazar
 OKS Swit Skolwin Szczecin: OKS Swit Skolwin Szczecin
 OSE Lions: OSE Lions
@@ -2598,7 +2595,7 @@ Olympiakos Nicosia: Olympiakos Nicosia
 Olympiakos Nicosia FC: Olympiakos Nicosia
 Olympias Lympia: Olympias Lympia
 Olympique Lyon (W): Olympique Lyon (W)
-Olympique Lyonnais: OLyon
+Olympique Lyonnais: Lyon
 Olympique Marseille: Marseille
 Olympique de Marseille: Marseille
 Om: Om
@@ -2650,8 +2647,8 @@ PAOK Thessaloniki: PAOK Thessaloniki
 PAS Giannina: PAS Giannina
 PAS Lamia: Lamia
 PE Sant Jordi: PE Sant Jordi
-PEC Zwolle: PEC Zwolle
-PEC Zwolle (W): PEC Zwolle (W)
+PEC Zwolle: Zwolle
+PEC Zwolle (W): Zwolle (W)
 PFC Botev Plovdiv: PFC Botev Plovdiv
 PFC Dobrudzha Dobrich: PFC Dobrudzha Dobrich
 PFC Ludogorets Razgrad: Ludogorets
@@ -2703,10 +2700,10 @@ Pardubice FK AS: Pardubice FK AS
 Parentini Vallega Montebruno G: Parentini Vallega Montebruno G
 Paris FC: Paris FC
 Paris FC (W): Paris FC (W)
-Paris SG: Paris SG
+Paris SG: Paris Saint Germain
 Paris Saint: Paris Saint Germain
 Paris Saint Germain: Paris Saint Germain
-Paris Saint-Germain FC: Paris SG
+Paris Saint-Germain FC: Paris Saint Germain
 Parla: Parla
 Parma: Parma
 Parma Calcio 1913: Parma
@@ -2722,7 +2719,7 @@ Patricia Goina: Patricia Goina
 Patricia Iveth Ku Flores: Patricia Iveth Ku Flores
 Patronato II: Patronato II
 Pau: Pau
-Pau FC: Pau FC
+Pau FC: Pau
 Paulo Andre Saraiva Dos Santos: Paulo Andre Saraiva Dos Santos
 Pavel Nejedly: Pavel Nejedly
 Pavlo Khakhamidi: Pavlo Khakhamidi
@@ -2882,29 +2879,29 @@ Quevilly Rouen: Quevilly Rouen
 Quilmes: Quilmes
 Qviding FIF: Qviding FIF
 Qyzylqum Zarashfan: Qyzylqum Zarashfan
-RB Leipzig: RB Leipzig
-RC Bobo: RC Bobo
-RC Celta de Vigo: RC Celta de Vigo
-RC Lens: RC Lens
-RC Strasbourg: RC Strasbourg
+RB Leipzig: Leipzig
+RC Bobo: Bobo
+RC Celta de Vigo: Celta Vigo
+RC Lens: Lens
+RC Strasbourg: Strasbourg
 RC Strasbourg Alsace: Strasbourg
-RCD Espanyol: RCD Espanyol
-RCD Espanyol B: RCD Espanyol B
-RCD Mallorca: RCD Mallorca
-RFC Seraing United: RFC Seraing United
+RCD Espanyol: Espanyol
+RCD Espanyol B: Espanyol B
+RCD Mallorca: Mallorca
+RFC Seraing United: Seraing United
 RFC de Liege: RFC de Liege
 RKC Waalwijk: Waalwijk
 RP IPRC Musanze: RP IPRC Musanze
-RS Rodovre Ishoj: RS Rodovre Ishoj
+RS Rodovre Ishoj: Rodovre Ishoj
 RS Waasland: Waasland
-RSV Meinerzhagen: RSV Meinerzhagen
+RSV Meinerzhagen: Meinerzhagen
 RWDM Molenbeek: RWDM Molenbeek
 Rabo De Peixe: Rabo De Peixe
 Racing Club: Racing Club
 Racing Club De Ferrol: Racing Club De Ferrol
 Racing Club de Lens: Lens
 Racing Cordoba: Racing Cordoba
-Racing Rioja CF: Racing Rioja CF
+Racing Rioja CF: Racing Rioja
 Racing Santander: Racing Santander
 Rad Beograd: Rad Beograd
 Radcliffe: Radcliffe
@@ -2926,7 +2923,7 @@ Rajski M: Rajski M
 Rakow Czestochowa: Rakow Czestochowa
 Rakvere Tarvas: Rakvere Tarvas
 Rampla Juniors: Rampla Juniors
-Ramtha SC: Ramtha SC
+Ramtha SC: Ramtha
 Randers: Randers
 Rangers: Rangers
 Rangers de Talca: Rangers de Talca
@@ -2947,10 +2944,10 @@ Rayo Vallecano: Rayo Vallecano
 Rayyan: Rayyan
 Reading: Reading
 Reading FC: Reading
-Real Aviles CF: Real Aviles CF
+Real Aviles CF: Real Aviles
 Real Balompedica Linense: Real Balompedica Linense
-Real Betis: Real Betis
-Real Betis B: Real Betis B
+Real Betis: Betis
+Real Betis B: Betis B
 Real Cartagena: Real Cartagena
 Real Forte Querceta: Real Forte Querceta
 Real Madrid: Real Madrid
@@ -2959,31 +2956,31 @@ Real Madrid Castilla: Real Madrid Castilla
 Real Madriz: Real Madriz
 Real Monterotondo Scalo: Real Monterotondo Scalo
 Real Oviedo: Real Oviedo
-Real Pilar FC: Real Pilar FC
+Real Pilar FC: Real Pilar
 Real Santuario: Real Santuario
-Real Sociedad: Real Sociedad
+Real Sociedad: Sociedad
 Real Succes: Real Succes
 Real Union Irun: Real Union Irun
 Real Union de Irun: Real Union de Irun
 Real Valladolid B: Real Valladolid B
 Rebecca Peterson: Rebecca Peterson
 Rebisco: Rebisco
-Recambios Colon CD: Recambios Colon CD
+Recambios Colon CD: Recambios Colon
 Recanatese: Recanatese
 Red Arrows: Red Arrows
 Red Bull Salzburg: Red Bull Salzburg
-Redlands United FC: Redlands United FC
+Redlands United FC: Redlands United
 Regensburg: Regensburg
 Reggiana: Reggiana
 Reggina: Reggina
-Reggina 1914: Reggina 1914
+Reggina 1914: Reggina
 Reggio Audace: Reggio Audace
 Reimers Y: Reimers Y
 Reims: Reims
 Reka: Reka
 Remo PA: Remo PA
 Renate: Renate
-Rende Calcio 1968: Rende Calcio 1968
+Rende Calcio 1968: Rende
 Rennes: Rennes
 Renofa Yamaguchi: Renofa Yamaguchi
 Rentistas: Rentistas
@@ -2992,11 +2989,11 @@ Rhein Neckar Lowen: Rhein Neckar Lowen
 Riccardo Bonadio: Riccardo Bonadio
 Richmond Kickers: Richmond Kickers
 Ried: Ried
-Rimini FC 1912: Rimini FC 1912
+Rimini FC 1912: Rimini
 Ringkobing: Ringkobing
 Ringsted: Ringsted
 Rio Ave: Rio Ave
-Rio Ave FC: Rio Ave FC
+Rio Ave FC: Rio Ave
 Rio Claro: Rio Claro
 Rio Claro Basquete: Rio Claro Basquete
 Rio Noguchi: Rio Noguchi
@@ -3008,11 +3005,11 @@ River Plate II: River Plate II
 Rizespor: Rizespor
 RoPS: RoPS
 Rochdale: Rochdale
-Roda JC: Roda JC
-Roda JC Kerkrade: Roda JC Kerkrade
+Roda JC: Roda
+Roda JC Kerkrade: Roda
 Rodez: Rodez
-Rodez AF: Rodez AF
-Rodez Aveyron: Rodez Aveyron
+Rodez AF: Rodez
+Rodez Aveyron: Rodez
 Rodina Moscow: Rodina Moscow
 Roltek Dob: Roltek Dob
 Roma: Roma
@@ -3029,10 +3026,10 @@ Rotlet Molinar: Rotlet Molinar
 Rotor Volgograd: Rotor Volgograd
 Rouen: Rouen
 Rovaniemi: Rovaniemi
-Royal AM: Royal AM
+Royal AM: Royal
 Royal Antwerp FC: Antwerp
 Royal Charleroi SC (W): Royal Charleroi SC (W)
-Royston Town FC: Royston Town FC
+Royston Town FC: Royston Town
 Ruben Bemelmans: Ruben Bemelmans
 Rubin Kazan: Rubin Kazan
 Rubin Tyumen: Rubin Tyumen
@@ -3044,7 +3041,7 @@ Rukh Vinnyky: Rukh Vinnyky
 Rupel Boom: Rupel Boom
 Rusizi: Rusizi
 Rustavi: Rustavi
-Ruthin Town FC: Ruthin Town FC
+Ruthin Town FC: Ruthin Town
 Ruvu Shooting: Ruvu Shooting
 Ryan Nijboer: Ryan Nijboer
 SA Brno: Brno
@@ -3064,7 +3061,7 @@ SC Dnipro: Dnipro
 SC Duesseldorf West: Duesseldorf West
 SC Farense: Farense
 SC Freiburg: Freiburg
-SC Freiburg II: Freiburg II
+SC Freiburg II: Freiburg
 SC Heerenveen: Heerenveen
 SC Heerenveen (W): Heerenveen (W)
 SC Heracles: Heracles
@@ -3125,7 +3122,7 @@ SKU Amstetten: SKU Amstetten
 SL Benfica: Benfica
 SL Benfica B: Benfica B
 SL Benfica II: Benfica II
-SM Caen: SM Caen
+SM Caen: Caen
 SOL De Mayo: SOL De Mayo
 SP Estudiantes San Luis: SP Estudiantes San Luis
 SP Falcons: SP Falcons
@@ -3136,10 +3133,10 @@ SS Lazio: Lazio
 SS Monopoli: SS Monopoli
 SS Taranto 1927: SS Taranto 1927
 SSC Napoli: Napoli
-SSD Insieme Formia: SSD Insieme Formia
-SSD Potenza Calcio: SSD Potenza Calcio
-SSG Bergisch Gladbach: SSG Bergisch Gladbach
-SSV Jahn Regensburg: SSV Jahn Regensburg
+SSD Insieme Formia: Insieme Formia
+SSD Potenza Calcio: Potenza Calcio
+SSG Bergisch Gladbach: Gladbach
+SSV Jahn Regensburg: Regensburg
 STK 1914 Samorin: STK 1914 Samorin
 SV 09 Arnstadt: 09 Arnstadt
 SV Austria Salzburg: Austria Salzburg
@@ -3246,7 +3243,7 @@ Sariyer: Sariyer
 Sarmiento II: Sarmiento II
 Sarmiento Resistencia: Sarmiento Resistencia
 Sarp Agabigun: Sarp Agabigun
-Sarpsborg 08: Sarpsborg 08
+Sarpsborg 08: Sarpsborg
 Saryarka: Saryarka
 Sascha Gueymard Wayenburg: Sascha Gueymard Wayenburg
 Sassuolo: Sassuolo
@@ -3265,7 +3262,7 @@ Seattle Sounders: Seattle Sounders
 Sef Torres Calcio: Sef Torres Calcio
 Seinajoen JK: Seinajoen JK
 Sekhukhune United: Sekhukhune United
-Sektzia Nes Tziona FC: Sektzia Nes Tziona FC
+Sektzia Nes Tziona FC: Sektzia Nes Tziona
 Selaya: Selaya
 Semen Padang: Semen Padang
 Seoul E Land FC: Seoul E Land
@@ -3318,13 +3315,13 @@ Sibenik: Sibenik
 Sibguor (W): Sibguor (W)
 Sibir Novosibirsk: Sibir Novosibirsk
 Sichuan Jiuniu: Sichuan Jiuniu
-Siegburger SV 04: Siegburger SV 04
+Siegburger SV 04: Siegburger
 Sile Yildizspor: Sile Yildizspor
 Silkeborg: Silkeborg
 Silla: Silla
-Silva SD: Silva SD
+Silva SD: Silva
 Silvia Martinez Jimenez: Silvia Martinez Jimenez
-Simba SC: Simba SC
+Simba SC: Simba
 Simeonov D: Simeonov D
 Simon Anthony Ivanov: Simon Anthony Ivanov
 Simona Ogescu: Simona Ogescu
@@ -3369,7 +3366,7 @@ Sokol Tasovice: Sokol Tasovice
 Sokol Zapy: Sokol Zapy
 Sol de America: Sol de America
 Solihull: Solihull
-Solola FC: Solola FC
+Solola FC: Solola
 Solvesborgs Goif: Solvesborgs Goif
 Somaspor: Somaspor
 Sona Calcio: Sona Calcio
@@ -3395,10 +3392,10 @@ Soyaux Asj (W): Soyaux Asj (W)
 Sp Braga: Braga
 Sp Gijon: Sp Gijon
 Sp Lisbon: Lisbon
-SpVgg Bayern Hof: SpVgg Bayern Hof
-SpVgg Greuther Fürth: SpVgg Greuther Fürth
-SpVgg Greuther Fürth 1903: SpVgg Greuther Fürth 1903
-SpVgg Vreden 1921: SpVgg Vreden 1921
+SpVgg Bayern Hof: Bayern Hof
+SpVgg Greuther Fürth: Greuther Furth
+SpVgg Greuther Fürth 1903: Greuther Furth
+SpVgg Vreden 1921: Vreden
 Spain: Spain
 Spal: Spal
 Sparkasse Gleisdorf: Sparkasse Gleisdorf
@@ -3422,7 +3419,7 @@ Sporting Braga: Sporting Braga
 Sporting CP: Sporting
 Sporting Clube Ideal: Sporting Clube Ideal
 Sporting Cristal: Sporting Cristal
-Sporting FC: Sporting FC
+Sporting FC: Sporting
 Sporting Franciacorta: Sporting Franciacorta
 Sporting Gijon: Sporting Gijon
 Sporting Kansas City: Sporting Kansas City
@@ -3441,7 +3438,7 @@ Sportivo San Lorenzo: Sportivo San Lorenzo
 Sportunion Mauer: Sportunion Mauer
 Sri Lanka: Sri Lanka
 Ssd Acireale Calcio 1946: Ssd Acireale Calcio 1946
-Ssd Real Calepina FC: Ssd Real Calepina FC
+Ssd Real Calepina FC: Ssd Real Calepina
 Sss Barneveld: Sss Barneveld
 St Etienne: St Etienne
 St Johnstone: St Johnstone
@@ -3449,13 +3446,13 @@ St Mirren: St Mirren
 St Patricks Athletic: St Patricks Athletic
 St Pauli: St Pauli
 St Truiden: Truiden
-St. Albans: St. Albans
-St. Etienne: St. Etienne
-St. Gallen: St. Gallen
-St. Johann: St. Johann
-St. Mirren: St. Mirren
-St. Pauli: St. Pauli
-St. Polten: St. Polten
+St. Albans: St Albans
+St. Etienne: St Etienne
+St. Gallen: St Gallen
+St. Johann: St Johann
+St. Mirren: St Mirren
+St. Pauli: St Pauli
+St. Polten: St Polten
 St.Truiden: Truiden
 Stabaek: Stabaek
 Stade Brestois 29: Stade Brestois 29
@@ -3543,18 +3540,18 @@ TPS: TPS
 TPV Tampere: Tampere
 TS Galaxy FC: TS Galaxy FC
 TSG 1899 Hoffenheim: Hoffenheim
-TSG Backnang: TSG Backnang
+TSG Backnang: Backnang
 TSG Hoffenheim: Hoffenheim
-TSG Sprockhovel: TSG Sprockhovel
-TSV 1860 München: TSV 1860 München
-TSV 1865 Dachau: TSV 1865 Dachau
-TSV 1880 Wasserburg: TSV 1880 Wasserburg
-TSV 1882 Landsberg: TSV 1882 Landsberg
-TSV Buchbach: TSV Buchbach
-TSV Emmelshausen: TSV Emmelshausen
-TSV Gwd Minden: TSV Gwd Minden
-TSV Havelse: TSV Havelse
-TSV Victoria Clarholz: TSV Victoria Clarholz
+TSG Sprockhovel: Sprockhovel
+TSV 1860 München: 1860 Munchen
+TSV 1865 Dachau: 1865 Dachau
+TSV 1880 Wasserburg: 1880 Wasserburg
+TSV 1882 Landsberg: 1882 Landsberg
+TSV Buchbach: Buchbach
+TSV Emmelshausen: Emmelshausen
+TSV Gwd Minden: Gwd Minden
+TSV Havelse: Havelse
+TSV Victoria Clarholz: Victoria Clarholz
 TUS Bad Gleichenberg: TUS Bad Gleichenberg
 TUS Bersenbruck: TUS Bersenbruck
 TUS Ennepetal: TUS Ennepetal
@@ -3640,11 +3637,11 @@ Tonbridge Angels: Tonbridge Angels
 Tondela: Tondela
 Torino: Torino
 Torino FC: Torino
-Torku Konyaspor: Torku Konyaspor
+Torku Konyaspor: Konyaspor
 Tornado: Tornado
 Torns IF: Torns IF
-Toronto FC: Toronto FC
-Toronto FC II: Toronto FC II
+Toronto FC: Toronto
+Toronto FC II: Toronto II
 Toros Neftekamsk: Toros Neftekamsk
 Torpedo Moscow: Torpedo Moscow
 Torpedo Ust Kamenogorsk: Torpedo Ust Kamenogorsk
@@ -3698,8 +3695,8 @@ Turu Dusseldorf: Turu Dusseldorf
 Tuzlaspor: Tuzlaspor
 Tvaakers IF: Tvaakers IF
 Twente: Twente
-UAI Urquiza: UAI Urquiza
-UANL Tigres: UANL Tigres
+UAI Urquiza: Urquiza
+UANL Tigres: Tigres
 UC Ceares: Ceares
 UC Sampdoria: Sampdoria
 UCAM Murcia CF: Murcia
@@ -3725,7 +3722,7 @@ UE Sants: Sants
 UGB: UGB
 UNAM Pumas: UNAM Pumas
 URSL Vise: URSL Vise
-US Alessandria Calcio: Alessandria Calcio
+US Alessandria Calcio: Alessandria
 US Castrovillari: Castrovillari
 US Cremonese: Cremonese
 US Follonica Gavorrano: Follonica Gavorrano
@@ -3737,7 +3734,7 @@ US Quevilly: Quevilly
 US Quevilly Rouen: Quevilly Rouen
 US Quevilly Rouen Metropole: Quevilly Rouen Metropole
 US Salernitana: Salernitana
-US Salernitana 1919: US Salernitana 1919
+US Salernitana 1919: Salernitana
 US Sassuolo: Sassuolo
 US Sassuolo Calcio: Sassuolo
 US Tolentino: Tolentino
@@ -3855,7 +3852,7 @@ Velez Mostar: Velez Mostar
 Venados FC: Venados
 Vendsyssel: Vendsyssel
 Venezia: Venezia
-Venezia FC: Venezia FC
+Venezia FC: Venezia
 Ventforet Kofu: Ventforet Kofu
 Vera Tbilisi: Vera Tbilisi
 Veranopolis: Veranopolis
@@ -3865,16 +3862,16 @@ Verl: Verl
 Verona: Verona
 VfB 03 Hilden: VfB 03 Hilden
 VfB Germania Halberstadt e. V.: VfB Germania Halberstadt e. V.
-VfB Oldenburg: VfB Oldenburg
-VfB Stuttgart: VfB Stuttgart
+VfB Oldenburg: Oldenburg
+VfB Stuttgart: Stuttgart
 VfL Bochum: Bochum
-VfL Bochum 1848: VfL Bochum 1848
-VfL Osnabruck: VfL Osnabruck
-VfL Sportfreunde Lotte 1929: VfL Sportfreunde Lotte 1929
+VfL Bochum 1848: Bochum
+VfL Osnabruck: Osnabruck
+VfL Sportfreunde Lotte 1929: Sportfreunde Lotte 1929
 VfL Wolfsburg: Wolfsburg
-VfR Garching: VfR Garching
-VfV Hildesheim: VfV Hildesheim
-Vhk Vsetin: Vhk Vsetin
+VfR Garching: Garching
+VfV Hildesheim: Hildesheim
+Vhk Vsetin: Vsetin
 Vibonese: Vibonese
 Viborg: Viborg
 Viborg FF: Viborg
@@ -3977,7 +3974,7 @@ West Bromwich: West Brom
 West Bromwich Albion: West Brom
 West Bromwich Albion FC: West Brom
 West Ham: West Ham
-West Ham United: West Ham United
+West Ham United: West Ham
 West Ham United FC: West Ham
 Westerlo: Westerlo
 Wexford Youths: Wexford Youths
@@ -3990,7 +3987,7 @@ Wiener Viktoria: Wiener Viktoria
 Wigan: Wigan
 Wigry Suwalki: Wigry Suwalki
 Willem II: Willem II
-Willem II Tilburg: Willem II Tilburg
+Willem II Tilburg: Willem II
 Wimbledon: Wimbledon
 Wisla Krakow: Wisla Krakow
 Wisla Pulawy: Wisla Pulawy
@@ -4007,12 +4004,12 @@ Wolverhampton Wanderers U23: Wolverhampton Wanderers U23
 Wolves: Wolves
 Wrexham: Wrexham
 Wrexham FC: Wrexham
-Wuerzburger Kickers: Wuerzburger Kickers
+Wuerzburger Kickers: Wurzburger Kickers
 Wuhan Three Towns: Wuhan Three Towns
-Wurzburger Kickers: Wuerzburger Kickers
+Wurzburger Kickers: Wurzburger Kickers
 Wycombe: Wycombe
 Wycombe Wanderers FC: Wycombe
-Würzburger Kickers: Würzburger Kickers
+Würzburger Kickers: Wurzburger Kickers
 Xanthi FC: Xanthi
 Xelaju: Xelaju
 Xerez FC Deportivo: Xerez FC Deportivo
@@ -4100,7 +4097,7 @@ Zwolle: Zwolle
 Ένερτζι: Energy
 Έργκριτε IS: Ergrite
 Ίντερ: Inter
-ΑΕΚ: Aek
+ΑΕΚ: Aek Athens
 Ααράου: Aarau
 Αβελίνο: Avelino
 Αθλέτικ Μπιλμπάο: Athletic Bilbao
@@ -4158,7 +4155,7 @@ Zwolle: Zwolle
 Γκρόιτερ Φιρτ: Greuter Furth
 Γκρόνινγκεν: Groningen
 Γουέστ Μπρομ: West Brom
-Γουέστ Μπρόμγουιτς Άλμπιον: West Bromwich Albion
+Γουέστ Μπρόμγουιτς Άλμπιον: West Brom
 Γουέστ Χαμ: West Ham
 Γουλβς: Wolves
 Γουότερφορντ: Waterford
@@ -4346,7 +4343,7 @@ Zwolle: Zwolle
 Ραπίντ Βουκ.: Rapid Bucharest
 Ραπίντ Βουκουρεστίου: Rapid Bucharest
 Ρεάλ Μαδρίτης: Real Madrid
-Ρεάλ Σοσιεδάδ: Real Sociedad
+Ρεάλ Σοσιεδάδ: Sociedad
 Ρεμς: Reihms
 Ρεν: Ren
 Ροντέζ: Rodhez
@@ -4398,7 +4395,7 @@ Zwolle: Zwolle
 Τσβόλε: Tswolle
 Τσερτάνοβο: Certanovo
 Τόκιο: Tokyo
-Τότεναμ: Tottenam
+Τότεναμ: Tottenham
 Φέγενορντ: Feyenord
 Φένλο: Venlo
 Φίτεσε: Vitese
@@ -4420,8 +4417,8 @@ Zwolle: Zwolle
 Χέλσινγκορ: Helsingor
 Χέρακλες: Heracles
 Χέρενφεϊν: Herenveim
-Χέρτα: Hertha Berlin
-Χέρτα Βερολίνου: Hertha Berlin
+Χέρτα: Hertha
+Χέρτα Βερολίνου: Hertha
 Χίμκι: Himki
 Χαλ: Hal
 Χαλ Σίτι: Hull
@@ -4432,3 +4429,476 @@ Zwolle: Zwolle
 Χρόνινχεν: Groningen
 Χόμπρο: Hobro
 Χόφενχαϊμ: Hoffenheim
+AE Larissa: Larissa
+AFC Blaublitz Akita: AFC Blaublitz Akita
+Achuapa: Achuapa
+Ahly Cairo: Ahly Cairo
+Al Gharafa: Al Gharafa
+Al Ittihad Al Ramtha: Al Ittihad Al Ramtha
+Al Khor: Khor
+Al - Khor: Khor
+Al Sailiya: Al Sailiya
+Al Yarmouk Amman: Al Yarmouk Amman
+Aldosivi: Aldosivi
+Alianza Petrolera: Alianza Petrolera
+Always Ready: Always Ready
+America De Cali: America de Cali
+America Mg: America Mg
+America de Cali: America de Cali
+Anagennisi Karditsa: Anagennisi Karditsa
+Antigua GFC: Antigua
+Arema FC: Arema
+Argentinos Juniors: Argentinos Juniors
+Asyouty Sport: Asyouty Sport
+Atl Tucuman: Atl Tucuman
+Atlanta United: Atlanta United
+Atlanta United FC: Atlanta United
+Atlante FC: Atlante
+Atlas: Atlas
+Atlas FC: Atlas
+Atletico Bucaramanga: Atletico Bucaramanga
+Atletico Fenix Montevideo: Atletico Fenix Montevideo
+Atletico Huila: Atletico Huila
+Atletico Nacional (Col): Atletico Nacional
+Atletico Paranaense: Atletico Paranaense
+Atletico San Luis: Atletico San Luis
+Atlético: Atletico
+Atlético GO: Atletico
+Aucas: Aucas
+Austin FC: Austin
+Avai SC: Avai
+Bahia: Bahia
+Barcelona (Ecu): Barcelona
+Barcelona Guayaquil: Barcelona
+Bhayangkara Solo FC: Bhayangkara Solo
+Blooming Santa Cruz: Blooming Santa Cruz
+Boca Juniors: Boca Juniors
+Botafogo FR: Botafogo
+Botafogo RJ: Botafogo
+Bucaramanga: Bucaramanga
+CA Banfield: Banfield
+CA Bucaramanga: Bucaramanga
+CA Huracan: Huracan
+CA Independiente: Independiente
+CA Lanus: Lanus
+CA Patronato Parana: Patronato Parana
+CA Platense: Platense
+CA Rosario Central: Rosario Central
+CD Malacateco: Malacateco
+CD Puerto de Iztapa: Puerto de Iztapa
+CD Tapatio: Tapatio
+CF America: America
+CF Monterrey: Monterrey
+CF Montreal: Montreal
+CF Montréal: Montreal
+CF Pachuca: Pachuca
+CF Tigres UANL: Tigres
+CSD Macara: Macara
+CSD Municipal: Municipal
+Cancun FC: Cancun
+Ceará: Ceara
+Celaya: Celaya
+Central Cordoba: Central Cordoba
+Central Cordoba (SE): Central Cordoba
+Cerro Porteño: Cerro Porteno
+Charleston Battery: Charleston Battery
+Charlotte Independence: Charlotte Independence
+Chicago Fire: Chicago Fire
+Chicago Fire FC: Chicago Fire
+Cimarrones de Sonora: Cimarrones de Sonora
+Cincinnati: Cincinnati
+Club Always Ready: Club Always Ready
+Club America: Club America
+Club América: Club America
+Club Atlas: Atlas
+Club Atletico Junior: Club Atletico Junior
+Club Atletico Rosario Central: Club Atletico Rosario Central
+Club Atletico Tucuman: Club Atletico Tucuman
+Club Deportivo Real Tomayapo: Club Deportivo Real Tomayapo
+Club Ferro Carril Oeste: Club Ferro Carril Oeste
+Club Independiente Petrolero: Club Independiente Petrolero
+Club Leon: Leon
+Club León: Leon
+Club Necaxa: Necaxa
+Club Puebla: Puebla
+Club Real Potosi: Club Real Potosi
+Club Tijuana: Club Tijuana
+Club Xelaju MC: Club Xelaju
+Clube Atlético Mineiro: Clube Atlético Mineiro
+Coban Imperial: Coban Imperial
+Colon: Colon
+Colon de Santa Fe: Colon
+Colorado: Colorado
+Colorado Rapids: Colorado
+Columbus Crew: Columbus Crew
+Columbus Crew SC: Columbus Crew
+Confianca SE: Confianca
+Corinthians SP: Corinthians
+Coritiba PR: Coritiba
+Correcaminos: Correcaminos
+Correcaminos Uat: Correcaminos
+Csd Comunicaciones: Comunicaciones
+Csd Municipal: Municipal
+Csd Xelaju MC: Xelaju
+Cuiaba MT: Cuiaba
+D.C. United: DC United
+DC United: DC United
+Dallas: Dallas
+Defence Force FC: Defence Force
+Defence Force SC: Defence Force
+Defensa y Justicia: Defensa Y Justicia
+Delhi United: Delhi United
+Deportes Quindio: Deportes Quindio
+Deportes Tolima: Deportes Tolima
+Deportivo Achuapa: Deportivo Achuapa
+Deportivo Cali: Deportivo Cali
+Deportivo Guastatoya: Deportivo Guastatoya
+Deportivo Iztapa: Deportivo Iztapa
+Deportivo La Equidad: Deportivo La Equidad
+Deportivo Nueva Concepcion: Deportivo Nueva Concepcion
+Deportivo Pasto: Deportivo Pasto
+Deportivo Toluca FC: Deportivo Toluca
+Dorados: Dorados
+Dorados de Sinaloa: Dorados
+EC Bahia BA: Bahia
+Envigado: Envigado
+Envigado FC: Envigado
+Estudiantes: Estudiantes
+Estudiantes LP: Estudiantes
+Estudiantes de La Plata: Estudiantes
+FC Cincinnati: Cincinnati
+FC Dallas: Dallas
+FC Juárez: Juarez
+Ferro Carril Oeste: Ferrocarril Oeste
+Ferrocarril Oeste: Ferrocarril Oeste
+Flamengo RJ: Flamengo
+Fluminense: Fluminense
+Fluminense RJ: Fluminense
+Fortaleza CE: Fortaleza
+GE Brasil RS: Brasil RS
+Gallos Blancos de Queretaro:  Queretaro
+Garhwal Diamond: Garhwal Diamond
+General Lamadrid: General Lamadrid
+George FC: George
+Ghazi El Mehalla: Ghazi El Mehalla
+Gimnasia y Esgrima La Plata: Gimnasia y Esgrima La Plata
+Gimnasia y Esgrima de La Plata: Gimnasia y Esgrima La Plata
+Goiás: Goias
+Goiás GO: Goias
+Gremio RS: Gremio
+Grêmio: Gremio
+Guabira: Guabira
+Guadalajara: Guadalajara
+Guadalajara Chivas: Guadalajara Chivas
+Guairena FC: Guairena
+Guarani: Guarani
+Guarani SP: Guarani
+HFX Wanderers: HFX Wanderers
+Houston Dynamo FC: Houston Dynamo
+Huracan: Huracan
+Ind Medellin: Independiente Medellin
+Independiente: Independiente
+Independiente Petrolero: Independiente Petrolero
+Ismaily SC: Ismaily
+Ittihad Al Ramtha: Ittihad Al Ramtha
+Jaguares De Cordoba: Jaguares De Cordoba
+Jorge Wilstermann: Jorge Wilstermann
+Junior FC: Junior
+Júbilo Iwata: Jubilo Iwata
+Kallithea: Kallithea
+La Equidad: La Equidad
+Leon: Leon
+Londrina PR: Londrina
+Los Angeles FC: Los Angeles
+Machida Zelvia FC: Machida Zelvia
+Mansheyat Bani Hasan: Mansheyat Bani Hasan
+Mazatlan FC: Mazatlan
+Mazatlán FC: Mazatlan
+Memphis 901 FC: Memphis 901
+Millonarios FC: Millonarios
+Mineros De Zacatecas: Mineros De Zacatecas
+Mineros de Zacatecas: Mineros De Zacatecas
+Minnesota United: Minnesota United
+Minnesota United FC: Minnesota United
+Misr El Makasa: Misr El Makasa
+Mito HollyHock: Mito HollyHock
+Moghayer Al Sarhan: Moghayer Al Sarhan
+Montreal Impact: Montreal Impact
+Nautico PE: Nautico
+New England Revolution: New England Revolution
+New York Red Bulls: New York Red Bulls
+Newell's Old Boys: Newell's Old Boys
+Nueva Concepcion: Nueva Concepcion
+Once Caldas: Once Caldas
+Oriente Petrolero: Oriente Petrolero
+Orlando City: Orlando City
+Orlando City SC: Orlando City
+Palmeiras SP: Palmeiras
+Patriotas: Patriotas
+Patronato: Patronato
+Persebaya Surabaya 1927: Persebaya Surabaya 1927
+Philadelphia: Philadelphia
+Platense: Platense
+Ponte Preta SP: Ponte Preta
+Puebla FC: Puebla
+Pumas UNAM: Pumas
+Querétaro FC: Queretaro
+Quindio: Quindio
+Racing Club de Avellaneda: Racing Club de Avellaneda
+Real Monarchs: Real Monarchs
+Real Monarchs Slc: Real Monarchs
+Real Potosi: Real Potosi
+Real Salt Lake: Real Salt Lake
+Real Tomayapo: Real Tomayapo
+Real Zaragoza: Real Zaragoza
+Rio Grande Valley FC: Rio Grande Valley
+Rionegro: Rionegro
+River Plate Montevideo: River Plate Montevideo
+Rosario Central: Rosario Central
+SC Sagamihara: SC Sagamihara
+San Jose (Bol): San Jose)
+San Jose Earthquakes: San Jose
+San Jose Oruro: San Jose
+San Lorenzo: San Lorenzo
+San Lorenzo de Almagro: San Lorenzo
+San Luis: San Luis
+San Telmo: San Telmo
+Santa Fe: Santa Fe
+Santos: Santos
+Santos Laguna: Santos Laguna
+Santos SP: Santos
+Sao Paulo SP: Sao Paulo
+Sarmiento De Junin: Sarmiento De Junin
+Seattle Sounders FC: Seattle Sounders
+Sebeta Kenema: Sebeta Kenema
+Sebeta Kenema FC: Sebeta Kenema
+São Paulo: Sao Paulo
+The Strongest: The Strongest
+Thespakusatsu Gunma: Thespakusatsu Gunma
+Tigres UANL: Tigres
+Tijuana: Tijuana
+Tlaxcala: Tlaxcala
+Tlaxcala FC: Tlaxcala
+Tulsa Roughnecks FC: Tulsa Roughnecks
+Umm Salal: Umm Salal
+Union de Santa Fe: Union de Santa Fe
+Universidad Guadalajara: Universidad Guadalajara
+Vancouver Whitecaps: Vancouver Whitecaps
+Vancouver Whitecaps FC: Vancouver Whitecaps
+Vasco da Gama RJ: Vasco da Gama
+Velez Sarsfield: Velez Sarsfield
+Venados: Venados
+Vitoria: Vitoria
+Vitoria BA: Vitoria BA
+Yarmouk: Yarmouk
+Zweigen Kanazawa: Zweigen Kanazawa
+9 De Octubre FC: 9 de Octubre
+9 de Octubre FC: 9 de Octubre
+ACR Messina: Messina
+AL Wakrah: AL Wakrah
+AL Wakrah Sports Club: AL Wakrah
+AS Bari: Bari
+Adama City FC: Adama City
+Ahbab FC: Ahbab
+Al Duhail: Al Duhail
+Al Duhail SC: Al Duhail
+Al Ittihad (Egy) (Egy): Al Ittihad
+Al Mokawloon: Al Mokawloon
+Al Moqawloon: Al Mokawloon
+All Boys: All Boys
+Almagro BA: Almagro
+Almirante Brown: Almirante Brown
+Atletico Monarcas Morelia: Atletico Monarcas Morelia
+Atletico Palmaflor Vinto: Atletico Palmaflor Vinto
+Aurora Pro Patria: Aurora Pro Patria
+Bali United Pusam: Bali United Pusam
+Barito Putera: Barito Putera
+Barracas Central: Barracas Central
+Bhayangkara FC: Bhayangkara
+Blooming: Blooming
+Bolivar: Bolivar
+Bolivar La Paz: Bolivar
+Borneo FC: Borneo
+Brown de Adrogue: Brown de Adrogue
+CA Agropecuario: Agropecuario
+CA All Boys: All Boys
+CA Atlas: Atlas
+CA Belgrano: Belgrano
+CA Estudiantes: Estudiantes
+CA Ituzaingo: Ituzaingo
+CA Nacional Potosi: National Potosi
+CA Tigre: Tigre
+CD Olmedo: Olmedo
+Tacoma Defiance: Tacoma Defiance
+Talaea El Giesh: Talaea El Giesh
+Tampa Bay Rowdies: Tampa Bay Rowdies
+Tampico Madero: Tampico Madero
+Taranto Sport: Taranto Sport
+Tarun Sangha FC: Tarun Sangha
+Tecnico Universitario Ambato: Tecnico Universitario
+Tepatitlan de Morelos: Tepatitlan de Morelos
+Trento Calcio 1921: Trento Calcio
+Triestina Calcio: Triestina Calcio
+Tristan Suarez: Tristan Suarez
+US Albinoleffe: Albinoleffe
+US Avellino: Avellino
+US Foggia: Foggia
+US Latina Calcio: Latina Calcio
+US Olbia 1905: Olbia 1905
+US Palermo: Palermo
+US Vibonese Calcio: Vibonese Calcio
+Univ Catolica (Ecu): Univ Catolica
+Uttarakhand FC: Uttarakhand
+Vila Nova: Vila Nova
+Vila Nova GO: Vila Nova
+Virtus Verona: Virtus Verona
+Welayta Dicha: Welayta Dicha
+Wolayita Decha FC: Wolayita Decha
+York 9 FC: York 9
+York United FC: York United
+Youngman FC: Youngman
+Pro Sesto: Pro Sesto
+Pumas Tabasco: Pumas de Tabasco
+Pumas de Tabasco: Pumas de Tabasco
+Quilmes AC: Quilmes
+Rio Grande Valley: Rio Grande Valley
+Rossoblu Potenza: Rossoblu Potenza
+Royal Pari: Royal Pari
+Royal Pari FC: Royal Pari
+Royal Pari Sion: Royal Pari
+Royal Rangers FC: Royal Rangers
+SS Turris Calcio: Turris Calcio
+SSD Fidelis Andria 2018: Fidelis Andria
+Sacramento Republic: Sacramento Republic
+Salal SC: Salal
+San Diego Loyal SC: San Diego Loyal
+San Martin De San Juan: San Martin de San Juan
+San Martin S.J: San Martin de San Juan
+San Martin Tucuman: San Martin Tucuman
+San Martin de Burzaco: San Martin de Burzaco
+San Martin de San Juan: San Martin de San Juan
+Santamarina: Santamarina
+Seattle Sounders FC II: Seattle Sounders FC II
+Seregno Calcio: Seregno Calcio
+Shastri FC: Shastri
+Sidama Bunna: Sidama Bunna
+Sudeva FC: Sudeva FC
+Swope Park Rangers: Swope Park Rangers
+TFF Lig 2021/22: TFF Lig 2021/22
+L.D.U. Quito: Liga Dep Universitaria Quito
+LDU Quito: Liga Dep Universitaria Quito
+Liga Dep Universitaria Quito: Liga Dep Universitaria Quito
+Louisville City: Louisville City
+Macara: Macara
+Madura United FC: Madura United
+Mafra: Mafra
+Manta FC: Manta
+Mantova FC: Mantova
+Miami: Miami
+Miami FC: Miami
+Modena FC: Modena
+Mokawloon Al: Mokawloon Al
+Monopoli: Monopoli
+Montevarchi: Montevarchi
+Nacional Potosi: Nacional Potosi
+CD Tecnico Universitario: Tecnico Universitario
+CS Emelec: Emelec
+Calcio Catania: Calcio Catania
+Carrarese Calcio: Carrarese Calcio
+Club Atletico Atlanta: Atlanta
+Club Atletico Barracas Central: Barracas Central
+Club Atletico Municipal Vinto Palmaflor: Municipal Vinto Palmaflor
+Club Atletico Palmaflor: Palmaflor
+Club Atlético Morelia: Morelia
+Club Aurora: Club Aurora
+Cobreloa: Cobreloa
+Coca: Coca
+Cola Football Club (Egypt) (Egypt): Cola Football Club (Egypt) (Egypt)
+Colorado Springs Switchbacks FC: Colorado Springs Switchbacks
+Colorado Switchbacks FC: Colorado Switchbacks
+Defensores De Belgrano: Defensores De Belgrano
+Delfin SC: Delfin
+Delhi FC: Delhi
+Deportivo Maipu: Deportivo Maipu
+Deportivo Moron: Deportivo Moron
+Duhail SC: Duhail
+El Geish: El Geish
+El Paso Locomotive: El Paso Locomotive
+El Paso Locomotive FC: El Paso Locomotive
+El Porvenir: El Porvenir
+Estudiante Rio Cuarto: Estudiante Rio Cuarto
+Estudiantes Rio Cuarto: Estudiantes Rio Cuarto
+Estudiantes de Buenos Aires: Estudiantes de Buenos Aires
+FC Sudtirol: FC Sudtirol
+FC Tulsa: FC Tulsa
+Fermana: Fermana
+Friends United: Friends United
+Genclerbirligi: Genclerbirligi
+Gimnasia Y Esgrima Mendoza: Gimnasia Y Esgrima Mendoza
+Guayaquil City: Guayaquil City
+Guayaquil City FC: Guayaquil City
+Guillermo Brown: Guillermo Brown
+Hawassa Kenema FC: Hawassa Kenema
+Hawassa Kima FC: Hawassa Kima
+Independiente del Valle: Independiente del Valle
+Indy Eleven: Indy Eleven
+Instituto: Instituto
+Jaguar FC: Jaguar
+Juventus FC U23: Juventus FC U23
+Juventus Turin U23: Juventus Turin U23
+Juventus U23: Juventus U23
+Kocaelispor: Kocaelispor
+Las Vegas Lights: Las Vegas Lights
+Las Vegas Lights FC: Las Vegas Lights
+Legnago Salus: Legnago Salus
+Los Angeles Galaxy II: Los Angeles Galaxy II
+National Bank: National Bank
+National Bank of Egypt SC: National Bank of Egypt SC
+National United: National United
+New York Red Bulls II: New York Red Bulls II
+Nueve de Octubre: 9 de Octubre
+Nuova Monterosi: Nuova Monterosi
+Nuovo Campobasso Calcio: Nuovo Campobasso Calcio
+Oakland Roots SC: Oakland Roots
+Orange County Blues FC: Orange County Blues
+Orense: Orense
+Orense SC: Orense
+Orense Sporting Club: Orense
+PS Barito Putera: Barito Putera
+Persiraja Banda Aceh: Persiraja Banda Aceh
+Phoenix Rising FC: Phoenix Rising
+Piacenza Calcio: Piacenza Calcio
+Pistoiese: Pistoiese
+Pittsburgh Riverhounds: Pittsburgh Riverhounds
+Almagro: Almagro
+Alvarado Mar del Plata: Alvarado Mar del Plata
+Arab: Arab
+Arba Minch Kenema: Arba Minch Kenema
+Arema: Arema
+Avaí: Avai
+Brusque: Brusque
+Brusque SC: Brusque
+CA Chacarita Juniors: Chacarita Juniors
+CRB Maceio: CRB
+CS Dock Sud: Dock Sud
+CSA AL: CSA AL
+CSD Barnechea: Barnechea
+Club Real Santa Cruz: Real Santa Cruz
+Confianca: Confianca
+Defensa Y Justicia: Defensa Y Justicia
+Dire Dawa: Dire Dawa
+Dire Dawa Kenema: Dire Dawa
+Hadiah Hosanna FC: Hadiya Hosanna
+Hadiya Hosaena: Hadiya Hosaena
+Kufrsoum SC: Kufrsoum SC
+Leandro Niceforo Alem: Leandro Niceforo Alem
+Londrina: Londrina
+Lucchese: Lucchese
+Náutico: Nautico
+Rangers (Chile): Rangers de Talca
+Real Santa Cruz: Real Santa Cruz
+Remo Pa: Remo Pa
+SS Robur Siena: SS Robur Siena
+Sampaio Correa: Sampaio Correa
+Umm: Umm
+Vasco Da Gama: Vasco Da Gama

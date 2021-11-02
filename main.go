@@ -44,6 +44,7 @@ func main() {
 	}
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/data", app.dataLink)
+	router.HandleFunc("/all", app.allLink)
 	router.HandleFunc("/scrape", app.scrapeLink)
 	router.HandleFunc("/home", homeLink)
 	router.HandleFunc("/cache", cacheLink)
@@ -217,7 +218,7 @@ func (app *Application) ScrapeSite(website string) (bool, error) {
 func getScrapeResults() (map[string]interface{}, error) {
 	// find events that appear in more than one site
 	//rows, err := GetDb().Raw(`SELECT betradar_id FROM (SELECT count(distinct site_id) as matches, betradar_id FROM haggle.events group by betradar_id) as tab WHERE matches > 1;`).Rows()
-	rows, err := GetDb().Raw(`SELECT canonical_name FROM (SELECT count(distinct site_id) as matches, canonical_name FROM haggle.events group by canonical_name) as tab WHERE matches > 1;;`).Rows()
+	rows, err := GetDb().Raw(`SELECT canonical_name FROM (SELECT count(distinct site_id) as matches, canonical_name FROM haggle.events group by canonical_name) as tab WHERE matches > 1;`).Rows()
 	if err != nil {
 		return map[string]interface{}{
 			"error": err,
@@ -242,29 +243,14 @@ func getScrapeResults() (map[string]interface{}, error) {
 		//var matchResultMarket *models.Market
 		//var overUnderMarket *models.Market
 		//var bttsMarket *models.Market
-		if _, found := matches[event.CanonicalName]; !found {
-			matches[event.CanonicalName] = make([]models.Event, 0)
+		canonicalName := parsers.TransformName(event.Name)
+		if _, found := matches[canonicalName]; !found {
+			matches[canonicalName] = make([]models.Event, 0)
 		}
 
-		matches[event.CanonicalName] = append(matches[event.CanonicalName], event)
+		matches[canonicalName] = append(matches[canonicalName], event)
 	}
-	siteList := map[int]string{
-		1:  `bet`,
-		2:  `novibet`,
-		3:  `pokerstars`,
-		4:  `stoiximan`,
-		5:  `winmasters`,
-		6:  `bwin`,
-		8:  `netbet`,
-		12: `betsson`,
-	}
-	sites := make(map[int]string)
-	for _, site := range siteList {
-		parser, _ := GetParser(site, GetDb())
-		if parser != nil {
-			sites[parser.GetConfig().SiteID] = site
-		}
-	}
+	sites := GetSites()
 	arbs := FindArbs(matches, sites)
 
 	return map[string]interface{}{
@@ -289,7 +275,6 @@ func FindArbs(matches map[string][]models.Event, sites map[int]string) map[strin
 				}
 			}
 		}
-		fmt.Println(len(temp))
 	}
 	return arbs
 }
@@ -325,7 +310,7 @@ func CheckMarket(eventName string, selection models.Selection, marketType string
 	}
 
 	//skip some markets for now
-	if marketType == "DBLC" || selection.Price > 10 {
+	if marketType == "DBLC" || selection.Price > 12 {
 		return ""
 	}
 	if _, found := temp[key]; !found {
@@ -333,8 +318,8 @@ func CheckMarket(eventName string, selection models.Selection, marketType string
 	}
 	if _, found := temp[arbKey]; found && arbKey != "" {
 		for _, sel := range temp[arbKey] {
-			if testArbs(sel.Price, selection.Price) {
-				results = append(results, fmt.Sprintf("New %s:%s (%s:%.2f - %s:%.2f)", eventName, key, site, selection.Price, sel.Site, sel.Price))
+			if arbValue := testArbs(sel.Price, selection.Price); arbValue > 0 {
+				results = append(results, fmt.Sprintf("%.2f%% %s:%s (%s:%.2f - %s:%.2f)", arbValue, eventName, key, site, selection.Price, sel.Site, sel.Price))
 			}
 		}
 	} else if _, found = temp[key]; found {
@@ -354,14 +339,14 @@ func CheckMarket(eventName string, selection models.Selection, marketType string
 	return strings.Join(results, "\r\n")
 }
 
-func testArbs(odd1, odd2 float64) bool {
+func testArbs(odd1, odd2 float64) float64 {
 	perc1 := 1 / odd1 * 100
 	perc2 := 1 / odd2 * 100
 	arb := math.Round(100*(perc1+perc2)) / 100
-	if arb < 100 {
-		return true
+	if arb < 102 {
+		return 100 - arb
 	}
-	return false
+	return 0.0
 }
 
 func testArbSameIndex(odd1, odd2 float64) bool {
@@ -395,6 +380,69 @@ func (app *Application) dataLink(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	_ = json.NewEncoder(w).Encode(result)
+}
+
+func (app *Application) allLink(w http.ResponseWriter, r *http.Request) {
+	result := AllResults()
+	_ = json.NewEncoder(w).Encode(result)
+}
+
+func AllResults() map[string]interface{} {
+	rows, err := GetDb().Model(&models.Event{}).Select("id").Rows()
+	defer rows.Close()
+	var eventMatch interface{}
+	eventIds := make([]string, 0)
+	for rows.Next() {
+		err = rows.Scan(&eventMatch)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+		eventIds = append(eventIds, fmt.Sprintf("%s", eventMatch.([]byte)))
+	}
+	events := make([]models.Event, 0)
+	GetDb().Preload("Markets").Preload("Markets.Selections").Where("id in (?)", eventIds).Find(&events)
+	matches := make(map[string][]models.Event)
+	for _, event := range events {
+		//var matchResultMarket *models.Market
+		//var overUnderMarket *models.Market
+		//var bttsMarket *models.Market
+		canonicalName := parsers.TransformName(event.Name)
+		if _, found := matches[canonicalName]; !found {
+			matches[canonicalName] = make([]models.Event, 0)
+		}
+		event.CanonicalName = canonicalName
+		matches[canonicalName] = append(matches[canonicalName], event)
+	}
+
+	sites := GetSites()
+	arbs := FindArbs(matches, sites)
+
+	return map[string]interface{}{
+		"events": matches,
+		"sites":  sites,
+		"arbs":   arbs,
+	}
+}
+
+func GetSites() map[int]string {
+	siteList := map[int]string{
+		1:  `bet`,
+		2:  `novibet`,
+		3:  `pokerstars`,
+		4:  `stoiximan`,
+		5:  `winmasters`,
+		6:  `bwin`,
+		8:  `netbet`,
+		12: `betsson`,
+	}
+	sites := make(map[int]string)
+	for _, site := range siteList {
+		parser, _ := GetParser(site, GetDb())
+		if parser != nil {
+			sites[parser.GetConfig().SiteID] = site
+		}
+	}
+	return sites
 }
 
 func homeLink(w http.ResponseWriter, r *http.Request) {
@@ -491,32 +539,6 @@ func getQueryParams(r *http.Request, stats *fixtureModels.Stats) {
 	if threshold4 := v.Get("threshold4"); threshold4 != "" {
 		stats.Threshold4, _ = strconv.ParseFloat(threshold4, 64)
 	}
-}
-
-func allLink(w http.ResponseWriter, r *http.Request) {
-	layout := "02-01-2006"
-	now := time.Now()
-	week := fixtureModels.Week{
-		Start: time.Date(now.Year(), 1, 1, 0, 0, 0, 0, time.Now().Location()),
-		End:   time.Date(now.Year(), now.Month(), now.Day(), 23, 59, 59, 0, time.Now().Location()),
-	}
-	tournamentList := getTournamentData(false, fixtureModels.Week{Start: time.Now(), End: time.Now().AddDate(1, 0, 0)})
-	stats := fixtureModels.NewStats()
-	fixtureModels.ProcessFixtures(&tournamentList, stats, week, time.Now())
-
-	_ = json.NewEncoder(w).Encode(struct {
-		TournamentList []*fixtureModels.Tournament `json:"tournaments"`
-		Weeks          []*fixtureModels.Week       `json:"weeks"`
-		End            string                      `json:"end"`
-		Start          string                      `json:"start"`
-		Stats          *fixtureModels.Stats        `json:"stats"`
-	}{
-		TournamentList: tournamentList,
-		Weeks:          getWeeks(),
-		End:            week.Start.Format(layout),
-		Start:          week.End.Format(layout),
-		Stats:          stats,
-	})
 }
 
 func getDataForWeek(week fixtureModels.Week, stats *fixtureModels.Stats) ([]*fixtureModels.Tournament, *fixtureModels.Stats) {

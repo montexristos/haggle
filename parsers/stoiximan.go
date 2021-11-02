@@ -61,17 +61,17 @@ func (s *Stoiximan) Scrape() (bool, error) {
 }
 
 func (s *Stoiximan) ScrapeHome() (bool, error) {
-	_ = s.c.Visit(fmt.Sprintf("%s", s.config.BaseUrl))
+	//_ = s.c.Visit(fmt.Sprintf("%s", s.config.BaseUrl))
 	return true, nil
 }
 
 func (s *Stoiximan) ScrapeLive() (bool, error) {
-	_ = s.c.Visit(fmt.Sprintf("%s/%s", s.config.BaseUrl, s.config.Urls["live"]))
+	//_ = s.c.Visit(fmt.Sprintf("%s/%s", s.config.BaseUrl, s.config.Urls["live"]))
 	return true, nil
 }
 
 func (s *Stoiximan) ScrapeToday() (bool, error) {
-	_ = s.c.Visit(fmt.Sprintf("%s/%s", s.config.BaseUrl, s.config.Urls["day"]))
+	//_ = s.c.Visit(fmt.Sprintf("%s/%s", s.config.BaseUrl, s.config.Urls["day"]))
 	return true, nil
 }
 

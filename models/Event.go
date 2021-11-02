@@ -13,6 +13,7 @@ type Event struct {
 	CanonicalName string
 	Markets       []Market
 	Url           string
+	Tournament    string
 }
 
 // Set User's table name to be `profiles`

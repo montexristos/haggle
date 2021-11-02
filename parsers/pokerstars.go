@@ -154,9 +154,13 @@ func (p *PokerStars) GetMarketSelections(marketData map[string]interface{}) []in
 
 	sort.Slice(selections, func(i, j int) bool {
 		if selections[i] != nil && selections[j] != nil {
-			row1 := selections[i].(map[string]interface{})["pos"].(map[string]interface{})["col"].(float64)
-			row2 := selections[j].(map[string]interface{})["pos"].(map[string]interface{})["col"].(float64)
-			return row1 < row2
+			pos1 := selections[i].(map[string]interface{})["pos"]
+			pos2 := selections[j].(map[string]interface{})["pos"]
+			if pos1 != nil && pos2 != nil {
+				row1 := pos1.(map[string]interface{})["col"].(float64)
+				row2 := pos2.(map[string]interface{})["col"].(float64)
+				return row1 < row2
+			}
 		}
 		return true
 	})

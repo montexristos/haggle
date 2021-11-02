@@ -16,7 +16,7 @@ class EventView extends React.Component {
         };
         for (let siteId=0; siteId<events.length;siteId++) {
             if (siteId === 0) {
-                nameTag = events[0].Name;
+                nameTag = events[0].CanonicalName;
             }
             if (date === "" && events[siteId].Date) {
                 date = events[siteId].Date;

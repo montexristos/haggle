@@ -114,6 +114,7 @@ func (n *Novibet) Scrape() (bool, error) {
 	return true, nil
 }
 func (n *Novibet) ScrapeHome() (bool, error) {
+	return true, nil
 	err := n.c.Visit(fmt.Sprintf("%s/%s%d", n.config.BaseUrl, n.config.Urls["home"], time.Now().Unix()))
 	if err != nil {
 		return false, err
@@ -123,6 +124,7 @@ func (n *Novibet) ScrapeHome() (bool, error) {
 }
 
 func (n *Novibet) ScrapeLive() (bool, error) {
+	return true, nil
 	err := n.c.Visit(fmt.Sprintf("%s/%s%d", n.config.BaseUrl, n.config.Urls["live"], time.Now().Unix()))
 	if err != nil {
 		return false, err
@@ -131,6 +133,7 @@ func (n *Novibet) ScrapeLive() (bool, error) {
 }
 
 func (n *Novibet) ScrapeToday() (bool, error) {
+	return true, nil
 	err := n.c.Visit(fmt.Sprintf("%s/%s%d", n.config.BaseUrl, n.config.Urls["day"], time.Now().Unix()))
 	if err != nil {
 		return false, err
@@ -363,18 +366,18 @@ func (n *Novibet) FetchEvent(e *models.Event) error {
 	if err != nil {
 		fmt.Println(err)
 	}
-	err = n.getMarketGroup("HALVES", e)
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = n.getMarketGroup("GOALS", e)
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = n.getMarketGroup("10_MINUTES_MARKETS", e)
-	if err != nil {
-		fmt.Println(err)
-	}
+	//err = n.getMarketGroup("HALVES", e)
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//err = n.getMarketGroup("GOALS", e)
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//err = n.getMarketGroup("10_MINUTES_MARKETS", e)
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
 	return nil
 }
 
