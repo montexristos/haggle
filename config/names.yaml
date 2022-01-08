@@ -16,7 +16,7 @@ AC Fiorentina: Fiorentina
 AC Milan: Milan
 AC Monza: Monza
 AC Omonia Nicosia: Omonia Nicosia
-AC Perugia Calcio: Perugia Calcio
+AC Perugia Calcio: Perugia
 AC Pisa 1909: Pisa
 AC Reggiana 1919: Reggiana
 AC Renate: Renate
@@ -27,7 +27,7 @@ ACS Vedita Colonesti MS: Vedita Colonesti MS
 ACS Viitorul Târgu Jiu: Viitorul Târgu Jiu
 AD Guanacasteca: AD Guanacasteca
 ADO Den Haag: ADO Den Haag
-AE Limassol: AE Limassol
+AE Limassol: Limassol
 AEK Athens: AEK Athens
 AEK Larnaca: AEK Larnaca
 AEL Limassol: Limassol
@@ -44,27 +44,27 @@ AGMK Olmaliq: AGMK Olmaliq
 AIK: AIK
 AIK Stockholm: AIK
 AJ Auxerre: Auxerre
-AL Ahli Jeddah: AL Ahli Jeddah
-AL Ahly Cairo: AL Ahly Cairo
-AL Ittihad FC: AL Ittihad
+AL Ahli Jeddah: Al Ahli Jeddah
+AL Ahly Cairo: Al Ahly
+AL Ittihad FC: Al Ittihad
 AL Shabab Riyadh: AL Shabab Riyadh
 APOEL Nicosia: APOEL Nicosia
 AS Ashdod: AS Ashdod
 AS Cittadella: Cittadella
 AS Giana Erminio: Giana Erminio
 AS Lucchese Libertas: Lucchese Libertas
-AS Monaco: AS Monaco
+AS Monaco: Monaco
 AS Monaco FC: Monaco
 AS Nancy Lorraine: Nancy Lorraine
 AS Roma: Roma
-AS Saint Etienne: AS Saint Etienne
-AS Saint Etienne (W): AS Saint Etienne (W)
-AS Saint-Étienne: St Etienne
+AS Saint Etienne: Saint Etienne
+AS Saint Etienne (W): Saint Etienne (W)
+AS Saint-Étienne: Saint Etienne
 ASD Transtevere: Transtevere
 ASK Ελέκτρα: ASK Electra
 ATSV Ερλάνγκεν: ATSV Erlangen
 AZ Alkmaar: Alkmaar
-AZ Alkmaar II: AZ Alkmaar II
+AZ Alkmaar II: Alkmaar
 AaB Aalborg: Aalborg
 AaB Handbold: AaB Handbold
 AaB esport: AaB esport
@@ -81,7 +81,7 @@ Academia Puerto Cabello: Academia Puerto Cabello
 Academica Clinceni: Academica Clinceni
 Academica Coimbra: Academica Coimbra
 Academica De Coimbra: Academica Coimbra
-Academica Viseu: Academica Viseu
+Academica Viseu: Academico Viseu
 Academica de Coimbra: Academica Coimbra
 Academico Viseu: Academico Viseu
 Académico de Viseu FC: Académico Viseu
@@ -287,9 +287,9 @@ Arturo Fernandez Vial: Arturo Fernandez Vial
 Asane: Asane
 Asarums IF FK: Asarums IF FK
 Ascoli: Ascoli
-Ascoli Calcio 1898: Ascoli Calcio 1898
-Asd Alcione Milano: Asd Alcione Milano
-Asd Paterno Calcio: Asd Paterno Calcio
+Ascoli Calcio 1898: Ascoli
+Asd Alcione Milano: Alcione Milano
+Asd Paterno Calcio: Paterno
 Ashdod: Ashdod
 Ashton: Ashton
 Ask: Ask
@@ -306,7 +306,7 @@ Astra Giurgiu: Astra Giurgiu
 Atalanta: Atalanta
 Atalanta BC: Atalanta
 Atalanta Bergame: Atalanta
-Ataspor München: Ataspor Munchen
+Ataspor München: Ataspor
 Ath Bilbao: Ath Bilbao
 Ath Madrid: Ath Madrid
 Atherton Collieries: Atherton Collieries
@@ -325,7 +325,7 @@ Atletico Nacional Medellin: Atletico Nacional Medellin
 Atletico PR: Atletico
 Atletico Rafaela: Atletico Rafaela
 Atletico Votuporanguense SP: Atletico Votuporanguense SP
-Atlético Madrid: Atlético Madrid
+Atlético Madrid: Atletico Madrid
 Atomeromu SE: Atomeromu SE
 Atromitos: Atromitos
 Atromitos Athen: Atromitos
@@ -611,7 +611,7 @@ CD Mafra: Mafra
 CD Nacional Madeira: Nacional Madeira
 CD O'Higgins: O'Higgins
 CD Santa Clara: Santa Clara
-CD Santamarina Tandil: Santamarina Tandil
+CD Santamarina Tandil: Santamarina
 CD Toledo: Toledo
 CD Tondela: Tondela
 CD Trofense: Trofense
@@ -793,7 +793,6 @@ Coelho F: Coelho F
 Colchester: Colchester
 Coleraine: Coleraine
 Collignon R: Collignon R
-Colo: Colo
 Colo Colo: Colo Colo
 Colon Santa FE: Colon
 Colon de Santa Fe II: Colon II
@@ -882,12 +881,12 @@ Denizlispor: Denizlispor
 Denmark: Denmark
 Dennis Novak: Dennis Novak
 Denys Klok: Denys Klok
-Deportes Copiapo: Deportes Copiapo
-Deportes Iquique: Deportes Iquique
-Deportes La Serena: Deportes La Serena
-Deportes Melipilla: Deportes Melipilla
-Deportes Santa Cruz: Deportes Santa Cruz
-Deportes Temuco: Deportes Temuco
+Deportes Copiapo: Copiapo
+Deportes Iquique: Iquique
+Deportes La Serena: La Serena
+Deportes Melipilla: Melipilla
+Deportes Santa Cruz: Santa Cruz
+Deportes Temuco: Temuco
 Deportivo Alaves: Alaves
 Deportivo Cuenca: Deportivo Cuenca
 Deportivo La Coruna: Deportivo La Coruna
@@ -1029,8 +1028,8 @@ Espanol: Espanol
 Espanyol: Espanyol
 Essen: Essen
 Estoril: Estoril
-Estoril Praia: Estoril Praia
-Estrela Futebol Clube: Estrela Futebol Clube
+Estoril Praia: Estoril
+Estrela Futebol Clube: Estrela
 Estudiantes Merida: Estudiantes Merida
 Eternal Fire: Eternal Fire
 Ethiopia Bunna: Ethiopia Bunna
@@ -1093,7 +1092,7 @@ FC Edmonton: Edmonton
 FC Eindhoven: Eindhoven
 FC Eintracht Northeim: Eintracht Northeim
 FC Emmen: Emmen
-FC Erzgebirge Aue: Erzgebirge Aue
+FC Erzgebirge Aue: Aue
 FC Essentuki: Essentuki
 FC Famalicao: Famalicao
 FC Fastav Zlin: Fastav Zlin
@@ -1193,7 +1192,7 @@ FC Sochaux: Sochaux
 FC Sokol Saratov: Sokol Saratov
 FC Spartak Velka Bites: Spartak Velka Bites
 FC Spinea 1966: Spinea
-FC St Pauli: St Pauli
+FC St Pauli: Saint Pauli
 FC Strani: Strani
 FC Strumska Slava Radomir: Strumska Slava Radomir
 FC Sydvest 05 Tonder: Sydvest 05 Tonder
@@ -1414,7 +1413,7 @@ Germain: Germain
 Germania Halberstadt: Germania Halberstadt
 Getafe: Getafe
 Getafe B: Getafe B
-Getafe CF: Getafe CF
+Getafe CF: Getafe
 Geylang International: Geylang International
 Geylang International FC: Geylang International
 Gharbiyye: Gharbiyye
@@ -1687,6 +1686,7 @@ Imortal DC: Imortal DC
 Incheon United: Incheon United
 Independiente Medellin: Independiente Medellin
 Independiente Rivadavia: Independiente Rivadavia
+Independiente Rivadavia Mendoza: Independiente Rivadavia
 Independiente Sabaneta: Independiente Sabaneta
 Independiente Santa Fe: Independiente Santa Fe
 Independiente de Chivilcoy: Independiente de Chivilcoy
@@ -1796,11 +1796,11 @@ Jokerit Helsinki: Jokerit Helsinki
 Jones B: Jones B
 Jong AZ Alkmaar: Alkmaar
 Jong Ajax: Ajax
-Jong Ajax Amsterdam: Jong Ajax Amsterdam
+Jong Ajax Amsterdam: Ajax
 Jong Az Alkmaar: Alkmaar
 Jong FC Utrecht: Utrecht
 Jong PSV Eindhoven: Eindhoven
-Jong Utrecht: Jong Utrecht
+Jong Utrecht: Utrecht
 Jonkopings: Jonkopings
 Jordan: Jordan
 Jordina Cegarra Ramirez: Jordina Cegarra Ramirez
@@ -1963,12 +1963,12 @@ Kvarnsvedens IK: Kvarnsvedens IK
 Kvikk Halden: Kvikk Halden
 Kyoto: Kyoto
 Kyoto Sanga FC: Kyoto Sanga
-L.R. Vicenza Virtus: L.R. Vicenza Virtus
+L.R. Vicenza Virtus: Vicenza
 LA Clippers (PullUp) Esports: LA Clippers (PullUp) Esports
 LDU Portoviejo: LDU Portoviejo
 LG Twins: LG Twins
 LKS Lodz: LKS Lodz
-LR Vicenza: LR Vicenza
+LR Vicenza: Vicenza
 La Chalaca: La Chalaca
 La Coruna: La Coruna
 La Nucia: La Nucia
@@ -2051,7 +2051,7 @@ Leotar Trebinje: Leotar Trebinje
 Levadiakos: Levadiakos
 Levanger: Levanger
 Levante: Levante
-Levante UD: Levante UD
+Levante UD: Levante
 Leverkusen: Leverkusen
 Levski Sofia: Levski Sofia
 Leyton Orient: Leyton Orient
@@ -2062,7 +2062,7 @@ Liepajas Lauvas: Liepajas Lauvas
 Ligorna 1922: Ligorna 1922
 Lilian Breut: Lilian Breut
 Lille: Lille
-Lille OSC: Lille OSC
+Lille OSC: Lille
 Lilmix: Lilmix
 Limianos: Limianos
 Limpopo: Limpopo
@@ -2155,9 +2155,9 @@ MHK Martin: MHK Martin
 MK Beer Sheva: MK Beer Sheva
 MKE Ankaragucu: Ankaragucu
 MKE Ankaragücü: Ankaragucu
-MS Jerusalem: MS Jerusalem
-MSV Duisburg: MSV Duisburg
-MVV Maastricht: MVV Maastricht
+MS Jerusalem: Jerusalem
+MSV Duisburg: Duisburg
+MVV Maastricht: Maastricht
 Maccabi Ahi Nazareth FC: Maccabi Ahi Nazareth FC
 Maccabi Akhi Nazareth: Maccabi Akhi Nazareth
 Maccabi Bney Reine: Maccabi Bney Reine
@@ -2643,7 +2643,7 @@ Oυέσκα: Uesca
 PAE Ionikos Nikaias: Ionikos
 PAEEK: PAEEK
 PAOK: PAOK
-PAOK Thessaloniki: PAOK Thessaloniki
+PAOK Thessaloniki: PAOK
 PAS Giannina: PAS Giannina
 PAS Lamia: Lamia
 PE Sant Jordi: PE Sant Jordi
@@ -2694,7 +2694,7 @@ Panetolikos: Panetolikos
 Panetolikos Agrinio: Panetolikos
 Panserraikos: Panserraikos
 Paok: Paok
-Paphos FC: Paphos FC
+Paphos FC: Pafos FC
 Paragominas PA: Paragominas PA
 Pardubice FK AS: Pardubice FK AS
 Parentini Vallega Montebruno G: Parentini Vallega Montebruno G
@@ -2756,7 +2756,7 @@ Persiraja Banda: Persiraja Banda
 Persita Tangerang: Persita Tangerang
 Perugia: Perugia
 Pescara: Pescara
-Pescara Calcio: Pescara Calcio
+Pescara Calcio: Pescara
 Peschke K: Peschke K
 Petar Pjevcevic: Petar Pjevcevic
 Petar Teodorovic: Petar Teodorovic
@@ -2815,7 +2815,7 @@ Pontypridd Town: Pontypridd Town
 Poole Town: Poole Town
 Popesti Leordeni: Popesti Leordeni
 Pordenone: Pordenone
-Pordenone Calcio: Pordenone Calcio
+Pordenone Calcio: Pordenone
 Port Vale: Port Vale
 Portadown: Portadown
 Portimonense: Portimonense
@@ -3134,7 +3134,7 @@ SS Monopoli: SS Monopoli
 SS Taranto 1927: SS Taranto 1927
 SSC Napoli: Napoli
 SSD Insieme Formia: Insieme Formia
-SSD Potenza Calcio: Potenza Calcio
+SSD Potenza Calcio: Potenza
 SSG Bergisch Gladbach: Gladbach
 SSV Jahn Regensburg: Regensburg
 STK 1914 Samorin: STK 1914 Samorin
@@ -3159,11 +3159,11 @@ SV Sandhausen: Sandhausen
 SV Schalding Heining: Schalding Heining
 SV Seekirchen: Seekirchen
 SV Stripfing: Stripfing
-SV Turkgucu Ataspor Munchen: Turkgucu Ataspor Munchen
+SV Turkgucu Ataspor Munchen: Ataspor
 SV Türkgücü: Türkgücü
 SV Türkgücü Ataspor: Ataspor
 SV Victoria Seelow: Victoria Seelow
-SV Waldhof Mannheim: Waldhof Mannheim
+SV Waldhof Mannheim: Mannheim
 SV Wehen Wiesbaden: Wehen Wiesbaden
 SV Werder Bremen: Werder Bremen
 SV Worgl: Worgl
@@ -3375,7 +3375,7 @@ Sonderjyske: Sonderjyske
 Sorgun BLD: Sorgun BLD
 Soroksar: Soroksar
 Sorrentino L: Sorrentino L
-Sorrento Calcio: Sorrento Calcio
+Sorrento Calcio: Sorrento
 Sotra: Sotra
 South Georgia Tormenta: South Georgia Tormenta
 South Korea: South Korea
@@ -3440,19 +3440,19 @@ Sri Lanka: Sri Lanka
 Ssd Acireale Calcio 1946: Ssd Acireale Calcio 1946
 Ssd Real Calepina FC: Ssd Real Calepina
 Sss Barneveld: Sss Barneveld
-St Etienne: St Etienne
-St Johnstone: St Johnstone
-St Mirren: St Mirren
-St Patricks Athletic: St Patricks Athletic
-St Pauli: St Pauli
+St Etienne: Saint Etienne
+St Johnstone: Saint Johnstone
+St Mirren: Saint Mirren
+St Patricks Athletic: Saint Patricks Athletic
+St Pauli: Saint Pauli
 St Truiden: Truiden
-St. Albans: St Albans
-St. Etienne: St Etienne
-St. Gallen: St Gallen
-St. Johann: St Johann
-St. Mirren: St Mirren
-St. Pauli: St Pauli
-St. Polten: St Polten
+St. Albans: Saint Albans
+St. Etienne: Saint Etienne
+St. Gallen: Saint Gallen
+St. Johann: Saint Johann
+St. Mirren: Saint Mirren
+St. Pauli: Saint Pauli
+St. Polten: Saint Polten
 St.Truiden: Truiden
 Stabaek: Stabaek
 Stade Brestois 29: Stade Brestois 29
@@ -3592,10 +3592,10 @@ Telstar: Telstar
 Temperley: Temperley
 Tenerife: Tenerife
 Tennis Borussia Berlin: Tennis Borussia Berlin
-Teramo Calcio: Teramo Calcio
+Teramo Calcio: Teramo
 Termalica Bruk: Termalica Bruk
 Ternana: Ternana
-Ternana Calcio: Ternana Calcio
+Ternana Calcio: Ternana
 Terrassa: Terrassa
 Tersana SC: Tersana SC
 Teruel: Teruel
@@ -3712,7 +3712,7 @@ UD Montijo: Montijo
 UD Somozas: Somozas
 UD Tamaraceite: Tamaraceite
 UD Torre Del Mar: Torre Del Mar
-UD Vilafranquense: UD Vilafranquense
+UD Vilafranquense: Vilafranquense
 UE Castelldefels: Castelldefels
 UE Costa Brava: Costa Brava
 UE Engordany: Engordany
@@ -3773,7 +3773,7 @@ Unirea Bascov: Unirea Bascov
 Unirea Slobozia: Unirea Slobozia
 Univ. Cesar Vallejo: Univ. Cesar Vallejo
 Universidad Catolica: Universidad Catolica
-Universidad Catolica Quito: Universidad Catolica Quito
+Universidad Catolica Quito: Universidad Catolica
 Universidad Católica: Universidad Catolica
 Universidad de Chile: Universidad de Chile
 Universidad de Concepcion: Universidad de Concepcion
@@ -3792,7 +3792,7 @@ Uruguay Montevideo FC: Uruguay Montevideo FC
 Usd Casatese: Usd Casatese
 Usti nad Labem: Usti nad Labem
 Utrecht: Utrecht
-Utrecht II: Utrecht II
+Utrecht II: Utrecht
 Utrera: Utrera
 V Varen Nagasaki: V Varen Nagasaki
 V-Varen Nagasaki: Varen Nagasaki
@@ -3809,7 +3809,7 @@ Vaalerenga: Vaalerenga
 Vadim Reva: Vadim Reva
 Vado FC: Vado
 Valencia: Valencia
-Valencia CF: Valencia CF
+Valencia CF: Valencia
 Valenciennes: Valenciennes
 Valenciennes FC: Valenciennes
 Valentin Royer: Valentin Royer
@@ -4080,7 +4080,7 @@ Zwiegen Kanazawa: Zwiegen Kanazawa
 Zwolle: Zwolle
 Étienne: Saint Etienne
 Ñublense: Nublense
-Ümraniyespor: Ümraniyespor
+Ümraniyespor: Umraniyespor
 Άγιαξ: Ajax
 Άιντραχτ Φρ.: Eindracht
 Άιντραχτ Φρανκφούρτης: Eindracht
@@ -4432,7 +4432,7 @@ Zwolle: Zwolle
 AE Larissa: Larissa
 AFC Blaublitz Akita: AFC Blaublitz Akita
 Achuapa: Achuapa
-Ahly Cairo: Ahly Cairo
+Ahly Cairo: Al Ahly
 Al Gharafa: Al Gharafa
 Al Ittihad Al Ramtha: Al Ittihad Al Ramtha
 Al Khor: Khor
@@ -4487,7 +4487,7 @@ CA Rosario Central: Rosario Central
 CD Malacateco: Malacateco
 CD Puerto de Iztapa: Puerto de Iztapa
 CD Tapatio: Tapatio
-CF America: America
+CF America: Club America
 CF Monterrey: Monterrey
 CF Montreal: Montreal
 CF Montréal: Montreal
@@ -4515,7 +4515,7 @@ Club Atletico Junior: Club Atletico Junior
 Club Atletico Rosario Central: Club Atletico Rosario Central
 Club Atletico Tucuman: Club Atletico Tucuman
 Club Deportivo Real Tomayapo: Club Deportivo Real Tomayapo
-Club Ferro Carril Oeste: Club Ferro Carril Oeste
+Club Ferro Carril Oeste: Ferrocarril Oeste
 Club Independiente Petrolero: Club Independiente Petrolero
 Club Leon: Leon
 Club León: Leon
@@ -4524,7 +4524,7 @@ Club Puebla: Puebla
 Club Real Potosi: Club Real Potosi
 Club Tijuana: Club Tijuana
 Club Xelaju MC: Club Xelaju
-Clube Atlético Mineiro: Clube Atlético Mineiro
+Clube Atlético Mineiro: Atletico Mineiro
 Coban Imperial: Coban Imperial
 Colon: Colon
 Colon de Santa Fe: Colon
@@ -4719,7 +4719,8 @@ Blooming: Blooming
 Bolivar: Bolivar
 Bolivar La Paz: Bolivar
 Borneo FC: Borneo
-Brown de Adrogue: Brown de Adrogue
+Brown de Adrogue: Brown De Adrogue
+Brown De Adrogue: Brown De Adrogue
 CA Agropecuario: Agropecuario
 CA All Boys: All Boys
 CA Atlas: Atlas
@@ -4737,17 +4738,17 @@ Taranto Sport: Taranto Sport
 Tarun Sangha FC: Tarun Sangha
 Tecnico Universitario Ambato: Tecnico Universitario
 Tepatitlan de Morelos: Tepatitlan de Morelos
-Trento Calcio 1921: Trento Calcio
-Triestina Calcio: Triestina Calcio
+Trento Calcio 1921: Trento
+Triestina Calcio: Triestina
 Tristan Suarez: Tristan Suarez
 US Albinoleffe: Albinoleffe
 US Avellino: Avellino
 US Foggia: Foggia
-US Latina Calcio: Latina Calcio
+US Latina Calcio: Latina
 US Olbia 1905: Olbia 1905
 US Palermo: Palermo
-US Vibonese Calcio: Vibonese Calcio
-Univ Catolica (Ecu): Univ Catolica
+US Vibonese Calcio: Vibonese
+Univ Catolica (Ecu): Universidad Catolica
 Uttarakhand FC: Uttarakhand
 Vila Nova: Vila Nova
 Vila Nova GO: Vila Nova
@@ -4803,8 +4804,8 @@ Montevarchi: Montevarchi
 Nacional Potosi: Nacional Potosi
 CD Tecnico Universitario: Tecnico Universitario
 CS Emelec: Emelec
-Calcio Catania: Calcio Catania
-Carrarese Calcio: Carrarese Calcio
+Calcio Catania: Catania
+Carrarese Calcio: Carrarese
 Club Atletico Atlanta: Atlanta
 Club Atletico Barracas Central: Barracas Central
 Club Atletico Municipal Vinto Palmaflor: Municipal Vinto Palmaflor
@@ -4858,7 +4859,7 @@ National United: National United
 New York Red Bulls II: New York Red Bulls II
 Nueve de Octubre: 9 de Octubre
 Nuova Monterosi: Nuova Monterosi
-Nuovo Campobasso Calcio: Nuovo Campobasso Calcio
+Nuovo Campobasso Calcio: Nuovo Campobasso
 Oakland Roots SC: Oakland Roots
 Orange County Blues FC: Orange County Blues
 Orense: Orense
@@ -4867,7 +4868,7 @@ Orense Sporting Club: Orense
 PS Barito Putera: Barito Putera
 Persiraja Banda Aceh: Persiraja Banda Aceh
 Phoenix Rising FC: Phoenix Rising
-Piacenza Calcio: Piacenza Calcio
+Piacenza Calcio: Piacenza
 Pistoiese: Pistoiese
 Pittsburgh Riverhounds: Pittsburgh Riverhounds
 Almagro: Almagro

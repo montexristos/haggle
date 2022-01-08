@@ -52,6 +52,9 @@ func (n *Netbet) Initialize() {
 	})
 }
 
+func (n *Netbet) Destruct() {
+}
+
 func (n *Netbet) SetConfig(c *models.SiteConfig) {
 	n.config = c
 	n.ID = c.SiteID

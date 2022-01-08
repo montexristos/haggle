@@ -35,7 +35,7 @@ func (n *Novibet) Initialize() {
 		var resp interface{}
 		err := json.Unmarshal(response.Body, &resp)
 		if err != nil {
-			panic(err.Error())
+			log.Println("error in novi parser"+err.Error())
 		}
 		v := reflect.ValueOf(resp)
 		switch v.Kind() {
@@ -98,6 +98,9 @@ func (n *Novibet) Initialize() {
 			fmt.Println(resp)
 		}
 	})
+}
+
+func (n *Novibet) Destruct() {
 }
 
 func (n *Novibet) SetConfig(c *models.SiteConfig) {
@@ -285,11 +288,11 @@ func (n *Novibet) ParseMarketType(market map[string]interface{}) string {
 
 func (n *Novibet) MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error) {
 	switch marketType {
-	case "SOCCER_MATCH_RESULT_PRELIVE":
+	case "SOCCER_MATCH_RESULT_PRELIVE", "BASKETBALL_MATCH_RESULT_NODRAW":
 		return models.NewMatchResult().MarketType, nil
 	case "SOCCER_MATCH_RESULT":
 		return models.NewMatchResult().MarketType, nil
-	case "SOCCER_UNDER_OVER":
+	case "SOCCER_UNDER_OVER", "BASKETBALL_UNDER_OVER":
 		line := n.ParseMarketLine(market)
 		if line > 0.0 {
 			return models.NewOverUnderHandicap(cast.ToFloat64(line)).MarketType, nil
@@ -303,13 +306,13 @@ func (n *Novibet) MatchMarketType(market map[string]interface{}, marketType stri
 		return models.NewDoubleChance().MarketType, nil
 	case "SOCCER_MATCH_RESULT_NODRAW":
 		return models.NewDrawNoBet().MarketType, nil
-	case "SOCCER_HOME_UNDER_OVER":
+	case "SOCCER_HOME_UNDER_OVER", "BASKETBALL_HOME_UNDER_OVER":
 		line := n.ParseMarketLine(market)
 		if line > 0.0 {
 			return models.NewUnderOverHome(line).MarketType, nil
 		}
 		return models.NewUnderOverHome(2.5).MarketType, nil
-	case "SOCCER_AWAY_UNDER_OVER":
+	case "SOCCER_AWAY_UNDER_OVER", "BASKETBALL_AWAY_UNDER_OVER":
 		handicap := 2.5
 		line := n.ParseMarketLine(market)
 		if line > 0.0 {
@@ -331,6 +334,15 @@ func (n *Novibet) MatchMarketType(market map[string]interface{}, marketType stri
 			return models.NewUnderOverCorners(line).MarketType, nil
 		}
 		return models.NewUnderOverCorners(2.5).MarketType, nil
+	case "BASKETBALL_POINTS_RACE":
+		line := n.ParseMarketLine(market)
+		if line > 0.0 {
+			return models.NewRacePoints(line).MarketType, nil
+		}
+		return models.NewUnderOverCorners(2.5).MarketType, nil
+	case "SOCCER_MATCH_RESULT_NOHOME":
+
+		return models.NewDrawNoBet().MarketType, nil
 	}
 	return models.MarketType{}, fmt.Errorf("could not match market type")
 }

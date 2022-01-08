@@ -1,11 +1,11 @@
 id: winmasters
 # socket
-active: true
+active: false
 siteId: 5
-baseUrl: https://sbapi.sbtech.com/winmasters/
+baseUrl: https://www.winmasters.gr
 parser: parsers.Winmasters
 urls:
   live:
   day:
-  highlights: /sportscontent/sportsbook/v1/Events/GetFromTopLeaguesBySportId
+  highlights:
   tournaments:

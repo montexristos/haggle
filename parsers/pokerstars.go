@@ -52,6 +52,8 @@ func (p *PokerStars) Initialize() {
 		}
 	})
 }
+func (p *PokerStars) Destruct() {
+}
 
 func (p *PokerStars) GetDB() *gorm.DB {
 	return p.db

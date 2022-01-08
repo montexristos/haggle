@@ -54,6 +54,8 @@ func (s *Stoiximan) Initialize() {
 		}
 	})
 }
+func (s *Stoiximan) Destruct() {
+}
 
 func (s *Stoiximan) Scrape() (bool, error) {
 
@@ -196,6 +198,12 @@ func (s *Stoiximan) MatchMarketType(market map[string]interface{}, marketType st
 		}
 	case "FG28":
 		return models.NewFirstGoalEarly().MarketType, nil
+	case "CNOU":
+		handicap := cast.ToFloat64(market["handicap"])
+		return models.NewUnderOverCorners(handicap).MarketType, nil
+	case "3966":
+		handicap := cast.ToFloat64(market["handicap"])
+		return models.NewBttsOrOver(handicap).MarketType, nil
 	}
 	return models.MarketType{}, fmt.Errorf("could not match market type")
 }

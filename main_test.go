@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"haggle/models"
@@ -45,31 +44,9 @@ func Test_winmastersParse(t *testing.T) {
 	app := Application{
 		db,
 	}
-	parser, _ := GetParser("winmasters", db)
-	//read file and parse
-	file := "./test_input/winmasters/premierLeague.json"
-	event, _ := ioutil.ReadFile(file)
-
 	if _, err := app.ScrapeSite("winmasters"); err != nil {
 		t.Error(err.Error())
 	}
-	var parsed interface{}
-	json.Unmarshal(event, &parsed)
-	for key, value := range parsed.(map[string]interface{}) {
-		if key == "events" {
-			for i := 0; i < len(value.([]interface{})); i++ {
-				_, _ = parsers.ParseEvent(parser, value.([]interface{})[i].(map[string]interface{}))
-			}
-		}
-		if key == "markets" {
-			e := models.Event{}
-			for i := 0; i < len(value.([]interface{})); i++ {
-				parsers.ParseMarket(parser, value.([]interface{})[i].(map[string]interface{}), e)
-			}
-		}
-	}
-	fmt.Println(parsed)
-
 }
 
 func Test_novibet(t *testing.T) {
@@ -211,14 +188,14 @@ func Test_getArbDetect(t *testing.T) {
 	tests := []struct {
 		odd1   float64
 		odd2   float64
-		result bool
+		result float64
 	}{
-		{1.2, 1.3, false},
-		{1.2, 1.5, true},
-		{2, 2.6, true},
-		{2.2, 2.3, false},
-		{1.01, 1.1, false},
-		{12, 13, false},
+		{1.2, 1.3, 0.1},
+		{1.2, 1.5, 0.1},
+		{2, 2.6, 0.1},
+		{2.2, 2.3, 0.1},
+		{1.01, 1.1, 0.1},
+		{12, 13, 0.1},
 	}
 	for _, test := range tests {
 		if res := testArbs(test.odd1, test.odd2); res != test.result {

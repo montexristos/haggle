@@ -28,6 +28,9 @@ func (p *Betsson) Initialize() {
 	p.c = GetCollector()
 
 }
+func (p *Betsson) Destruct() {
+}
+
 
 func (p *Betsson) SetConfig(c *models.SiteConfig) {
 	p.config = c

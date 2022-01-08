@@ -19,40 +19,50 @@ package parsers
 //--compressed
 
 import (
+	"encoding/json"
 	"fmt"
-	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
+	"github.com/mxschmitt/playwright-go"
 	"github.com/spf13/cast"
 	"gorm.io/gorm"
 	"haggle/models"
+	"log"
 	"strings"
+	"sync"
+	"time"
 )
 
 type Winmasters struct {
 	Parser
-	db     *gorm.DB
-	config *models.SiteConfig
-	c      *colly.Collector
-	ID     int
+	db      *gorm.DB
+	config  *models.SiteConfig
+	c       *colly.Collector
+	ID      int
+	pw      *playwright.Playwright
+	browser *playwright.Browser
+	context *playwright.BrowserContext
+	wg      *sync.WaitGroup
 }
 
-func (w Winmasters) Initialize() {
-	w.c = GetCollector()
-	w.c.OnHTML("body", func(e *colly.HTMLElement) {
-		text := e.Text
-		fmt.Println(text)
-		if strings.HasPrefix(e.Text, `window["initial_state"]=`) {
-			jsonParsed, err := gabs.ParseJSON([]byte(e.Text[24:]))
-			if err != nil {
-				fmt.Println(err.Error())
-			}
-			topEvents := jsonParsed.Path("data.topEvents").Data()
-			if topEvents != nil {
-				w.parseTopEvents(topEvents.([]interface{}))
-			}
-			//TODO parse other items (fmt.Println(jsonParsed))
-		}
-	})
+func (w *Winmasters) Initialize() {
+
+	w.wg = &sync.WaitGroup{}
+}
+
+func (w *Winmasters) Destruct() {
+	var err error
+	context := *w.context
+	err = context.Close()
+	if err != nil {
+		log.Fatalf("could close context: %v", err)
+	}
+	browser := *w.browser
+	if err = browser.Close(); err != nil {
+		log.Fatalf("could not close browser: %v", err)
+	}
+	if err = w.pw.Stop(); err != nil {
+		log.Fatalf("could not stop Playwright: %v", err)
+	}
 }
 
 func (w *Winmasters) SetConfig(c *models.SiteConfig) {
@@ -72,66 +82,100 @@ func (w *Winmasters) ScrapeHome() (bool, error) {
 }
 
 func (w *Winmasters) ScrapeLive() (bool, error) {
-	_ = w.c.Visit(fmt.Sprintf("%s/%s", w.config.BaseUrl, w.config.Urls["live"]))
 	return true, nil
 }
 
 func (w *Winmasters) ScrapeToday() (bool, error) {
-	_ = w.c.Visit(fmt.Sprintf("%s/%s", w.config.BaseUrl, w.config.Urls["day"]))
 	return true, nil
 }
 
 func (w *Winmasters) ScrapeTournament(tournamentId string) (bool, error) {
+	url := fmt.Sprintf("%s/%s", w.config.BaseUrl, tournamentId)
+	w.getPage(url)
 	return true, nil
+}
+
+func (w *Winmasters) getPage(url string) {
+	var err error
+	w.pw, err = playwright.Run()
+	if err != nil {
+		panic(err.Error())
+	}
+	browser, err := w.pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
+		Headless: playwright.Bool(true),
+	})
+	if err != nil {
+		panic(err.Error())
+	}
+	context, err := browser.NewContext(playwright.BrowserNewContextOptions{
+		UserAgent: playwright.String("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"),
+	})
+	page, err := context.NewPage()
+	if err != nil {
+		log.Fatalf("could create page: %v", err)
+	}
+	page.Once("websocket", func(ws playwright.WebSocket) {
+		ws.On("framereceived", func(payload []byte) {
+			jsonStr := string(payload)
+			fmt.Println(jsonStr)
+			if strings.Contains(jsonStr, "AGGREGATOR") && strings.Contains(jsonStr, "INITIAL_DUMP") {
+				defer w.wg.Done()
+				var result interface{}
+				err = json.Unmarshal(payload, &result)
+				if err != nil {
+					fmt.Errorf(err.Error())
+				}
+				tournament := result.([]interface{})[len(result.([]interface{}))-1]
+				if records, found := tournament.(map[string]interface{})["records"]; found {
+					items := records.([]interface{})
+					for _, item := range items {
+						if item.(map[string]interface{})["_type"] == "MATCH" {
+							ParseEvent(w, item.(map[string]interface{}))
+						}
+					}
+				}
+			}
+		})
+	})
+	fmt.Println("Visiting page %s", url)
+	page.SetDefaultNavigationTimeout(15*1000)
+	page.SetDefaultTimeout(15*1000)
+	w.wg.Add(1)
+	_, err = page.Goto(url, playwright.PageGotoOptions{
+		WaitUntil: playwright.WaitUntilStateNetworkidle,
+	})
+	w.wg.Wait()
 }
 
 func (w *Winmasters) SetDB(db *gorm.DB) {
 	w.db = db
 }
 
-func (w *Winmasters) parseTopEvents(sports []interface{}) {
-	for i := 0; i < len(sports); i++ {
-		sport := sports[0].(map[string]interface{})
-		events := sport["events"].([]interface{})
-		if len(events) > 0 {
-			for j := 0; j < len(events); j++ {
-				_, _ = ParseEvent(w, events[j].(map[string]interface{}))
-			}
-		}
-	}
-}
-
-func (w *Winmasters) ParseEvents(events []interface{}, markets []interface{}) {
-	for i := 0; i < len(events); i++ {
-		event := events[i].(map[string]interface{})
-		eventObject, err := ParseEvent(w, event)
-		if err != nil {
-			fmt.Println("error parsing event")
-			continue
-		}
-		for j := 0; j < len(markets); j++ {
-			if markets[j].(map[string]interface{})["eventId"] == event["id"] {
-				market, parseError := ParseMarket(w, markets[j].(map[string]interface{}), *eventObject)
-				if parseError == nil {
-					eventObject.Markets = append(eventObject.Markets, market)
-				}
-
-			}
-		}
-		w.db.Save(&eventObject)
-	}
-}
-
 func (w *Winmasters) GetDB() *gorm.DB {
 	return w.db
 }
 
+func (w *Winmasters) GetEventUrl(event map[string]interface{}) string {
+	//sports/i/event/1/podosfairo/ellada/super-league-1/ofi-atromitos/{eventid}
+	sport := strings.ToLower(event["shortSportName"].(string))
+	category := strings.ToLower(event["categoryName"].(string))
+	tournament := strings.ToLower(event["shortParentName"].(string))
+	eventName := strings.ToLower(event["name"].(string))
+	eventId := event["id"].(string)
+	eventName = strings.Replace(eventName, " - ", "-", -1)
+	sport = strings.Replace(sport, " ", "-", -1)
+	category = strings.Replace(category, " ", "-", -1)
+	tournament = strings.Replace(tournament, " ", "-", -1)
+	eventName = strings.Replace(eventName, " ", "-", -1)
+	return fmt.Sprintf("sports/i/event/1/%s/%s/%s/%s/%s", sport, category, tournament, eventName, eventId)
+}
+
 func (w *Winmasters) GetEventIsAntepost(event map[string]interface{}) bool {
-	return event["type"] == "Outright"
+	return false
 }
 
 func (w *Winmasters) GetEventIsLive(event map[string]interface{}) bool {
-	return event["live"] == "true"
+	return false
 }
 
 func (w *Winmasters) GetEventID(event map[string]interface{}) string {
@@ -172,4 +216,16 @@ func (w *Winmasters) ParseSelectionLine(selectionData map[string]interface{}, ma
 		line = selectionData["points"].(float64)
 	}
 	return line
+}
+
+func (w *Winmasters) GetEventDate(event map[string]interface{}) string {
+	start := time.Unix(cast.ToInt64(event["startTime"])/1000, 0)
+	return start.Format("2006-01-02 15:04:05")
+}
+
+
+func (w *Winmasters) FetchEvent(e *models.Event) error {
+	url := fmt.Sprintf("%s/%s", w.config.BaseUrl, e.Url)
+	w.getPage(url)
+	return nil
 }

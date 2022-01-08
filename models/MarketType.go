@@ -27,6 +27,10 @@ type DrawNoBet struct {
 	MarketType
 }
 
+type HomeNoBet struct {
+	MarketType
+}
+
 type UnderOverHome struct {
 	MarketType
 	Handicap float64
@@ -44,6 +48,13 @@ type FirstGoalEarly struct {
 	MarketType
 }
 type UnderOverCorners struct {
+	MarketType
+	Handicap float64
+}
+type BttsOrOver struct {
+	MarketType
+}
+type RacePoints struct {
 	MarketType
 	Handicap float64
 }
@@ -80,6 +91,9 @@ func NewDoubleChance() DoubleChance {
 func NewDrawNoBet() DrawNoBet {
 	return DrawNoBet{MarketType{Name: "DNOB"}}
 }
+func NewHomeNoBet() HomeNoBet {
+	return HomeNoBet{MarketType{Name: "DNOB"}}
+}
 
 func NewUnderOverHome(hc float64) UnderOverHome {
 	return UnderOverHome{MarketType{Name: string("OUHG")}, hc}
@@ -99,4 +113,11 @@ func NewFirstGoalEarly() FirstGoalEarly {
 
 func NewUnderOverCorners(hc float64) UnderOverCorners {
 	return UnderOverCorners{MarketType{Name: string("OUCR")}, hc}
+}
+func NewBttsOrOver(hc float64) BttsOrOver {
+	return BttsOrOver{MarketType{Name: string("BTTSOROV")}}
+}
+
+func NewRacePoints(hc float64) RacePoints {
+	return RacePoints{MarketType{Name: string("")}, hc}
 }

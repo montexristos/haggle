@@ -1,9 +1,17 @@
+#NBA:
+#  stoiximan: sport/basket/ipa/nba/17106/
+#  pokerstars:
+#  betsson:
+#  netbet:
+#  novibet: api/marketviews/coupon/5/2483752/4314818?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+#  winmasters:
 Greek Superligue:
   stoiximan: sport/podosfairo/ellada/super-league-1/1636r/
   pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680204&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr
   betsson: widgets/events-table/v2?maxMarketCount=5&categoryIds=1&regionIds=15&competitionIds=1698
   netbet: /ποδόσφαιρο/ελλάδα/σούπερ-λίγκα/
   novibet: api/marketviews/coupon/16/440817/3381277?lang=en-US&oddsR=1&timeZ=GTB%20Standard%20Time&usrGrp=GR&_=
+  winmasters: el/sports/i/tournament-location/ποδόσφαιρο/1/ελλάδα/91/super-league-1-2021-2022/145070888092487680
 Italy Serie A:
   stoiximan: sport/podosfairo/italia/serie-a/1635/
   pokerstars: sportsbook/v1/api/getCompetitionEvents?competitionId=10680392&marketTypes=SOCCER%3AFT%3AAXB%2CMRES&includeOutrights=false&channelId=19&locale=en-gr

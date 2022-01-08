@@ -1,6 +1,6 @@
 id: netbet
 siteId: 8
-active: true
+active: false
 baseUrl: https://ws-sport.netbet.gr/component/data
 parser: parsers.Netbet
 urls:

@@ -53,7 +53,7 @@ func main() {
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./build/")))
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
-	originsOk := handlers.AllowedOrigins([]string{"http://localhost:3000", "http://142.93.163.59:8088"})
+	originsOk := handlers.AllowedOrigins([]string{"http://localhost:3000","http://localhost:3001", "http://142.93.163.59:8088"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
 
 	//initiate an initial scrape
@@ -125,7 +125,7 @@ func (app *Application) scrapeAll() (map[string]string, error) {
 	return result, nil
 }
 
-func GetParser(website string, db *gorm.DB) (parsers.Parser, error) {
+func GetParser(website string, db *gorm.DB) (*parsers.Parser, error) {
 	config := models.ParseSiteConfig(website)
 	if !config.Active {
 		return nil, fmt.Errorf("Parser %s disabled", config.Id)
@@ -168,7 +168,7 @@ func GetParser(website string, db *gorm.DB) (parsers.Parser, error) {
 		parser.SetDB(db)
 		parser.SetConfig(config)
 		parser.Initialize()
-		return parser, nil
+		return &parser, nil
 	}
 	return nil, fmt.Errorf("parser not found")
 }
@@ -194,23 +194,27 @@ func (app *Application) ReadTournamentList(website string) ([]interface{}, error
 func (app *Application) ScrapeSite(website string) (bool, error) {
 	//parser := GetParser(website, app.db)
 	parser, err := GetParser(website, app.db)
+	if parser == nil {
+		return false, fmt.Errorf("no parser for %s", website)
+	}
+	defer (*parser).Destruct()
 	tournaments, err := app.ReadTournamentList(website)
 	if parser != nil {
-		_, err = parser.ScrapeHome()
-		_, err = parser.ScrapeLive()
-		_, err = parser.ScrapeToday()
-		config := parser.GetConfig()
+		_, err = (*parser).ScrapeHome()
+		_, err = (*parser).ScrapeLive()
+		_, err = (*parser).ScrapeToday()
+		config := (*parser).GetConfig()
 		for t := 0; t < len(tournaments); t++ {
 			tourUrl := tournaments[t]
 			if tourUrl != nil {
-				_, err = parser.ScrapeTournament(tourUrl.(string))
+				_, err = (*parser).ScrapeTournament(tourUrl.(string))
 			}
 		}
 		if err != nil {
 			return false, fmt.Errorf("Parser %s initialize error", config.Id)
 		}
 
-		return parser.Scrape()
+		return true, nil
 	}
 	return false, fmt.Errorf("Parser not found")
 }
@@ -439,7 +443,7 @@ func GetSites() map[int]string {
 	for _, site := range siteList {
 		parser, _ := GetParser(site, GetDb())
 		if parser != nil {
-			sites[parser.GetConfig().SiteID] = site
+			sites[(*parser).GetConfig().SiteID] = site
 		}
 	}
 	return sites

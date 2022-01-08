@@ -57,6 +57,8 @@ func (p *PameStoixima) Initialize() {
 
 }
 
+func (p *PameStoixima) Destruct() {
+}
 func (p *PameStoixima) SetConfig(c *models.SiteConfig) {
 	p.config = c
 	p.ID = c.SiteID

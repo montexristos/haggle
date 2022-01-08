@@ -45,6 +45,7 @@ type Parser interface {
 	FetchEvent(e *models.Event) error
 	GetEventUrl(event map[string]interface{}) string
 	ParseMarketLine(market map[string]interface{}) float64
+	Destruct()
 }
 
 func GetSiteID(p Parser) int {
