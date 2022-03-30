@@ -4,16 +4,6 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/handlers"
-	"github.com/gorilla/mux"
-	"gopkg.in/yaml.v2"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
-	"haggle/fixtureModels"
-	"haggle/models"
-	"haggle/parsers"
-	"haggle/tools"
 	"io"
 	"io/ioutil"
 	"log"
@@ -25,6 +15,17 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+	"github.com/montexristos/haggle/fixtureModels"
+	"github.com/montexristos/haggle/models"
+	"github.com/montexristos/haggle/parsers"
+	"github.com/montexristos/haggle/tools"
+	"gopkg.in/yaml.v2"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 /*
@@ -53,7 +54,7 @@ func main() {
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./build/")))
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
-	originsOk := handlers.AllowedOrigins([]string{"http://localhost:3000","http://localhost:3001", "http://142.93.163.59:8088"})
+	originsOk := handlers.AllowedOrigins([]string{"http://localhost:3000", "http://localhost:3001", "http://142.93.163.59:8088"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
 
 	//initiate an initial scrape

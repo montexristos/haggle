@@ -2,15 +2,16 @@ package parsers
 
 import (
 	"flag"
-	"github.com/gocolly/colly"
-	"github.com/gorilla/websocket"
-	"gorm.io/gorm"
-	"haggle/models"
 	"log"
 	"net/url"
 	"os"
 	"os/signal"
 	"strconv"
+
+	"github.com/gocolly/colly"
+	"github.com/gorilla/websocket"
+	"github.com/montexristos/haggle/models"
+	"gorm.io/gorm"
 )
 
 type PameStoixima struct {

@@ -2,10 +2,6 @@ package parsers
 
 import (
 	"fmt"
-	"github.com/gocolly/colly"
-	"gopkg.in/yaml.v2"
-	"gorm.io/gorm"
-	"haggle/models"
 	"io/ioutil"
 	"log"
 	"os"
@@ -13,6 +9,11 @@ import (
 	"strings"
 	"time"
 	"unicode"
+
+	"github.com/gocolly/colly"
+	"github.com/montexristos/haggle/models"
+	"gopkg.in/yaml.v2"
+	"gorm.io/gorm"
 )
 
 type Parser interface {

@@ -2,13 +2,15 @@ package parsers
 
 import (
 	"fmt"
+	"io/ioutil"
+	"net/http"
+
+	"github.com/montexristos/haggle/models"
+
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
 	"github.com/spf13/cast"
 	"gorm.io/gorm"
-	"haggle/models"
-	"io/ioutil"
-	"net/http"
 )
 
 type Betsson struct {
@@ -30,7 +32,6 @@ func (p *Betsson) Initialize() {
 }
 func (p *Betsson) Destruct() {
 }
-
 
 func (p *Betsson) SetConfig(c *models.SiteConfig) {
 	p.config = c

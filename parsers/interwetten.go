@@ -20,12 +20,13 @@ package parsers
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/Jeffail/gabs"
 	"github.com/gocolly/colly"
+	"github.com/montexristos/haggle/models"
 	"github.com/spf13/cast"
 	"gorm.io/gorm"
-	"haggle/models"
-	"strings"
 )
 
 type Interwetten struct {

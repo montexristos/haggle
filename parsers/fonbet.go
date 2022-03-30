@@ -3,15 +3,16 @@ package parsers
 import (
 	"bytes"
 	"fmt"
-	"github.com/Jeffail/gabs"
-	"github.com/gocolly/colly"
-	"gorm.io/gorm"
-	"haggle/models"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/Jeffail/gabs"
+	"github.com/gocolly/colly"
+	"github.com/montexristos/haggle/models"
+	"gorm.io/gorm"
 )
 
 type Fonbet struct {

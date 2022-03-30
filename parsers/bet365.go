@@ -2,16 +2,18 @@ package parsers
 
 import (
 	"fmt"
-	"github.com/gocolly/colly"
-	"github.com/gorilla/websocket"
-	"gorm.io/gorm"
-	"haggle/models"
 	"log"
 	"net/url"
 	"os"
 	"os/signal"
 	"strconv"
 	"time"
+
+	"github.com/montexristos/haggle/models"
+
+	"github.com/gocolly/colly"
+	"github.com/gorilla/websocket"
+	"gorm.io/gorm"
 )
 
 type Bet struct {

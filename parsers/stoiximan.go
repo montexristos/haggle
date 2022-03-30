@@ -3,16 +3,17 @@ package parsers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Jeffail/gabs"
-	"github.com/gocolly/colly"
-	"github.com/spf13/cast"
-	"gorm.io/gorm"
-	"haggle/models"
 	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/Jeffail/gabs"
+	"github.com/gocolly/colly"
+	"github.com/montexristos/haggle/models"
+	"github.com/spf13/cast"
+	"gorm.io/gorm"
 )
 
 type Stoiximan struct {

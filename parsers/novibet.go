@@ -3,10 +3,6 @@ package parsers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/gocolly/colly"
-	"github.com/spf13/cast"
-	"gorm.io/gorm"
-	"haggle/models"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -14,6 +10,11 @@ import (
 	"regexp"
 	"strconv"
 	"time"
+
+	"github.com/gocolly/colly"
+	"github.com/montexristos/haggle/models"
+	"github.com/spf13/cast"
+	"gorm.io/gorm"
 )
 
 type Novibet struct {
@@ -35,7 +36,7 @@ func (n *Novibet) Initialize() {
 		var resp interface{}
 		err := json.Unmarshal(response.Body, &resp)
 		if err != nil {
-			log.Println("error in novi parser"+err.Error())
+			log.Println("error in novi parser" + err.Error())
 		}
 		v := reflect.ValueOf(resp)
 		switch v.Kind() {

@@ -1,4 +1,4 @@
-module haggle
+module github.com/montexristos/haggle
 
 go 1.13
 

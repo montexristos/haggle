@@ -3,13 +3,14 @@ package parsers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/gocolly/colly"
-	"gorm.io/gorm"
-	"haggle/models"
 	"log"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/gocolly/colly"
+	"github.com/montexristos/haggle/models"
+	"gorm.io/gorm"
 )
 
 type Bwin struct {

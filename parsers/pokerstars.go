@@ -2,17 +2,18 @@ package parsers
 
 import (
 	"fmt"
-	"github.com/Jeffail/gabs"
-	"github.com/gocolly/colly"
-	"github.com/spf13/cast"
-	"gorm.io/gorm"
-	"haggle/models"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"sort"
 	"strconv"
 	"time"
+
+	"github.com/Jeffail/gabs"
+	"github.com/gocolly/colly"
+	"github.com/montexristos/haggle/models"
+	"github.com/spf13/cast"
+	"gorm.io/gorm"
 )
 
 type PokerStars struct {

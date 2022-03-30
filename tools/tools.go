@@ -2,11 +2,12 @@ package tools
 
 import (
 	"fmt"
-	"haggle/fixtureModels"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/montexristos/haggle/fixtureModels"
 )
 
 // GetHomeDateRange

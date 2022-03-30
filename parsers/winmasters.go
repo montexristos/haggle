@@ -21,15 +21,16 @@ package parsers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/gocolly/colly"
-	"github.com/mxschmitt/playwright-go"
-	"github.com/spf13/cast"
-	"gorm.io/gorm"
-	"haggle/models"
 	"log"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/gocolly/colly"
+	"github.com/montexristos/haggle/models"
+	"github.com/mxschmitt/playwright-go"
+	"github.com/spf13/cast"
+	"gorm.io/gorm"
 )
 
 type Winmasters struct {
@@ -138,8 +139,8 @@ func (w *Winmasters) getPage(url string) {
 		})
 	})
 	fmt.Println("Visiting page %s", url)
-	page.SetDefaultNavigationTimeout(15*1000)
-	page.SetDefaultTimeout(15*1000)
+	page.SetDefaultNavigationTimeout(15 * 1000)
+	page.SetDefaultTimeout(15 * 1000)
 	w.wg.Add(1)
 	_, err = page.Goto(url, playwright.PageGotoOptions{
 		WaitUntil: playwright.WaitUntilStateNetworkidle,
@@ -222,7 +223,6 @@ func (w *Winmasters) GetEventDate(event map[string]interface{}) string {
 	start := time.Unix(cast.ToInt64(event["startTime"])/1000, 0)
 	return start.Format("2006-01-02 15:04:05")
 }
-
 
 func (w *Winmasters) FetchEvent(e *models.Event) error {
 	url := fmt.Sprintf("%s/%s", w.config.BaseUrl, e.Url)
