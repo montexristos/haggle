@@ -17,7 +17,7 @@ require (
 	github.com/gorilla/mux v1.7.4
 	github.com/gorilla/websocket v1.4.2
 	github.com/kennygrant/sanitize v1.2.4 // indirect
-	github.com/mxschmitt/playwright-go v0.1400.0 // indirect
+	github.com/mxschmitt/playwright-go v0.1400.0
 	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca // indirect
 	github.com/spf13/cast v1.3.1
 	github.com/temoto/robotstxt v1.1.1 // indirect
