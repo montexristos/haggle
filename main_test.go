@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/montexristos/haggle/database"
 	"haggle/models"
 	"haggle/parsers"
 	"io/ioutil"
@@ -22,7 +23,7 @@ SET FOREIGN_KEY_CHECKS=1;
 */
 
 func Test_stoiximan(t *testing.T) {
-	db := GetDb()
+	db := database.GetDb()
 	app := Application{
 		db,
 	}
@@ -31,7 +32,7 @@ func Test_stoiximan(t *testing.T) {
 	}
 }
 func Test_PameStoixima(t *testing.T) {
-	db := GetDb()
+	db := database.GetDb()
 	app := Application{
 		db,
 	}
@@ -40,7 +41,7 @@ func Test_PameStoixima(t *testing.T) {
 	}
 }
 func Test_winmastersParse(t *testing.T) {
-	db := GetDb()
+	db := database.GetDb()
 	app := Application{
 		db,
 	}
@@ -50,7 +51,7 @@ func Test_winmastersParse(t *testing.T) {
 }
 
 func Test_novibet(t *testing.T) {
-	db := GetDb()
+	db := database.GetDb()
 	app := Application{
 		db: db,
 	}
@@ -59,7 +60,7 @@ func Test_novibet(t *testing.T) {
 	}
 }
 func Test_netbet(t *testing.T) {
-	db := GetDb()
+	db := database.GetDb()
 	app := Application{
 		db: db,
 	}
@@ -68,7 +69,7 @@ func Test_netbet(t *testing.T) {
 	}
 }
 func Test_all_active(t *testing.T) {
-	db := GetDb()
+	db := database.GetDb()
 	app := Application{
 		db: db,
 	}
@@ -90,7 +91,7 @@ func Test_transform(t *testing.T) {
 }
 
 func Test_bwin(t *testing.T) {
-	db := GetDb()
+	db := database.GetDb()
 	app := Application{
 		db: db,
 	}
@@ -101,7 +102,7 @@ func Test_bwin(t *testing.T) {
 
 func Test_pokerstars(t *testing.T) {
 
-	db := GetDb()
+	db := database.GetDb()
 	app := Application{
 		db: db,
 	}
@@ -111,7 +112,7 @@ func Test_pokerstars(t *testing.T) {
 }
 func Test_betsson(t *testing.T) {
 
-	db := GetDb()
+	db := database.GetDb()
 	app := Application{
 		db: db,
 	}
@@ -145,7 +146,7 @@ func TestClearDB(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			ClearDB()
-			rows, _ := GetDb().Raw(`SELECT * FROM haggle.events;`).Rows()
+			rows, _ := database.GetDb().Raw(`SELECT * FROM haggle.events;`).Rows()
 			defer rows.Close()
 			if rows.Next() {
 				t.Errorf("db should be empty")

@@ -4,6 +4,7 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
+	"github.com/montexristos/haggle/database"
 	"io"
 	"io/ioutil"
 	"log"
@@ -23,9 +24,7 @@ import (
 	"github.com/montexristos/haggle/parsers"
 	"github.com/montexristos/haggle/tools"
 	"gopkg.in/yaml.v2"
-	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
 )
 
 /*
@@ -34,12 +33,12 @@ docker run \
 --name=mysql \
 --env="MYSQL_ROOT_PASSWORD=123" \
 --publish 6602:3306 \
---volume=data:/var/lib/mysql \
+--volume=mysql:/var/lib/mysql \
 mysql
 */
 
 func main() {
-	db := GetDb()
+	db := database.GetDb()
 	app := Application{
 		db,
 	}
@@ -69,25 +68,8 @@ type Application struct {
 	db *gorm.DB
 }
 
-func GetDb() *gorm.DB {
-	//CREATE SCHEMA `haggle` DEFAULT CHARACTER SET utf8 ;
-	// refer https://github.com/go-sql-driver/mysql#dsn-data-source-name for details
-	dsn := "root:123@(localhost:6602)/haggle?charset=utf8&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Silent),
-	})
-	if err != nil {
-		panic(err.Error())
-	}
-	err = db.AutoMigrate(&models.Event{}, &models.Market{}, &models.Selection{})
-	if err != nil {
-		panic(err.Error())
-	}
-	return db
-}
-
 func ClearDB() {
-	db := GetDb()
+	db := database.GetDb()
 	db.Where("1 = 1").Unscoped().Delete(&models.Selection{})
 	db.Where("1 = 1").Unscoped().Delete(&models.Market{})
 	db.Where("1 = 1").Unscoped().Delete(&models.Event{})
@@ -223,7 +205,7 @@ func (app *Application) ScrapeSite(website string) (bool, error) {
 func getScrapeResults() (map[string]interface{}, error) {
 	// find events that appear in more than one site
 	//rows, err := GetDb().Raw(`SELECT betradar_id FROM (SELECT count(distinct site_id) as matches, betradar_id FROM haggle.events group by betradar_id) as tab WHERE matches > 1;`).Rows()
-	rows, err := GetDb().Raw(`SELECT canonical_name FROM (SELECT count(distinct site_id) as matches, canonical_name FROM haggle.events group by canonical_name) as tab WHERE matches > 1;`).Rows()
+	rows, err := database.GetDb().Raw(`SELECT canonical_name FROM (SELECT count(distinct site_id) as matches, canonical_name FROM haggle.events group by canonical_name) as tab WHERE matches > 1;`).Rows()
 	if err != nil {
 		return map[string]interface{}{
 			"error": err,
@@ -242,7 +224,7 @@ func getScrapeResults() (map[string]interface{}, error) {
 		eventIds = append(eventIds, fmt.Sprintf("%s", eventMatch.([]byte)))
 	}
 	events := make([]models.Event, 0)
-	GetDb().Preload("Markets").Preload("Markets.Selections").Where("canonical_name in (?)", eventIds).Find(&events)
+	database.GetDb().Preload("Markets").Preload("Markets.Selections").Where("canonical_name in (?)", eventIds).Find(&events)
 	matches := make(map[string][]models.Event)
 	for _, event := range events {
 		//var matchResultMarket *models.Market
@@ -393,7 +375,7 @@ func (app *Application) allLink(w http.ResponseWriter, r *http.Request) {
 }
 
 func AllResults() map[string]interface{} {
-	rows, err := GetDb().Model(&models.Event{}).Select("id").Rows()
+	rows, err := database.GetDb().Model(&models.Event{}).Select("id").Rows()
 	defer rows.Close()
 	var eventMatch interface{}
 	eventIds := make([]string, 0)
@@ -405,7 +387,7 @@ func AllResults() map[string]interface{} {
 		eventIds = append(eventIds, fmt.Sprintf("%s", eventMatch.([]byte)))
 	}
 	events := make([]models.Event, 0)
-	GetDb().Preload("Markets").Preload("Markets.Selections").Where("id in (?)", eventIds).Find(&events)
+	database.GetDb().Preload("Markets").Preload("Markets.Selections").Where("id in (?)", eventIds).Find(&events)
 	matches := make(map[string][]models.Event)
 	for _, event := range events {
 		//var matchResultMarket *models.Market
@@ -442,7 +424,7 @@ func GetSites() map[int]string {
 	}
 	sites := make(map[int]string)
 	for _, site := range siteList {
-		parser, _ := GetParser(site, GetDb())
+		parser, _ := GetParser(site, database.GetDb())
 		if parser != nil {
 			sites[(*parser).GetConfig().SiteID] = site
 		}
