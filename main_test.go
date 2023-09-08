@@ -4,8 +4,9 @@ import (
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/montexristos/haggle/database"
-	"haggle/models"
-	"haggle/parsers"
+	"github.com/montexristos/haggle/models"
+	"github.com/montexristos/haggle/parsers"
+	"github.com/montexristos/haggle/scrape"
 	"io/ioutil"
 	"testing"
 )
@@ -23,57 +24,33 @@ SET FOREIGN_KEY_CHECKS=1;
 */
 
 func Test_stoiximan(t *testing.T) {
-	db := database.GetDb()
-	app := Application{
-		db,
-	}
-	if _, err := app.ScrapeSite("stoiximan"); err != nil {
+	if _, err := scrape.ScrapeSite("stoiximan"); err != nil {
 		t.Error(err.Error())
 	}
 }
 func Test_PameStoixima(t *testing.T) {
-	db := database.GetDb()
-	app := Application{
-		db,
-	}
-	if _, err := app.ScrapeSite("pamestoixima"); err != nil {
+	if _, err := scrape.ScrapeSite("pamestoixima"); err != nil {
 		t.Error(err.Error())
 	}
 }
 func Test_winmastersParse(t *testing.T) {
-	db := database.GetDb()
-	app := Application{
-		db,
-	}
-	if _, err := app.ScrapeSite("winmasters"); err != nil {
+	if _, err := scrape.ScrapeSite("winmasters"); err != nil {
 		t.Error(err.Error())
 	}
 }
 
 func Test_novibet(t *testing.T) {
-	db := database.GetDb()
-	app := Application{
-		db: db,
-	}
-	if _, err := app.ScrapeSite("novibet"); err != nil {
+	if _, err := scrape.ScrapeSite("novibet"); err != nil {
 		t.Error(err.Error())
 	}
 }
 func Test_netbet(t *testing.T) {
-	db := database.GetDb()
-	app := Application{
-		db: db,
-	}
-	if _, err := app.ScrapeSite("netbet"); err != nil {
+	if _, err := scrape.ScrapeSite("netbet"); err != nil {
 		t.Error(err.Error())
 	}
 }
 func Test_all_active(t *testing.T) {
-	db := database.GetDb()
-	app := Application{
-		db: db,
-	}
-	if _, err := app.scrapeAll(); err != nil {
+	if _, err := scrape.ScrapeAll(); err != nil {
 		t.Error(err.Error())
 	}
 }
@@ -91,32 +68,18 @@ func Test_transform(t *testing.T) {
 }
 
 func Test_bwin(t *testing.T) {
-	db := database.GetDb()
-	app := Application{
-		db: db,
-	}
-	if _, err := app.ScrapeSite("bwin"); err != nil {
+	if _, err := scrape.ScrapeSite("bwin"); err != nil {
 		t.Error(err.Error())
 	}
 }
 
 func Test_pokerstars(t *testing.T) {
-
-	db := database.GetDb()
-	app := Application{
-		db: db,
-	}
-	if _, err := app.ScrapeSite("pokerstars"); err != nil {
+	if _, err := scrape.ScrapeSite("pokerstars"); err != nil {
 		t.Error(err.Error())
 	}
 }
 func Test_betsson(t *testing.T) {
-
-	db := database.GetDb()
-	app := Application{
-		db: db,
-	}
-	if _, err := app.ScrapeSite("betsson"); err != nil {
+	if _, err := scrape.ScrapeSite("betsson"); err != nil {
 		t.Error(err.Error())
 	}
 }
@@ -145,7 +108,7 @@ func TestClearDB(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ClearDB()
+			database.ClearDB()
 			rows, _ := database.GetDb().Raw(`SELECT * FROM haggle.events;`).Rows()
 			defer rows.Close()
 			if rows.Next() {
@@ -172,14 +135,14 @@ func Test_getTournamentUpcomingData(t *testing.T) {
 }
 
 func Test_getScrapeResults(t *testing.T) {
-	resp, _ := getScrapeResults()
+	resp, _ := scrape.GetScrapeResults()
 	if len(resp["arbs"].(map[string]string)) > 0 {
 		t.Log("found")
 	}
 
 }
 func Test_getAllResults(t *testing.T) {
-	resp := AllResults()
+	resp := scrape.AllResults()
 	if len(resp["arbs"].(map[string]string)) > 0 {
 		t.Log("found")
 	}
@@ -199,20 +162,20 @@ func Test_getArbDetect(t *testing.T) {
 		{12, 13, 0.1},
 	}
 	for _, test := range tests {
-		if res := testArbs(test.odd1, test.odd2); res != test.result {
+		if res := scrape.TestArbs(test.odd1, test.odd2); res != test.result {
 			t.Fail()
 		}
 	}
 }
 
 func Test_CheckMarket_differentIndex(t *testing.T) {
-	temp := make(map[string][]SiteOdd)
+	temp := make(map[string][]scrape.SiteOdd)
 	tests := []struct {
 		eventName  string
 		selection  models.Selection
 		marketType string
 		index      int
-		temp       map[string][]SiteOdd
+		temp       map[string][]scrape.SiteOdd
 		site       string
 	}{
 		{
@@ -244,7 +207,7 @@ func Test_CheckMarket_differentIndex(t *testing.T) {
 
 	for _, test := range tests {
 
-		result := CheckMarket(test.eventName, test.selection, test.marketType, test.index, temp, test.site)
+		result := scrape.CheckMarket(test.eventName, test.selection, test.marketType, test.index, temp, test.site)
 		if result != "" {
 			t.Error("should not find arb")
 			t.Fail()
@@ -252,13 +215,13 @@ func Test_CheckMarket_differentIndex(t *testing.T) {
 	}
 }
 func Test_CheckMarket_sameOdds(t *testing.T) {
-	temp := make(map[string][]SiteOdd)
+	temp := make(map[string][]scrape.SiteOdd)
 	tests := []struct {
 		eventName  string
 		selection  models.Selection
 		marketType string
 		index      int
-		temp       map[string][]SiteOdd
+		temp       map[string][]scrape.SiteOdd
 		site       string
 	}{
 		{
@@ -290,7 +253,7 @@ func Test_CheckMarket_sameOdds(t *testing.T) {
 
 	for _, test := range tests {
 
-		result := CheckMarket(test.eventName, test.selection, test.marketType, test.index, temp, test.site)
+		result := scrape.CheckMarket(test.eventName, test.selection, test.marketType, test.index, temp, test.site)
 		if result != "" {
 			t.Error("should not find arb")
 			t.Fail()
@@ -298,13 +261,13 @@ func Test_CheckMarket_sameOdds(t *testing.T) {
 	}
 }
 func Test_CheckMarket_diffOdds(t *testing.T) {
-	temp := make(map[string][]SiteOdd)
+	temp := make(map[string][]scrape.SiteOdd)
 	tests := []struct {
 		eventName  string
 		selection  models.Selection
 		marketType string
 		index      int
-		temp       map[string][]SiteOdd
+		temp       map[string][]scrape.SiteOdd
 		site       string
 	}{
 		{
@@ -336,7 +299,7 @@ func Test_CheckMarket_diffOdds(t *testing.T) {
 
 	for index, test := range tests {
 
-		result := CheckMarket(test.eventName, test.selection, test.marketType, test.index, temp, test.site)
+		result := scrape.CheckMarket(test.eventName, test.selection, test.marketType, test.index, temp, test.site)
 		if index == 0 && result != "" {
 			t.Error("should not find arb")
 			t.Fail()

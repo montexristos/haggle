@@ -23,3 +23,13 @@ func GetDb() *gorm.DB {
 	}
 	return db
 }
+
+func ClearDB() {
+	db := GetDb()
+	db.Where("1 = 1").Unscoped().Delete(&models.Selection{})
+	db.Where("1 = 1").Unscoped().Delete(&models.Market{})
+	db.Where("1 = 1").Unscoped().Delete(&models.Event{})
+	if db.Error != nil {
+		panic(db.Error.Error())
+	}
+}
