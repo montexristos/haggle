@@ -39,6 +39,7 @@ type Parser interface {
 	ParseSelectionName(selectionData map[string]interface{}) string
 	ParseSelectionPrice(selectionData map[string]interface{}) float64
 	ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64
+	ParseSelectionId(selectionData map[string]interface{}) uint
 	GetMarketSelections(marketData map[string]interface{}) []interface{}
 	SetDB(db *gorm.DB)
 	SetConfig(config *models.SiteConfig)
@@ -156,6 +157,7 @@ func ParseMarket(p Parser, market map[string]interface{}, event models.Event) (m
 			if sel.Line > 0.0 {
 				m.Line = sel.Line
 			}
+
 			m.Selections = append(m.Selections, sel)
 		}
 	}
@@ -173,6 +175,7 @@ func ParseSelection(p Parser, market map[string]interface{}, selection map[strin
 		Name:  p.ParseSelectionName(selection),
 		Price: p.ParseSelectionPrice(selection),
 		Line:  p.ParseSelectionLine(selection, market),
+		ID:    p.ParseSelectionId(selection),
 	}
 	return sel
 }

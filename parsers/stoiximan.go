@@ -150,6 +150,12 @@ func (s *Stoiximan) ParseSelectionLine(selectionData map[string]interface{}, mar
 	//TODO get line
 	return line
 }
+func (s *Stoiximan) ParseSelectionId(selectionData map[string]interface{}) uint {
+	if id, found := selectionData["id"]; found {
+		return cast.ToUint(id)
+	}
+	return 0
+}
 
 func (s *Stoiximan) GetEventIsAntepost(event map[string]interface{}) bool {
 	return false
