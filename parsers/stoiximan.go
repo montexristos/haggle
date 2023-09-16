@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"strconv"
 	"strings"
 	"time"
 
@@ -34,6 +33,26 @@ func (s *Stoiximan) Initialize() {
 		if err == nil {
 			if eventData, found := jsonString["event"]; found {
 				ParseEvent(s, eventData.(map[string]interface{}))
+			}
+			if events, found := jsonString["events"]; found {
+				markets := jsonString["markets"]
+				selections := jsonString["selections"]
+				for _, eventData := range events.(map[string]interface{}) {
+					eventMap := eventData.(map[string]interface{})
+					eventMap["markets"] = make([]interface{}, 0)
+					for _, marketId := range eventData.(map[string]interface{})["marketIdList"].([]interface{}) {
+						market := markets.(map[string]interface{})[cast.ToString(marketId)].(map[string]interface{})
+						market["selections"] = make([]interface{}, 0)
+						for _, selectionId := range market["selectionIdList"].([]interface{}) {
+							selection := selections.(map[string]interface{})[cast.ToString(selectionId)].(map[string]interface{})
+							market["selections"] = append(market["selections"].([]interface{}), selection)
+						}
+						eventMap["markets"] = append(eventMap["markets"].([]interface{}), market)
+					}
+					//override live now
+					eventMap["liveNow"] = true
+					ParseEvent(s, eventMap)
+				}
 			}
 		}
 	})
@@ -69,7 +88,14 @@ func (s *Stoiximan) ScrapeHome() (bool, error) {
 }
 
 func (s *Stoiximan) ScrapeLive() (bool, error) {
-	//_ = s.c.Visit(fmt.Sprintf("%s/%s", s.config.BaseUrl, s.config.Urls["live"]))
+	err := s.c.Request("GET", "https://en.stoiximan.gr/danae-webapi/api/live/overview/latest", nil, nil, http.Header{
+		"x-language": {"1"},
+		"x-operator": {"2"},
+	})
+
+	if err != nil {
+		return false, err
+	}
 	return true, nil
 }
 
@@ -100,11 +126,24 @@ func (s *Stoiximan) GetConfig() *models.SiteConfig {
 }
 
 func (s *Stoiximan) GetEventID(event map[string]interface{}) string {
-	return strconv.Itoa(int(event["betRadarId"].(float64)))
+	if id, found := event["betradarMatchId"]; found {
+		return cast.ToString(id)
+	}
+	if id, found := event["betRadarId"]; found {
+		return cast.ToString(id)
+	}
+
+	return ""
 }
 
 func (s *Stoiximan) GetEventName(event map[string]interface{}) string {
-	return event["name"].(string)
+	if name, found := event["name"]; found {
+		return name.(string)
+	}
+	if participants, found := event["participants"]; found && len(participants.([]interface{})) > 1 {
+		return fmt.Sprintf("%s - %s", cast.ToString(participants.([]interface{})[0]), cast.ToString(participants.([]interface{})[1]))
+	}
+	return ""
 }
 func (s *Stoiximan) GetEventCanonicalName(event map[string]interface{}) string {
 	return event["name"].(string)
@@ -118,6 +157,18 @@ func (s *Stoiximan) GetEventDate(event map[string]interface{}) string {
 	tm := time.Unix(int64(event["startTime"].(float64)/1000), 0)
 	return tm.Format("2006-01-02 15:04:05")
 }
+
+func (s *Stoiximan) GetEventRunningTime(event map[string]interface{}) float64 {
+	if liveData, found := event["liveData"]; found {
+		if clock, found := liveData.(map[string]interface{})["clock"]; found {
+			if timeData, found := clock.(map[string]interface{})["secondsSinceStart"]; found {
+				return cast.ToFloat64(timeData)
+			}
+		}
+	}
+	return -1.0
+}
+
 func (s *Stoiximan) parseTopEvents(sports []interface{}) {
 	for i := 0; i < len(sports); i++ {
 		sport := sports[0].(map[string]interface{})

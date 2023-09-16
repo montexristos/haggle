@@ -36,7 +36,9 @@ type Parser interface {
 	MatchMarketType(market map[string]interface{}, marketType string) (models.MarketType, error)
 	ParseMarketId(market map[string]interface{}) string
 	ParseMarketName(market map[string]interface{}) string
+	ParseMarketStatus(market map[string]interface{}) string
 	ParseSelectionName(selectionData map[string]interface{}) string
+	ParseSelectionStatus(selectionData map[string]interface{}) string
 	ParseSelectionPrice(selectionData map[string]interface{}) float64
 	ParseSelectionLine(selectionData map[string]interface{}, marketData map[string]interface{}) float64
 	ParseSelectionId(selectionData map[string]interface{}) uint
@@ -46,6 +48,7 @@ type Parser interface {
 	GetConfig() *models.SiteConfig
 	FetchEvent(e *models.Event) error
 	GetEventUrl(event map[string]interface{}) string
+	GetEventRunningTime(event map[string]interface{}) float64
 	ParseMarketLine(market map[string]interface{}) float64
 	Destruct()
 }
@@ -56,9 +59,6 @@ func GetSiteID(p Parser) int {
 
 func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 	if p.GetEventIsAntepost(event) {
-		return &models.Event{}, fmt.Errorf("antepost")
-	}
-	if p.GetEventIsLive(event) {
 		return &models.Event{}, fmt.Errorf("antepost")
 	}
 	eventID := p.GetEventID(event)
@@ -86,12 +86,18 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 	date := p.GetEventDate(event)
 	db := p.GetDB()
 	siteID := GetSiteID(p)
-	e := models.GetCreateEvent(p.GetDB(), eventID, siteID, eventName)
+	isLive := p.GetEventIsLive(event)
+	e := models.GetCreateEvent(p.GetDB(), eventID, siteID, eventName, isLive)
 	e.Date = date
 	e.CanonicalName = eventCanonicalName
 	e.Url = p.GetEventUrl(event)
 	// try to get all event details
-	GetEventDetails(p, &e)
+	if !isLive {
+		GetEventDetails(p, &e)
+	} else {
+		// additional live details
+		e.Time = p.GetEventRunningTime(event)
+	}
 
 	if len(e.Markets) == 0 {
 		markets := make([]models.Market, 0)

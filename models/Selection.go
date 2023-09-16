@@ -6,6 +6,7 @@ type Selection struct {
 	Price    float64
 	Line     float64
 	MarketID uint
+	Status   string
 }
 
 // Set User's table name to be `profiles`

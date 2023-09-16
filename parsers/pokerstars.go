@@ -143,12 +143,23 @@ func (p *PokerStars) ParseSelectionLine(selectionData map[string]interface{}, ma
 	return 0
 }
 
+func (p *PokerStars) ParseSelectionId(selectionData map[string]interface{}) uint {
+	if id, found := selectionData["id"]; found {
+		return cast.ToUint(id)
+	}
+	return 0
+}
+
 func (p *PokerStars) ParseMarketLine(market map[string]interface{}) float64 {
 	return cast.ToFloat64(market["line"])
 }
 
 func (p *PokerStars) GetEventDate(event map[string]interface{}) string {
 	return time.Unix(cast.ToInt64(event["eventTime"])/1000, 0).Format("2006-01-02 15:04:05")
+}
+
+func (p *PokerStars) GetEventRunningTime(event map[string]interface{}) float64 {
+	return cast.ToFloat64(event["eventTime"])
 }
 
 func (p *PokerStars) GetMarketSelections(marketData map[string]interface{}) []interface{} {
