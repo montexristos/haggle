@@ -16,6 +16,7 @@ type Event struct {
 	Tournament    string
 	Live          bool
 	Time          float64
+	Score         string
 }
 
 // Set User's table name to be `profiles`

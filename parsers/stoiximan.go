@@ -162,11 +162,31 @@ func (s *Stoiximan) GetEventRunningTime(event map[string]interface{}) float64 {
 	if liveData, found := event["liveData"]; found {
 		if clock, found := liveData.(map[string]interface{})["clock"]; found {
 			if timeData, found := clock.(map[string]interface{})["secondsSinceStart"]; found {
-				return cast.ToFloat64(timeData)
+				return cast.ToFloat64(timeData) / 60
 			}
 		}
 	}
 	return -1.0
+}
+func (s *Stoiximan) GetEventScore(event map[string]interface{}) string {
+	home := 0
+	away := 0
+	if liveData, found := event["liveData"]; found {
+		if score, found := liveData.(map[string]interface{})["score"]; found {
+			if homeScore, found := score.(map[string]interface{})["home"]; found {
+				home = cast.ToInt(homeScore)
+			} else {
+				return ""
+			}
+			if awayScore, found := score.(map[string]interface{})["away"]; found {
+				away = cast.ToInt(awayScore)
+			} else {
+				return ""
+			}
+			return fmt.Sprintf("%d-%d", home, away)
+		}
+	}
+	return ""
 }
 
 func (s *Stoiximan) parseTopEvents(sports []interface{}) {

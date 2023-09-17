@@ -49,6 +49,7 @@ type Parser interface {
 	FetchEvent(e *models.Event) error
 	GetEventUrl(event map[string]interface{}) string
 	GetEventRunningTime(event map[string]interface{}) float64
+	GetEventScore(event map[string]interface{}) string
 	ParseMarketLine(market map[string]interface{}) float64
 	Destruct()
 }
@@ -97,6 +98,7 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 	} else {
 		// additional live details
 		e.Time = p.GetEventRunningTime(event)
+		e.Score = p.GetEventScore(event)
 	}
 
 	if len(e.Markets) == 0 {

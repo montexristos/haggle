@@ -104,7 +104,7 @@ func ReadTournamentList(website string) ([]interface{}, error) {
 		return tournaments, err
 	}
 	for _, sites := range siteTournaments {
-		tournaments = append(tournaments, sites.(map[interface{}]interface{})[website])
+		tournaments = append(tournaments, sites.(map[string]interface{})[website])
 	}
 	return tournaments, nil
 }
