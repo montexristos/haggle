@@ -14,6 +14,7 @@ type Event struct {
 	Markets       []Market
 	Url           string
 	Tournament    string
+	Sport         string
 	Live          bool
 	Time          float64
 	Score         string

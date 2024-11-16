@@ -353,3 +353,9 @@ func (s *Stoiximan) GetEventTournament(event map[string]interface{}) string {
 	}
 	return ""
 }
+func (s *Stoiximan) GetEventSport(event map[string]interface{}) string {
+	if sport, found := event["sportId"]; found {
+		return cast.ToString(sport)
+	}
+	return ""
+}

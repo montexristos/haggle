@@ -49,6 +49,7 @@ type Parser interface {
 	FetchEvent(e *models.Event) error
 	GetEventUrl(event map[string]interface{}) string
 	GetEventTournament(event map[string]interface{}) string
+	GetEventSport(event map[string]interface{}) string
 	GetEventRunningTime(event map[string]interface{}) float64
 	GetEventScore(event map[string]interface{}) string
 	ParseMarketLine(market map[string]interface{}) float64
@@ -94,6 +95,7 @@ func ParseEvent(p Parser, event map[string]interface{}) (*models.Event, error) {
 	e.CanonicalName = eventCanonicalName
 	e.Url = p.GetEventUrl(event)
 	e.Tournament = p.GetEventTournament(event)
+	e.Sport = p.GetEventSport(event)
 	// try to get all event details
 	if !isLive {
 		GetEventDetails(p, &e)
